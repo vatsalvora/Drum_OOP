@@ -1,10 +1,14 @@
-public class PlaceTripleLandTile implements Command{
+package model;
 
+public class PlaceTripleLandTile implements Command {
 
-	void execute(){
-	}
+    @Override
+    public void execute() {
 
-	void undo(){
-	}
+    }
 
+    @Override
+    public void undo() {
+
+    }
 }
