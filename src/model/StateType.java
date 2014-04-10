@@ -1,6 +1,8 @@
+package model;
+
 /**
  * Created by devan on 4/9/14.
  */
-public enum State {
+public enum StateType {
     REPLAY, PLANNING, TURN, FESTIVAL, START
 }
