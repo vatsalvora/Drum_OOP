@@ -1,8 +1,14 @@
-public class IniatePalaceFestival implements Command{
+package model;
 
-	void execute(){
-	}
+public class InitiatePalaceFestival implements Command{
 
-	void undo(){
-	}
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
 }
