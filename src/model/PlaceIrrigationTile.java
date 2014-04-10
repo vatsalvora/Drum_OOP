@@ -1,10 +1,17 @@
-public class PlaceIrrigationTile implements Command{
+package model;
 
-	void execute(){
-	}
+import model.Command;
 
-	void undo(){
-	}
+public class PlaceIrrigationTile implements Command {
 
 
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
 }

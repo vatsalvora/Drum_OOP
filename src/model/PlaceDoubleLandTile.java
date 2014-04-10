@@ -4,7 +4,7 @@ public class PlaceDoubleLandTile implements Command{
 
     @Override
     public void execute() {
-        
+
     }
 
     @Override
