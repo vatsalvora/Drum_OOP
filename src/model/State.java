@@ -3,18 +3,12 @@ package model;
 /**
  * Created by devan on 4/9/14.
  */
-public abstract class State {
+public interface State {
 
-    private StateType currentState;
+    public abstract void changeCurrentState(State state);
 
-    public abstract void acceptInput(char c);
+    public void changeState(StateType stateType);
 
-    private void changeState(StateType stateType){
-        this.currentState = stateType;
-    }
-
-    public StateType getCurrentState() {
-        return currentState;
-    }
+    public StateType getCurrentState();
 
 }
