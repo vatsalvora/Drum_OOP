@@ -1,8 +1,15 @@
-public class PlaceRiceTile implements Command{
+package model;
 
-	void execute(){
-	}
-	void undo(){
+public class PlaceRiceTile implements Command {
 
-	}
+
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
 }
