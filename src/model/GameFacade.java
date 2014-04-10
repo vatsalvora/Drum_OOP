@@ -1,29 +1,32 @@
-public class GameFacade{
+package model;
 
-	GameFacade{}
+import java.util.List;
 
-	GameFacade (List<Player> p){
-	}
+public class GameFacade {
 
-	void placeIrrigationTile(){
-	}
+    GameFacade() {
+    }
 
-	void placeVillageTile(){
-	}
+    GameFacade(List<Player> p) {
+    }
 
-	void placeRiceTile(){
-	}
+    void placeIrrigationTile() {
+    }
 
-	void placeDoubleLandTile(){
-	}
+    void placeVillageTile() {
+    }
 
-	void placeTripleLandTile(){
-	}
+    void placeRiceTile() {
+    }
 
-	void initiatePalaceFestival(){
+    void placeDoubleLandTile() {
+    }
 
-	}
-	
-	void initiatePalaceFestival(){
-	}
+    void placeTripleLandTile() {
+    }
+
+    void initiatePalaceFestival() {
+
+    }
+
 }
