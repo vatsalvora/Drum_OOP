@@ -1,8 +1,14 @@
-public class PlaceDoubleLandTile implements Command{
-	
-	void execute(){
-	}
+package model;
 
-	void undo(){
-	}
+public class PlaceDoubleLandTile implements Command{
+
+    @Override
+    public void execute() {
+        
+    }
+
+    @Override
+    public void undo() {
+
+    }
 }
