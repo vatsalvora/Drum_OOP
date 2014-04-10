@@ -44,4 +44,9 @@ public abstract class SharedActionsPlanningAndTurn implements State{
     public void keyPressedV(){
         //need to implement
     }
+
+    @Override
+    public void keyPressedEnter(){
+        //need to implement
+    }
 }
