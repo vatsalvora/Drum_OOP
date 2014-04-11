@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +8,7 @@ import java.util.List;
 */
 
 public class Player {
+
     private String name;
     private String color;
     private int famePoints;
@@ -41,11 +44,11 @@ public class Player {
     }
 
     //Setters
-    public setName(String n) {
+    public void setName(String n) {
         name = n;
     }
 
-    public setColor(String c) {
+    public void setColor(String c) {
         color = c;
     }
 
@@ -166,7 +169,7 @@ public class Player {
 
     public void removeCard(PalaceCard c) {
         for (int i = 0; i < cards.size(); i++) {
-            if (c.equals(cards[i])) {
+            if (c.equals(cards.get(i))) {
                 cards.remove(i);
                 break;
             }
@@ -176,10 +179,11 @@ public class Player {
     public boolean hasPlayableCard(PalaceCard c) {
         boolean ret = false;
         for (int i = 0; i < cards.size(); i++) {
-            if (cards[i].compare(c) > 0) {
-                ret = true;
-                break;
-            }
+            //TODO need to fix compiler error!
+//            if (cards.get(i).compare(c) > 0) {
+//                ret = true;
+//                break;
+//            }
         }
         return ret;
     }
@@ -195,7 +199,7 @@ public class Player {
         ret += "Village Tiles: " + villageBlocks + "\n";
         ret += "Two Blocks: " + twoBlocks + "\n";
         ret += "Palace Cards:\n";
-        for (int i = 0; i < cards.length(); i++) {
+        for (int i = 0; i < cards.size(); i++) {
             ret += cards.get(i).toString() + "\n";
         }
         return ret;
