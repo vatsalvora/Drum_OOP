@@ -1,6 +1,10 @@
+package model;
+
 class PalaceCard {
+    
     private Type firstType;
     private Type secondType;
+
     public PalaceCard() {
         firstType = Type.NONE;
         secondType = Type.NONE;
@@ -67,28 +71,28 @@ class PalaceCard {
         }
         return ret;
     }
-
-    public boolean equals(PalaceCard c) {
-        boolean ret = false;
-        if (getFirstType().compare(c.getFirstType()) && getSecondType().compare(c.getSecondType())) {
-            ret = true;
-        }
-        if (getFirstType().compare(c.getSecondType()) && getSecondType().compare(c.getFirstType())) {
-            ret = true;
-        }
-        return ret;
-    }
-
-    public int compare(PalaceCard c) {
-        int similarities = 0;
-        if (getFirstType().compare(c.getFirstType()) || getFirstType().compare(c.getSecondType())) {
-            similarities++;
-        }
-        if (getSecondType().compare(c.getFirstType()) || getSecondType().compare(c.getSecondType())) {
-            similarities++;
-        }
-        return similarities;
-    }
+    //TODO need to fix this to compile! What is compare? you mean compareTo?
+//    public boolean equals(PalaceCard c) {
+//        boolean ret = false;
+//        if (getFirstType().compare(c.getFirstType()) && getSecondType().compare(c.getSecondType())) {
+//            ret = true;
+//        }
+//        if (getFirstType().compare(c.getSecondType()) && getSecondType().compare(c.getFirstType())) {
+//            ret = true;
+//        }
+//        return ret;
+//    }
+//
+//    public int compare(PalaceCard c) {
+//        int similarities = 0;
+//        if (getFirstType().compare(c.getFirstType()) || getFirstType().compare(c.getSecondType())) {
+//            similarities++;
+//        }
+//        if (getSecondType().compare(c.getFirstType()) || getSecondType().compare(c.getSecondType())) {
+//            similarities++;
+//        }
+//        return similarities;
+//    }
 
     public String toString() {
         String ret = "";
