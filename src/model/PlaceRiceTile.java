@@ -3,7 +3,11 @@ package model;
 public class PlaceRiceTile implements Command {
 
 
-    @Override
+    public PlaceRiceTile(BoardController b, Location l) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
     public void execute() {
 
     }
