@@ -1,7 +1,7 @@
 package model;
 
 class PalaceCard {
-    
+
     private Type firstType;
     private Type secondType;
 

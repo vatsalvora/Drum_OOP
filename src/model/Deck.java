@@ -44,7 +44,7 @@ public class Deck {
         PalaceCard ret = deck.remove(deck.size() - 1);
         if (deck.isEmpty()) {
             deck = discard;
-            shuffle;
+            shuffle();
             discard.clear();
         }
         return ret;
