@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,32 +16,33 @@ class TurnController {
     int currentInt;
     int numPlayers;
     int actionPoints;
-    boolean actionTokenUsed;
+    boolean isActionTokenUsed;
     int blockPlayed;
     PalaceFestival festival;
 
-    public PlayerTurn(String[] n, String[] c) {
-        numPlayers = n.length();
-        if (numPlayers > 4) {
-            numPlayers = 4;
-        }
-
-        players = new Player[numPlayers];
-
-        for (int i = 0; i < numPlayers; i++) {
-            players[i] = new Player(n[i], c[i]);
-        }
-
-        actionTokenUsed = false;
-        blockPlayed = 0;
-        festival = new PalaceFestival();
-        currentInt = 0;
-        currentPlayer = players[currentInt];
-        actionPoints = 6;
-    }
+    //TODO need to fix compiler error...
+//    public PlayerTurn(String[] n, String[] c) {
+//        numPlayers = n.length();
+//        if (numPlayers > 4) {
+//            numPlayers = 4;
+//        }
+//
+//        players = new Player[numPlayers];
+//
+//        for (int i = 0; i < numPlayers; i++) {
+//            players[i] = new Player(n[i], c[i]);
+//        }
+//
+//        isActionTokenUsed = false;
+//        blockPlayed = 0;
+//        festival = new PalaceFestival();
+//        currentInt = 0;
+//        currentPlayer = players[currentInt];
+//        actionPoints = 6;
+//    }
 
     //General getters
-    public int APLeft() {
+    public int getAPLeft() {
         return actionPoints;
     }
 
@@ -51,8 +54,8 @@ class TurnController {
         return ret;
     }
 
-    public boolean tokenUsed() {
-        return actionTokenUsed;
+    public boolean isActionTokenUsed() {
+        return isActionTokenUsed;
     }
 
     //Turn control methods
@@ -62,7 +65,7 @@ class TurnController {
             currentInt = 0;
         }
         currentPlayer = players[currentInt];
-        actionTokenUsed = false;
+        isActionTokenUsed = false;
         blockPlayed = 0;
         actionPoints = 6;
     }
@@ -106,16 +109,18 @@ class TurnController {
         currentPlayer.decrementFamePoints(i);
     }
 
+    //TODO Which developer is he placing?
     public void placeDeveloper() {
         currentPlayer.placeDeveloper();
     }
 
+    //TODO Which developer is he removing? need to specify which one.
     public void removeDeveloper() {
         currentPlayer.removeDeveloper();
     }
 
     public void useActionToken() {
-        if (actionTokenUsed) {
+        if (isActionTokenUsed) {
             //put-in: action token already used error
         } else {
             currentPlayer.useActionToken();
@@ -125,7 +130,7 @@ class TurnController {
 
     public void returnActionToken() {
         currentPlayer.returnActionToken();
-        actionTokenUsed = false;
+        isActionTokenUsed = false;
         actionPoints++;
     }
 
@@ -133,7 +138,7 @@ class TurnController {
         if (actionPoints > 0) {
             currentPlayer.placeRiceBlock();
             actionPoints--;
-            blockPlaced++;
+            blockPlayed++;
         } else {
             //put-in: no AP left error
         }
@@ -142,14 +147,14 @@ class TurnController {
     public void returnRiceBlock() {
         currentPlayer.returnRiceBlock();
         actionPoints++;
-        blockPlaced--;
+        blockPlayed--;
     }
 
     public void placeVillageBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeVillageBlock();
             actionPoints--;
-            blockPlaced++;
+            blockPlayed++;
         } else {
             //put-in: no AP left error
         }
@@ -158,14 +163,14 @@ class TurnController {
     public void returnVillageBlock() {
         currentPlayer.returnVillageBlock();
         actionPoints++;
-        blockPlaced--;
+        blockPlayed--;
     }
 
     public void placeTwoBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeTwoBlock();
             actionPoints--;
-            blockPlaced++;
+            blockPlayed++;
         } else {
             //put-in: no AP left error
         }
@@ -174,7 +179,7 @@ class TurnController {
     public void returnTwoBlock() {
         currentPlayer.returnTwoBlock();
         actionPoints++;
-        blockPlaced--;
+        blockPlayed--;
     }
 
     public void addCard(PalaceCard c) {
@@ -183,7 +188,7 @@ class TurnController {
 
     public void drawCard(PalaceCard c) {
         if (actionPoints > 0) {
-            if (actionPoints == 1 && blockPlaced == 0) {
+            if (actionPoints == 1 && blockPlayed == 0) {
                 //put-in: using all AP and block not placed error
             } else {
                 actionPoints--;
@@ -196,7 +201,7 @@ class TurnController {
 
     public void drawFestivalCard(PalaceCard c) {
         if (actionPoints > 0) {
-            if (actionPoints == 1 && blockPlaced == 0) {
+            if (actionPoints == 1 && blockPlayed == 0) {
                 //put-in: using all AP and block not placed error
             } else {
                 actionPoints--;
@@ -211,7 +216,7 @@ class TurnController {
     public void placeOtherBlock() {
         if (actionPoints > 0) {
             actionPoints--;
-            blockPlaced++;
+            blockPlayed++;
         } else {
             //put-in: not enough AP error
         }
@@ -219,7 +224,7 @@ class TurnController {
 
     public void returnOtherBlock() {
         actionPoints++;
-        blockPlaced--;
+        blockPlayed--;
     }
 
     public void performAction(int i) {
@@ -227,8 +232,8 @@ class TurnController {
             //put-in: no AP error
         } else if (actionPoints < i) {
             //put-in: not enough AP error
-        } else if (actionPoints = i) {
-            if (blockPlaced > 0) {
+        } else if (actionPoints == i) {
+            if (blockPlayed > 0) {
                 actionPoints -= i;
             } else {
                 //put-in: using all AP but block has not been placed error
@@ -249,11 +254,12 @@ class TurnController {
 
     public void startFestival(String[] colors) {
         ArrayList<Player> inFestival = new ArrayList<Player>();
-        for (int i = 0; i < colors.length(); i++) {
+        for (String color : colors) {
             for (int j = 0; j < numPlayers; j++) {
-                if (colors[i].compare(players[j].getColor())) {
-                    inFestival.add(players[j]);
-                }
+                //TODO fix compiler errors
+//                if (color.compare(players[j].getColor())) {
+//                    inFestival.add(players[j]);
+//                }
             }
         }
         festival.startFestival(inFestival);
@@ -265,18 +271,19 @@ class TurnController {
 
     public void playCard(String t1, String t2) {
         PalaceCard play = new PalaceCard(t1, t2);
-        if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
-            festival.playCard(play);
-        } else {
-            //put-in: card cannot be played since it doesn't match festival card in any way
-        }
+        //TODO fix compiler error
+//        if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
+//            festival.playCard(play);
+//        } else {
+//            //put-in: card cannot be played since it doesn't match festival card in any way
+//        }
     }
 
     public void freeseFestivalPlayer() {
         festival.freeze();
     }
 
-    public ArrayList<Player> getVictors() {
+    public List<Player> getVictors() {
         return festival.getVictors();
     }
 
