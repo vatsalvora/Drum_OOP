@@ -1,6 +1,6 @@
 package model;
 
-public class InitiatePalaceFestival implements Command{
+public class InitiatePalaceFestival implements Command {
 
     @Override
     public void execute() {

@@ -1,6 +1,6 @@
 package model;
 
-public class PlaceDoubleLandTile implements Command{
+public class PlaceDoubleLandTile implements Command {
 
     @Override
     public void execute() {

@@ -1,7 +1,5 @@
 package model;
 
-import model.Command;
-
 public class PlaceIrrigationTile implements Command {
 
 

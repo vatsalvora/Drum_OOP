@@ -4,7 +4,7 @@ package model;
  * Created by devan on 4/9/14.
  */
 public class Festival implements State {
-    
+
     @Override
     public void changeCurrentState(State state) {
 

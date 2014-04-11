@@ -1,8 +1,8 @@
 package model;
 
-public interface Command{
+public interface Command {
 
-	void execute();
+    void execute();
 
     void undo();
 }
