@@ -1,9 +1,7 @@
 package model;
 
-/**
- * Created by devan on 4/9/14.
- */
-public class Festival implements State {
+public class Turn implements State {
+
 
     @Override
     public void changeCurrentState(State state) {
@@ -22,57 +20,58 @@ public class Festival implements State {
 
     @Override
     public void incorrectKeyPressed() {
-
+		// TODO: Buzz buzz
+		// TODO: Second thought: should any subclass really override this method? 
+		// Every wrong key will be handled the same, yeah? 
     }
 
     @Override
     public void keyPressed1() {
-
+		// TODO: Move to SW
     }
 
     @Override
     public void keyPressed2() {
-
+		// TODO: Move to S 
     }
 
     @Override
     public void keyPressed3() {
-
+		// TODO: Move to SE
     }
 
     @Override
     public void keyPressed7() {
-
+		// TODO: Move to NE
     }
 
     @Override
     public void keyPressed8() {
-
+		// TODO: Move to N
     }
 
     @Override
     public void keyPressed9() {
-
+		// TODO: Move to NW
     }
 
     @Override
     public void keyPressedTab() {
-
+		// TODO: Tab through developers
     }
 
     @Override
     public void keyPressedR() {
-
+		// TODO: Select Rice tile
     }
 
     @Override
     public void keyPressedP() {
-
+		// TODO: Place new Palace
     }
 
     @Override
     public void keyPressedV() {
-
     }
 
     @Override
@@ -82,7 +81,7 @@ public class Festival implements State {
 
     @Override
     public void keyPressedX() {
-		// TODO: Cops are coming, shut down the festival
+		// TODO: End turn
     }
 
     @Override
@@ -117,16 +116,17 @@ public class Festival implements State {
 
     @Override
     public void keyPressed4() {
-
+		//TODO: Go back
     }
 
     @Override
     public void keyPressed6() {
+		//TODO: Go forward
 
     }
 
     @Override
     public void keyPressedEnter() {
-
+		// TODO: Execute
     }
 }

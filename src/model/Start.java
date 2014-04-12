@@ -127,6 +127,7 @@ public class Start implements State {
 
 	@Override
 	public void keyPressedEnter() {
+		// TODO: Create a new game
 
 	}
 }

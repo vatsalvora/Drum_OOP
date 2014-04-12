@@ -63,7 +63,7 @@ public class Replay implements State {
 
     @Override
     public void keyPressedR() {
-
+		// TODO: Restart
     }
 
     @Override
@@ -118,11 +118,12 @@ public class Replay implements State {
 
     @Override
     public void keyPressed4() {
-
+		//TODO: Go back
     }
 
     @Override
     public void keyPressed6() {
+		//TODO: Go forward
 
     }
 
