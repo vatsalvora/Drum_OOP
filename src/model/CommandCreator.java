@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandCreator {
-	private BoardController b;
-	private TurnController t;
+	private GameFacade b;
 
 	private List<Command> commands = new ArrayList<Command>();
 
-	public CommandCreator(BoardController b, TurnController t) {
+	public CommandCreator(GameFacade b) {
 		this.b = b;
-		this.t = t;
 	}
 
 	public void PlaceDoubleLandTile(Location l) {
@@ -39,13 +37,13 @@ public class CommandCreator {
 	}
 
 	public void InitiatePalaceFestival() {
-		Command c = new InitiatePalaceFestival();
+		Command c = new InitiatePalaceFestival(b);
 		c.execute();
 		commands.add(c);
 	}
 
 	public void changeTurn() {
-		Command c = new ChangeTurn(t);
+		Command c = new ChangeTurn(b);
 		c.execute();
 		commands.add(c);
 	}

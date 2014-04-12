@@ -1,19 +1,19 @@
 package model;
 
 public class PlaceRiceTile implements Command {
+	private GameFacade b;
+	private Location l;
 
-
-    public PlaceRiceTile(BoardController b, Location l) {
-		// TODO Auto-generated constructor stub
+	public PlaceRiceTile(GameFacade b, Location l) {
+		this.b = b;
+		this.l = l;
 	}
 
-	@Override
-    public void execute() {
+	public void execute() {
+		b.placeRiceTile(l);
+	}
 
-    }
+	public void undo() {
 
-    @Override
-    public void undo() {
-
-    }
+	}
 }

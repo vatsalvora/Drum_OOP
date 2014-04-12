@@ -1,15 +1,19 @@
 package model;
 
 public class Location {
+	private int x;
+	private int y;
+
+	Location(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
 	int getXLocation() {
-		return 0;
+		return x;
 	}
 
 	int getYLocation() {
-		return 0;
-	}
-
-	Space getSpace() {
-		return null;
+		return y;
 	}
 }

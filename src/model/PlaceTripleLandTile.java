@@ -1,18 +1,19 @@
 package model;
 
 public class PlaceTripleLandTile implements Command {
+	private GameFacade b;
+	private Location l;
 
-    public PlaceTripleLandTile(BoardController b, Location l) {
-		// TODO Auto-generated constructor stub
+	public PlaceTripleLandTile(GameFacade b, Location l) {
+		this.b = b;
+		this.l = l;
 	}
 
-	@Override
-    public void execute() {
+	public void execute() {
+		b.placeTripleLandTile(l);
+	}
 
-    }
+	public void undo() {
 
-    @Override
-    public void undo() {
-
-    }
+	}
 }

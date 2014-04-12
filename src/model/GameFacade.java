@@ -3,30 +3,37 @@ package model;
 import java.util.List;
 
 public class GameFacade {
+	BoardController b;
+	TurnController t;
 
-    GameFacade() {
-    }
+	GameFacade(BoardController b, TurnController t) {
+		this.b = b;
+		this.t = t;
+	}
 
-    GameFacade(List<Player> p) {
-    }
+	GameFacade(List<Player> p) {
+	}
 
-    void placeIrrigationTile() {
-    }
+	public void placeIrrigationTile(Location l) {
+	}
 
-    void placeVillageTile() {
-    }
+	public void placeVillageTile(Location l) {
+	}
 
-    void placeRiceTile() {
-    }
+	public void placeRiceTile(Location l) {
+	}
 
-    void placeDoubleLandTile() {
-    }
+	public void placeDoubleLandTile(Location l) {
+	}
 
-    void placeTripleLandTile() {
-    }
+	public void placeTripleLandTile(Location l) {
+	}
 
-    void initiatePalaceFestival() {
+	public void initiatePalaceFestival() {
+	}
 
-    }
+	public void changeTurn() {
+		t.nextTurn();
+	}
 
 }
