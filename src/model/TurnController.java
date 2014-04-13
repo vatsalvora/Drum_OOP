@@ -18,8 +18,9 @@ class TurnController {
 	int blockPlayed;
 	PalaceFestival festival;
 
-	public TurnController(String[] n, String[] c) {
-		numPlayers = n.length;
+	public TurnController(String[] name) {
+		String[] color = { "red", "blue", "green", "yellow" };
+		numPlayers = name.length;
 		if (numPlayers > 4) {
 			numPlayers = 4;
 		}
@@ -27,7 +28,7 @@ class TurnController {
 		players = new Player[numPlayers];
 
 		for (int i = 0; i < numPlayers; i++) {
-			players[i] = new Player(n[i], c[i]);
+			players[i] = new Player(name[i], color[i]);
 		}
 
 		actionTokenUsed = false;
