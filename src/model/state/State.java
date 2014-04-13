@@ -1,58 +1,75 @@
 package model.state;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Created by devan on 4/9/14.
  */
-public interface State {
+public abstract class State {
 
-	public abstract void changeCurrentState(State state);
+    private State state;
+    private StateType stateType;
+    private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-	public void changeState(StateType stateType);
 
-	public StateType getCurrentState();
+    public void changeCurrentState(State state){
+        this.state = state;
+    }
 
-	public void incorrectKeyPressed();
+    public void changeState(StateType stateType){
+        this.stateType = stateType;
+    }
 
-	public void keyPressed1();
+    public StateType getCurrentState(){
+        return this.stateType;
+    }
 
-	public void keyPressed2();
+    public void incorrectKeyPressed(){
+        java.awt.Toolkit.getDefaultToolkit().beep();
+        LOGGER.log(Level.WARNING, "Incorrect key pressed");
+    }
 
-	public void keyPressed3();
+    public abstract void keyPressed1();
 
-	public void keyPressed7();
+    public abstract void keyPressed2();
 
-	public void keyPressed8();
+    public abstract void keyPressed3();
 
-	public void keyPressed9();
+    public abstract void keyPressed7();
 
-	public void keyPressedTab();
+    public abstract void keyPressed8();
 
-	public void keyPressedR();
+    public abstract void keyPressed9();
 
-	public void keyPressedP();
+    public abstract void keyPressedTab();
 
-	public void keyPressedV();
+    public abstract void keyPressedR();
 
-	public void keyPressedI();
+    public abstract void keyPressedP();
 
-	public void keyPressedX();
+    public abstract void keyPressedV();
 
-	public void keyPressedA();
+    public abstract void keyPressedI();
 
-	public void keyPressedESC();
+    public abstract void keyPressedX();
 
-	public void keyPressedF();
+    public abstract void keyPressedA();
 
-	public void keyPressedU();
+    public abstract void keyPressedESC();
 
-	public void keyPressedW();
+    public abstract void keyPressedF();
 
-	public void keyPressedE();
+    public abstract void keyPressedU();
 
-	public void keyPressed4();
+    public abstract void keyPressedW();
 
-	public void keyPressed6();
+    public abstract void keyPressedE();
 
-	public void keyPressedEnter();
+    public abstract void keyPressed4();
+
+    public abstract void keyPressed6();
+
+    public abstract void keyPressedEnter();
 
 }
