@@ -11,10 +11,23 @@ public class Planning extends State {
     public Planning(GameFacade gameFacade) {
         super(gameFacade);
     }
+        /* //TODO
+Planning
+====================
+Move selected item SW
+Move selected item S
+Move selected item SE
+Move selected item NE
+Move selected item N
+Move selected item NW
+Select rice tile
+place new palace tile
+place new village tile
+place new irrigation tile
+end planning mode
+undo last move
+     */
 
-    public void incorrectKeyPressed() {
-		// TODO: Buzz, no other action
-	}
 
 	public void keyPressed1() {
 		// TODO: Move to SW position
@@ -50,9 +63,11 @@ public class Planning extends State {
 
 	public void keyPressedP() {
 		// TODO: Place new Palace tile
+
 	}
 
 	public void keyPressedV() {
+
 		// TODO: Place new Village tile
 	}
 

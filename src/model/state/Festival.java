@@ -13,84 +13,103 @@ public class Festival extends State {
 
     @Override
     public void keyPressed1() {
-
     }
+
     @Override
     public void keyPressed2() {
 
     }
+
     @Override
     public void keyPressed3() {
 
     }
+
     @Override
     public void keyPressed7() {
 
     }
+
     @Override
     public void keyPressed8() {
 
     }
+
     @Override
     public void keyPressed9() {
 
     }
+
     @Override
     public void keyPressedTab() {
 
     }
+
     @Override
     public void keyPressedR() {
 
     }
+
     @Override
     public void keyPressedP() {
 
     }
+
     @Override
     public void keyPressedV() {
 
     }
+
     @Override
     public void keyPressedI() {
 
     }
+
     @Override
     public void keyPressedX() {
         // TODO: Cops are coming, shut down the festival
     }
+
     @Override
     public void keyPressedA() {
 
     }
+
     @Override
     public void keyPressedESC() {
 
     }
+
     @Override
     public void keyPressedF() {
 
     }
+
     @Override
     public void keyPressedU() {
 
     }
+
     @Override
     public void keyPressedW() {
 
     }
+
     @Override
     public void keyPressedE() {
 
     }
+
     @Override
     public void keyPressed4() {
 
     }
+
     @Override
     public void keyPressed6() {
 
     }
+
     @Override
     public void keyPressedEnter() {
 
