@@ -22,9 +22,8 @@ Move selected item NE
 Move selected item N
 Move selected item NW
 Select rice tile
-place new palace tile
+place new palace
 place new village tile
-place new irrigation tile
 end planning mode
 undo last move
      */
@@ -64,22 +63,22 @@ undo last move
 
     @Override
     public void keyPressedP(Location location) {
-
+//        commandCreator.placePalace(location);
     }
 
     @Override
     public void keyPressedV(Location location) {
-
+//        commandCreator.placeVillageTile(location);
     }
 
     @Override
     public void keyPressedI(Location location) {
-
+        commandCreator.placeIrrigationTile(location);
     }
 
 
     public void keyPressedU() {
-        // TODO: Undo last move
+        commandCreator.undoLastCommand();
     }
 
     public void keyPressedEnter() {

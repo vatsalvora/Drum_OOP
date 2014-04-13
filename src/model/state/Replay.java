@@ -14,113 +14,108 @@ public class Replay extends State {
     }
 
     @Override
-	public void incorrectKeyPressed() {
+    public void keyPressed4() {
+        // TODO: Go back
+    }
 
-	}
+    @Override
+    public void keyPressed6() {
+        // TODO: Go forward
 
-	@Override
-	public void keyPressed1() {
+    }
 
-	}
+    @Override
+    public void keyPressedR() {
+        // TODO: Restart
+    }
 
-	@Override
-	public void keyPressed2() {
+    @Override
+    public void keyPressed1() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed2() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed3() {
+    @Override
+    public void keyPressed3() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed7() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed7() {
+    @Override
+    public void keyPressed8() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed9() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed8() {
-
-	}
-
-	@Override
-	public void keyPressed9() {
-
-	}
-
-	@Override
-	public void keyPressedTab() {
-
-	}
-
-	@Override
-	public void keyPressedR() {
-		// TODO: Restart
-	}
+    @Override
+    public void keyPressedTab() {
+        incorrectKeyPressed();
+    }
 
     @Override
     public void keyPressedP(Location location) {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedV(Location location) {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedI(Location location) {
-
+        incorrectKeyPressed();
     }
 
-	@Override
-	public void keyPressedX() {
+    @Override
+    public void keyPressedX() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedA() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressedA() {
+    @Override
+    public void keyPressedESC() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedF() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressedESC() {
+    @Override
+    public void keyPressedU() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedW() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressedF() {
+    @Override
+    public void keyPressedE() {
+        incorrectKeyPressed();
+    }
 
-	}
-
-	@Override
-	public void keyPressedU() {
-
-	}
-
-	@Override
-	public void keyPressedW() {
-
-	}
-
-	@Override
-	public void keyPressedE() {
-
-	}
-
-	@Override
-	public void keyPressed4() {
-		// TODO: Go back
-	}
-
-	@Override
-	public void keyPressed6() {
-		// TODO: Go forward
-
-	}
-
-	@Override
-	public void keyPressedEnter() {
-
-	}
+    @Override
+    public void keyPressedEnter() {
+        incorrectKeyPressed();
+    }
 }

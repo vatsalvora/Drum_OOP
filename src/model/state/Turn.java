@@ -35,14 +35,6 @@ execute //??
     }
 
     @Override
-    public void incorrectKeyPressed() {
-        // TODO: Buzz buzz
-        // TODO: Second thought: should any subclass really override this
-        // method?
-        // Every wrong key will be handled the same, yeah?
-    }
-
-    @Override
     public void keyPressed1() {
         // TODO: Move to SW
     }
@@ -120,31 +112,31 @@ execute //??
 
     @Override
     public void keyPressedA() {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedESC() {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedF() {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedU() {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedW() {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedE() {
-
+        incorrectKeyPressed();
     }
 }
