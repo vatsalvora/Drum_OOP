@@ -12,7 +12,6 @@ public abstract class State {
     private StateType currStateType;
     private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-
     public State getState() {
         return currState;
     }
