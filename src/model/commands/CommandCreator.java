@@ -7,66 +7,66 @@ import model.GameFacade;
 import model.Location;
 
 public class CommandCreator {
-	private GameFacade b;
+	private GameFacade gameFacade;
 
 	private Stack<Command> commands = new Stack<Command>();
 
-	public CommandCreator(GameFacade b) {
-		this.b = b;
+	public CommandCreator(GameFacade gameFacade) {
+		this.gameFacade = gameFacade;
 	}
 
-	public void placeDoubleLandTile(Location l) {
-		Command c = new PlaceDoubleLandTile(b, l);
-		c.execute();
-		commands.push(c);
+	public void placeDoubleLandTile(Location location) {
+		Command command = new PlaceDoubleLandTile(gameFacade, location);
+		command.execute();
+		commands.push(command);
 	}
 
-	public void placeTripleLandTile(Location l) {
-		Command c = new PlaceTripleLandTile(b, l);
-		c.execute();
-		commands.push(c);
+	public void placeTripleLandTile(Location location) {
+		Command command = new PlaceTripleLandTile(gameFacade, location);
+		command.execute();
+		commands.push(command);
 	}
 
-	public void placeIrrigationTile(Location l) {
-		Command c = new PlaceIrrigationTile(b, l);
-		c.execute();
-		commands.push(c);
+	public void placeIrrigationTile(Location location) {
+		Command command = new PlaceIrrigationTile(gameFacade, location);
+		command.execute();
+		commands.push(command);
 	}
 
-	public void placeRiceTile(Location l) {
-		Command c = new PlaceRiceTile(b, l);
-		c.execute();
-		commands.push(c);
+	public void placeRiceTile(Location location) {
+		Command command = new PlaceRiceTile(gameFacade, location);
+		command.execute();
+		commands.push(command);
 	}
 
 	public void initiatePalaceFestival() {
-		Command c = new InitiatePalaceFestival(b);
-		c.execute();
-		commands.push(c);
+		Command command = new InitiatePalaceFestival(gameFacade);
+		command.execute();
+		commands.push(command);
 	}
 
 	public void endPalaceFestival() {
-		Command c = new EndPalaceFestival(b);
-		c.execute();
-		commands.push(c);
+		Command command = new EndPalaceFestival(gameFacade);
+		command.execute();
+		commands.push(command);
 	}
 
 	public void changeTurn() {
-		Command c = new ChangeTurn(b);
-		c.execute();
-		commands.push(c);
+		Command command = new ChangeTurn(gameFacade);
+		command.execute();
+		commands.push(command);
 	}
 
 	public void undoLastCommand() {
-		Command c = commands.pop();
-		c.undo();
+		Command command = commands.pop();
+		command.undo();
 	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		for (Command c : commands) {
-			sb.append(c.getClass()).append("\n");
+		for (Command command : commands) {
+			sb.append(command.getClass()).append("\n");
 		}
 		return sb.toString();
 	}
