@@ -76,12 +76,12 @@ execute //??
 
     @Override
     public void keyPressedP(Location location) {
-//        commandCreator.placePalace(location);
+        commandCreator.placePalaceTile(location);
     }
 
     @Override
     public void keyPressedV(Location location) {
-//        commandCreator.placeVillageTile(location);
+        commandCreator.placeVillageTile(location);
     }
 
     @Override
