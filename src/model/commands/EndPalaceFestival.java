@@ -4,14 +4,14 @@ import model.Command;
 import model.GameFacade;
 
 public class EndPalaceFestival implements Command {
-	private GameFacade b;
+	private GameFacade gameFacade;
 
-	public EndPalaceFestival(GameFacade b) {
-		this.b = b;
+	public EndPalaceFestival(GameFacade gameFacade) {
+		this.gameFacade = gameFacade;
 	}
 
 	public void execute() {
-		b.endPalaceFestival();
+		gameFacade.endPalaceFestival();
 	}
 
 	public void undo() {
