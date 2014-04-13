@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import model.Location;
 
 /**
  * Created by devan on 4/9/14.
@@ -51,17 +52,17 @@ public class Festival extends State {
     }
 
     @Override
-    public void keyPressedP() {
+    public void keyPressedP(Location location) {
+        
+    }
+
+    @Override
+    public void keyPressedV(Location location) {
 
     }
 
     @Override
-    public void keyPressedV() {
-
-    }
-
-    @Override
-    public void keyPressedI() {
+    public void keyPressedI(Location location) {
 
     }
 

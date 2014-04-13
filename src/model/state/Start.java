@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import model.Location;
 
 /**
  * Created by devan on 4/9/14.
@@ -52,18 +53,18 @@ public class Start extends State {
     }
 
     @Override
-    public void keyPressedP() {
-        incorrectKeyPressed();
+    public void keyPressedP(Location location) {
+
     }
 
     @Override
-    public void keyPressedV() {
-        incorrectKeyPressed();
+    public void keyPressedV(Location location) {
+
     }
 
     @Override
-    public void keyPressedI() {
-        incorrectKeyPressed();
+    public void keyPressedI(Location location) {
+
     }
 
     @Override

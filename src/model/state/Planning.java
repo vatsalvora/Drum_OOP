@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import model.Location;
 
 /**
  * Created by devan on 4/9/14.
@@ -29,89 +30,91 @@ undo last move
      */
 
 
-	public void keyPressed1() {
-		// TODO: Move to SW position
-	}
+    public void keyPressed1() {
+        // TODO: Move to SW position
+    }
 
-	public void keyPressed2() {
-		// TODO: Move to S position
-	}
+    public void keyPressed2() {
+        // TODO: Move to S position
+    }
 
-	public void keyPressed3() {
-		// TODO: Move to SE position
-	}
+    public void keyPressed3() {
+        // TODO: Move to SE position
+    }
 
-	public void keyPressed7() {
-		// TODO: Move to NE position
-	}
+    public void keyPressed7() {
+        // TODO: Move to NE position
+    }
 
-	public void keyPressed8() {
-		// TODO: Move to N position
-	}
+    public void keyPressed8() {
+        // TODO: Move to N position
+    }
 
-	public void keyPressed9() {
-		// TODO: Move to NW position
-	}
+    public void keyPressed9() {
+        // TODO: Move to NW position
+    }
 
-	public void keyPressedTab() {
-		// TODO: Tab through developers
-	}
+    public void keyPressedTab() {
+        // TODO: Tab through developers
+    }
 
-	public void keyPressedR() {
-		// TODO: Select rice tile
-	}
+    public void keyPressedR() {
+        // TODO: Select rice tile
+    }
 
-	public void keyPressedP() {
-		// TODO: Place new Palace tile
+    @Override
+    public void keyPressedP(Location location) {
 
-	}
+    }
 
-	public void keyPressedV() {
+    @Override
+    public void keyPressedV(Location location) {
 
-		// TODO: Place new Village tile
-	}
+    }
 
-	public void keyPressedI() {
-		// TODO: Place new Irrigation tile
-	}
+    @Override
+    public void keyPressedI(Location location) {
 
-	public void keyPressedX() {
-		// TODO: End planning mode
-	}
+    }
 
-	public void keyPressedA() {
-		// No action
-	}
 
-	public void keyPressedESC() {
-		// No action
-	}
+    public void keyPressedU() {
+        // TODO: Undo last move
+    }
 
-	public void keyPressedF() {
-		// No action
-	}
+    public void keyPressedEnter() {
+        // TODO: Execute moves
+    }
 
-	public void keyPressedU() {
-		// TODO: Undo last move
-	}
+    public void keyPressedX() {
+        // TODO: End planning mode
+    }
 
-	public void keyPressedW() {
-		// No action
-	}
+    public void keyPressedA() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedE() {
-		// No action
-	}
+    public void keyPressedESC() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressed4() {
-		// No action
-	}
+    public void keyPressedF() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressed6() {
-		// No action
-	}
+    public void keyPressedW() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedEnter() {
-		// Execute moves
-	}
+    public void keyPressedE() {
+        incorrectKeyPressed();
+    }
+
+    public void keyPressed4() {
+        incorrectKeyPressed();
+    }
+
+    public void keyPressed6() {
+        incorrectKeyPressed();
+    }
 }

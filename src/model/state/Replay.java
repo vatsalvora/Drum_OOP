@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import model.Location;
 
 /**
  * Created by devan on 4/9/14.
@@ -57,20 +58,20 @@ public class Replay extends State {
 		// TODO: Restart
 	}
 
-	@Override
-	public void keyPressedP() {
+    @Override
+    public void keyPressedP(Location location) {
 
-	}
+    }
 
-	@Override
-	public void keyPressedV() {
+    @Override
+    public void keyPressedV(Location location) {
 
-	}
+    }
 
-	@Override
-	public void keyPressedI() {
+    @Override
+    public void keyPressedI(Location location) {
 
-	}
+    }
 
 	@Override
 	public void keyPressedX() {
