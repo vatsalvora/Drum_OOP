@@ -1,15 +1,15 @@
 package model;
 
 public class ChangeTurn implements Command {
-	private GameFacade b;
+	private GameFacade gameFacade;
 
-	public ChangeTurn(GameFacade b) {
-		this.b = b;
+	public ChangeTurn(GameFacade gameFacade) {
+		this.gameFacade = gameFacade;
 	}
 
 	@Override
 	public void execute() {
-		b.changeTurn();
+		gameFacade.changeTurn();
 	}
 
 	@Override
