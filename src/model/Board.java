@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +7,7 @@ public class Board {
 	private List<List<Space>> board;
 
 	public Board() {
-        int[] height = {2,3};
+		int[] height = { 2, 3 };
 		board = new LinkedList<List<Space>>();
 		for (int p = 0; p < height.length; p++) {
 			int n = height[p];

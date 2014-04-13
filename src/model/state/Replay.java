@@ -3,7 +3,7 @@ package model.state;
 /**
  * Created by devan on 4/9/14.
  */
-public class Replay implements State {
+public class Replay extends State {
 
 	@Override
 	public void changeCurrentState(State state) {
