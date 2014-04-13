@@ -1,6 +1,6 @@
 package model.state;
 
-import model.*;
+import model.GameFacade;
 import model.commands.CommandCreator;
 
 import java.util.logging.Level;
@@ -15,9 +15,6 @@ public abstract class State {
 	private StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-	public StateType getCurrentState() {
-		return this.stateType;
-	}
 
     public State(GameFacade gameFacade) {
         commandCreator = new CommandCreator(gameFacade);
@@ -69,5 +66,9 @@ public abstract class State {
 	public abstract void keyPressed6();
 
 	public abstract void keyPressedEnter();
+
+    public StateType getCurrentState() {
+        return this.stateType;
+    }
 
 }

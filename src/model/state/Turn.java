@@ -1,11 +1,7 @@
 package model.state;
 
-<<<<<<< HEAD:src/model/state/Turn.java
+
 import model.GameFacade;
-import model.state.State;
-import model.state.StateType;
-=======
->>>>>>> 1b72d10c60265482ef1bb3247634515ca44fdab9:src/model/state/Turn.java
 
 public class Turn extends State {
 
