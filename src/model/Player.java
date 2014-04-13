@@ -1,14 +1,12 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*
  The Player class is a state object containing the inventory and general information of a player.
  */
 
 public class Player {
-
 	private String name;
 	private String color;
 	private int famePoints;
@@ -179,11 +177,10 @@ public class Player {
 	public boolean hasPlayableCard(PalaceCard c) {
 		boolean ret = false;
 		for (int i = 0; i < cards.size(); i++) {
-			// TODO need to fix compiler error!
-			// if (cards.get(i).compare(c) > 0) {
-			// ret = true;
-			// break;
-			// }
+			if (cards.get(i).compare(c) > 0) {
+				ret = true;
+				break;
+			}
 		}
 		return ret;
 	}

@@ -1,6 +1,9 @@
 package model;
 
 class PalaceCard {
+	private enum Type {
+		MASK, DRUM, PUPPET, NONE
+	}
 
 	private Type firstType;
 	private Type secondType;
@@ -72,32 +75,27 @@ class PalaceCard {
 		return ret;
 	}
 
-	// TODO need to fix this to compile! What is compare? you mean compareTo?
-	// public boolean equals(PalaceCard c) {
-	// boolean ret = false;
-	// if (getFirstType().compare(c.getFirstType()) &&
-	// getSecondType().compare(c.getSecondType())) {
-	// ret = true;
-	// }
-	// if (getFirstType().compare(c.getSecondType()) &&
-	// getSecondType().compare(c.getFirstType())) {
-	// ret = true;
-	// }
-	// return ret;
-	// }
-	//
-	// public int compare(PalaceCard c) {
-	// int similarities = 0;
-	// if (getFirstType().compare(c.getFirstType()) ||
-	// getFirstType().compare(c.getSecondType())) {
-	// similarities++;
-	// }
-	// if (getSecondType().compare(c.getFirstType()) ||
-	// getSecondType().compare(c.getSecondType())) {
-	// similarities++;
-	// }
-	// return similarities;
-	// }
+	public boolean equals(PalaceCard c) {
+		boolean ret = false;
+		if (getFirstType().equals(c.getFirstType()) && getSecondType().equals(c.getSecondType())) {
+			ret = true;
+		}
+		if (getFirstType().equals(c.getSecondType()) && getSecondType().equals(c.getFirstType())) {
+			ret = true;
+		}
+		return ret;
+	}
+
+	public int compare(PalaceCard c) {
+		int similarities = 0;
+		if (getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType())) {
+			similarities++;
+		}
+		if (getSecondType().equals(c.getFirstType()) || getSecondType().equals(c.getSecondType())) {
+			similarities++;
+		}
+		return similarities;
+	}
 
 	public String toString() {
 		String ret = "";
@@ -108,13 +106,5 @@ class PalaceCard {
 			ret += getSecondType();
 		}
 		return ret;
-	}
-
-	private enum Type {
-		MASK, DRUM, PUPPET, NONE
-	}
-
-	public int compare(PalaceCard festivalCard) {
-		return 0;
 	}
 }

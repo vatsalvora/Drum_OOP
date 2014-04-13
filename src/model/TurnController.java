@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -15,33 +14,33 @@ class TurnController {
 	int currentInt;
 	int numPlayers;
 	int actionPoints;
-	boolean isActionTokenUsed;
+	boolean actionTokenUsed;
 	int blockPlayed;
 	PalaceFestival festival;
 
-	// TODO need to fix compiler error...
-	public void PlayerTurn(String[] n, String[] c) {
-	numPlayers = n.length;
-	if (numPlayers > 4) {
-	numPlayers = 4;
-	}
-	
+	public TurnController(String[] name) {
+		String[] color = { "red", "blue", "green", "yellow" };
+		numPlayers = name.length;
+		if (numPlayers > 4) {
+			numPlayers = 4;
+		}
+
 		players = new Player[numPlayers];
 
-	for (int i = 0; i < numPlayers; i++) {
-	players[i] = new Player(n[i], c[i]);
+		for (int i = 0; i < numPlayers; i++) {
+			players[i] = new Player(name[i], color[i]);
+		}
+
+		actionTokenUsed = false;
+		blockPlayed = 0;
+		festival = new PalaceFestival();
+		currentInt = 0;
+		currentPlayer = players[currentInt];
+		actionPoints = 6;
 	}
-	
-	isActionTokenUsed = false;
-	blockPlayed = 0;
-	festival = new PalaceFestival();
-	 currentInt = 0;
-	 currentPlayer = players[currentInt];
-	 actionPoints = 6;
-	 }
 
 	// General getters
-	public int getAPLeft() {
+	public int APLeft() {
 		return actionPoints;
 	}
 
@@ -53,8 +52,8 @@ class TurnController {
 		return ret;
 	}
 
-	public boolean isActionTokenUsed() {
-		return isActionTokenUsed;
+	public boolean tokenUsed() {
+		return actionTokenUsed;
 	}
 
 	// Turn control methods
@@ -64,7 +63,7 @@ class TurnController {
 			currentInt = 0;
 		}
 		currentPlayer = players[currentInt];
-		isActionTokenUsed = false;
+		actionTokenUsed = false;
 		blockPlayed = 0;
 		actionPoints = 6;
 	}
@@ -108,18 +107,16 @@ class TurnController {
 		currentPlayer.decrementFamePoints(i);
 	}
 
-	// TODO Which developer is he placing?
 	public void placeDeveloper() {
 		currentPlayer.placeDeveloper();
 	}
 
-	// TODO Which developer is he removing? need to specify which one.
 	public void removeDeveloper() {
 		currentPlayer.removeDeveloper();
 	}
 
 	public void useActionToken() {
-		if (isActionTokenUsed) {
+		if (actionTokenUsed) {
 			// put-in: action token already used error
 		} else {
 			currentPlayer.useActionToken();
@@ -129,7 +126,7 @@ class TurnController {
 
 	public void returnActionToken() {
 		currentPlayer.returnActionToken();
-		isActionTokenUsed = false;
+		actionTokenUsed = false;
 		actionPoints++;
 	}
 
@@ -253,12 +250,11 @@ class TurnController {
 
 	public void startFestival(String[] colors) {
 		ArrayList<Player> inFestival = new ArrayList<Player>();
-		for (String color : colors) {
+		for (int i = 0; i < colors.length; i++) {
 			for (int j = 0; j < numPlayers; j++) {
-				// TODO fix compiler errors
-				// if (color.compare(players[j].getColor())) {
-				// inFestival.add(players[j]);
-				// }
+				if (colors[i].equals(players[j].getColor())) {
+					inFestival.add(players[j]);
+				}
 			}
 		}
 		festival.startFestival(inFestival);
@@ -270,13 +266,11 @@ class TurnController {
 
 	public void playCard(String t1, String t2) {
 		PalaceCard play = new PalaceCard(t1, t2);
-		if (currentPlayer.hasPlayableCard(play)
-				&& play.compare(festival.getFestivalCard()) > 0) {
+		if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
 			festival.playCard(play);
 		} else {
 			// put-in: card cannot be played since it doesn't match festival
-			// card
-			// in any way
+			// card in any way
 		}
 	}
 
@@ -284,7 +278,7 @@ class TurnController {
 		festival.freeze();
 	}
 
-	public List<Player> getVictors() {
+	public ArrayList<Player> getVictors() {
 		return festival.getVictors();
 	}
 

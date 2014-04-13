@@ -1,31 +1,18 @@
 package model;
 
-public class Tile {
-	enum TileType {
-		village, rice, irrigation, palace;
-	}
+public abstract class Tile {
 
-	public String getType() {
-		return null;
+	public abstract void rotateClockwise();
 
-	}
+	public abstract void rotateCounterclockwise();
+
+	public abstract boolean compareTo(Tile t);
+
+	public abstract void place(Tile t);
 
 	public Tile[] getNeighbors() {
+		// TODO Auto-generated method stub
 		return null;
-
-	}
-
-	public void rotateClockwise() {
-
-	}
-
-	public void rotateCounterclockwise() {
-
-	}
-
-	public boolean compareTo(Tile t) {
-		return false;
-
 	}
 
 }

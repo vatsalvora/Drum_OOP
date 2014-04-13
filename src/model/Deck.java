@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Deck {
 	private ArrayList<PalaceCard> deck = new ArrayList<PalaceCard>();
@@ -58,16 +57,4 @@ public class Deck {
 		deck.add(c);
 	}
 
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("The Deck pile is:\n");
-		for (PalaceCard c : deck) {
-			result.append(c + ",");
-		}
-		result.append("\nThe Discard pile is is:\n");
-		for (PalaceCard c : discard) {
-			result.append(c + ",");
-		}
-		return result.toString();
-	}
 }

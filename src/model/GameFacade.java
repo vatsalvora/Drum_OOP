@@ -6,12 +6,9 @@ public class GameFacade {
 	BoardController b;
 	TurnController t;
 
-	GameFacade(BoardController b, TurnController t) {
-		this.b = b;
-		this.t = t;
-	}
-
-	GameFacade(List<Player> p) {
+	public GameFacade(String[] player) {
+		b = new BoardController(new Board());
+		t = new TurnController(player);
 	}
 
 	public void placeIrrigationTile(Location l) {
