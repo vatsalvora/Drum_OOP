@@ -45,12 +45,6 @@ public class CommandCreator {
 		commands.push(command);
 	}
 
-	public void endPalaceFestival() {
-		Command command = new EndPalaceFestival(gameFacade);
-		command.execute();
-		commands.push(command);
-	}
-
 	public void changeTurn() {
 		Command command = new ChangeTurn(gameFacade);
 		command.execute();

@@ -29,6 +29,11 @@ public class GameFacade {
 	public void initiatePalaceFestival() {
 	}
 
+	public void placePalaceTile(Location l) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public void changeTurn() {
 		turnController.nextTurn();
 	}
