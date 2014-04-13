@@ -12,7 +12,6 @@ public class GameFacade {
 	}
 
 	public void placeIrrigationTile(Location l) {
-
 	}
 
 	public void placeVillageTile(Location l) {

@@ -1,7 +1,7 @@
 package model.state;
 
-import model.CommandCreator;
 import model.GameFacade;
+import model.commands.CommandCreator;
 
 /**
  * Created by devan on 4/9/14.

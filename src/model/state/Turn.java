@@ -1,7 +1,5 @@
-package model;
+package model.state;
 
-import model.state.State;
-import model.state.StateType;
 
 public class Turn extends State {
 
