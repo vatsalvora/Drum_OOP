@@ -12,13 +12,6 @@ public abstract class State {
 	private StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-	public void changeCurrentState(State state) {
-		this.state = state;
-	}
-
-	public void changeState(StateType stateType) {
-		this.stateType = stateType;
-	}
 
 	public StateType getCurrentState() {
 		return this.stateType;
@@ -30,6 +23,23 @@ public abstract class State {
 	}
 
 	public abstract void keyPressed1();
+
+	public State getState() {
+        return currState;
+    }
+
+    public void changeStateType(StateType stateType){
+        this.currStateType = stateType;
+    }
+
+    public void changeCurrentState(State state){
+        this.currState = state;
+    }
+
+    public StateType getCurrentStateType(){
+        return this.currStateType;
+    }
+>>>>>>> 149904f32bc7d16f72e145cf023bee9413013fe8
 
 	public abstract void keyPressed2();
 
