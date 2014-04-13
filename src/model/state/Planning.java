@@ -5,17 +5,6 @@ package model.state;
  */
 public class Planning extends State {
 
-	public void changeCurrentState(State state) {
-
-	}
-
-	public void changeState(StateType stateType) {
-
-	}
-
-	public StateType getCurrentState() {
-		return null;
-	}
 
 	public void incorrectKeyPressed() {
 		// TODO: Buzz, no other action

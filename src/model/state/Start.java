@@ -9,11 +9,7 @@ import model.GameFacade;
 public class Start extends State {
 
 	public Start(GameFacade b) {
-		super.c = new CommandCreator(b);
-	}
-
-	public void changeCurrentState(State state) {
-
+		commandCreator = new CommandCreator(b);
 	}
 
     @Override

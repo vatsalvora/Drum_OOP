@@ -8,14 +8,11 @@ import java.util.logging.Logger;
  * Created by devan on 4/9/14.
  */
 public abstract class State {
-	static CommandCreator c;
+
+	static CommandCreator commandCreator;
 	private StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-
-<<<<<<< HEAD
-    public State getState() {
-=======
 	public StateType getCurrentState() {
 		return this.stateType;
 	}
@@ -26,24 +23,6 @@ public abstract class State {
 	}
 
 	public abstract void keyPressed1();
-
-	public State getState() {
->>>>>>> 3b9ac9f260d2d0ee8c8e2ea9cea247e5abcb676b
-        return currState;
-    }
-
-    public void changeStateType(StateType stateType){
-        this.currStateType = stateType;
-    }
-
-    public void changeCurrentState(State state){
-        this.currState = state;
-    }
-
-    public StateType getCurrentStateType(){
-        return this.currStateType;
-    }
->>>>>>> 149904f32bc7d16f72e145cf023bee9413013fe8
 
 	public abstract void keyPressed2();
 

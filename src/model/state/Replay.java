@@ -5,20 +5,6 @@ package model.state;
  */
 public class Replay extends State {
 
-	@Override
-	public void changeCurrentState(State state) {
-
-	}
-
-	@Override
-	public void changeState(StateType stateType) {
-
-	}
-
-	@Override
-	public StateType getCurrentState() {
-		return null;
-	}
 
 	@Override
 	public void incorrectKeyPressed() {

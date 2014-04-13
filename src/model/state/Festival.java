@@ -8,18 +8,6 @@ import model.state.StateType;
  */
 public class Festival extends State {
 
-	public void changeCurrentState(State state) {
-
-	}
-
-	public void changeState(StateType stateType) {
-
-	}
-
-	public StateType getCurrentState() {
-		return null;
-	}
-
 	public void incorrectKeyPressed() {
 
 	}
