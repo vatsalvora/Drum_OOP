@@ -19,25 +19,26 @@ class TurnController {
 	int blockPlayed;
 	PalaceFestival festival;
 
-	public TurnController(String[] n, String[] c) {
-		numPlayers = n.length;
-		if (numPlayers > 4) {
-			numPlayers = 4;
-		}
-
+	// TODO need to fix compiler error...
+	public void PlayerTurn(String[] n, String[] c) {
+	numPlayers = n.length;
+	if (numPlayers > 4) {
+	numPlayers = 4;
+	}
+	
 		players = new Player[numPlayers];
 
-		for (int i = 0; i < numPlayers; i++) {
-			players[i] = new Player(n[i], c[i]);
-		}
-
-		isActionTokenUsed = false;
-		blockPlayed = 0;
-		festival = new PalaceFestival();
-		currentInt = 0;
-		currentPlayer = players[currentInt];
-		actionPoints = 6;
+	for (int i = 0; i < numPlayers; i++) {
+	players[i] = new Player(n[i], c[i]);
 	}
+	
+	isActionTokenUsed = false;
+	blockPlayed = 0;
+	festival = new PalaceFestival();
+	 currentInt = 0;
+	 currentPlayer = players[currentInt];
+	 actionPoints = 6;
+	 }
 
 	// General getters
 	public int getAPLeft() {
@@ -254,9 +255,10 @@ class TurnController {
 		ArrayList<Player> inFestival = new ArrayList<Player>();
 		for (String color : colors) {
 			for (int j = 0; j < numPlayers; j++) {
-				if (color.compareTo(players[j].getColor()) == 0) {
-					inFestival.add(players[j]);
-				}
+				// TODO fix compiler errors
+				// if (color.compare(players[j].getColor())) {
+				// inFestival.add(players[j]);
+				// }
 			}
 		}
 		festival.startFestival(inFestival);
@@ -268,7 +270,8 @@ class TurnController {
 
 	public void playCard(String t1, String t2) {
 		PalaceCard play = new PalaceCard(t1, t2);
-		if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
+		if (currentPlayer.hasPlayableCard(play)
+				&& play.compare(festival.getFestivalCard()) > 0) {
 			festival.playCard(play);
 		} else {
 			// put-in: card cannot be played since it doesn't match festival
