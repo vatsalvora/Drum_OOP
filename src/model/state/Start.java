@@ -1,5 +1,6 @@
 package model.state;
 
+import model.CommandCreator;
 import model.GameFacade;
 
 /**
@@ -8,7 +9,7 @@ import model.GameFacade;
 public class Start extends State {
 
 	public Start(GameFacade b) {
-
+		super.c = new CommandCreator(b);
 	}
 
 	public void changeCurrentState(State state) {

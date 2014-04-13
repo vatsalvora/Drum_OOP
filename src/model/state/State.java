@@ -1,5 +1,6 @@
 package model.state;
 
+import model.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,8 +8,7 @@ import java.util.logging.Logger;
  * Created by devan on 4/9/14.
  */
 public abstract class State {
-
-	private State state;
+	static CommandCreator c;
 	private StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
