@@ -12,22 +12,6 @@ public class Planning extends State {
     public Planning(GameFacade gameFacade) {
         super(gameFacade);
     }
-        /* //TODO
-Planning
-====================
-Move selected item SW
-Move selected item S
-Move selected item SE
-Move selected item NE
-Move selected item N
-Move selected item NW
-Select rice tile
-place new palace
-place new village tile
-end planning mode
-undo last move
-     */
-
 
     public void keyPressed1() {
         // TODO: Move to SW position
@@ -63,12 +47,12 @@ undo last move
 
     @Override
     public void keyPressedP(Location location) {
-//        commandCreator.placePalace(location);
+        commandCreator.placePalaceTile(location);
     }
 
     @Override
     public void keyPressedV(Location location) {
-//        commandCreator.placeVillageTile(location);
+        commandCreator.placeVillageTile(location);
     }
 
     @Override
