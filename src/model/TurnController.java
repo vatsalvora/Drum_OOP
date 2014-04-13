@@ -20,25 +20,25 @@ class TurnController {
 	PalaceFestival festival;
 
 	// TODO need to fix compiler error...
-	// public PlayerTurn(String[] n, String[] c) {
-	// numPlayers = n.length();
-	// if (numPlayers > 4) {
-	// numPlayers = 4;
-	// }
-	//
-	// players = new Player[numPlayers];
-	//
-	// for (int i = 0; i < numPlayers; i++) {
-	// players[i] = new Player(n[i], c[i]);
-	// }
-	//
-	// isActionTokenUsed = false;
-	// blockPlayed = 0;
-	// festival = new PalaceFestival();
-	// currentInt = 0;
-	// currentPlayer = players[currentInt];
-	// actionPoints = 6;
-	// }
+	public void PlayerTurn(String[] n, String[] c) {
+	numPlayers = n.length;
+	if (numPlayers > 4) {
+	numPlayers = 4;
+	}
+	
+		players = new Player[numPlayers];
+
+	for (int i = 0; i < numPlayers; i++) {
+	players[i] = new Player(n[i], c[i]);
+	}
+	
+	isActionTokenUsed = false;
+	blockPlayed = 0;
+	festival = new PalaceFestival();
+	 currentInt = 0;
+	 currentPlayer = players[currentInt];
+	 actionPoints = 6;
+	 }
 
 	// General getters
 	public int getAPLeft() {
