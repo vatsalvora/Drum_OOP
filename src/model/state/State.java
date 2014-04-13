@@ -1,4 +1,4 @@
-package model;
+package model.state;
 
 /**
  * Created by devan on 4/9/14.

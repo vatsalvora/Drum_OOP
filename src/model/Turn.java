@@ -1,5 +1,8 @@
 package model;
 
+import model.state.State;
+import model.state.StateType;
+
 public class Turn implements State {
 
 

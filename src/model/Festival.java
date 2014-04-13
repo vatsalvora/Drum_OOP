@@ -1,5 +1,8 @@
 package model;
 
+import model.state.State;
+import model.state.StateType;
+
 /**
  * Created by devan on 4/9/14.
  */
