@@ -33,4 +33,8 @@ public class GameFacade {
 		t.nextTurn();
 	}
 
+	public void endPalaceFestival() {
+
+	}
+
 }
