@@ -3,6 +3,7 @@
 ### Java ###
 *.class
 
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -10,6 +11,7 @@
 *.jar
 *.war
 *.ear
+.gitignore~
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -28,6 +30,8 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.classpath
+.project
 
 # External tool builders
 .externalToolBuilders/
