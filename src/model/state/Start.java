@@ -54,17 +54,17 @@ public class Start extends State {
 
     @Override
     public void keyPressedP(Location location) {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedV(Location location) {
-
+        incorrectKeyPressed();
     }
 
     @Override
     public void keyPressedI(Location location) {
-
+        incorrectKeyPressed();
     }
 
     @Override
@@ -107,14 +107,15 @@ public class Start extends State {
         incorrectKeyPressed();
     }
 
-	@Override
-	public void keyPressed6() {
+    @Override
+    public void keyPressed6() {
         incorrectKeyPressed();
-	}
+    }
 
-	@Override
-	public void keyPressedEnter() {
-		// TODO: Create a new game
+    @Override
+    public void keyPressedEnter() {
+        // TODO: Create a new game
+//        Turn turn = new Turn();
 
-	}
+    }
 }
