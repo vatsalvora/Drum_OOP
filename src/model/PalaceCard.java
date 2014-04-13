@@ -115,7 +115,6 @@ class PalaceCard {
 	}
 
 	public int compare(PalaceCard festivalCard) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

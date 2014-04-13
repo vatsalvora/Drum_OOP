@@ -35,8 +35,7 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 
-	public void reset(ArrayList<PalaceCard> newDeck,
-			ArrayList<PalaceCard> newDiscard) {
+	public void reset(ArrayList<PalaceCard> newDeck, ArrayList<PalaceCard> newDiscard) {
 		deck = newDeck;
 		discard = newDiscard;
 	}

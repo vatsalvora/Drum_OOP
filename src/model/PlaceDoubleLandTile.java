@@ -1,18 +1,18 @@
 package model;
 
 public class PlaceDoubleLandTile implements Command {
-	
-	public PlaceDoubleLandTile(BoardController b, Location l) {
+	private GameFacade b;
+	private Location l;
+
+	public PlaceDoubleLandTile(GameFacade b, Location l) {
+		this.b = b;
+		this.l = l;
 	}
 
-
-
-	@Override
 	public void execute() {
-
+		b.placeDoubleLandTile(l);
 	}
 
-	@Override
 	public void undo() {
 
 	}

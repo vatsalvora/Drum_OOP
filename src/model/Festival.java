@@ -8,128 +8,103 @@ import model.state.StateType;
  */
 public class Festival implements State {
 
-    @Override
-    public void changeCurrentState(State state) {
+	public void changeCurrentState(State state) {
 
-    }
+	}
 
-    @Override
-    public void changeState(StateType stateType) {
+	public void changeState(StateType stateType) {
 
-    }
+	}
 
-    @Override
-    public StateType getCurrentState() {
-        return null;
-    }
+	public StateType getCurrentState() {
+		return null;
+	}
 
-    @Override
-    public void incorrectKeyPressed() {
+	public void incorrectKeyPressed() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed1() {
+	public void keyPressed1() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed2() {
+	public void keyPressed2() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed3() {
+	public void keyPressed3() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed7() {
+	public void keyPressed7() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed8() {
+	public void keyPressed8() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed9() {
+	public void keyPressed9() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedTab() {
+	public void keyPressedTab() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedR() {
+	public void keyPressedR() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedP() {
+	public void keyPressedP() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedV() {
+	public void keyPressedV() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedI() {
+	public void keyPressedI() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedX() {
+	public void keyPressedX() {
 		// TODO: Cops are coming, shut down the festival
-    }
+	}
 
-    @Override
-    public void keyPressedA() {
+	public void keyPressedA() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedESC() {
+	public void keyPressedESC() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedF() {
+	public void keyPressedF() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedU() {
+	public void keyPressedU() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedW() {
+	public void keyPressedW() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedE() {
+	public void keyPressedE() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed4() {
+	public void keyPressed4() {
 
-    }
+	}
 
-    @Override
-    public void keyPressed6() {
+	public void keyPressed6() {
 
-    }
+	}
 
-    @Override
-    public void keyPressedEnter() {
+	public void keyPressedEnter() {
 
-    }
+	}
 }

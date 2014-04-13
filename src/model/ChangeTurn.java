@@ -1,19 +1,19 @@
 package model;
 
 public class ChangeTurn implements Command {
+	private GameFacade b;
 
-	public ChangeTurn(TurnController t) {
-		// TODO Auto-generated constructor stub
+	public ChangeTurn(GameFacade b) {
+		this.b = b;
 	}
 
+	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		b.changeTurn();
 	}
 
+	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
 
 	}
-
 }

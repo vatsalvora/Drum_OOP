@@ -1,19 +1,19 @@
 package model;
 
 public class PlaceIrrigationTile implements Command {
+	private GameFacade b;
+	private Location l;
 
-
-    public PlaceIrrigationTile(BoardController b, Location l) {
-		// TODO Auto-generated constructor stub
+	public PlaceIrrigationTile(GameFacade b, Location l) {
+		this.b = b;
+		this.l = l;
 	}
 
-	@Override
-    public void execute() {
+	public void execute() {
+		b.placeIrrigationTile(l);
+	}
 
-    }
+	public void undo() {
 
-    @Override
-    public void undo() {
-
-    }
+	}
 }

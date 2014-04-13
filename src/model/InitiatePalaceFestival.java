@@ -1,14 +1,17 @@
 package model;
 
 public class InitiatePalaceFestival implements Command {
+	private GameFacade b;
 
-    @Override
-    public void execute() {
+	public InitiatePalaceFestival(GameFacade b) {
+		this.b = b;
+	}
 
-    }
+	public void execute() {
+		b.initiatePalaceFestival();
+	}
 
-    @Override
-    public void undo() {
+	public void undo() {
 
-    }
+	}
 }
