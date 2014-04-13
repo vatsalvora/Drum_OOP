@@ -1,14 +1,11 @@
-package model;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*
- The Player class is a state object containing the inventory and general information of a player.
- */
+	The Player class is a state object containing the inventory and general information of a player.
+*/
 
-public class Player {
-
+public class Player
+{
 	private String name;
 	private String color;
 	private int famePoints;
@@ -18,8 +15,9 @@ public class Player {
 	private int villageBlocks;
 	private int twoBlocks;
 	private ArrayList<PalaceCard> cards;
-
-	public Player() {
+	
+	public Player()
+	{
 		name = "Dave";
 		color = "blue";
 		famePoints = 0;
@@ -30,8 +28,9 @@ public class Player {
 		twoBlocks = 5;
 		cards = new ArrayList<PalaceCard>();
 	}
-
-	public Player(String n, String c) {
+	
+	public Player(String n, String c)
+	{
 		name = n;
 		color = c;
 		famePoints = 0;
@@ -42,154 +41,200 @@ public class Player {
 		twoBlocks = 5;
 		cards = new ArrayList<PalaceCard>();
 	}
-
-	// Setters
-	public void setName(String n) {
+	
+	//Setters
+	public void setName(String n)
+	{	
 		name = n;
 	}
-
-	public void setColor(String c) {
+	
+	public void setColor(String c)
+	{
 		color = c;
 	}
-
-	// Getters
-	public String getName() {
+	
+	//Getters
+	public String getName()
+	{
 		return name;
 	}
-
-	public String getColor() {
+	
+	public String getColor()
+	{
 		return color;
 	}
-
-	public int getFamePoints() {
+	
+	public int getFamePoints()
+	{
 		return famePoints;
 	}
-
-	public int getDevelopersLeft() {
+	
+	public int getDevelopersLeft()
+	{
 		return developersLeft;
 	}
-
-	public int getActionTokens() {
+	
+	public int getActionTokens()
+	{
 		return actionTokens;
 	}
-
-	public int getRiceBlocksLeft() {
+	
+	public int getRiceBlocksLeft()
+	{
 		return riceBlocks;
 	}
-
-	public int getVillageBlocksLeft() {
+	
+	public int getVillageBlocksLeft()
+	{
 		return villageBlocks;
 	}
-
-	public int getTwoBlocksLeft() {
+	
+	public int getTwoBlocksLeft()
+	{
 		return twoBlocks;
 	}
-
-	public List<PalaceCard> getCards() {
+	
+	public List<PalaceCard> getCards()
+	{
 		return cards;
 	}
-
-	// Functions for performing or undoing specific Player functions
-	public void incrementFamePoints(int i) {
+	
+	//Functions for performing or undoing specific Player functions
+	public void incrementFamePoints(int i)
+	{
 		famePoints += i;
 	}
-
-	public void decrementFamePoints(int i) {
+	
+	public void decrementFamePoints(int i)
+	{
 		famePoints -= i;
 	}
-
-	public void placeDeveloper() {
-		if (developersLeft > 0) {
+	
+	public void placeDeveloper()
+	{
+		if(developersLeft > 0)
+		{
 			developersLeft--;
-		} else {
-			// put-in: throw not enough developers exception
+		}
+		else
+		{
+			//put-in: throw not enough developers exception
 		}
 	}
-
-	public void removeDeveloper() {
+	
+	public void removeDeveloper()
+	{
 		developersLeft++;
 	}
-
-	public void useActionToken() {
-		if (actionTokens > 0) {
+	
+	public void useActionToken()
+	{
+		if(actionTokens > 0)
+		{
 			actionTokens--;
-		} else {
-			// put-in: throw no more action tokens exception
+		}
+		else
+		{
+			//put-in: throw no more action tokens exception
 		}
 	}
-
-	public void returnActionToken() {
+	
+	public void returnActionToken()
+	{
 		actionTokens++;
 	}
-
-	public void placeRiceBlock() {
-		if (riceBlocks > 0) {
+	
+	public void placeRiceBlock()
+	{
+		if(riceBlocks > 0)
+		{
 			riceBlocks--;
-		} else {
-			// put-in: throw no more rice blocks exception
+		}
+		else
+		{
+			//put-in: throw no more rice blocks exception
 		}
 	}
-
-	public void returnRiceBlock() {
+	
+	public void returnRiceBlock()
+	{
 		riceBlocks++;
 	}
 
-	public void placeVillageBlock() {
-		if (villageBlocks > 0) {
+	public void placeVillageBlock()
+	{
+		if(villageBlocks > 0)
+		{
 			villageBlocks--;
-		} else {
-			// put-in: throw no more village blocks exception
+		}
+		else
+		{
+			//put-in: throw no more village blocks exception
 		}
 	}
-
-	public void returnVillageBlock() {
+	
+	public void returnVillageBlock()
+	{
 		villageBlocks++;
 	}
 
-	public void placeTwoBlock() {
-		if (twoBlocks > 0) {
+	public void placeTwoBlock()
+	{
+		if(twoBlocks > 0)
+		{
 			twoBlocks--;
-		} else {
-			// put-in: throw no more two blocks exception
+		}
+		else
+		{
+			//put-in: throw no more two blocks exception
 		}
 	}
-
-	public void returnTwoBlock() {
+	
+	public void returnTwoBlock()
+	{
 		twoBlocks++;
 	}
 
-	// Palace card and festival methods
-	public void addCard(PalaceCard c) {
+	//Palace card and festival methods
+	public void addCard(PalaceCard c)
+	{
 		cards.add(c);
 	}
-
-	public void addManyCards(List<PalaceCard> c) {
+	
+	public void addManyCards(List<PalaceCard> c)
+	{
 		cards.addAll(c);
 	}
-
-	public void removeCard(PalaceCard c) {
-		for (int i = 0; i < cards.size(); i++) {
-			if (c.equals(cards.get(i))) {
+	
+	public void removeCard(PalaceCard c)
+	{
+		for(int i = 0; i < cards.size(); i++)
+		{
+			if(c.equals(cards.get(i)))
+			{
 				cards.remove(i);
 				break;
 			}
 		}
 	}
-
-	public boolean hasPlayableCard(PalaceCard c) {
+	
+	public boolean hasPlayableCard(PalaceCard c)
+	{
 		boolean ret = false;
-		for (int i = 0; i < cards.size(); i++) {
-			// TODO need to fix compiler error!
-			// if (cards.get(i).compare(c) > 0) {
-			// ret = true;
-			// break;
-			// }
+		for(int i = 0; i < cards.size(); i++)
+		{
+			if(cards.get(i).compare(c) > 0)
+			{
+				ret = true;
+				break;
+			}
 		}
 		return ret;
 	}
-
-	// toString for output purposes
-	public String toString() {
+	
+	//toString for output purposes
+	public String toString()
+	{
 		String ret;
 		ret = "Name: " + name + "\n";
 		ret += "Color: " + color + "\n";
@@ -199,7 +244,8 @@ public class Player {
 		ret += "Village Tiles: " + villageBlocks + "\n";
 		ret += "Two Blocks: " + twoBlocks + "\n";
 		ret += "Palace Cards:\n";
-		for (int i = 0; i < cards.size(); i++) {
+		for(int i = 0; i < cards.size(); i++)
+		{
 			ret += cards.get(i).toString() + "\n";
 		}
 		return ret;
