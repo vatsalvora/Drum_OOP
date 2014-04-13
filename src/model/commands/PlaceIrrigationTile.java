@@ -1,4 +1,8 @@
-package model;
+package model.commands;
+
+import model.Command;
+import model.GameFacade;
+import model.Location;
 
 public class PlaceIrrigationTile implements Command {
 	private GameFacade b;

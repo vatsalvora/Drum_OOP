@@ -1,7 +1,12 @@
-package model;
+package model.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.ChangeTurn;
+import model.Command;
+import model.GameFacade;
+import model.Location;
 
 public class CommandCreator {
     private GameFacade b;
