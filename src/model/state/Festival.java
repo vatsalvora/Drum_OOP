@@ -1,98 +1,92 @@
 package model.state;
 
-import model.state.State;
-import model.state.StateType;
-
 /**
  * Created by devan on 4/9/14.
  */
 public class Festival extends State {
 
-	public void incorrectKeyPressed() {
+    @Override
+    public void keyPressed1() {
 
-	}
+    }
+    @Override
+    public void keyPressed2() {
 
-	public void keyPressed1() {
+    }
+    @Override
+    public void keyPressed3() {
 
-	}
+    }
+    @Override
+    public void keyPressed7() {
 
-	public void keyPressed2() {
+    }
+    @Override
+    public void keyPressed8() {
 
-	}
+    }
+    @Override
+    public void keyPressed9() {
 
-	public void keyPressed3() {
+    }
+    @Override
+    public void keyPressedTab() {
 
-	}
+    }
+    @Override
+    public void keyPressedR() {
 
-	public void keyPressed7() {
+    }
+    @Override
+    public void keyPressedP() {
 
-	}
+    }
+    @Override
+    public void keyPressedV() {
 
-	public void keyPressed8() {
+    }
+    @Override
+    public void keyPressedI() {
 
-	}
+    }
+    @Override
+    public void keyPressedX() {
+        // TODO: Cops are coming, shut down the festival
+    }
+    @Override
+    public void keyPressedA() {
 
-	public void keyPressed9() {
+    }
+    @Override
+    public void keyPressedESC() {
 
-	}
+    }
+    @Override
+    public void keyPressedF() {
 
-	public void keyPressedTab() {
+    }
+    @Override
+    public void keyPressedU() {
 
-	}
+    }
+    @Override
+    public void keyPressedW() {
 
-	public void keyPressedR() {
+    }
+    @Override
+    public void keyPressedE() {
 
-	}
+    }
+    @Override
+    public void keyPressed4() {
 
-	public void keyPressedP() {
+    }
+    @Override
+    public void keyPressed6() {
 
-	}
+    }
+    @Override
+    public void keyPressedEnter() {
 
-	public void keyPressedV() {
-
-	}
-
-	public void keyPressedI() {
-
-	}
-
-	public void keyPressedX() {
-		// TODO: Cops are coming, shut down the festival
-	}
-
-	public void keyPressedA() {
-
-	}
-
-	public void keyPressedESC() {
-
-	}
-
-	public void keyPressedF() {
-
-	}
-
-	public void keyPressedU() {
-
-	}
-
-	public void keyPressedW() {
-
-	}
-
-	public void keyPressedE() {
-
-	}
-
-	public void keyPressed4() {
-
-	}
-
-	public void keyPressed6() {
-
-	}
-
-	public void keyPressedEnter() {
-
-	}
+    }
 }
