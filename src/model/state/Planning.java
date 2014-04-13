@@ -1,12 +1,18 @@
 package model.state;
 
+import model.GameFacade;
+
 /**
  * Created by devan on 4/9/14.
  */
 public class Planning extends State {
 
 
-	public void incorrectKeyPressed() {
+    public Planning(GameFacade gameFacade) {
+        super(gameFacade);
+    }
+
+    public void incorrectKeyPressed() {
 		// TODO: Buzz, no other action
 	}
 

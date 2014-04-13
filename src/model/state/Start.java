@@ -1,6 +1,5 @@
 package model.state;
 
-import model.CommandCreator;
 import model.GameFacade;
 
 /**
@@ -8,9 +7,9 @@ import model.GameFacade;
  */
 public class Start extends State {
 
-	public Start(GameFacade gameFacade) {
-		commandCreator = new CommandCreator(gameFacade);
-	}
+    public Start(GameFacade gameFacade) {
+        super(gameFacade);
+    }
 
     @Override
     public void keyPressed1() {

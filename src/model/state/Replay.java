@@ -1,12 +1,18 @@
 package model.state;
 
+import model.GameFacade;
+
 /**
  * Created by devan on 4/9/14.
  */
 public class Replay extends State {
 
 
-	@Override
+    public Replay(GameFacade gameFacade) {
+        super(gameFacade);
+    }
+
+    @Override
 	public void incorrectKeyPressed() {
 
 	}

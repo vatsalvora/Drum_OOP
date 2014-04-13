@@ -1,19 +1,24 @@
-package model;
+package model.state;
 
+import model.GameFacade;
 import model.state.State;
 import model.state.StateType;
 
 public class Turn extends State {
 
-	@Override
-	public void changeCurrentState(State state) {
+    public Turn(GameFacade gameFacade) {
+        super(gameFacade);
+    }
 
-	}
-
-	@Override
-	public void changeState(StateType stateType) {
-
-	}
+//    @Override
+//	public void changeCurrentState(State state) {
+//
+//	}
+//
+//	@Override
+//	public void changeState(StateType stateType) {
+//
+//	}
 
 	@Override
 	public StateType getCurrentState() {

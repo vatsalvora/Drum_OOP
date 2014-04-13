@@ -17,7 +17,11 @@ public abstract class State {
 		return this.stateType;
 	}
 
-	public void incorrectKeyPressed() {
+    public State(GameFacade gameFacade) {
+        commandCreator = new CommandCreator(gameFacade);
+    }
+
+    public void incorrectKeyPressed() {
 		java.awt.Toolkit.getDefaultToolkit().beep();
 		LOGGER.log(Level.WARNING, "Incorrect key pressed");
 	}

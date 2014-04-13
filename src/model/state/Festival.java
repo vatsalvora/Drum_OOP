@@ -1,9 +1,15 @@
 package model.state;
 
+import model.GameFacade;
+
 /**
  * Created by devan on 4/9/14.
  */
 public class Festival extends State {
+
+    public Festival(GameFacade gameFacade) {
+        super(gameFacade);
+    }
 
     @Override
     public void keyPressed1() {
