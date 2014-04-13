@@ -11,7 +11,7 @@ public class EndPalaceFestival implements Command {
 	}
 
 	public void execute() {
-		b.initiatePalaceFestival();
+		b.endPalaceFestival();
 	}
 
 	public void undo() {
