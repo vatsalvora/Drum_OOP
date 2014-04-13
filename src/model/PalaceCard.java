@@ -1,157 +1,108 @@
-class PalaceCard
-{
-	private enum Type
-	{
+package model;
+
+class PalaceCard {
+	private enum Type {
 		MASK, DRUM, PUPPET, NONE
 	}
-	
+
 	private Type firstType;
 	private Type secondType;
-	
-	public PalaceCard()
-	{
+
+	public PalaceCard() {
 		firstType = Type.NONE;
 		secondType = Type.NONE;
 	}
-	
-	public PalaceCard(String t1)
-	{
+
+	public PalaceCard(String t1) {
 		secondType = Type.NONE;
-		if(t1.equals("MASK"))
-		{
+		if (t1.equals("MASK")) {
 			firstType = Type.MASK;
-		}
-		else if(t1.equals("DRUM"))
-		{
+		} else if (t1.equals("DRUM")) {
 			firstType = Type.DRUM;
-		}
-		else if(t1.equals("PUPPET"))
-		{
+		} else if (t1.equals("PUPPET")) {
 			firstType = Type.PUPPET;
-		}
-		else
-		{
+		} else {
 			firstType = Type.NONE;
 		}
 	}
-	
-	public PalaceCard(String t1, String t2)
-	{
-		if(t1.equals("MASK"))
-		{
+
+	public PalaceCard(String t1, String t2) {
+		if (t1.equals("MASK")) {
 			firstType = Type.MASK;
-		}
-		else if(t1.equals("DRUM"))
-		{
+		} else if (t1.equals("DRUM")) {
 			firstType = Type.DRUM;
-		}
-		else if(t1.equals("PUPPET"))
-		{
+		} else if (t1.equals("PUPPET")) {
 			firstType = Type.PUPPET;
-		}
-		else
-		{
+		} else {
 			firstType = Type.NONE;
 		}
-		if(t2.equals("MASK"))
-		{
+		if (t2.equals("MASK")) {
 			secondType = Type.MASK;
-		}
-		else if(t2.equals("DRUM"))
-		{
+		} else if (t2.equals("DRUM")) {
 			secondType = Type.DRUM;
-		}
-		else if(t2.equals("PUPPET"))
-		{
+		} else if (t2.equals("PUPPET")) {
 			secondType = Type.PUPPET;
-		}
-		else
-		{
+		} else {
 			secondType = Type.NONE;
 		}
 	}
-	
-	public String getFirstType()
-	{
+
+	public String getFirstType() {
 		String ret = "ERROR";
-		if(firstType == Type.MASK)
-		{
+		if (firstType == Type.MASK) {
 			ret = "MASK";
-		}
-		else if(firstType == Type.DRUM)
-		{
+		} else if (firstType == Type.DRUM) {
 			ret = "DRUM";
-		}
-		else if(firstType == Type.PUPPET)
-		{
+		} else if (firstType == Type.PUPPET) {
 			ret = "PUPPET";
-		}
-		else if(firstType == Type.NONE)
-		{
+		} else if (firstType == Type.NONE) {
 			ret = "NONE";
 		}
 		return ret;
 	}
-	
-	public String getSecondType()
-	{
+
+	public String getSecondType() {
 		String ret = "ERROR";
-		if(secondType == Type.MASK)
-		{
+		if (secondType == Type.MASK) {
 			ret = "MASK";
-		}
-		else if(secondType == Type.DRUM)
-		{
+		} else if (secondType == Type.DRUM) {
 			ret = "DRUM";
-		}
-		else if(secondType == Type.PUPPET)
-		{
+		} else if (secondType == Type.PUPPET) {
 			ret = "PUPPET";
-		}
-		else if(secondType == Type.NONE)
-		{
+		} else if (secondType == Type.NONE) {
 			ret = "NONE";
 		}
 		return ret;
 	}
-	
-	public boolean equals(PalaceCard c)
-	{
+
+	public boolean equals(PalaceCard c) {
 		boolean ret = false;
-		if(getFirstType().equals(c.getFirstType()) && getSecondType().equals(c.getSecondType()))
-		{
+		if (getFirstType().equals(c.getFirstType()) && getSecondType().equals(c.getSecondType())) {
 			ret = true;
 		}
-		if(getFirstType().equals(c.getSecondType()) && getSecondType().equals(c.getFirstType()))
-		{
+		if (getFirstType().equals(c.getSecondType()) && getSecondType().equals(c.getFirstType())) {
 			ret = true;
 		}
 		return ret;
 	}
-	
-	public int compare(PalaceCard c)
-	{
+
+	public int compare(PalaceCard c) {
 		int similarities = 0;
-		if(getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType()))
-		{
+		if (getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType())) {
 			similarities++;
 		}
-		if(getSecondType().equals(c.getFirstType()) || getSecondType().equals(c.getSecondType()))
-		{
+		if (getSecondType().equals(c.getFirstType()) || getSecondType().equals(c.getSecondType())) {
 			similarities++;
 		}
 		return similarities;
 	}
-	
-	public String toString()
-	{
+
+	public String toString() {
 		String ret = "";
-		if(firstType != Type.NONE)
-		{
+		if (firstType != Type.NONE) {
 			ret += getFirstType() + " ";
 		}
-		if(secondType != Type.NONE)
-		{
+		if (secondType != Type.NONE) {
 			ret += getSecondType();
 		}
 		return ret;
