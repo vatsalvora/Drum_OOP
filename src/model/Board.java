@@ -11,19 +11,19 @@ public class Board {
 		board = new LinkedList<List<Space>>();
 		for (int p = 0; p < height.length; p++) {
 			int n = height[p];
-			List<Space> col = new LinkedList<Space>();
+			List<Space> column = new LinkedList<Space>();
 			for (int i = 0; i < n; i++) {
-				Location l = new Location(p, i);
-				Space s = new Space(l);
-				col.add(s);
+				Location location = new Location(p, i);
+				Space space = new Space(location);
+				column.add(space);
 			}
-			board.add(col);
+			board.add(column);
 		}
 	}
 
-	public Space getSpace(Location l) {
-		List<Space> col = board.get(l.getXLocation());
-		return col.get(l.getYLocation());
+	public Space getSpace(Location location) {
+		List<Space> column = board.get(location.getXLocation());
+		return column.get(location.getYLocation());
 	}
 
 }
