@@ -3,7 +3,7 @@ package model.state;
 /**
  * Created by devan on 4/10/14.
  */
-public abstract class SharedActionsPlanningAndTurn implements State {
+public abstract class SharedActionsPlanningAndTurn extends State {
 	@Override
 	public void keyPressed1() {
 		// need to implement

@@ -3,7 +3,7 @@ package model.state;
 /**
  * Created by devan on 4/9/14.
  */
-public class Planning implements State {
+public class Planning extends State {
 
 	public void changeCurrentState(State state) {
 

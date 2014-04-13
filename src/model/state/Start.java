@@ -1,11 +1,16 @@
 package model.state;
 
+import model.GameFacade;
+
 /**
  * Created by devan on 4/9/14.
  */
-public class Start implements State {
+public class Start extends State {
 
-	@Override
+	public Start(GameFacade b) {
+
+	}
+
 	public void changeCurrentState(State state) {
 
 	}

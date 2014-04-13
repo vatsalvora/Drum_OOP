@@ -1,17 +1,18 @@
 package model;
 
-import java.util.List;
-
 public class GameFacade {
 	BoardController b;
 	TurnController t;
+	SharedResourcesController s;
 
 	public GameFacade(String[] player) {
-		b = new BoardController(new Board());
 		t = new TurnController(player);
+		b = new BoardController(new Board());
+		s = new SharedResourcesController();
 	}
 
 	public void placeIrrigationTile(Location l) {
+
 	}
 
 	public void placeVillageTile(Location l) {
