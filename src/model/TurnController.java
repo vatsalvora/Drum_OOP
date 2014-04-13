@@ -21,24 +21,24 @@ class TurnController {
 
 	// TODO need to fix compiler error...
 	public void PlayerTurn(String[] n, String[] c) {
-	numPlayers = n.length;
-	if (numPlayers > 4) {
-	numPlayers = 4;
-	}
-	
+		numPlayers = n.length;
+		if (numPlayers > 4) {
+			numPlayers = 4;
+		}
+
 		players = new Player[numPlayers];
 
-	for (int i = 0; i < numPlayers; i++) {
-	players[i] = new Player(n[i], c[i]);
+		for (int i = 0; i < numPlayers; i++) {
+			players[i] = new Player(n[i], c[i]);
+		}
+
+		isActionTokenUsed = false;
+		blockPlayed = 0;
+		festival = new PalaceFestival();
+		currentInt = 0;
+		currentPlayer = players[currentInt];
+		actionPoints = 6;
 	}
-	
-	isActionTokenUsed = false;
-	blockPlayed = 0;
-	festival = new PalaceFestival();
-	 currentInt = 0;
-	 currentPlayer = players[currentInt];
-	 actionPoints = 6;
-	 }
 
 	// General getters
 	public int getAPLeft() {
@@ -270,8 +270,7 @@ class TurnController {
 
 	public void playCard(String t1, String t2) {
 		PalaceCard play = new PalaceCard(t1, t2);
-		if (currentPlayer.hasPlayableCard(play)
-				&& play.compare(festival.getFestivalCard()) > 0) {
+		if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
 			festival.playCard(play);
 		} else {
 			// put-in: card cannot be played since it doesn't match festival

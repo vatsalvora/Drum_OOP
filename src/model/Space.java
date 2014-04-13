@@ -1,13 +1,14 @@
 package model;
 
 public class Space {
-    private Space[] neighbors;
-    private Location l;
+	private Space[] neighbors;
+	private Location l;
 
-    public Space(Location l){
-        this.l = l;
-        this.neighbors = new Space[6];
-    }
+	public Space(Location l) {
+		this.l = l;
+		this.neighbors = new Space[6];
+	}
+
 	public Developer getDeveloper() {
 		return null;
 
