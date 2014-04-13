@@ -54,10 +54,10 @@ public class CommandCreator {
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         for (Command c : commands) {
-            sb.append(c.getClass() + "\n");
+            sb.append(c.getClass()).append("\n");
         }
         return sb.toString();
     }
