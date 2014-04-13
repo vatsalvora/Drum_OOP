@@ -1,135 +1,107 @@
-package model;
+package model.state;
 
-import model.state.State;
-import model.state.StateType;
+/**
+ * Created by devan on 4/9/14.
+ */
+public class Planning implements State {
 
-public class Turn implements State {
-
-
-    @Override
     public void changeCurrentState(State state) {
 
     }
 
-    @Override
     public void changeState(StateType stateType) {
 
     }
 
-    @Override
     public StateType getCurrentState() {
         return null;
     }
 
-    @Override
     public void incorrectKeyPressed() {
-		// TODO: Buzz buzz
-		// TODO: Second thought: should any subclass really override this method? 
-		// Every wrong key will be handled the same, yeah? 
+        // TODO: Buzz, no other action
     }
 
-    @Override
     public void keyPressed1() {
-		// TODO: Move to SW
+        // TODO: Move to SW position
     }
 
-    @Override
     public void keyPressed2() {
-		// TODO: Move to S 
+        // TODO: Move to S position
     }
 
-    @Override
     public void keyPressed3() {
-		// TODO: Move to SE
+        // TODO: Move to SE position
     }
 
-    @Override
     public void keyPressed7() {
-		// TODO: Move to NE
+        // TODO: Move to NE position
     }
 
-    @Override
     public void keyPressed8() {
-		// TODO: Move to N
+        // TODO: Move to N position
     }
 
-    @Override
     public void keyPressed9() {
-		// TODO: Move to NW
+        // TODO: Move to NW position
     }
 
-    @Override
     public void keyPressedTab() {
-		// TODO: Tab through developers
+        // TODO: Tab through developers
     }
 
-    @Override
     public void keyPressedR() {
-		// TODO: Select Rice tile
+        // TODO: Select rice tile
     }
 
-    @Override
     public void keyPressedP() {
-		// TODO: Place new Palace
+        // TODO: Place new Palace tile
     }
 
-    @Override
     public void keyPressedV() {
+        // TODO: Place new Village tile
     }
 
-    @Override
     public void keyPressedI() {
-
+        // TODO: Place new Irrigation tile
     }
 
-    @Override
     public void keyPressedX() {
-		// TODO: End turn
+        // TODO: End planning mode
     }
 
-    @Override
     public void keyPressedA() {
-
+        // No action
     }
 
-    @Override
     public void keyPressedESC() {
-
+        // No action
     }
 
-    @Override
     public void keyPressedF() {
-
+        // No action
     }
 
-    @Override
     public void keyPressedU() {
-
+        // TODO: Undo last move
     }
 
-    @Override
     public void keyPressedW() {
-
+        // No action
     }
 
-    @Override
     public void keyPressedE() {
-
+        // No action
     }
 
-    @Override
     public void keyPressed4() {
-		//TODO: Go back
+        // No action
     }
 
-    @Override
     public void keyPressed6() {
-		//TODO: Go forward
-
+        // No action
     }
 
-    @Override
     public void keyPressedEnter() {
-		// TODO: Execute
+        // Execute moves
     }
 }
