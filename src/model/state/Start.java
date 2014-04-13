@@ -8,8 +8,8 @@ import model.GameFacade;
  */
 public class Start extends State {
 
-	public Start(GameFacade b) {
-		commandCreator = new CommandCreator(b);
+	public Start(GameFacade gameFacade) {
+		commandCreator = new CommandCreator(gameFacade);
 	}
 
     @Override
