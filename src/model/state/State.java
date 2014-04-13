@@ -8,21 +8,25 @@ import java.util.logging.Logger;
  */
 public abstract class State {
 
-    private State state;
-    private StateType stateType;
+    private State currState;
+    private StateType currStateType;
     private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
 
+    public State getState() {
+        return currState;
+    }
+
+    public void changeStateType(StateType stateType){
+        this.currStateType = stateType;
+    }
+
     public void changeCurrentState(State state){
-        this.state = state;
+        this.currState = state;
     }
 
-    public void changeState(StateType stateType){
-        this.stateType = stateType;
-    }
-
-    public StateType getCurrentState(){
-        return this.stateType;
+    public StateType getCurrentStateType(){
+        return this.currStateType;
     }
 
     public void incorrectKeyPressed(){
