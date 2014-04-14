@@ -243,6 +243,7 @@ public class TurnController {
         PalaceCard play = new PalaceCard(t1, t2);
         if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
             festival.playCard(play);
+            currentPlayer.removeCard(play);
         } else {
             // put-in: card cannot be played since it doesn't match festival
             // card in any way

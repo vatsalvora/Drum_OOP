@@ -167,8 +167,12 @@ public class Player {
 
     public void removeCard(PalaceCard c) {
         for (int i = 0; i < cards.size(); i++) {
-            if (c.equals(cards.get(i))) {
-                cards.remove(i);
+            System.out.println("Comparing played card: ");
+            System.out.println(c.toString());
+            System.out.println("to the player's:");
+            System.out.println(c.toString());
+            if (c.sameCardAs(cards.get(i))) {
+                cards.remove(cards.get(i));
                 break;
             }
         }

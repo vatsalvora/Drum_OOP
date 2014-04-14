@@ -123,6 +123,7 @@ public class PalaceFestival {
             for (int i = 0; i < playerFrozen.length; i++) {
                 if (!playerFrozen[i]) {
                     dummy = false;
+                    nextPlayer();
                     break;
                 }
             }
