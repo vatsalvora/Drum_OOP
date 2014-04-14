@@ -144,6 +144,7 @@ public class TurnController {
         blockPlayed--;
     }
 
+    //TODO need to check if null
     public void addCard(PalaceCard c) {
         currentPlayer.addCard(c);
     }
@@ -161,6 +162,7 @@ public class TurnController {
         }
     }
 
+    //TODO need to check if null
     public void drawFestivalCard(PalaceCard c) {
         if (actionPoints > 0) {
             if (actionPoints == 1 && blockPlayed == 0) {
