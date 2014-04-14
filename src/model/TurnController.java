@@ -85,6 +85,7 @@ public class TurnController {
             // put-in: action token already used error
         } else {
             currentPlayer.useActionToken();
+            actionTokenUsed = true;
             actionPoints--;
         }
     }
