@@ -219,9 +219,9 @@ public class TurnController {
 
     public void startFestival(String[] colors) {
         ArrayList<Player> inFestival = new ArrayList<Player>();
-        for (int i = 0; i < colors.length; i++) {
+        for (String color : colors) {
             for (int j = 0; j < numPlayers; j++) {
-                if (colors[i].equals(players[j].getColor())) {
+                if (color.equals(players[j].getColor())) {
                     inFestival.add(players[j]);
                 }
             }
