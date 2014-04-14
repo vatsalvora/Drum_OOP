@@ -287,7 +287,7 @@ public class TurnControllerTest {
     }
 
     @Test
-    public void testFreeseFestivalPlayer() throws Exception {
+    public void testFreezeFestivalPlayer() throws Exception {
 
     }
 

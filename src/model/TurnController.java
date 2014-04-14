@@ -12,7 +12,7 @@ import java.util.List;
 public class TurnController {
     private Player[] players;
     private Player currentPlayer;
-    private int currentInt;
+    private int currentPlayerIndex;
     private int numPlayers;
     private int actionPoints;
     private boolean actionTokenUsed;
@@ -37,29 +37,29 @@ public class TurnController {
         actionTokenUsed = false;
         blockPlayed = 0;
         festival = new PalaceFestival();
-        currentInt = 0;
-        currentPlayer = players[currentInt];
+        currentPlayerIndex = 0;
+        currentPlayer = players[currentPlayerIndex];
         actionPoints = 6;
     }
 
     // Turn control methods
     public void nextTurn() {
-        currentInt++;
-        if (currentInt >= numPlayers) {
-            currentInt = 0;
+        currentPlayerIndex++;
+        if (currentPlayerIndex >= numPlayers) {
+            currentPlayerIndex = 0;
         }
-        currentPlayer = players[currentInt];
+        currentPlayer = players[currentPlayerIndex];
         actionTokenUsed = false;
         blockPlayed = 0;
         actionPoints = 6;
     }
 
     public void previousTurn() {
-        currentInt--;
-        if (currentInt < 0) {
-            currentInt = numPlayers - 1;
+        currentPlayerIndex--;
+        if (currentPlayerIndex < 0) {
+            currentPlayerIndex = numPlayers - 1;
         }
-        currentPlayer = players[currentInt];
+        currentPlayer = players[currentPlayerIndex];
     }
 
     // Altering current player methods
@@ -110,7 +110,7 @@ public class TurnController {
         currentPlayer.returnRiceBlock();
 //        actionPoints++;
 //        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayer();
+        incrementActionPointsAndDecrementBlockPlayed();
     }
     public void placeVillageBlock() {
         if (actionPoints > 0) {
@@ -127,7 +127,7 @@ public class TurnController {
         currentPlayer.returnVillageBlock();
 //        actionPoints++;
 //        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayer();
+        incrementActionPointsAndDecrementBlockPlayed();
     }
 
     public void placeTwoBlock() {
@@ -145,7 +145,7 @@ public class TurnController {
         currentPlayer.returnTwoBlock();
 //        actionPoints++;
 //        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayer();
+        incrementActionPointsAndDecrementBlockPlayed();
     }
 
     //TODO need to check if null
@@ -194,7 +194,7 @@ public class TurnController {
     public void returnOtherBlock() {
 //        actionPoints++;
 //        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayer();
+        incrementActionPointsAndDecrementBlockPlayed();
     }
 
     public void performAction(int i) {
@@ -213,7 +213,7 @@ public class TurnController {
         }
     }
 
-    //TODO need to add if action points goes over 6
+    //TODO need to add if action points goes over 6 and if "i" is less than 1.
     public void undoAction(int i) {
         actionPoints += i;
     }
@@ -318,7 +318,7 @@ public class TurnController {
         blockPlayed++;
     }
 
-    private void incrementActionPointsAndDecrementBlockPlayer(){
+    private void incrementActionPointsAndDecrementBlockPlayed(){
         actionPoints++;
         blockPlayed--;
     }
