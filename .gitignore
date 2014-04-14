@@ -3,6 +3,14 @@
 ### Java ###
 *.class
 
+### vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

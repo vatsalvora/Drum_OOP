@@ -92,41 +92,12 @@ public class hexmech {
 		// I think that this XYvertex stuff is taken care of in the int x line
 		// above. Why is it here twice?
 		if (XYVertex)
-			cx = new int[] { x, x + s, x + s + t, x + s, x, x - t }; // this is
-																		// for
-																		// the
-																		// top
-																		// left
-																		// vertex
-																		// being
-																		// at
-																		// x,y.
-																		// Which
-																		// means
-																		// that
-																		// some
-																		// of
-																		// the
-																		// hex
-																		// is
-																		// cutoff.
+			cx = new int[] { x, x + s, x + s + t, x + s, x, x - t }; // this is for the top left vertex being at x,y. Which
+																	// means that some of the hex is cutoff.
 		else
-			cx = new int[] { x + t, x + s + t, x + s + t + t, x + s + t, x + t, x }; // this
-																						// is
-																						// for
-																						// the
-																						// whole
-																						// hexagon
-																						// to
-																						// be
-																						// below
-																						// and
-																						// to
-																						// the
-																						// right
-																						// of
-																						// this
-																						// point
+			cx = new int[] { x + t, x + s + t, x + s + t + t, x + s + t, x + t, x }; // this is for the whole hexagon
+																					 // to be below and to the right of
+																					 // this point
 
 		cy = new int[] { y, y, y + r, y + r + r, y + r + r, y + r };
 		return new Polygon(cx, cy, 6);
@@ -167,14 +138,14 @@ public class hexmech {
 	 * hexgame.COLOURTWO. The value of n is converted to letter and drawn in the
 	 * hexagon.
 	 *****************************************************************************/
-	public static void fillHex(int i, int j, int n, Graphics2D g2) {
+	public static void fillHex(int i, int j, int n, Color color, Graphics2D g2) {
 		char c = 'o';
 		int x = i * (s + t);
 		int y = j * h + (i % 2) * h / 2;
 		if (n < 0) {
-			g2.setColor(hexgame.COLOURONE);
+			g2.setColor(color);
 			g2.fillPolygon(hex(x, y));
-			g2.setColor(hexgame.COLOURONETXT);
+			g2.setColor(Color.BLACK);
 			c = (char) (-n);
 			g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME:
 																			// handle
@@ -182,9 +153,9 @@ public class hexmech {
 			// g2.drawString(x+","+y, x+r+BORDERS, y+r+BORDERS+4);
 		}
 		if (n > 0) {
-			g2.setColor(hexgame.COLOURTWO);
+			g2.setColor(color);
 			g2.fillPolygon(hex(x, y));
-			g2.setColor(hexgame.COLOURTWOTXT);
+			g2.setColor(Color.BLACK);
 			c = (char) n;
 			g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME
 																			// handle

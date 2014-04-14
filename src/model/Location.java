@@ -4,16 +4,25 @@ public class Location {
 	private int x;
 	private int y;
 
-	Location(int x, int y) {
+	public Location(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	int getXLocation() {
+	public int getXLocation() {
 		return x;
 	}
 
-	int getYLocation() {
+	public int getYLocation() {
 		return y;
 	}
+
+    public void setLocation(int xLoc, int yLoc){
+        x = xLoc;
+        y = yLoc;
+    }
+
+    public String toString(){
+        return (x + " " + y);
+    }
 }

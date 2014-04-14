@@ -1,5 +1,9 @@
 package view;
 
+import model.Board;
+import model.Location;
+import model.Space;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -42,7 +46,7 @@ public class hexgame {
 																	// (vertical
 																	// dimension).
 
-	int[][] board = new int[BSIZE][BSIZE];
+	Board board = new Board();
 
 	void initGame() {
 
@@ -54,14 +58,14 @@ public class hexgame {
 
 		for (int i = 0; i < BSIZE; i++) {
 			for (int j = 0; j < BSIZE; j++) {
-				board[i][j] = EMPTY;
+                board.getSpace(new Location(i,j)).status = EMPTY;
 			}
 		}
 
 		// set up board here
-		board[3][3] = (int) 'A';
-		board[4][3] = (int) 'Q';
-		board[4][4] = -(int) 'B';
+		board.getSpace(new Location(3,3)).status = (int) 'A';
+        board.getSpace(new Location(4,3)).status = (int) 'Q';
+        board.getSpace(new Location(4,4)).status = -(int) 'B';
 	}
 
 	private void createAndShowGUI() {
@@ -95,15 +99,15 @@ public class hexgame {
 		public DrawingPanel() {
 			setBackground(COLOURBACK);
 
-			// MyMouseListener ml = new MyMouseListener();
-			Location l = new Location();
+			MyMouseListener ml = new MyMouseListener();
+			Location l = new Location(0,0);
 			OneKey oneKey = new OneKey(l);
 			TwoKey twoKey = new TwoKey(l);
 			ThreeKey threeKey = new ThreeKey(l);
 			SevenKey sevenKey = new SevenKey(l);
 			EightKey eightKey = new EightKey(l);
 			NineKey nineKey = new NineKey(l);
-			// addMouseListener(ml);
+			addMouseListener(ml);
 			addKeyListener(oneKey);
 			addKeyListener(twoKey);
 			addKeyListener(threeKey);
@@ -131,7 +135,7 @@ public class hexgame {
 					// hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					// if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO,
 					// board[i][j],g2);
-					hexmech.fillHex(i, j, board[i][j], g2);
+					hexmech.fillHex(i, j, board.getSpace(new Location(i,j)).status, board.getSpace(new Location(i,j)).color,  g2);
 				}
 			}
 
@@ -139,33 +143,7 @@ public class hexgame {
 			// g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 		}
 
-		class Location {
-			int x;
-			int y;
 
-			public Location() {
-				x = 0;
-				y = 0;
-			}
-
-			public Location(int x, int y) {
-				this.x = x;
-				this.y = y;
-			}
-
-			public void setLoc(int xP, int yP) {
-				x = xP;
-				y = yP;
-			}
-
-			public int getX() {
-				return x;
-			}
-
-			public int getY() {
-				return y;
-			}
-		}
 
 		class MyMouseListener extends MouseAdapter { // inner class inside
 														// DrawingPanel
@@ -188,7 +166,8 @@ public class hexgame {
 				 */
 
 				// What do you want to do when a hexagon is clicked?
-				board[p.x][p.y] = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 		}
@@ -201,8 +180,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '1') {
@@ -218,8 +197,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -240,8 +220,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '2') {
@@ -254,8 +234,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+                l.setLocation(x, y);
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -276,8 +257,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '3') {
@@ -293,8 +274,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+                l.setLocation(x, y);
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -315,8 +297,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '7') {
@@ -332,8 +314,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+                l.setLocation(x,y);
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -354,8 +337,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '8') {
@@ -368,8 +351,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+                l.setLocation(x, y);
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -390,8 +374,8 @@ public class hexgame {
 			}
 
 			public void keyTyped(KeyEvent ke) {
-				int x = l.getX();
-				int y = l.getY();
+				int x = l.getXLocation();
+				int y = l.getYLocation();
 				System.out.println(ke.getKeyChar());
 				Point p = new Point(x, y);
 				if (ke.getKeyChar() == '9') {
@@ -407,8 +391,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-				l.setLoc(x, y);
-				board[p.x][p.y] = (int) 'X';
+                l.setLocation(x, y);
+                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
 				repaint();
 			}
 
