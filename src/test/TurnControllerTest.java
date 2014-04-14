@@ -1,33 +1,75 @@
 package test;
 
 
+import model.Player;
+import model.TurnController;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by devan on 4/13/14.
  */
 public class TurnControllerTest {
     String[] names = {"Joe", "Chantelle", "Destiny", "Laqueesha"};
+    TurnController turnController;
 
-    
-    @Test
-    public void testAPLeft() throws Exception {
+    @Before
+    public void setUp() {
+        turnController = new TurnController(names);
 
     }
 
     @Test
     public void testPlayedBlock() throws Exception {
+        boolean canPlayOtherBlock = turnController.playedBlock();
+        assertFalse(canPlayOtherBlock);
 
-    }
+        turnController.placeOtherBlock();
+        canPlayOtherBlock = turnController.playedBlock();
+        assertTrue(canPlayOtherBlock);
 
-    @Test
-    public void testTokenUsed() throws Exception {
-
+        for (int i = 0; i < 10; i++) {
+            turnController.placeOtherBlock();
+        }
+        canPlayOtherBlock = turnController.playedBlock();
+        assertTrue(canPlayOtherBlock);
     }
 
     @Test
     public void testNextTurn() throws Exception {
+        for (int i = 0; i < 10; i++) {
+            turnController.placeOtherBlock();
+        }
+        assertTrue(turnController.APLeft() >= 0);
+        Player currPlayer = turnController.getCurrentPlayer();
+        assertTrue(currPlayer.getName().equals("Joe"));
 
+        turnController.nextTurn();
+        assertTrue(turnController.APLeft() == 6);
+        currPlayer = turnController.getCurrentPlayer();
+        assertTrue(currPlayer.getName().equals("Chantelle"));
+        assertFalse(turnController.tokenUsed());
+
+        turnController.nextTurn();
+        assertTrue(turnController.APLeft() == 6);
+        currPlayer = turnController.getCurrentPlayer();
+        assertTrue(currPlayer.getName().equals("Destiny"));
+        assertFalse(turnController.tokenUsed());
+
+        turnController.nextTurn();
+        assertTrue(turnController.APLeft() == 6);
+        currPlayer = turnController.getCurrentPlayer();
+        assertTrue(currPlayer.getName().equals("Laqueesha"));
+        assertFalse(turnController.tokenUsed());
+
+        turnController.nextTurn();
+        assertTrue(turnController.APLeft() == 6);
+        currPlayer = turnController.getCurrentPlayer();
+        assertTrue(currPlayer.getName().equals("Joe"));
+        assertFalse(turnController.tokenUsed());
     }
 
     @Test

@@ -45,11 +45,12 @@ public class TurnController {
     }
 
     public boolean playedBlock() {
-        boolean ret = false;
-        if (blockPlayed > 0) {
-            ret = true;
-        }
-        return ret;
+//        boolean ret = false;
+//        if (blockPlayed > 0) {
+//            ret = true;
+//        }
+//        return ret;
+        return (blockPlayed > 0);
     }
 
     public boolean tokenUsed() {
