@@ -290,10 +290,12 @@ public class TurnController {
         return currentPlayer;
     }
 
+    //TODO why is this here? breaks LoD
     public String getPlayerName() {
         return currentPlayer.getName();
     }
 
+    //TODO why is this here? breaks LoD
     public String getPlayerColor() {
         return currentPlayer.getColor();
     }
