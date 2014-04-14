@@ -99,24 +99,25 @@ public class TurnController {
     public void placeRiceBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeRiceBlock();
-            actionPoints--;
-            blockPlayed++;
+//            actionPoints--;
+//            blockPlayed++;
+            decrementActionPointsAndIncrementBlockPlayed();
         } else {
             // put-in: no AP left error
         }
     }
-
     public void returnRiceBlock() {
         currentPlayer.returnRiceBlock();
-        actionPoints++;
-        blockPlayed--;
+//        actionPoints++;
+//        blockPlayed--;
+        incrementActionPointsAndDecrementBlockPlayer();
     }
-
     public void placeVillageBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeVillageBlock();
-            actionPoints--;
-            blockPlayed++;
+//            actionPoints--;
+//            blockPlayed++;
+            decrementActionPointsAndIncrementBlockPlayed();
         } else {
             // put-in: no AP left error
         }
@@ -124,15 +125,17 @@ public class TurnController {
 
     public void returnVillageBlock() {
         currentPlayer.returnVillageBlock();
-        actionPoints++;
-        blockPlayed--;
+//        actionPoints++;
+//        blockPlayed--;
+        incrementActionPointsAndDecrementBlockPlayer();
     }
 
     public void placeTwoBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeTwoBlock();
-            actionPoints--;
-            blockPlayed++;
+//            actionPoints--;
+//            blockPlayed++;
+            decrementActionPointsAndIncrementBlockPlayed();
         } else {
             // put-in: no AP left error
         }
@@ -140,8 +143,9 @@ public class TurnController {
 
     public void returnTwoBlock() {
         currentPlayer.returnTwoBlock();
-        actionPoints++;
-        blockPlayed--;
+//        actionPoints++;
+//        blockPlayed--;
+        incrementActionPointsAndDecrementBlockPlayer();
     }
 
     //TODO need to check if null
@@ -179,16 +183,18 @@ public class TurnController {
     // Actions that do not require the current player.
     public void placeOtherBlock() {
         if (actionPoints > 0) {
-            actionPoints--;
-            blockPlayed++;
+//            actionPoints--;
+//            blockPlayed++;
+            decrementActionPointsAndIncrementBlockPlayed();
         } else {
             // put-in: not enough AP error
         }
     }
 
     public void returnOtherBlock() {
-        actionPoints++;
-        blockPlayed--;
+//        actionPoints++;
+//        blockPlayed--;
+        incrementActionPointsAndDecrementBlockPlayer();
     }
 
     public void performAction(int i) {
@@ -307,5 +313,15 @@ public class TurnController {
 
     public List<PalaceCard> getCurrentCards() {
         return currentPlayer.getCards();
+    }
+
+    private void decrementActionPointsAndIncrementBlockPlayed() {
+        actionPoints--;
+        blockPlayed++;
+    }
+
+    private void incrementActionPointsAndDecrementBlockPlayer(){
+        actionPoints++;
+        blockPlayed--;
     }
 }
