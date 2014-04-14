@@ -22,6 +22,8 @@ public class TurnController {
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
         numPlayers = name.length;
+
+        //TODO throw exception if greater that 4
         if (numPlayers > 4) {
             numPlayers = 4;
         }
