@@ -10,14 +10,14 @@ import java.util.List;
  */
 
 public class TurnController {
-    Player[] players;
-    Player currentPlayer;
-    int currentInt;
-    int numPlayers;
-    int actionPoints;
-    boolean actionTokenUsed;
-    int blockPlayed;
-    PalaceFestival festival;
+    private Player[] players;
+    private Player currentPlayer;
+    private int currentInt;
+    private int numPlayers;
+    private int actionPoints;
+    private boolean actionTokenUsed;
+    private int blockPlayed;
+    private PalaceFestival festival;
 
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
