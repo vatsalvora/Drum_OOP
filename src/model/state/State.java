@@ -1,58 +1,75 @@
 package model.state;
 
+import model.GameFacade;
+import model.Location;
+import model.commands.CommandCreator;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Created by devan on 4/9/14.
  */
-public interface State {
+public abstract class State {
 
-	public abstract void changeCurrentState(State state);
+	static CommandCreator commandCreator;
+	private StateType stateType;
+	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
-	public void changeState(StateType stateType);
 
-	public StateType getCurrentState();
+    public State(GameFacade gameFacade) {
+        commandCreator = new CommandCreator(gameFacade);
+    }
 
-	public void incorrectKeyPressed();
+    public void incorrectKeyPressed() {
+		java.awt.Toolkit.getDefaultToolkit().beep();
+		LOGGER.log(Level.WARNING, "Incorrect key pressed");
+	}
 
-	public void keyPressed1();
+	public abstract void keyPressed1();
 
-	public void keyPressed2();
+	public abstract void keyPressed2();
 
-	public void keyPressed3();
+	public abstract void keyPressed3();
 
-	public void keyPressed7();
+	public abstract void keyPressed7();
 
-	public void keyPressed8();
+	public abstract void keyPressed8();
 
-	public void keyPressed9();
+	public abstract void keyPressed9();
 
-	public void keyPressedTab();
+	public abstract void keyPressedTab();
 
-	public void keyPressedR();
+	public abstract void keyPressedR();
 
-	public void keyPressedP();
+	public abstract void keyPressedP(Location location);
 
-	public void keyPressedV();
+	public abstract void keyPressedV(Location location);
 
-	public void keyPressedI();
+	public abstract void keyPressedI(Location location);
 
-	public void keyPressedX();
+	public abstract void keyPressedX();
 
-	public void keyPressedA();
+	public abstract void keyPressedA();
 
-	public void keyPressedESC();
+	public abstract void keyPressedESC();
 
-	public void keyPressedF();
+	public abstract void keyPressedF();
 
-	public void keyPressedU();
+	public abstract void keyPressedU();
 
-	public void keyPressedW();
+	public abstract void keyPressedW();
 
-	public void keyPressedE();
+	public abstract void keyPressedE();
 
-	public void keyPressed4();
+	public abstract void keyPressed4();
 
-	public void keyPressed6();
+	public abstract void keyPressed6();
 
-	public void keyPressedEnter();
+	public abstract void keyPressedEnter();
+
+    public StateType getCurrentState() {
+        return this.stateType;
+    }
 
 }

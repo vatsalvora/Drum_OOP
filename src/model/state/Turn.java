@@ -1,16 +1,97 @@
 package model.state;
 
+
 import model.GameFacade;
 import model.Location;
 
-/**
- * Created by devan on 4/9/14.
- */
-public class Replay extends State {
+public class Turn extends State {
 
-
-    public Replay(GameFacade gameFacade) {
+    public Turn(GameFacade gameFacade) {
         super(gameFacade);
+    }
+/*
+TURN
+==========
+placePalace(location)
+placeVillageTile(location)
+execute //??
+ */
+
+
+
+//    @Override
+//	public void changeCurrentState(State state) {
+//
+//	}
+//
+//	@Override
+//	public void changeState(StateType stateType) {
+//
+//	}
+
+    @Override
+    public StateType getCurrentState() {
+        return null;
+    }
+
+    @Override
+    public void keyPressed1() {
+        // TODO: Move to SW
+    }
+
+    @Override
+    public void keyPressed2() {
+        // TODO: Move to S
+    }
+
+    @Override
+    public void keyPressed3() {
+        // TODO: Move to SE
+    }
+
+    @Override
+    public void keyPressed7() {
+        // TODO: Move to NE
+    }
+
+    @Override
+    public void keyPressed8() {
+        // TODO: Move to N
+    }
+
+    @Override
+    public void keyPressed9() {
+        // TODO: Move to NW
+    }
+
+    @Override
+    public void keyPressedTab() {
+        // TODO: Tab through developers
+    }
+
+    @Override
+    public void keyPressedR() {
+        // TODO: Select Rice tile
+    }
+
+    @Override
+    public void keyPressedP(Location location) {
+        commandCreator.placePalaceTile(location);
+    }
+
+    @Override
+    public void keyPressedV(Location location) {
+        commandCreator.placeVillageTile(location);
+    }
+
+    @Override
+    public void keyPressedI(Location location) {
+        commandCreator.placeIrrigationTile(location);
+    }
+
+    @Override
+    public void keyPressedX() {
+        commandCreator.changeTurn();
     }
 
     @Override
@@ -25,63 +106,8 @@ public class Replay extends State {
     }
 
     @Override
-    public void keyPressedR() {
-        // TODO: Restart
-    }
-
-    @Override
-    public void keyPressed1() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressed2() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressed3() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressed7() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressed8() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressed9() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedTab() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedP(Location location) {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedV(Location location) {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedI(Location location) {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedX() {
-        incorrectKeyPressed();
+    public void keyPressedEnter() {
+        // TODO: Execute
     }
 
     @Override
@@ -111,11 +137,6 @@ public class Replay extends State {
 
     @Override
     public void keyPressedE() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedEnter() {
         incorrectKeyPressed();
     }
 }

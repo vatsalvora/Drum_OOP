@@ -1,133 +1,121 @@
 package model.state;
 
+import model.GameFacade;
+import model.Location;
+
 /**
  * Created by devan on 4/9/14.
  */
-public class Start implements State {
+public class Start extends State {
 
-	@Override
-	public void changeCurrentState(State state) {
+    public Start(GameFacade gameFacade) {
+        super(gameFacade);
+    }
 
-	}
+    @Override
+    public void keyPressed1() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void changeState(StateType stateType) {
+    @Override
+    public void keyPressed2() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed3() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public StateType getCurrentState() {
-		return null;
-	}
+    @Override
+    public void keyPressed7() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void incorrectKeyPressed() {
+    @Override
+    public void keyPressed8() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed9() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed1() {
+    @Override
+    public void keyPressedTab() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedR() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed2() {
+    @Override
+    public void keyPressedP(Location location) {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedV(Location location) {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed3() {
+    @Override
+    public void keyPressedI(Location location) {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedX() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed7() {
+    @Override
+    public void keyPressedA() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedESC() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed8() {
+    @Override
+    public void keyPressedF() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedU() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressed9() {
+    @Override
+    public void keyPressedW() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressedE() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressedTab() {
+    @Override
+    public void keyPressed4() {
+        incorrectKeyPressed();
+    }
 
-	}
+    @Override
+    public void keyPressed6() {
+        incorrectKeyPressed();
+    }
 
-	@Override
-	public void keyPressedR() {
+    @Override
+    public void keyPressedEnter() {
+        // TODO: Create a new game
+//        Turn turn = new Turn();
 
-	}
-
-	@Override
-	public void keyPressedP() {
-
-	}
-
-	@Override
-	public void keyPressedV() {
-
-	}
-
-	@Override
-	public void keyPressedI() {
-
-	}
-
-	@Override
-	public void keyPressedX() {
-
-	}
-
-	@Override
-	public void keyPressedA() {
-
-	}
-
-	@Override
-	public void keyPressedESC() {
-
-	}
-
-	@Override
-	public void keyPressedF() {
-
-	}
-
-	@Override
-	public void keyPressedU() {
-
-	}
-
-	@Override
-	public void keyPressedW() {
-
-	}
-
-	@Override
-	public void keyPressedE() {
-
-	}
-
-	@Override
-	public void keyPressed4() {
-
-	}
-
-	@Override
-	public void keyPressed6() {
-
-	}
-
-	@Override
-	public void keyPressedEnter() {
-		// TODO: Create a new game
-
-	}
+    }
 }

@@ -8,144 +8,149 @@ import java.util.*;
  */
 
 public class PalaceFestival {
-	private PalaceCard festivalCard;
-	private ArrayList<Player> players;
-	private Player currentPlayer;
-	private int currentInt;
-	private int[] playerScores;
-	private boolean[] playerFrozen;
-	private boolean inProgress;
+    private PalaceCard festivalCard;
+    private ArrayList<Player> players;
+    private Player currentPlayer;
+    private int currentInt;
+    private int[] playerScores;
+    private boolean[] playerFrozen;
+    private boolean inProgress;
 
-	public PalaceFestival() {
-		festivalCard = null;
-		players = new ArrayList<Player>();
-		currentPlayer = null;
-		currentInt = 0;
-		playerScores = new int[4];
-		playerFrozen = new boolean[4];
-		inProgress = false;
-	}
+    public PalaceFestival() {
+        festivalCard = null;
+        players = new ArrayList<Player>();
+        currentPlayer = null;
+        currentInt = 0;
+        playerScores = new int[4];
+        playerFrozen = new boolean[4];
+        inProgress = false;
+    }
 
-	public PalaceFestival(PalaceCard c) {
-		festivalCard = c;
-		players = new ArrayList<Player>();
-		currentPlayer = null;
-		currentInt = 0;
-		playerScores = new int[4];
-		playerFrozen = new boolean[4];
-		inProgress = false;
-	}
+    public PalaceFestival(PalaceCard c) {
+        festivalCard = c;
+        players = new ArrayList<Player>();
+        currentPlayer = null;
+        currentInt = 0;
+        playerScores = new int[4];
+        playerFrozen = new boolean[4];
+        inProgress = false;
+    }
 
-	// Get the festival card
-	public PalaceCard getFestivalCard() {
-		return festivalCard;
-	}
+    // Get the festival card
+    public PalaceCard getFestivalCard() {
+        return festivalCard;
+    }
 
-	// Get current player
-	public Player getCurrentPlayer() {
-		return currentPlayer;
-	}
+    // Get current player
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
-	// Reset the festival
-	private void reset() {
-		players = new ArrayList<Player>();
-		currentPlayer = null;
-		currentInt = 0;
-		playerScores = new int[4];
-		playerFrozen = new boolean[4];
-		inProgress = true;
-	}
+    // Reset the festival
+    private void reset() {
+        players = new ArrayList<Player>();
+        currentPlayer = null;
+        currentInt = 0;
+        playerScores = new int[4];
+        playerFrozen = new boolean[4];
+        inProgress = true;
+    }
 
-	// Start a new festival by taking in a list of players that can play
-	public void startFestival(ArrayList<Player> p) {
-		reset();
-		players = p;
-		currentInt = 0;
-		currentPlayer = players.get(currentInt);
-		ArrayList<Player> remove = new ArrayList<Player>();
-		for (int i = 0; i < players.size(); i++) {
-			if (!playable(players.get(i))) {
-				remove.add(players.get(i));
-			}
-		}
-		for (int i = 0; i < remove.size(); i++) {
-			players.remove(remove.get(i));
-		}
-	}
+    // Start a new festival by taking in a list of players that can play
+    public void startFestival(ArrayList<Player> p) {
+        reset();
+        players = p;
+        currentInt = 0;
+        currentPlayer = players.get(currentInt);
+        ArrayList<Player> takeOut = new ArrayList<Player>();
+        for (int i = 0; i < players.size(); i++) {
+            if (!playable(players.get(i))) {
+                takeOut.add(players.get(i));
+            }
+        }
+        for (int i = 0; i < takeOut.size(); i++) {
+            players.remove(takeOut.get(i));
+        }
+    }
 
-	// Change festival card
-	public PalaceCard changeFestivalCard(PalaceCard c) {
-		PalaceCard old = festivalCard;
-		festivalCard = c;
-		return old;
-	}
+    // Change festival card
+    public PalaceCard changeFestivalCard(PalaceCard c) {
+        PalaceCard old = festivalCard;
+        festivalCard = c;
+        return old;
+    }
 
-	// Check if a player can still participate (has appropriate card)
-	private boolean playable(Player p) {
-		return p.hasPlayableCard(festivalCard);
-	}
+    public ArrayList<Player> getPlayers()
+    {
+        return players;
+    }
 
-	// Change current player
-	public void nextPlayer() {
-		if (inProgress) {
-			currentInt++;
-			if (currentInt >= players.size()) {
-				currentInt = 0;
-			}
-			currentPlayer = players.get(currentInt);
-			if (!playable(currentPlayer)) {
-				freeze();
-			}
-			if (playerFrozen[currentInt]) {
-				nextPlayer();
-			}
-		}
-	}
+    // Check if a player can still participate (has appropriate card)
+    private boolean playable(Player p) {
+        return p.hasPlayableCard(festivalCard);
+    }
 
-	// Current player playing a card
-	public void playCard(PalaceCard c) {
-		if (inProgress) {
-			playerScores[currentInt] += festivalCard.compare(c);
-			nextPlayer();
-		}
-	}
+    // Change current player
+    public void nextPlayer() {
+        if (inProgress) {
+            currentInt++;
+            if (currentInt >= players.size()) {
+                currentInt = 0;
+            }
+            currentPlayer = players.get(currentInt);
+            if (!playable(currentPlayer)) {
+                freeze();
+            }
+            if (playerFrozen[currentInt]) {
+                nextPlayer();
+            }
+        }
+    }
 
-	// Freeze the current player so they cannot perform any more actions
-	public void freeze() {
-		if (inProgress) {
-			playerFrozen[currentInt] = true;
-			boolean dummy = true;
-			for (int i = 0; i < playerFrozen.length; i++) {
-				if (!playerFrozen[i]) {
-					dummy = false;
-					break;
-				}
-			}
-			if (dummy) {
-				inProgress = false;
-			}
-		}
-	}
+    // Current player playing a card
+    public void playCard(PalaceCard c) {
+        if (inProgress) {
+            playerScores[currentInt] += festivalCard.compare(c);
+            nextPlayer();
+        }
+    }
 
-	// Calculate victors
-	public ArrayList<Player> getVictors() {
-		int maxScore = 0;
-		ArrayList<Player> ret = new ArrayList<Player>();
-		for (int i = 0; i < playerScores.length; i++) {
-			if (playerScores[i] > maxScore) {
-				maxScore = playerScores[i];
-			}
-		}
-		for (int i = 0; i < playerScores.length; i++) {
-			if (playerScores[i] == maxScore) {
-				ret.add(players.get(i));
-			}
-		}
-		return ret;
-	}
+    // Freeze the current player so they cannot perform any more actions
+    public void freeze() {
+        if (inProgress) {
+            playerFrozen[currentInt] = true;
+            boolean dummy = true;
+            for (int i = 0; i < playerFrozen.length; i++) {
+                if (!playerFrozen[i]) {
+                    dummy = false;
+                    break;
+                }
+            }
+            if (dummy) {
+                inProgress = false;
+            }
+        }
+    }
 
-	// Check if the festival is over
-	public boolean festivalOver() {
-		return !inProgress;
-	}
+    // Calculate victors
+    public ArrayList<Player> getVictors() {
+        int maxScore = 0;
+        ArrayList<Player> ret = new ArrayList<Player>();
+        for (int i = 0; i < playerScores.length; i++) {
+            if (playerScores[i] > maxScore) {
+                maxScore = playerScores[i];
+            }
+        }
+        for (int i = 0; i < playerScores.length; i++) {
+            if (playerScores[i] == maxScore) {
+                ret.add(players.get(i));
+            }
+        }
+        return ret;
+    }
+
+    // Check if the festival is over
+    public boolean festivalOver() {
+        return !inProgress;
+    }
 }

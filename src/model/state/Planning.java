@@ -1,107 +1,103 @@
 package model.state;
 
+import model.GameFacade;
+import model.Location;
+
 /**
  * Created by devan on 4/9/14.
  */
-public class Planning implements State {
+public class Planning extends State {
 
-	public void changeCurrentState(State state) {
 
-	}
+    public Planning(GameFacade gameFacade) {
+        super(gameFacade);
+    }
 
-	public void changeState(StateType stateType) {
+    public void keyPressed1() {
+        // TODO: Move to SW position
+    }
 
-	}
+    public void keyPressed2() {
+        // TODO: Move to S position
+    }
 
-	public StateType getCurrentState() {
-		return null;
-	}
+    public void keyPressed3() {
+        // TODO: Move to SE position
+    }
 
-	public void incorrectKeyPressed() {
-		// TODO: Buzz, no other action
-	}
+    public void keyPressed7() {
+        // TODO: Move to NE position
+    }
 
-	public void keyPressed1() {
-		// TODO: Move to SW position
-	}
+    public void keyPressed8() {
+        // TODO: Move to N position
+    }
 
-	public void keyPressed2() {
-		// TODO: Move to S position
-	}
+    public void keyPressed9() {
+        // TODO: Move to NW position
+    }
 
-	public void keyPressed3() {
-		// TODO: Move to SE position
-	}
+    public void keyPressedTab() {
+        // TODO: Tab through developers
+    }
 
-	public void keyPressed7() {
-		// TODO: Move to NE position
-	}
+    public void keyPressedR() {
+        // TODO: Select rice tile
+    }
 
-	public void keyPressed8() {
-		// TODO: Move to N position
-	}
+    @Override
+    public void keyPressedP(Location location) {
+        commandCreator.placePalaceTile(location);
+    }
 
-	public void keyPressed9() {
-		// TODO: Move to NW position
-	}
+    @Override
+    public void keyPressedV(Location location) {
+        commandCreator.placeVillageTile(location);
+    }
 
-	public void keyPressedTab() {
-		// TODO: Tab through developers
-	}
+    @Override
+    public void keyPressedI(Location location) {
+        commandCreator.placeIrrigationTile(location);
+    }
 
-	public void keyPressedR() {
-		// TODO: Select rice tile
-	}
 
-	public void keyPressedP() {
-		// TODO: Place new Palace tile
-	}
+    public void keyPressedU() {
+        commandCreator.undoLastCommand();
+    }
 
-	public void keyPressedV() {
-		// TODO: Place new Village tile
-	}
+    public void keyPressedEnter() {
+        // TODO: Execute moves
+    }
 
-	public void keyPressedI() {
-		// TODO: Place new Irrigation tile
-	}
+    public void keyPressedX() {
+        // TODO: End planning mode
+    }
 
-	public void keyPressedX() {
-		// TODO: End planning mode
-	}
+    public void keyPressedA() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedA() {
-		// No action
-	}
+    public void keyPressedESC() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedESC() {
-		// No action
-	}
+    public void keyPressedF() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedF() {
-		// No action
-	}
+    public void keyPressedW() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedU() {
-		// TODO: Undo last move
-	}
+    public void keyPressedE() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedW() {
-		// No action
-	}
+    public void keyPressed4() {
+        incorrectKeyPressed();
+    }
 
-	public void keyPressedE() {
-		// No action
-	}
-
-	public void keyPressed4() {
-		// No action
-	}
-
-	public void keyPressed6() {
-		// No action
-	}
-
-	public void keyPressedEnter() {
-		// Execute moves
-	}
+    public void keyPressed6() {
+        incorrectKeyPressed();
+    }
 }

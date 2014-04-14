@@ -3,30 +3,30 @@ package model;
 import java.util.List;
 
 public class BoardController {
-	private Board b;
+	private Board board;
 
-	public BoardController(Board b) {
-		this.b = b;
+	public BoardController(Board board) {
+		this.board = board;
 	}
 
 	Board getBoard() {
-		return b;
+		return board;
 	}
 
 	public void moveDeveloper(Location initial, Location fin) {
 
 	}
 
-	public void placeTile(Location l, Tile t) {
+	public void placeTile(Location location, Tile tile) {
 
 	}
 
-	public boolean checkTilePlacement(Location l, Tile t) {
+	public boolean checkTilePlacement(Location location, Tile tile) {
 		return false;
 
 	}
 
-	public boolean checkDevPlacement(Location l, Developer d) {
+	public boolean checkDevPlacement(Location location, Developer developer) {
 		return false;
 
 	}
@@ -36,11 +36,11 @@ public class BoardController {
 
 	}
 
-	public void removeDeveloper(Developer d) {
+	public void removeDeveloper(Developer developer) {
 
 	}
 
-	public Developer checkHighestDeveloper(Location l) {
+	public Developer checkHighestDeveloper(Location location) {
 		return null;
 
 	}

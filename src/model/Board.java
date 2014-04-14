@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,16 +8,18 @@ public class Board {
 
 	public Board() {
         int[] height = {12,12,12,12,12,12,12,12,12,12,12,12};
+
 		board = new LinkedList<List<Space>>();
 		for (int p = 0; p < height.length; p++) {
 			int n = height[p];
-			List<Space> col = new LinkedList<Space>();
+			List<Space> column = new LinkedList<Space>();
 			for (int i = 0; i < n; i++) {
-				Location l = new Location(i, p);
-				Space s = new Space(l);
-				col.add(s);
+				Location location = new Location(p, i);
+				Space space = new Space(location);
+				column.add(space);
+
 			}
-			board.add(col);
+			board.add(column);
 		}
         for(int q = 0; q< board.size(); q++)
         {
@@ -52,9 +53,10 @@ public class Board {
         }
 	}
 
+
 	public Space getSpace(Location l) {
-		List<Space> col = board.get(l.getYLocation());
-		return col.get(l.getXLocation());
+		List<Space> column = board.get(l.getYLocation());
+		return column.get(l.getXLocation());
 	}
 
 }
