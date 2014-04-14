@@ -67,6 +67,7 @@ public class TurnController {
         currentPlayer.incrementFamePoints(i);
     }
 
+    //TODO need to check if player has 0 fame points before decrementing. throw exception otherwise
     public void decrementFamePoints(int i) {
         currentPlayer.decrementFamePoints(i);
     }
