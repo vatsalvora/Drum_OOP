@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -19,8 +20,10 @@ public class TurnController {
     PalaceFestival festival;
 
     public TurnController(String[] name) {
-        String[] color = { "red", "blue", "green", "yellow" };
+        String[] color = {"red", "blue", "green", "yellow"};
         numPlayers = name.length;
+
+        //TODO throw exception if greater that 4
         if (numPlayers > 4) {
             numPlayers = 4;
         }
@@ -37,23 +40,6 @@ public class TurnController {
         currentInt = 0;
         currentPlayer = players[currentInt];
         actionPoints = 6;
-    }
-
-    // General getters
-    public int APLeft() {
-        return actionPoints;
-    }
-
-    public boolean playedBlock() {
-        boolean ret = false;
-        if (blockPlayed > 0) {
-            ret = true;
-        }
-        return ret;
-    }
-
-    public boolean tokenUsed() {
-        return actionTokenUsed;
     }
 
     // Turn control methods
@@ -74,28 +60,6 @@ public class TurnController {
             currentInt = numPlayers - 1;
         }
         currentPlayer = players[currentInt];
-    }
-
-    // Player accessor methods
-    public Player[] getPlayers() {
-        return players;
-    }
-
-    // Current player accessor methods
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public String getPlayerName() {
-        return currentPlayer.getName();
-    }
-
-    public String getPlayerColor() {
-        return currentPlayer.getColor();
-    }
-
-    public List<PalaceCard> getCurrentCards() {
-        return currentPlayer.getCards();
     }
 
     // Altering current player methods
@@ -286,18 +250,55 @@ public class TurnController {
         return festival.getCurrentPlayer();
     }
 
-    public ArrayList<Player> getFestivalPlayers()
-    {
+    public ArrayList<Player> getFestivalPlayers() {
         return festival.getPlayers();
     }
 
-    public PalaceCard getFestivalCard()
-    {
+    public PalaceCard getFestivalCard() {
         return festival.getFestivalCard();
     }
 
-    public boolean festivalOver()
-    {
+    public boolean festivalOver() {
         return festival.festivalOver();
+    }
+
+    // General getters
+    public int APLeft() {
+        return actionPoints;
+    }
+
+    public boolean playedBlock() {
+//        boolean ret = false;
+//        if (blockPlayed > 0) {
+//            ret = true;
+//        }
+//        return ret;
+        return (blockPlayed > 0);
+    }
+
+    public boolean tokenUsed() {
+        return actionTokenUsed;
+    }
+
+    // Player accessor methods
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    // Current player accessor methods
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public String getPlayerName() {
+        return currentPlayer.getName();
+    }
+
+    public String getPlayerColor() {
+        return currentPlayer.getColor();
+    }
+
+    public List<PalaceCard> getCurrentCards() {
+        return currentPlayer.getCards();
     }
 }
