@@ -1,17 +1,48 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import model.Board;
 import model.GameFacade;
+import model.HexSpace;
 import model.Location;
 import model.Space;
-import model.state.*;
-import view.keypressed.*;
+import model.state.State;
+import model.state.Turn;
 import view.keypressed.KeyPressed1;
 import view.keypressed.KeyPressed2;
-
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import view.keypressed.KeyPressed3;
+import view.keypressed.KeyPressed4;
+import view.keypressed.KeyPressed6;
+import view.keypressed.KeyPressed7;
+import view.keypressed.KeyPressed8;
+import view.keypressed.KeyPressed9;
+import view.keypressed.KeyPressedA;
+import view.keypressed.KeyPressedE;
+import view.keypressed.KeyPressedESC;
+import view.keypressed.KeyPressedF;
+import view.keypressed.KeyPressedI;
+import view.keypressed.KeyPressedP;
+import view.keypressed.KeyPressedR;
+import view.keypressed.KeyPressedS;
+import view.keypressed.KeyPressedTab;
+import view.keypressed.KeyPressedU;
+import view.keypressed.KeyPressedV;
+import view.keypressed.KeyPressedW;
+import view.keypressed.KeyPressedX;
 
 /**********************************
  * This is the main class of a Java program to play a game based on hexagonal
@@ -57,14 +88,14 @@ public class hexgame {
 
 		for (int i = 0; i < BSIZE; i++) {
 			for (int j = 0; j < BSIZE; j++) {
-				board.getSpace(new Location(i, j)).status = EMPTY;
+				((HexSpace)board.getSpace(new Location(i, j))).status = EMPTY;
 			}
 		}
 
 		// set up board here
-		board.getSpace(new Location(3, 3)).status = (int) 'A';
-		board.getSpace(new Location(4, 3)).status = (int) 'Q';
-		board.getSpace(new Location(4, 4)).status = -(int) 'B';
+		((HexSpace)board.getSpace(new Location(3, 3))).status = (int) 'A';
+		((HexSpace)board.getSpace(new Location(4, 3))).status = (int) 'Q';
+		((HexSpace)board.getSpace(new Location(4, 4))).status = -(int) 'B';
 	}
 
 	private void createAndShowGUI() {
@@ -179,8 +210,8 @@ public class hexgame {
 					// hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					// if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO,
 					// board[i][j],g2);
-					hexmech.fillHex(i, j, board.getSpace(new Location(i, j)).status,
-							board.getSpace(new Location(i, j)).color, g2);
+					hexmech.fillHex(i, j, ((HexSpace)board.getSpace(new Location(i, j))).status,
+							((HexSpace)board.getSpace(new Location(i, j))).color, g2);
 				}
 			}
 
@@ -210,7 +241,7 @@ public class hexgame {
 
 				// What do you want to do when a hexagon is clicked?
                 //System.out.println("LOC: " + p.x + " " + p.y + "");
-                Space s = board.getSpace(new Location(p.x,p.y));
+				HexSpace s = (HexSpace)board.getSpace(new Location(p.x,p.y));
                 System.out.println("Current: "+ s.getLocation());
                 s.status = (int) 'X';
                 s.color = Color.GREEN;
@@ -250,8 +281,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
@@ -287,8 +318,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
@@ -327,8 +358,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
@@ -367,8 +398,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
@@ -404,8 +435,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
@@ -444,8 +475,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
+				((HexSpace)board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
 				repaint();
 			}
 
