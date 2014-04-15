@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
  */
 public class KeyPressed8 extends KeyPressed {
 
-    protected KeyPressed8(Location location, State state) {
+    public KeyPressed8(Location location, State state) {
         super(location, state);
     }
 
