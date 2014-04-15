@@ -3,8 +3,6 @@ package model.state;
 import model.GameFacade;
 import model.Location;
 
-import java.io.FileNotFoundException;
-
 /**
  * Created by devan on 4/9/14.
  */

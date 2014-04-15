@@ -5,6 +5,7 @@ import model.Command;
 import model.GameFacade;
 import model.Location;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Stack;
@@ -83,16 +84,19 @@ public class CommandCreator {
 
 	public void save(String fileName) {
 		PrintWriter writer = null;
+		File file = new File(fileName);
+
 		try {
-			writer = new PrintWriter(fileName);
+			writer = new PrintWriter(file);
+			for (Command comm : commands) {
+				writer.println(comm);
+			}
+			writer.close();
+			System.out.println("File saved");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (Command comm : commands) {
-			writer.println(comm);
-		}
-		writer.close();
 
 	}
 }
