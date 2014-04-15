@@ -127,6 +127,7 @@ public class hexgame {
             KeyPressedE keyPressedE = new KeyPressedE(l, state);
             KeyPressed4 keyPressed4 = new KeyPressed4(l, state);
             KeyPressed6 keyPressed6 = new KeyPressed6(l, state);
+            KeyPressedS keyPressedS = new KeyPressedS(l, state);
 
             addKeyListener(keyPressed1);
             addKeyListener(keyPressed2);
@@ -147,6 +148,7 @@ public class hexgame {
             addKeyListener(keyPressedW);
             addKeyListener(keyPressedE);
             addKeyListener(keyPressed4);
+            addKeyListener(keyPressedS);
             addKeyListener(keyPressed6);
 
 			addMouseListener(ml);
