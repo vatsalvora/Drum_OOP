@@ -112,4 +112,9 @@ public class Start extends State {
         incorrectKeyPressed();
     }
 
+    @Override
+    public void keyPressedS() {
+
+    }
+
 }

@@ -35,6 +35,11 @@ execute //??
     }
 
     @Override
+    public void keyPressedS() {
+        commandCreator.save("test.txt");
+    }
+
+    @Override
     public void keyPressed1() {
         // TODO: Move to SW
     }

@@ -111,4 +111,9 @@ public class Festival extends State {
     public void keyPressed6() {
         incorrectKeyPressed();
     }
+
+    @Override
+    public void keyPressedS() {
+
+    }
 }

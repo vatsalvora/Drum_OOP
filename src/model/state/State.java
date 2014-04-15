@@ -4,6 +4,7 @@ import model.GameFacade;
 import model.Location;
 import model.commands.CommandCreator;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,4 +71,5 @@ public abstract class State {
         return this.stateType;
     }
 
+    public abstract void keyPressedS() throws FileNotFoundException;
 }

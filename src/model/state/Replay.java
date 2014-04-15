@@ -3,6 +3,8 @@ package model.state;
 import model.GameFacade;
 import model.Location;
 
+import java.io.FileNotFoundException;
+
 /**
  * Created by devan on 4/9/14.
  */
@@ -22,6 +24,11 @@ public class Replay extends State {
     public void keyPressed6() {
         // TODO: Go forward
 
+    }
+
+    @Override
+    public void keyPressedS() {
+        commandCreator.save("test.txt");
     }
 
     @Override
