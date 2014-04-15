@@ -4,6 +4,9 @@ import model.Board;
 import model.GameFacade;
 import model.Location;
 import model.state.*;
+import view.keypressed.KeyPressed;
+import view.keypressed.KeyPressedS;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -103,6 +106,7 @@ public class hexgame {
 			EightKey eightKey = new EightKey(l);
 			NineKey nineKey = new NineKey(l);
 			PKey pKey = new PKey(l);
+            KeyPressedS keyPressedS = new KeyPressedS(l, state);
 
 			addMouseListener(ml);
 			addKeyListener(oneKey);
@@ -112,7 +116,7 @@ public class hexgame {
 			addKeyListener(eightKey);
 			addKeyListener(nineKey);
 			addKeyListener(pKey);
-
+			addKeyListener(keyPressedS);
 		}
 
 		public void paintComponent(Graphics g) {
