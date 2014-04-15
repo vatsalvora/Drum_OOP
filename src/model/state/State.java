@@ -3,7 +3,6 @@ package model.state;
 import model.GameFacade;
 import model.Location;
 import model.commands.CommandCreator;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,16 +11,15 @@ import java.util.logging.Logger;
  */
 public abstract class State {
 
-	static CommandCreator commandCreator;
-	private StateType stateType;
+	public static CommandCreator commandCreator;
+	public static StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
+	public State(GameFacade gameFacade) {
+		commandCreator = new CommandCreator(gameFacade);
+	}
 
-    public State(GameFacade gameFacade) {
-        commandCreator = new CommandCreator(gameFacade);
-    }
-
-    public void incorrectKeyPressed() {
+	public void incorrectKeyPressed() {
 		java.awt.Toolkit.getDefaultToolkit().beep();
 		LOGGER.log(Level.WARNING, "Incorrect key pressed");
 	}
@@ -66,10 +64,13 @@ public abstract class State {
 
 	public abstract void keyPressed6();
 
-	public abstract void keyPressedEnter();
+	public StateType getCurrentState() {
+		return stateType;
+	}
 
-    public StateType getCurrentState() {
-        return this.stateType;
-    }
+	public void setCurrentState(StateType current) {
+		stateType = current;
+	}
 
+	public abstract void keyPressedS();
 }

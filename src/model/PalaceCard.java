@@ -75,8 +75,17 @@ public class PalaceCard {
         return ret;
     }
 
-    public boolean equals(PalaceCard c) {
+    public boolean sameCardAs(PalaceCard c) {
         boolean ret = false;
+        System.out.println("Comparing card:");
+        System.out.print(getFirstType());
+        System.out.print(" ");
+        System.out.println(getSecondType());
+        System.out.println("to: ");
+        System.out.print(c.getFirstType());
+        System.out.print(" ");
+        System.out.println(c.getSecondType());
+
         if (getFirstType().equals(c.getFirstType()) && getSecondType().equals(c.getSecondType())) {
             ret = true;
         }
@@ -88,10 +97,10 @@ public class PalaceCard {
 
     public int compare(PalaceCard c) {
         int similarities = 0;
-        if (getFirstType() != "NONE" && (getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType()))) {
+        if (!getFirstType().equals("NONE") && (getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType()))) {
             similarities++;
         }
-        if (getSecondType() != "NONE" && (getSecondType().equals(c.getFirstType()) || getSecondType().equals(c.getSecondType()))) {
+        if (!getSecondType().equals("NONE") && (getSecondType().equals(c.getFirstType()) || getSecondType().equals(c.getSecondType()))) {
             similarities++;
         }
         return similarities;

@@ -25,6 +25,11 @@ public class Replay extends State {
     }
 
     @Override
+    public void keyPressedS() {
+        commandCreator.save("test.txt");
+    }
+
+    @Override
     public void keyPressedR() {
         // TODO: Restart
     }
@@ -111,11 +116,6 @@ public class Replay extends State {
 
     @Override
     public void keyPressedE() {
-        incorrectKeyPressed();
-    }
-
-    @Override
-    public void keyPressedEnter() {
         incorrectKeyPressed();
     }
 }

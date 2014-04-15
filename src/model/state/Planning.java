@@ -65,10 +65,6 @@ public class Planning extends State {
         commandCreator.undoLastCommand();
     }
 
-    public void keyPressedEnter() {
-        // TODO: Execute moves
-    }
-
     public void keyPressedX() {
         // TODO: End planning mode
     }
@@ -99,5 +95,10 @@ public class Planning extends State {
 
     public void keyPressed6() {
         incorrectKeyPressed();
+    }
+
+    @Override
+    public void keyPressedS() {
+
     }
 }

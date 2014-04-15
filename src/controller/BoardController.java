@@ -1,4 +1,6 @@
-package model;
+package controller;
+
+import model.*;
 
 import java.util.List;
 
@@ -23,12 +25,10 @@ public class BoardController {
 
 	public boolean checkTilePlacement(Location location, Tile tile) {
 		return false;
-
 	}
 
 	public boolean checkDevPlacement(Location location, Developer developer) {
 		return false;
-
 	}
 
 	public boolean checkMovement(Location initial, Location fin) {

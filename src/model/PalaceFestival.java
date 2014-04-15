@@ -11,7 +11,7 @@ public class PalaceFestival {
     private PalaceCard festivalCard;
     private ArrayList<Player> players;
     private Player currentPlayer;
-    private int currentInt;
+    private int currentPlayerIndex;
     private int[] playerScores;
     private boolean[] playerFrozen;
     private boolean inProgress;
@@ -20,7 +20,7 @@ public class PalaceFestival {
         festivalCard = null;
         players = new ArrayList<Player>();
         currentPlayer = null;
-        currentInt = 0;
+        currentPlayerIndex = 0;
         playerScores = new int[4];
         playerFrozen = new boolean[4];
         inProgress = false;
@@ -30,7 +30,7 @@ public class PalaceFestival {
         festivalCard = c;
         players = new ArrayList<Player>();
         currentPlayer = null;
-        currentInt = 0;
+        currentPlayerIndex = 0;
         playerScores = new int[4];
         playerFrozen = new boolean[4];
         inProgress = false;
@@ -50,7 +50,7 @@ public class PalaceFestival {
     private void reset() {
         players = new ArrayList<Player>();
         currentPlayer = null;
-        currentInt = 0;
+        currentPlayerIndex = 0;
         playerScores = new int[4];
         playerFrozen = new boolean[4];
         inProgress = true;
@@ -60,8 +60,8 @@ public class PalaceFestival {
     public void startFestival(ArrayList<Player> p) {
         reset();
         players = p;
-        currentInt = 0;
-        currentPlayer = players.get(currentInt);
+        currentPlayerIndex = 0;
+        currentPlayer = players.get(currentPlayerIndex);
         ArrayList<Player> takeOut = new ArrayList<Player>();
         for (int i = 0; i < players.size(); i++) {
             if (!playable(players.get(i))) {
@@ -93,15 +93,15 @@ public class PalaceFestival {
     // Change current player
     public void nextPlayer() {
         if (inProgress) {
-            currentInt++;
-            if (currentInt >= players.size()) {
-                currentInt = 0;
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= players.size()) {
+                currentPlayerIndex = 0;
             }
-            currentPlayer = players.get(currentInt);
+            currentPlayer = players.get(currentPlayerIndex);
             if (!playable(currentPlayer)) {
                 freeze();
             }
-            if (playerFrozen[currentInt]) {
+            if (playerFrozen[currentPlayerIndex]) {
                 nextPlayer();
             }
         }
@@ -110,7 +110,7 @@ public class PalaceFestival {
     // Current player playing a card
     public void playCard(PalaceCard c) {
         if (inProgress) {
-            playerScores[currentInt] += festivalCard.compare(c);
+            playerScores[currentPlayerIndex] += festivalCard.compare(c);
             nextPlayer();
         }
     }
@@ -118,11 +118,12 @@ public class PalaceFestival {
     // Freeze the current player so they cannot perform any more actions
     public void freeze() {
         if (inProgress) {
-            playerFrozen[currentInt] = true;
+            playerFrozen[currentPlayerIndex] = true;
             boolean dummy = true;
             for (int i = 0; i < playerFrozen.length; i++) {
                 if (!playerFrozen[i]) {
                     dummy = false;
+                    nextPlayer();
                     break;
                 }
             }

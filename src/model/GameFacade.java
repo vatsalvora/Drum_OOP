@@ -1,5 +1,9 @@
 package model;
 
+import controller.BoardController;
+import controller.SharedResourcesController;
+import controller.TurnController;
+
 public class GameFacade {
 	BoardController boardController;
 	TurnController turnController;

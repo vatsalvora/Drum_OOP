@@ -7,7 +7,7 @@ public class Board {
 	private List<List<Space>> board;
 
 	public Board() {
-        int[] height = {12,12,12,12,12,12,12,12,12,12,12,12};
+		int[] height = { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 
 		board = new LinkedList<List<Space>>();
 		for (int p = 0; p < height.length; p++) {
@@ -52,7 +52,6 @@ public class Board {
             }
         }
 	}
-
 
 	public Space getSpace(Location l) {
 		List<Space> column = board.get(l.getYLocation());

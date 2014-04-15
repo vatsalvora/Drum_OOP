@@ -1,18 +1,43 @@
 package model;
 
+import java.util.*;
+
 public class SharedResources {
-	ThreeBlock getThreeBlock() {
-		return null;
+	ArrayList<ThreeBlock> threes;
+	ArrayList<Integer> palaceTiles;
 
+	public SharedResources() {
+		threes = new ArrayList<ThreeBlock>();
+		palaceTiles = new ArrayList<Integer>();
+
+		for (int i = 0; i < 56; i++)
+			;
+		// add 56 three tiles
+		for (int i = 0; i < 16; i++)
+			;
+		// add 16 Irrigation Tiles
 	}
 
-	TwoBlock getTwoBlock() {
-		return null;
+	public SharedResources(int thr, int irr, int[] pt) {
+		threes = new ArrayList<ThreeBlock>();
+		palaceTiles = new ArrayList<Integer>();
 
+		for (int i = 0; i < thr; i++)
+			threes.add(new ThreeBlock());
+
+		for (int i = 0; i < irr; i++)
+			;
+		// irrigations.add(new OneBlock(TileType.IRRIGATION));
+
+		for (int i = 0; i < pt.length; i++)
+			palaceTiles.add(pt[i]);
 	}
 
-	PalaceCard drawCard() {
-		return null;
+	public int numThreeBlocks() {
+		return threes.size();
+	}
 
+	public int numPalaceTiles(int level) {
+		return palaceTiles.get(level);
 	}
 }
