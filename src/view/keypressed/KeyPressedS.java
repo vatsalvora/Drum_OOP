@@ -4,6 +4,7 @@ import model.Location;
 import model.state.State;
 
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 
 /**
  * Created by devan on 4/S4/S4.
@@ -17,7 +18,11 @@ public class KeyPressedS extends KeyPressed {
     @Override
     public void keyTyped(KeyEvent ke) {
         if(ke.getKeyChar() == 's'){
-            state.keyPressedS();
+            try {
+                state.keyPressedS();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
