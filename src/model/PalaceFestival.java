@@ -63,13 +63,13 @@ public class PalaceFestival {
         currentPlayerIndex = 0;
         currentPlayer = players.get(currentPlayerIndex);
         ArrayList<Player> takeOut = new ArrayList<Player>();
-        for (int i = 0; i < players.size(); i++) {
-            if (!playable(players.get(i))) {
-                takeOut.add(players.get(i));
+        for (Player player : players) {
+            if (!playable(player)) {
+                takeOut.add(player);
             }
         }
-        for (int i = 0; i < takeOut.size(); i++) {
-            players.remove(takeOut.get(i));
+        for (Player aTakeOut : takeOut) {
+            players.remove(aTakeOut);
         }
     }
 

@@ -1,9 +1,11 @@
-import javax.swing.SwingUtilities;
+package test;
 
+import model.GameFacade;
 import view.hexgame;
-import model.*;
 
-public class RunGame {
+import javax.swing.*;
+
+public class runGame {
 	public static void main(String[] args) {
 		String[] names = { "Lucas", "Bob", "Billy" };
 

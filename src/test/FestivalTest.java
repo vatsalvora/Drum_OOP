@@ -30,12 +30,14 @@ public class FestivalTest {
 		for (int i = 0; i < players.length; i++) {
 			System.out.println(players[i].toString());
 		}
-		turnController.drawFestivalCard(deck.drawCard());
+		turnController.putFestivalCard(deck.drawCard());
 
 		System.out.println();
 		System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
 		System.out.println();
 		String[] eligible = { "red", "blue", "yellow", "green" };
+
+
 
 		turnController.startFestival(eligible);
 
@@ -46,6 +48,13 @@ public class FestivalTest {
 		}
 
 		System.out.println();
+
+        ArrayList<PalaceCard> player1cards = festivalPlayers.get(0).getCards();
+
+        for(PalaceCard c : player1cards)
+        {
+            System.out.println(c.toString());
+        }
 
 		while (!turnController.festivalOver()) {
 
