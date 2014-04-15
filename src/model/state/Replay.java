@@ -113,9 +113,4 @@ public class Replay extends State {
     public void keyPressedE() {
         incorrectKeyPressed();
     }
-
-    @Override
-    public void keyPressedEnter() {
-        incorrectKeyPressed();
-    }
 }

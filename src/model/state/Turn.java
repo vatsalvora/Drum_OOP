@@ -106,11 +106,6 @@ execute //??
     }
 
     @Override
-    public void keyPressedEnter() {
-        // TODO: Execute
-    }
-
-    @Override
     public void keyPressedA() {
         incorrectKeyPressed();
     }

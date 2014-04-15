@@ -112,10 +112,4 @@ public class Start extends State {
         incorrectKeyPressed();
     }
 
-    @Override
-    public void keyPressedEnter() {
-        // TODO: Create a new game
-//        Turn turn = new Turn();
-
-    }
 }
