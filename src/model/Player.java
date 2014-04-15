@@ -170,12 +170,8 @@ public class Player {
 
     public void removeCard(PalaceCard c) {
         for (int i = 0; i < cards.size(); i++) {
-            System.out.println("Comparing played card: ");
-            System.out.println(c.toString());
-            System.out.println("to the player's:");
-            System.out.println(c.toString());
             if (c.sameCardAs(cards.get(i))) {
-                cards.remove(cards.get(i));
+                cards.remove(i);
                 break;
             }
         }
@@ -190,6 +186,19 @@ public class Player {
             }
         }
         return ret;
+    }
+
+    public boolean hasCard(PalaceCard p) {
+        boolean ret = false;
+        for(PalaceCard c : cards)
+        {
+            if(p.equals(c))
+            {
+                ret = true;
+                break;
+            }
+        }
+        return true;
     }
 
     // toString for output purposes

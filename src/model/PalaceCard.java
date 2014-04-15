@@ -77,15 +77,6 @@ public class PalaceCard {
 
     public boolean sameCardAs(PalaceCard c) {
         boolean ret = false;
-        System.out.println("Comparing card:");
-        System.out.print(getFirstType());
-        System.out.print(" ");
-        System.out.println(getSecondType());
-        System.out.println("to: ");
-        System.out.print(c.getFirstType());
-        System.out.print(" ");
-        System.out.println(c.getSecondType());
-
         if (getFirstType().equals(c.getFirstType()) && getSecondType().equals(c.getSecondType())) {
             ret = true;
         }

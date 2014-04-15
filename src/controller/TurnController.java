@@ -247,7 +247,7 @@ public class TurnController {
 
     public void playCard(String t1, String t2) {
         PalaceCard play = new PalaceCard(t1, t2);
-        if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
+        if (currentPlayer.hasCard(play) && play.compare(festival.getFestivalCard()) > 0) {
             festival.playCard(play);
             currentPlayer.removeCard(play);
         } else {
@@ -323,5 +323,10 @@ public class TurnController {
     public void putFestivalCard(PalaceCard c)
     {
         festival.changeFestivalCard(c);
+    }
+
+    public void endFestival()
+    {
+        festival.endFestival();
     }
 }

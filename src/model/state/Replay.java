@@ -20,7 +20,7 @@ public class Replay extends State {
 
     @Override
     public void keyPressed6() {
-		commandCreator.redoLastCommand()
+		commandCreator.redoLastCommand();
     }
 
     @Override
@@ -117,4 +117,7 @@ public class Replay extends State {
     public void keyPressedE() {
         incorrectKeyPressed();
     }
+
+    @Override
+    public void keyPressedEnter() { incorrectKeyPressed();}
 }

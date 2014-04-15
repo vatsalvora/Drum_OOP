@@ -154,4 +154,9 @@ public class PalaceFestival {
     public boolean festivalOver() {
         return !inProgress;
     }
+
+    public void endFestival()
+    {
+        inProgress = false;
+    }
 }

@@ -101,4 +101,7 @@ public class Planning extends State {
     public void keyPressedS() {
 
     }
+
+    @Override
+    public void keyPressedEnter() { incorrectKeyPressed();}
 }
