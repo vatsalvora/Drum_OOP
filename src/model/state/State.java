@@ -71,5 +71,5 @@ public abstract class State {
         return this.stateType;
     }
 
-    public abstract void keyPressedS() throws FileNotFoundException;
+    public abstract void keyPressedS();
 }
