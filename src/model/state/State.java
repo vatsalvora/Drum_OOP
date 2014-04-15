@@ -15,12 +15,11 @@ public abstract class State {
 	private StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
+	public State(GameFacade gameFacade) {
+		commandCreator = new CommandCreator(gameFacade);
+	}
 
-    public State(GameFacade gameFacade) {
-        commandCreator = new CommandCreator(gameFacade);
-    }
-
-    public void incorrectKeyPressed() {
+	public void incorrectKeyPressed() {
 		java.awt.Toolkit.getDefaultToolkit().beep();
 		LOGGER.log(Level.WARNING, "Incorrect key pressed");
 	}
@@ -65,9 +64,13 @@ public abstract class State {
 
 	public abstract void keyPressed6();
 
-    public StateType getCurrentState() {
-        return this.stateType;
-    }
+	public StateType getCurrentState() {
+		return this.stateType;
+	}
 
-    public abstract void keyPressedS();
+	public void setCurrentState(StateType current) {
+		stateType = current;
+	}
+
+	public abstract void keyPressedS();
 }
