@@ -120,4 +120,7 @@ public class CommandCreator {
 		}
 
 	}
+    public void load(String filename) {
+		// TODO: lots of shit
+	}
 }
