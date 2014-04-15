@@ -72,7 +72,6 @@ public class TurnController {
         currentPlayer.incrementFamePoints(i);
     }
 
-    //TODO need to check if player has 0 fame points before decrementing. throw exception otherwise
     public void decrementFamePoints(int i) throws Exception {
         currentPlayer.decrementFamePoints(i);
     }
@@ -111,12 +110,14 @@ public class TurnController {
             // put-in: no AP left error
         }
     }
+
     public void returnRiceBlock() {
         currentPlayer.returnRiceBlock();
 //        actionPoints++;
 //        blockPlayed--;
         incrementActionPointsAndDecrementBlockPlayed();
     }
+
     public void placeVillageBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeVillageBlock();
@@ -153,9 +154,10 @@ public class TurnController {
         incrementActionPointsAndDecrementBlockPlayed();
     }
 
-    //TODO need to check if null
     public void addCard(PalaceCard c) {
-        currentPlayer.addCard(c);
+        if (c != null) {
+            currentPlayer.addCard(c);
+        }
     }
 
     public void drawCard(PalaceCard c) {
@@ -171,17 +173,18 @@ public class TurnController {
         }
     }
 
-    //TODO need to check if null
     public void drawFestivalCard(PalaceCard c) {
-        if (actionPoints > 0) {
-            if (actionPoints == 1 && blockPlayed == 0) {
-                // put-in: using all AP and block not placed error
+        if (c != null) {
+            if (actionPoints > 0) {
+                if (actionPoints == 1 && blockPlayed == 0) {
+                    // put-in: using all AP and block not placed error
+                } else {
+                    actionPoints--;
+                    currentPlayer.addCard(festival.changeFestivalCard(c));
+                }
             } else {
-                actionPoints--;
-                currentPlayer.addCard(festival.changeFestivalCard(c));
+                // put-in: not enough AP error
             }
-        } else {
-            // put-in: not enough AP error
         }
     }
 
@@ -218,8 +221,10 @@ public class TurnController {
         }
     }
 
-    //TODO need to add if action points goes over 6 and if "i" is less than 1.
-    public void undoAction(int i) {
+    public void undoAction(int i) throws Exception {
+        if(i + actionPoints >= 7){
+            throw new Exception("Cannot undo action. Action points already over 7.");
+        }
         actionPoints += i;
     }
 
@@ -324,7 +329,7 @@ public class TurnController {
         blockPlayed++;
     }
 
-    private void incrementActionPointsAndDecrementBlockPlayed(){
+    private void incrementActionPointsAndDecrementBlockPlayed() {
         actionPoints++;
         blockPlayed--;
     }
