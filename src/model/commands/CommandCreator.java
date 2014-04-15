@@ -5,6 +5,8 @@ import model.Command;
 import model.GameFacade;
 import model.Location;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Stack;
 
 public class CommandCreator {
@@ -77,5 +79,14 @@ public class CommandCreator {
 			sb.append(command.getClass()).append("\n");
 		}
 		return sb.toString();
+	}
+
+	public void save(String fileName) throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(fileName);
+		for (Command comm : commands) {
+			writer.println(comm);
+		}
+		writer.close();
+
 	}
 }
