@@ -144,7 +144,7 @@ public class hexgame {
 				int y = e.getY();
 				// mPt.x = x;
 				// mPt.y = y;
-				System.out.println("LOC: " + x + " " + y + "");
+
 				Point p = new Point(hexmech.pxtoHex(e.getX(), e.getY()));
 				if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 					return;
@@ -158,8 +158,18 @@ public class hexgame {
 				 */
 
 				// What do you want to do when a hexagon is clicked?
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+                //System.out.println("LOC: " + p.x + " " + p.y + "");
+                Space s = board.getSpace(new Location(p.x,p.y));
+                System.out.println("Current: "+ s.getLocation());
+                s.status = (int) 'X';
+                s.color = Color.GREEN;
+                Space[] neighbors = s.getNeighbors();
+                for(Space sp: neighbors){
+                    if(sp != null){
+                        System.out.println(sp.getLocation());
+                    }
+                }
+
 				repaint();
 			}
 		}
