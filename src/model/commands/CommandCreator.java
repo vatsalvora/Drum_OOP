@@ -81,8 +81,14 @@ public class CommandCreator {
 		return sb.toString();
 	}
 
-	public void save(String fileName) throws FileNotFoundException {
-		PrintWriter writer = new PrintWriter(fileName);
+	public void save(String fileName) {
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(fileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (Command comm : commands) {
 			writer.println(comm);
 		}
