@@ -4,6 +4,10 @@ import model.Board;
 import model.GameFacade;
 import model.Location;
 import model.state.*;
+import view.keypressed.*;
+import view.keypressed.KeyPressed1;
+import view.keypressed.KeyPressed2;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -102,7 +106,50 @@ public class hexgame {
 			SevenKey sevenKey = new SevenKey(l);
 			EightKey eightKey = new EightKey(l);
 			NineKey nineKey = new NineKey(l);
-			PKey pKey = new PKey(l);
+
+            KeyPressed1 keyPressed1 = new KeyPressed1(l, state);
+            KeyPressed2 keyPressed2 = new KeyPressed2(l, state);
+            KeyPressed3 keyPressed3 = new KeyPressed3(l, state);
+            KeyPressed7 keyPressed7 = new KeyPressed7(l, state);
+            KeyPressed8 keyPressed8 = new KeyPressed8(l, state);
+            KeyPressed9 keyPressed9 = new KeyPressed9(l, state);
+            KeyPressedTab keyPressedTab = new KeyPressedTab(l, state);
+            KeyPressedR keyPressedR = new KeyPressedR(l, state);
+            KeyPressedP keyPressedP = new KeyPressedP(l, state);
+            KeyPressedV keyPressedV = new KeyPressedV(l, state);
+            KeyPressedI keyPressedI = new KeyPressedI(l, state);
+            KeyPressedX keyPressedX = new KeyPressedX(l, state);
+            KeyPressedA keyPressedA = new KeyPressedA(l, state);
+            KeyPressedESC keyPressedESC = new KeyPressedESC(l, state);
+            KeyPressedF keyPressedF = new KeyPressedF(l, state);
+            KeyPressedU keyPressedU = new KeyPressedU(l, state);
+            KeyPressedW keyPressedW = new KeyPressedW(l, state);
+            KeyPressedE keyPressedE = new KeyPressedE(l, state);
+            KeyPressed4 keyPressed4 = new KeyPressed4(l, state);
+            KeyPressed6 keyPressed6 = new KeyPressed6(l, state);
+            KeyPressedS keyPressedS = new KeyPressedS(l, state);
+
+            addKeyListener(keyPressed1);
+            addKeyListener(keyPressed2);
+            addKeyListener(keyPressed3);
+            addKeyListener(keyPressed7);
+            addKeyListener(keyPressed8);
+            addKeyListener(keyPressed9);
+            addKeyListener(keyPressedTab);
+            addKeyListener(keyPressedR);
+            addKeyListener(keyPressedP);
+            addKeyListener(keyPressedV);
+            addKeyListener(keyPressedI);
+            addKeyListener(keyPressedX);
+            addKeyListener(keyPressedA);
+            addKeyListener(keyPressedESC);
+            addKeyListener(keyPressedF);
+            addKeyListener(keyPressedU);
+            addKeyListener(keyPressedW);
+            addKeyListener(keyPressedE);
+            addKeyListener(keyPressed4);
+            addKeyListener(keyPressedS);
+            addKeyListener(keyPressed6);
 
 			addMouseListener(ml);
 			addKeyListener(oneKey);
@@ -111,7 +158,6 @@ public class hexgame {
 			addKeyListener(sevenKey);
 			addKeyListener(eightKey);
 			addKeyListener(nineKey);
-			addKeyListener(pKey);
 
 		}
 
@@ -166,31 +212,6 @@ public class hexgame {
 				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
 				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
-			}
-		}
-
-		class PKey extends KeyAdapter {
-			private Location l;
-
-			public PKey(Location l) {
-				this.l = l;
-			}
-
-			public void keyTyped(KeyEvent ke) {
-
-				if (ke.getKeyChar() == 'p') {
-					state.keyPressedP(l);
-				}
-
-				repaint();
-			}
-
-			public void keyPressed(KeyEvent ke) {
-
-			}
-
-			public void keyReleased(KeyEvent ke) {
-
 			}
 		}
 

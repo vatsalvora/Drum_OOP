@@ -20,4 +20,10 @@ public class PlacePalaceTile implements Command {
 	public void undo() {
 
 	}
+
+	public String toString() {
+		StringBuilder result = new StringBuilder(100);
+		result.append(this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation());
+		return result.toString();
+	}
 }
