@@ -4,7 +4,7 @@ import view.hexgame;
 import model.*;
 import model.state.*;
 
-public class runGame {
+public class RunGame {
 	public static void main(String[] args) {
 		String[] names = { "Lucas", "Bob", "Billy" };
 
