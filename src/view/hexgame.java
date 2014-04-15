@@ -1,9 +1,9 @@
 package view;
 
 import model.Board;
+import model.GameFacade;
 import model.Location;
-import model.Space;
-
+import model.state.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -16,8 +16,11 @@ import java.awt.event.*;
  ***********************************/
 
 public class hexgame {
-	public hexgame() {
+	public State state;
+
+	public hexgame(GameFacade b) {
 		initGame();
+		state = new Turn(b);
 		createAndShowGUI();
 	}
 
@@ -50,14 +53,14 @@ public class hexgame {
 
 		for (int i = 0; i < BSIZE; i++) {
 			for (int j = 0; j < BSIZE; j++) {
-                board.getSpace(new Location(i,j)).status = EMPTY;
+				board.getSpace(new Location(i, j)).status = EMPTY;
 			}
 		}
 
 		// set up board here
-		board.getSpace(new Location(3,3)).status = (int) 'A';
-        board.getSpace(new Location(4,3)).status = (int) 'Q';
-        board.getSpace(new Location(4,4)).status = -(int) 'B';
+		board.getSpace(new Location(3, 3)).status = (int) 'A';
+		board.getSpace(new Location(4, 3)).status = (int) 'Q';
+		board.getSpace(new Location(4, 4)).status = -(int) 'B';
 	}
 
 	private void createAndShowGUI() {
@@ -92,13 +95,15 @@ public class hexgame {
 			setBackground(COLOURBACK);
 
 			MyMouseListener ml = new MyMouseListener();
-			Location l = new Location(0,0);
+			Location l = new Location(0, 0);
 			OneKey oneKey = new OneKey(l);
 			TwoKey twoKey = new TwoKey(l);
 			ThreeKey threeKey = new ThreeKey(l);
 			SevenKey sevenKey = new SevenKey(l);
 			EightKey eightKey = new EightKey(l);
 			NineKey nineKey = new NineKey(l);
+			PKey pKey = new PKey(l);
+
 			addMouseListener(ml);
 			addKeyListener(oneKey);
 			addKeyListener(twoKey);
@@ -106,6 +111,7 @@ public class hexgame {
 			addKeyListener(sevenKey);
 			addKeyListener(eightKey);
 			addKeyListener(nineKey);
+			addKeyListener(pKey);
 
 		}
 
@@ -127,15 +133,14 @@ public class hexgame {
 					// hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					// if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO,
 					// board[i][j],g2);
-					hexmech.fillHex(i, j, board.getSpace(new Location(i,j)).status, board.getSpace(new Location(i,j)).color,  g2);
+					hexmech.fillHex(i, j, board.getSpace(new Location(i, j)).status,
+							board.getSpace(new Location(i, j)).color, g2);
 				}
 			}
 
 			// g.setColor(Color.RED);
 			// g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 		}
-
-
 
 		class MyMouseListener extends MouseAdapter { // inner class inside
 														// DrawingPanel
@@ -158,9 +163,34 @@ public class hexgame {
 				 */
 
 				// What do you want to do when a hexagon is clicked?
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
+			}
+		}
+
+		class PKey extends KeyAdapter {
+			private Location l;
+
+			public PKey(Location l) {
+				this.l = l;
+			}
+
+			public void keyTyped(KeyEvent ke) {
+
+				if (ke.getKeyChar() == 'p') {
+					state.keyPressedP(l);
+				}
+
+				repaint();
+			}
+
+			public void keyPressed(KeyEvent ke) {
+
+			}
+
+			public void keyReleased(KeyEvent ke) {
+
 			}
 		}
 
@@ -190,8 +220,8 @@ public class hexgame {
 					}
 				}
 				l.setLocation(x, y);
-				board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -226,9 +256,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-                l.setLocation(x, y);
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -266,9 +296,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-                l.setLocation(x, y);
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -306,9 +336,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-                l.setLocation(x,y);
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -343,9 +373,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-                l.setLocation(x, y);
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
@@ -383,9 +413,9 @@ public class hexgame {
 						System.out.println("LOC: " + x + " " + y + "");
 					}
 				}
-                l.setLocation(x, y);
-                board.getSpace(new Location(p.x,p.y)).status = (int) 'X';
-                board.getSpace(new Location(p.x,p.y)).color = Color.GREEN;
+				l.setLocation(x, y);
+				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
 				repaint();
 			}
 
