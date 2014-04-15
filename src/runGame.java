@@ -5,12 +5,12 @@ import model.*;
 
 public class RunGame {
 	public static void main(String[] args) {
-		final String[] names = { "Lucas", "Bob", "Billy" };
+		String[] names = { "Lucas", "Bob", "Billy" };
+
+		final GameFacade b = new GameFacade(names);
 
 		SwingUtilities.invokeLater(new Runnable() {
-
-            public void run() {
-                GameFacade b = new GameFacade(names);
+			public void run() {
 				new hexgame(b);
 			}
 		});
