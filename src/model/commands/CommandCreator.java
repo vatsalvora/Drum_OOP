@@ -13,6 +13,7 @@ public class CommandCreator {
 	private GameFacade gameFacade;
 
 	private Stack<Command> commands = new Stack<Command>();
+	private Stack<Command> secondCommands = new Stack<Command>();
 
 	public CommandCreator(GameFacade gameFacade) {
 		this.gameFacade = gameFacade;
@@ -68,8 +69,21 @@ public class CommandCreator {
 	}
 
 	public void undoLastCommand() {
-		Command command = commands.pop();
-		command.undo();
+		if(!commands.empty()) 
+		{		Command command = commands.pop();
+				command.undo();
+				secondCommands.push(command); //Saves command for re-do in replay
+		}
+		// TODO: Handle case where stack is empty	
+	}
+	public void redoLastCommand() {
+		if(!secondCommands.empty())
+		{
+				Command command = secondCommands.pop();
+				command.execute();
+				commands.push(command);
+		}
+		// TODO: Handle case where stack is empty	
 	}
 
 	public String toString() {
