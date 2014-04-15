@@ -5,17 +5,17 @@ import model.*;
 import model.state.*;
 
 public class RunGame {
-	public static void main(String[] args) {
-		String[] names = { "Lucas", "Bob", "Billy" };
+    public static void main(String[] args) {
+        String[] names = { "Lucas", "Bob", "Billy" };
 
-		final GameFacade b = new GameFacade(names);
+        final GameFacade b = new GameFacade(names);
 
-		State s = new Turn(b);
+        State s = new Turn(b);
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new hexgame(b);
-			}
-		});
-	}
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new hexgame(b);
+            }
+        });
+    }
 }
