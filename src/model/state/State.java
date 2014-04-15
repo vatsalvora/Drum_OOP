@@ -11,8 +11,8 @@ import java.util.logging.Logger;
  */
 public abstract class State {
 
-	static CommandCreator commandCreator;
-	private StateType stateType;
+	public static CommandCreator commandCreator;
+	public static StateType stateType;
 	private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
 	public State(GameFacade gameFacade) {
@@ -65,7 +65,7 @@ public abstract class State {
 	public abstract void keyPressed6();
 
 	public StateType getCurrentState() {
-		return this.stateType;
+		return stateType;
 	}
 
 	public void setCurrentState(StateType current) {

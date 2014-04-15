@@ -2,20 +2,17 @@ import javax.swing.SwingUtilities;
 
 import view.hexgame;
 import model.*;
-import model.state.*;
 
 public class RunGame {
-    public static void main(String[] args) {
-        String[] names = { "Lucas", "Bob", "Billy" };
+	public static void main(String[] args) {
+		final String[] names = { "Lucas", "Bob", "Billy" };
 
-        final GameFacade b = new GameFacade(names);
+		SwingUtilities.invokeLater(new Runnable() {
 
-        State s = new Turn(b);
-
-        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new hexgame(b);
-            }
-        });
-    }
+                GameFacade b = new GameFacade(names);
+				new hexgame(b);
+			}
+		});
+	}
 }

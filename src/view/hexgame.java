@@ -20,32 +20,31 @@ import java.awt.event.*;
  ***********************************/
 
 public class hexgame {
-	public State state;
-
-	public hexgame(GameFacade b) {
-		initGame();
-		state = new Turn(b);
-		createAndShowGUI();
-	}
-
 	// constants and global variables
 	final static Color COLOURBACK = Color.WHITE;
-	final static Color COLOURCELL = Color.ORANGE;
-	final static Color COLOURGRID = Color.BLACK;
-	final static Color COLOURONE = new Color(255, 255, 255, 200);
-	final static Color COLOURONETXT = Color.BLUE;
-	final static Color COLOURTWO = new Color(0, 0, 0, 200);
-	final static Color COLOURTWOTXT = new Color(255, 100, 255);
-	final static int EMPTY = 0;
-	final static int BSIZE = 12; // board size.
-	final static int HEXSIZE = 60; // hex size in pixels
-	final static int BORDERS = 15;
-	final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
-																	// size
-																	// (vertical
-																	// dimension).
 
-	Board board = new Board();
+    final static Color COLOURCELL = Color.ORANGE;
+
+    final static Color COLOURGRID = Color.BLACK;
+    final static Color COLOURONE = new Color(255, 255, 255, 200);
+    final static Color COLOURONETXT = Color.BLUE;
+    final static Color COLOURTWO = new Color(0, 0, 0, 200);
+    final static Color COLOURTWOTXT = new Color(255, 100, 255);
+    final static int EMPTY = 0;
+    final static int BSIZE = 12; // board size.
+    final static int HEXSIZE = 60; // hex size in pixels
+    final static int BORDERS = 15;
+    final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
+    Board board = new Board();
+    public static State state;
+    // dimension).
+    // (vertical
+    // size
+    public hexgame(GameFacade b) {
+        initGame();
+        state = new Turn(b);
+        createAndShowGUI();
+    }
 
 	void initGame() {
 
@@ -87,8 +86,8 @@ public class hexgame {
 	}
 
 	class DrawingPanel extends JPanel {
-		/**
-		 * 
+        /**
+		 *
 		 */
 		private static final long serialVersionUID = 1L;
 

@@ -17,8 +17,8 @@ public class KeyPressedS extends KeyPressed {
     @Override
     public void keyTyped(KeyEvent ke) {
         if(ke.getKeyChar() == 's'){
-            System.out.println("Key listener for s is working");
             state.keyPressedS();
+            System.out.println("Key listener for s is working");
         }
 
     }
