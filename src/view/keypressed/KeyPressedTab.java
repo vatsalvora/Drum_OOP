@@ -16,8 +16,8 @@ public class KeyPressedTab extends KeyPressed {
 
     @Override
     public void keyTyped(KeyEvent ke) {
-//        if(ke.getKeyChar() == 'Tab'){
-//            state.keyPressedTab();
-//        }
+        if(ke.getKeyCode() == KeyEvent.VK_TAB){
+            state.keyPressedTab();
+        }
     }
 }

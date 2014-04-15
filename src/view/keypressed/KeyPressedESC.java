@@ -16,8 +16,8 @@ public class KeyPressedESC extends KeyPressed {
 
     @Override
     public void keyTyped(KeyEvent ke) {
-//        if(ke.){
-//            state.keyPressedESC();
-//        }
+        if(ke.getKeyCode() == KeyEvent.VK_ESCAPE){
+            state.keyPressedESC();
+        }
     }
 }
