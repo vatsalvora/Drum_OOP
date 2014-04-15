@@ -51,8 +51,6 @@ public class PalaceFestival {
         players = new ArrayList<Player>();
         currentPlayer = null;
         currentPlayerIndex = 0;
-        playerScores = new int[4];
-        playerFrozen = new boolean[4];
         inProgress = true;
     }
 
@@ -71,6 +69,9 @@ public class PalaceFestival {
         for (Player aTakeOut : takeOut) {
             players.remove(aTakeOut);
         }
+
+        playerScores = new int[players.size()];
+        playerFrozen = new boolean[players.size()];
     }
 
     // Change festival card

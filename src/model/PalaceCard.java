@@ -88,6 +88,7 @@ public class PalaceCard {
 
     public int compare(PalaceCard c) {
         int similarities = 0;
+
         if (!getFirstType().equals("NONE") && (getFirstType().equals(c.getFirstType()) || getFirstType().equals(c.getSecondType()))) {
             similarities++;
         }

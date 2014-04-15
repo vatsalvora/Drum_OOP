@@ -31,7 +31,6 @@ public class TurnController {
         String[] color = {"red", "blue", "green", "yellow"};
         numPlayers = name.length;
 
-        //TODO throw exception if greater that 4
         if (numPlayers > 4) {
             LOGGER.log(Level.WARNING, "Incorrect number of players. Setting numPlayers to 4.");
             numPlayers = 4;
@@ -247,9 +246,10 @@ public class TurnController {
 
     public void playCard(String t1, String t2) {
         PalaceCard play = new PalaceCard(t1, t2);
-        if (currentPlayer.hasCard(play) && play.compare(festival.getFestivalCard()) > 0) {
+        Player festivalPlayer = festival.getCurrentPlayer();
+        if (festivalPlayer.hasCard(play) && play.compare(festival.getFestivalCard()) > 0) {
             festival.playCard(play);
-            currentPlayer.removeCard(play);
+            festivalPlayer.removeCard(play);
         } else {
             // put-in: card cannot be played since it doesn't match festival
             // card in any way

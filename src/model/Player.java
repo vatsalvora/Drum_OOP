@@ -169,10 +169,11 @@ public class Player {
     }
 
     public void removeCard(PalaceCard c) {
-        for (int i = 0; i < cards.size(); i++) {
+        boolean removed = false;
+        for (int i = 0; i < cards.size() && !removed; i++) {
             if (c.sameCardAs(cards.get(i))) {
                 cards.remove(i);
-                break;
+                removed = true;
             }
         }
     }
@@ -192,13 +193,17 @@ public class Player {
         boolean ret = false;
         for(PalaceCard c : cards)
         {
-            if(p.equals(c))
+            if(p.sameCardAs(c))
             {
                 ret = true;
                 break;
             }
         }
-        return true;
+        if (ret == false)
+        {
+            //put-in: player does not have that card exception
+        }
+        return ret;
     }
 
     // toString for output purposes
