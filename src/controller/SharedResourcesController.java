@@ -1,4 +1,6 @@
-package model;
+package controller;
+
+import model.PalaceCard;
 
 public class SharedResourcesController {
 	public PalaceCard drawCard() {

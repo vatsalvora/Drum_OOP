@@ -1,4 +1,8 @@
-package model;
+package controller;
+
+import model.PalaceCard;
+import model.PalaceFestival;
+import model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
