@@ -86,6 +86,13 @@ public class CommandCreator {
 		}
 		// TODO: Handle case where stack is empty	
 	}
+	public void restart()
+	{
+		// For replay mode
+		while(!secondCommands.empty())
+				redoLastCommand();
+		// After this loop, we should be back at the original state before replay
+	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
