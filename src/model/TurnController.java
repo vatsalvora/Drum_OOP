@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -18,6 +20,8 @@ public class TurnController {
     private boolean actionTokenUsed;
     private int blockPlayed;
     private PalaceFestival festival;
+    private final static Logger LOGGER = Logger.getLogger(TurnController.class.getName());
+
 
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
@@ -25,6 +29,7 @@ public class TurnController {
 
         //TODO throw exception if greater that 4
         if (numPlayers > 4) {
+            LOGGER.log(Level.WARNING, "Incorrect number of players. Setting numPlayers to 4.");
             numPlayers = 4;
         }
 
@@ -68,7 +73,7 @@ public class TurnController {
     }
 
     //TODO need to check if player has 0 fame points before decrementing. throw exception otherwise
-    public void decrementFamePoints(int i) {
+    public void decrementFamePoints(int i) throws Exception {
         currentPlayer.decrementFamePoints(i);
     }
 

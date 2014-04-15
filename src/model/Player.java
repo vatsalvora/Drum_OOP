@@ -92,7 +92,10 @@ public class Player {
         famePoints += i;
     }
 
-    public void decrementFamePoints(int i) {
+    public void decrementFamePoints(int i) throws Exception {
+        if(famePoints - 1 < 0){
+            throw new Exception("Cannot decrement lower than 0.");
+        }
         famePoints -= i;
     }
 
