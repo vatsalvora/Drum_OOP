@@ -99,13 +99,13 @@ public class PalaceCard {
     }
 
     public String toString() {
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         if (firstType != Type.NONE) {
-            ret += getFirstType() + " ";
+            ret.append(getFirstType()).append(" ");
         }
         if (secondType != Type.NONE) {
-            ret += getSecondType();
+            ret.append(getSecondType());
         }
-        return ret;
+        return ret.toString();
     }
 }

@@ -1,8 +1,9 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-/*
+/**
  The Player class is a state object containing the inventory and general information of a player.
  */
 
@@ -92,18 +93,50 @@ public class Player {
         famePoints += i;
     }
 
-    public void decrementFamePoints(int i) throws Exception {
-        if(famePoints - 1 < 0){
-            throw new Exception("Cannot decrement lower than 0.");
+    public void decrementFamePoints(int i) throws IndexOutOfBoundsException {
+        if (famePoints - 1 < 0) {
+            throw new IndexOutOfBoundsException("Cannot decrement lower than 0.");
         }
         famePoints -= i;
     }
 
-    public void placeDeveloper() {
+    public void placeDeveloper() throws IndexOutOfBoundsException {
         if (developersLeft > 0) {
             developersLeft--;
         } else {
-            // put-in: throw not enough developers exception
+            throw new IndexOutOfBoundsException("No more developers left");
+        }
+    }
+
+    public void useActionToken() throws IndexOutOfBoundsException {
+        if (actionTokens > 0) {
+            actionTokens--;
+        } else {
+            throw new IndexOutOfBoundsException("No more action tokens left");
+        }
+    }
+
+    public void placeRiceBlock() throws IndexOutOfBoundsException {
+        if (riceBlocks > 0) {
+            riceBlocks--;
+        } else {
+            throw new IndexOutOfBoundsException("No more rice blocks left");
+        }
+    }
+
+    public void placeVillageBlock() throws IndexOutOfBoundsException {
+        if (villageBlocks > 0) {
+            villageBlocks--;
+        } else {
+            throw new IndexOutOfBoundsException("No more village blocks left");
+        }
+    }
+
+    public void placeTwoBlock() throws IndexOutOfBoundsException {
+        if (twoBlocks > 0) {
+            twoBlocks--;
+        } else {
+            throw new IndexOutOfBoundsException("No more two blocks left");
         }
     }
 
@@ -111,48 +144,16 @@ public class Player {
         developersLeft++;
     }
 
-    public void useActionToken() {
-        if (actionTokens > 0) {
-            actionTokens--;
-        } else {
-            // put-in: throw no more action tokens exception
-        }
-    }
-
     public void returnActionToken() {
         actionTokens++;
-    }
-
-    public void placeRiceBlock() {
-        if (riceBlocks > 0) {
-            riceBlocks--;
-        } else {
-            // put-in: throw no more rice blocks exception
-        }
     }
 
     public void returnRiceBlock() {
         riceBlocks++;
     }
 
-    public void placeVillageBlock() {
-        if (villageBlocks > 0) {
-            villageBlocks--;
-        } else {
-            // put-in: throw no more village blocks exception
-        }
-    }
-
     public void returnVillageBlock() {
         villageBlocks++;
-    }
-
-    public void placeTwoBlock() {
-        if (twoBlocks > 0) {
-            twoBlocks--;
-        } else {
-            // put-in: throw no more two blocks exception
-        }
     }
 
     public void returnTwoBlock() {
@@ -180,8 +181,8 @@ public class Player {
 
     public boolean hasPlayableCard(PalaceCard c) {
         boolean ret = false;
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).compare(c) > 0) {
+        for (PalaceCard card : cards) {
+            if (card.compare(c) > 0) {
                 ret = true;
                 break;
             }
@@ -191,35 +192,29 @@ public class Player {
 
     public boolean hasCard(PalaceCard p) {
         boolean ret = false;
-        for(PalaceCard c : cards)
-        {
-            if(p.sameCardAs(c))
-            {
+        for (PalaceCard c : cards) {
+            if (p.sameCardAs(c)) {
                 ret = true;
                 break;
             }
-        }
-        if (ret == false)
-        {
-            //put-in: player does not have that card exception
         }
         return ret;
     }
 
     // toString for output purposes
     public String toString() {
-        String ret;
-        ret = "Name: " + name + "\n";
-        ret += "Color: " + color + "\n";
-        ret += "Fame Points: " + famePoints + "\n";
-        ret += "Action Tokens: " + actionTokens + "\n";
-        ret += "Rice Tiles: " + riceBlocks + "\n";
-        ret += "Village Tiles: " + villageBlocks + "\n";
-        ret += "Two Blocks: " + twoBlocks + "\n";
-        ret += "Palace Cards:\n";
-        for (int i = 0; i < cards.size(); i++) {
-            ret += cards.get(i).toString() + "\n";
+        StringBuilder ret = new StringBuilder();
+        ret.append("Name: ").append(name).append("\n");
+        ret.append("Color: ").append(color).append("\n");
+        ret.append("Fame Points: ").append(famePoints).append("\n");
+        ret.append("Action Tokens: ").append(actionTokens).append("\n");
+        ret.append("Rice Tiles: ").append(riceBlocks).append("\n");
+        ret.append("Village Tiles: ").append(villageBlocks).append("\n");
+        ret.append("Two Blocks: ").append(twoBlocks).append("\n");
+        ret.append("Palace Cards:\n");
+        for (PalaceCard card : cards) {
+            ret.append(card.toString()).append("\n");
         }
-        return ret;
+        return ret.toString();
     }
 }
