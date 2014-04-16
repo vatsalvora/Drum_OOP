@@ -1,48 +1,18 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
+import model.*;
+import model.state.State;
+import model.state.Turn;
+import view.keypressed.KeyPressedI;
+import view.keypressed.KeyPressedP;
+import view.keypressed.KeyPressedV;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import model.Board;
-import model.GameFacade;
-import model.HexSpace;
-import model.Location;
-import model.Space;
-import model.state.State;
-import model.state.Turn;
-import view.keypressed.KeyPressed1;
-import view.keypressed.KeyPressed2;
-import view.keypressed.KeyPressed3;
-import view.keypressed.KeyPressed4;
-import view.keypressed.KeyPressed6;
-import view.keypressed.KeyPressed7;
-import view.keypressed.KeyPressed8;
-import view.keypressed.KeyPressed9;
-import view.keypressed.KeyPressedA;
-import view.keypressed.KeyPressedE;
-import view.keypressed.KeyPressedESC;
-import view.keypressed.KeyPressedF;
-import view.keypressed.KeyPressedI;
-import view.keypressed.KeyPressedP;
-import view.keypressed.KeyPressedR;
-import view.keypressed.KeyPressedS;
-import view.keypressed.KeyPressedTab;
-import view.keypressed.KeyPressedU;
-import view.keypressed.KeyPressedV;
-import view.keypressed.KeyPressedW;
-import view.keypressed.KeyPressedX;
 
 /**********************************
  * This is the main class of a Java program to play a game based on hexagonal
@@ -138,27 +108,28 @@ public class hexgame {
 			EightKey eightKey = new EightKey(l);
 			NineKey nineKey = new NineKey(l);
 
-            KeyPressed1 keyPressed1 = new KeyPressed1(l, state);
-            KeyPressed2 keyPressed2 = new KeyPressed2(l, state);
-            KeyPressed3 keyPressed3 = new KeyPressed3(l, state);
-            KeyPressed7 keyPressed7 = new KeyPressed7(l, state);
-            KeyPressed8 keyPressed8 = new KeyPressed8(l, state);
-            KeyPressed9 keyPressed9 = new KeyPressed9(l, state);
-            KeyPressedTab keyPressedTab = new KeyPressedTab(l, state);
-            KeyPressedR keyPressedR = new KeyPressedR(l, state);
-            KeyPressedP keyPressedP = new KeyPressedP(l, state);
-            KeyPressedV keyPressedV = new KeyPressedV(l, state);
-            KeyPressedI keyPressedI = new KeyPressedI(l, state);
-            KeyPressedX keyPressedX = new KeyPressedX(l, state);
-            KeyPressedA keyPressedA = new KeyPressedA(l, state);
-            KeyPressedESC keyPressedESC = new KeyPressedESC(l, state);
-            KeyPressedF keyPressedF = new KeyPressedF(l, state);
-            KeyPressedU keyPressedU = new KeyPressedU(l, state);
-            KeyPressedW keyPressedW = new KeyPressedW(l, state);
-            KeyPressedE keyPressedE = new KeyPressedE(l, state);
-            KeyPressed4 keyPressed4 = new KeyPressed4(l, state);
-            KeyPressed6 keyPressed6 = new KeyPressed6(l, state);
-            KeyPressedS keyPressedS = new KeyPressedS(l, state);
+
+            KeyPressedP keyPressedP = new KeyPressedP(l);
+            KeyPressedV keyPressedV = new KeyPressedV(l);
+            KeyPressedI keyPressedI = new KeyPressedI(l);
+            KeyPressed1 keyPressed1 = new KeyPressed1();
+            KeyPressed2 keyPressed2 = new KeyPressed2();
+            KeyPressed3 keyPressed3 = new KeyPressed3();
+            KeyPressed7 keyPressed7 = new KeyPressed7();
+            KeyPressed8 keyPressed8 = new KeyPressed8();
+            KeyPressed9 keyPressed9 = new KeyPressed9();
+            KeyPressedTab keyPressedTab = new KeyPressedTab();
+            KeyPressedR keyPressedR = new KeyPressedR();
+            KeyPressedX keyPressedX = new KeyPressedX();
+            KeyPressedA keyPressedA = new KeyPressedA();
+            KeyPressedESC keyPressedESC = new KeyPressedESC();
+            KeyPressedF keyPressedF = new KeyPressedF();
+            KeyPressedU keyPressedU = new KeyPressedU();
+            KeyPressedW keyPressedW = new KeyPressedW();
+            KeyPressedE keyPressedE = new KeyPressedE();
+            KeyPressed4 keyPressed4 = new KeyPressed4();
+            KeyPressed6 keyPressed6 = new KeyPressed6();
+            KeyPressedS keyPressedS = new KeyPressedS();
 
             addKeyListener(keyPressed1);
             addKeyListener(keyPressed2);
@@ -488,6 +459,384 @@ public class hexgame {
 
 			}
 		}
+        class KeyPressed1 extends KeyAdapter{
+
+            public KeyPressed1(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '1'){
+                    state.keyPressed1();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed2 extends KeyAdapter{
+
+            public KeyPressed2(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '2'){
+                    state.keyPressed2();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed3 extends KeyAdapter{
+
+            public KeyPressed3(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '3'){
+                    state.keyPressed3();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed7 extends KeyAdapter{
+
+            public KeyPressed7(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '7'){
+                    state.keyPressed7();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed8 extends KeyAdapter{
+
+            public KeyPressed8(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '8'){
+                    state.keyPressed8();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed9 extends KeyAdapter{
+
+            public KeyPressed9(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '9'){
+                    state.keyPressed9();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedTab extends KeyAdapter{
+
+            public KeyPressedTab(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(KeyEvent.VK_TAB == ke.getKeyCode()){
+                    state.keyPressedTab();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedR extends KeyAdapter{
+
+            public KeyPressedR(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'r'){
+                    state.keyPressedR();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedX extends KeyAdapter{
+
+            public KeyPressedX(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'x'){
+                    state.keyPressedX();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedA extends KeyAdapter{
+
+            public KeyPressedA(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'a'){
+                    state.keyPressedA();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedESC extends KeyAdapter{
+
+            public KeyPressedESC(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyCode() == KeyEvent.VK_ESCAPE){
+                    state.keyPressedESC();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedF extends KeyAdapter{
+
+            public KeyPressedF(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'f'){
+                    state.keyPressedF();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedU extends KeyAdapter{
+
+            public KeyPressedU(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'u'){
+                    state.keyPressedU();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedW extends KeyAdapter{
+
+            public KeyPressedW(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'w'){
+                    state.keyPressedW();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedE extends KeyAdapter{
+
+            public KeyPressedE(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'e'){
+                    state.keyPressedE();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed4 extends KeyAdapter{
+
+            public KeyPressed4(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '4'){
+                    state.keyPressed4();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressed6 extends KeyAdapter{
+
+            public KeyPressed6(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == '6'){
+                    state.keyPressed6();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedS extends KeyAdapter{
+
+            public KeyPressedS(){
+
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 's'){
+                    state.keyPressedS();
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedP extends KeyAdapter{
+            private Location l;
+            public KeyPressedP(Location l){
+                this.l = l;
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'p'){
+                    state.keyPressedP(l);
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedV extends KeyAdapter{
+            private Location l;
+            public KeyPressedV(Location l){
+                this.l = l;
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'v'){
+                    state.keyPressedV(l);
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
+        class KeyPressedI extends KeyAdapter{
+            private Location l;
+            public KeyPressedI(Location l){
+                this.l = l;
+            }
+            public void keyTyped(KeyEvent ke){
+                if(ke.getKeyChar() == 'i'){
+                    state.keyPressedI(l);
+                }
+            }
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            public void keyReleased(KeyEvent ke) {
+
+            }
+        }
 
 		// end of MyMouseListener class
 	} // end of DrawingPanel class
