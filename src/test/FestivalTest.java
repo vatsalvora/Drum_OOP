@@ -6,6 +6,7 @@ import model.*;
 
 import java.util.*;
 
+//TODO are we not using JUnit?
 public class FestivalTest {
 	public static void main(String[] args) {
 		String playerNames[] = { "Player1", "Player2", "Player3", "Player4" };
