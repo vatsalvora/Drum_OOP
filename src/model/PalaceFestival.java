@@ -121,8 +121,8 @@ public class PalaceFestival {
         if (inProgress) {
             playerFrozen[currentPlayerIndex] = true;
             boolean dummy = true;
-            for (int i = 0; i < playerFrozen.length; i++) {
-                if (!playerFrozen[i]) {
+            for (boolean aPlayerFrozen : playerFrozen) {
+                if (!aPlayerFrozen) {
                     dummy = false;
                     nextPlayer();
                     break;
@@ -138,9 +138,9 @@ public class PalaceFestival {
     public ArrayList<Player> getVictors() {
         int maxScore = 0;
         ArrayList<Player> ret = new ArrayList<Player>();
-        for (int i = 0; i < playerScores.length; i++) {
-            if (playerScores[i] > maxScore) {
-                maxScore = playerScores[i];
+        for (int playerScore : playerScores) {
+            if (playerScore > maxScore) {
+                maxScore = playerScore;
             }
         }
         for (int i = 0; i < playerScores.length; i++) {
