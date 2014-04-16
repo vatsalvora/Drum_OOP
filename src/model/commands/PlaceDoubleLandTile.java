@@ -17,7 +17,13 @@ public class PlaceDoubleLandTile implements Command {
 		b.placeDoubleLandTile(l);
 	}
 
-	public void undo() {
+    @Override
+    public void undo() {
 
-	}
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+    }
 }

@@ -13,11 +13,18 @@ public class PlaceTripleLandTile implements Command {
 		this.l = l;
 	}
 
+    @Override
 	public void execute() {
 		b.placeTripleLandTile(l);
 	}
 
+    @Override
 	public void undo() {
 
 	}
+
+    @Override
+    public String toString(){
+        return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+    }
 }
