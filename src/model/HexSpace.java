@@ -1,69 +1,75 @@
 package model;
 
 import java.awt.*;
+import java.util.Stack;
 
-public class HexSpace implements Space{
-	
-	private Space[] neighbors;
-	private Location l;
+public class HexSpace implements Space {
+
+    private Space[] neighbors;
+    private Location l;
+    //TODO what is status?
     public int status;
     public Color color;
-    
-    
-	public HexSpace(Location l) {
-		this.l = l;
-		this.neighbors = new Space[6];
+    Stack<Tile> tilesOnSpace;
+
+
+    public HexSpace(Location l) {
+        this.l = l;
+        this.neighbors = new Space[6];
         this.status = 0;
         this.color = Color.BLUE;
-	}
+        tilesOnSpace = new Stack<Tile>();
+    }
 
-	public Developer getDeveloper() {
-		return null;
+    public Developer getDeveloper() {
+        return null;
 
-	}
+    }
 
-	public void removeDeveloper() {
+    public void removeDeveloper() {
 
-	}
+    }
 
-	public int getHeight() {
-		return 0;
+    public int getHeight() {
+        return tilesOnSpace.size();
+    }
 
-	}
+    public Tile getTopTile() {
+        return tilesOnSpace.pop();
+    }
 
-	public Tile getTopTile() {
-		return null;
+    public void addTile(Tile tile){
+        tilesOnSpace.push(tile);
+    }
 
-	}
+    public boolean onBoarder() {
+        return (numberOfNeighbors() != 6);
 
-	public boolean onBoarder() {
-		return (numberOfNeighbors() != 6) ? true:false;
+    }
 
-	}
-	
-	private int numberOfNeighbors(){
-		
-		int number = 0;
-		
-		for(int i = 0; i < neighbors.length; i++){
-			if(neighbors[i] != null)
-				number++;
-		}
-			
-		
-		return number;
-	}
+    private int numberOfNeighbors() {
 
-	public Space[] getNeighbors() {
-		return neighbors;
+        int number = 0;
 
-	}
+        for (Space neighbor : neighbors) {
+            if (neighbor != null)
+                number++;
+        }
 
-    public void setNeighbors(int index, Space s){
+
+        return number;
+    }
+
+    public Space[] getNeighbors() {
+        return neighbors;
+
+    }
+
+    public void setNeighbors(int index, Space s) {
         neighbors[index] = s;
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         return l;
     }
 
