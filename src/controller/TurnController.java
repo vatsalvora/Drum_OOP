@@ -6,8 +6,6 @@ import model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -24,7 +22,6 @@ public class TurnController {
     private boolean actionTokenUsed;
     private int blockPlayed;
     private PalaceFestival festival;
-    private final static Logger LOGGER = Logger.getLogger(TurnController.class.getName());
 
 
     public TurnController(String[] name) {
@@ -32,7 +29,6 @@ public class TurnController {
         numPlayers = name.length;
 
         if (numPlayers > 4) {
-            LOGGER.log(Level.WARNING, "Incorrect number of players. Setting numPlayers to 4.");
             numPlayers = 4;
         }
 
@@ -79,11 +75,34 @@ public class TurnController {
         currentPlayer.decrementFamePoints(i);
     }
 
-    public void placeDeveloper() {
+    public void placeDeveloper(int i) {
+
         currentPlayer.placeDeveloper();
+        if(actionPoints > i)
+        {
+            actionPoints -= i;
+        }
+        else if (actionPoints == i)
+        {
+            if(blockPlayed > 0)
+            {
+                actionPoints -= i;
+            }
+            else
+            {
+                currentPlayer.removeDeveloper();
+                //put-in: using all AP but no block has been played yet error
+            }
+        }
+        else
+        {
+            currentPlayer.removeDeveloper();
+            //put-in: not enough AP error
+        }
     }
 
     public void removeDeveloper() {
+
         currentPlayer.removeDeveloper();
     }
 
