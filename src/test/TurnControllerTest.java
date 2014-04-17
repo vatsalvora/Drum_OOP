@@ -152,7 +152,7 @@ public class TurnControllerTest {
         assertEquals(12, player.getDevelopersLeft());
 
         for (int i = 0; i < 100; i++) {
-            turnController.placeDeveloper();
+            turnController.placeDeveloper(1);
         }
         assertEquals(0, player.getDevelopersLeft());
     }
@@ -162,7 +162,7 @@ public class TurnControllerTest {
         Player player = turnController.getCurrentPlayer();
         assertEquals(12, player.getDevelopersLeft());
 
-        turnController.placeDeveloper();
+        turnController.placeDeveloper(1);
         assertEquals(11, player.getDevelopersLeft());
 
         turnController.removeDeveloper();
