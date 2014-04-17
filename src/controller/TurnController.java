@@ -89,7 +89,7 @@ public class TurnController {
 
     public void useActionToken() {
         if (actionTokenUsed) {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: action token already used error
         } else {
             currentPlayer.useActionToken();
             actionTokenUsed = true;
@@ -109,7 +109,7 @@ public class TurnController {
             actionPoints--;
             blockPlayed++;
         } else {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: no AP left error
         }
     }
 
@@ -125,7 +125,7 @@ public class TurnController {
             actionPoints--;
             blockPlayed++;
         } else {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: no AP left error
         }
     }
 
@@ -141,7 +141,7 @@ public class TurnController {
             actionPoints--;
             blockPlayed++;
         } else {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: no AP left error
         }
     }
 
@@ -161,13 +161,12 @@ public class TurnController {
         if (actionPoints > 0) {
             if (actionPoints == 1 && blockPlayed == 0) {
                 // put-in: using all AP and block not placed error
-                throw new IndexOutOfBoundsException("Using last action token left and block was not placed");
             } else {
                 actionPoints--;
                 currentPlayer.addCard(c);
             }
         } else {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: not enough AP error
         }
     }
 
@@ -175,13 +174,13 @@ public class TurnController {
         if (c != null) {
             if (actionPoints > 0) {
                 if (actionPoints == 1 && blockPlayed == 0) {
-                    throw new IndexOutOfBoundsException("Using last action token left and block was not placed");
+                    // put-in: using all AP and block not placed error
                 } else {
                     actionPoints--;
                     currentPlayer.addCard(festival.changeFestivalCard(c));
                 }
             } else {
-                throw new IndexOutOfBoundsException("No more action tokens left");
+                // put-in: not enough AP error
             }
         }
     }
@@ -192,7 +191,7 @@ public class TurnController {
             actionPoints--;
             blockPlayed++;
         } else {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: not enough AP error
         }
     }
 
@@ -205,12 +204,12 @@ public class TurnController {
         if (actionPoints == 0) {
             // put-in: no AP error
         } else if (actionPoints < i) {
-            throw new IndexOutOfBoundsException("No more action tokens left");
+            // put-in: not enough AP error
         } else if (actionPoints == i) {
             if (blockPlayed > 0) {
                 actionPoints -= i;
             } else {
-                throw new IndexOutOfBoundsException("Using last action token left and block was not placed");
+                // put-in: using all AP but block has not been placed error
             }
         } else {
             actionPoints -= i;
@@ -218,7 +217,7 @@ public class TurnController {
     }
 
     public void undoAction(int i) throws Exception {
-        if (i + actionPoints >= 7) {
+        if(i + actionPoints >= 7){
             throw new Exception("Cannot undo action. Action points already over 7.");
         }
         actionPoints += i;
@@ -252,7 +251,6 @@ public class TurnController {
             festival.playCard(play);
             festivalPlayer.removeCard(play);
         } else {
-            throw new IllegalArgumentException("Card cannot be played since it doesn't match festival card in any way");
             // put-in: card cannot be played since it doesn't match festival
             // card in any way
         }
@@ -288,6 +286,11 @@ public class TurnController {
     }
 
     public boolean playedBlock() {
+//        boolean ret = false;
+//        if (blockPlayed > 0) {
+//            ret = true;
+//        }
+//        return ret;
         return (blockPlayed > 0);
     }
 
@@ -317,11 +320,13 @@ public class TurnController {
         return currentPlayer.getCards();
     }
 
-    public void putFestivalCard(PalaceCard c) {
+    public void putFestivalCard(PalaceCard c)
+    {
         festival.changeFestivalCard(c);
     }
 
-    public void endFestival() {
+    public void endFestival()
+    {
         festival.endFestival();
     }
 }
