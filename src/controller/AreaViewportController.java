@@ -6,11 +6,11 @@ import java.awt.*;
 
 
 public class AreaViewportController {
-    public final static boolean orFLAT = true;
-    public final static boolean orPOINT = false;
+//    public final static boolean orFLAT = true;
+//    public final static boolean orPOINT = false;
 
     public static boolean XYVertex = true;  // true: x,y are the coords of the first vertex.
-    // false: x,y are the coords of the top left rect. co-ord.
+                                            // false: x,y are the coords of the top left rect. co-ord.
 
     private static int BORDERS = 50; // default number of pixels for the border.
 
@@ -37,7 +37,7 @@ public class AreaViewportController {
      */
     public static void setSide(int side) {
         s = side;
-        t = (int) (s / 2); // t = s sin(30) = (int) CalculateH(s);
+        t = s / 2; // t = s sin(30) = (int) CalculateH(s);
         r = (int) (s * 0.8660254037844); // r = s cos(30) = (int) CalculateR(s);
         h = 2 * r;
     }
@@ -65,9 +65,8 @@ public class AreaViewportController {
     public static Polygon hex(int x0, int y0) {
 
         int y = y0 + BORDERS;
-        int x = x0 + BORDERS; // + (XYVertex ? t : 0); //Fix added for XYVertex
-        // = true.
-        // NO! Done below in cx= section
+        int x = x0 + BORDERS; // + (XYVertex ? t : 0); //Fix added for XYVertex = true.
+
         if (s == 0 || h == 0) {
             System.out.println("ERROR: size of hex has not been set");
             return new Polygon();
@@ -75,15 +74,11 @@ public class AreaViewportController {
 
         int[] cx, cy;
 
-        // I think that this XYvertex stuff is taken care of in the int x line
-        // above. Why is it here twice?
         if (XYVertex)
             cx = new int[]{x, x + s, x + s + t, x + s, x, x - t}; // this is for the top left vertex being at x,y. Which
-            // means that some of the hex is cutoff.
         else
             cx = new int[]{x + t, x + s + t, x + s + t + t, x + s + t, x + t, x}; // this is for the whole hexagon
-        // to be below and to the right of
-        // this point
+
 
         cy = new int[]{y, y, y + r, y + r + r, y + r + r, y + r};
         return new Polygon(cx, cy, 6);
@@ -131,8 +126,6 @@ public class AreaViewportController {
             g2.setColor(Color.BLACK);
             c = (char) (-n);
             g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME:
-            // handle
-            // XYVertex
         }
 
         if (n > 0) {
@@ -141,9 +134,6 @@ public class AreaViewportController {
             g2.setColor(Color.BLACK);
             c = (char) n;
             g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME
-            // handle
-            // XYVertex
-            // g2.drawString(i+","+j, x+r+BORDERS, y+r+BORDERS+4);
         }
     }
 
