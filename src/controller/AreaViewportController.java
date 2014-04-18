@@ -35,12 +35,12 @@ public class AreaViewportController {
      * dimension of the hex. It calculates all other needed constants from this
      * dimension.
      */
-    public static void setSide(int side) {
-        s = side;
-        t = s / 2; // t = s sin(30) = (int) CalculateH(s);
-        r = (int) (s * 0.8660254037844); // r = s cos(30) = (int) CalculateR(s);
-        h = 2 * r;
-    }
+//    public static void setSide(int side) {
+//        s = side;
+//        t = s / 2; // t = s sin(30) = (int) CalculateH(s);
+//        r = (int) (s * 0.8660254037844); // r = s cos(30) = (int) CalculateR(s);
+//        h = 2 * r;
+//    }
 
     public static void setHeight(int height) {
         h = height; // h = basic dimension: height (distance between two adj
@@ -125,7 +125,7 @@ public class AreaViewportController {
             g2.fillPolygon(hex(x, y));
             g2.setColor(Color.BLACK);
             c = (char) (-n);
-            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME:
+            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
         }
 
         if (n > 0) {
@@ -133,7 +133,7 @@ public class AreaViewportController {
             g2.fillPolygon(hex(x, y));
             g2.setColor(Color.BLACK);
             c = (char) n;
-            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4); // FIXME
+            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
         }
     }
 

@@ -1,54 +1,51 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SharedResources {
-    ArrayList<ThreeBlock> threes;
-    ArrayList<Integer> palaceTiles;
-    ArrayList<IrrigationTile> irrigationTiles;
+    private Deck deck;
+    private int numIrrigationTiles;
+    private int numThreeBlockTiles;
+    private Map<PalaceLevel, Integer> numTilesInPalaceLevel;
 
     public SharedResources() {
-        threes = new ArrayList<ThreeBlock>();
-        palaceTiles = new ArrayList<Integer>();
-        irrigationTiles = new ArrayList<IrrigationTile>();
-
-        // add 56 three tiles
-        for (int i = 0; i < 56; i++) {
-            //TODO Please make sure this is right and updated after implmenting three block tile
-            threes.add(new ThreeBlock());
-        }
-
-        // add 16 Irrigation Tiles
-        for (int i = 0; i < 16; i++) {
-            //TODO Need to add num neighbors to irrigation tiles
-//        irrigationTiles.add(new IrrigationTile());
-        }
-
-
+        this.deck = new Deck();
+        this.numIrrigationTiles = 16;
+        this.numThreeBlockTiles = 56;
+        this.numTilesInPalaceLevel = new HashMap<PalaceLevel, Integer>();
     }
 
-    public SharedResources(int thr, int irr, int[] pt) {
-        threes = new ArrayList<ThreeBlock>();
-        palaceTiles = new ArrayList<Integer>();
-
-        for (int i = 0; i < thr; i++)
-            threes.add(new ThreeBlock());
-
-        for (int i = 0; i < irr; i++) {
-        }
-
-        // irrigations.add(new OneBlock(TileType.IRRIGATION));
-
-        for (int aPt : pt) {
-            palaceTiles.add(aPt);
-        }
+    public Deck getDeck() {
+        return deck;
     }
 
-    public int numThreeBlocks() {
-        return threes.size();
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 
-    public int numPalaceTiles(int level) {
-        return palaceTiles.get(level);
+    public int getNumIrrigationTiles() {
+        return numIrrigationTiles;
+    }
+
+    public void setNumIrrigationTiles(int numIrrigationTiles) {
+        this.numIrrigationTiles = numIrrigationTiles;
+    }
+
+    public int getNumThreeBlockTiles() {
+        return numThreeBlockTiles;
+    }
+
+    public void setNumThreeBlockTiles(int numThreeBlockTiles) {
+        this.numThreeBlockTiles = numThreeBlockTiles;
+    }
+
+    public int getNumTilesInPalaceLevel(PalaceLevel level) {
+        return numTilesInPalaceLevel.get(level);
+    }
+
+    public void addTileToPalaceLevel(PalaceLevel level) {
+        int numTile = this.numTilesInPalaceLevel.get(level);
+        this.numTilesInPalaceLevel.put(level, ++numTile);
     }
 }
