@@ -2,7 +2,8 @@ package model;
 
 import model.customExceptions.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  The Player class is a state object containing the inventory and general information of a player.
@@ -85,7 +86,7 @@ public class Player {
         return twoBlocks;
     }
 
-    public ArrayList<PalaceCard> getCards() {
+    public List<PalaceCard> getCards() {
         return cards;
     }
 
@@ -95,7 +96,7 @@ public class Player {
     }
 
     public void decrementFamePoints(int i) throws Exception {
-        if(famePoints - 1 < 0){
+        if (famePoints - 1 < 0) {
             throw new Exception("Cannot decrement lower than 0.");
         }
         famePoints -= i;
@@ -182,8 +183,8 @@ public class Player {
 
     public boolean hasPlayableCard(PalaceCard c) {
         boolean ret = false;
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).compare(c) > 0) {
+        for (PalaceCard card : cards) {
+            if (card.compare(c) > 0) {
                 ret = true;
                 break;
             }
@@ -192,20 +193,12 @@ public class Player {
     }
 
     public boolean hasCard(PalaceCard p) throws CardNotInHandException {
-        boolean ret = false;
-        for(PalaceCard c : cards)
-        {
-            if(p.sameCardAs(c))
-            {
-                ret = true;
-                break;
+        for (PalaceCard c : cards) {
+            if (p.sameCardAs(c)) {
+                return true;
             }
         }
-        if (ret == false)
-        {
-            throw new CardNotInHandException();
-        }
-        return ret;
+        throw new CardNotInHandException();
     }
 
     // toString for output purposes
@@ -219,8 +212,8 @@ public class Player {
         ret += "Village Tiles: " + villageBlocks + "\n";
         ret += "Two Blocks: " + twoBlocks + "\n";
         ret += "Palace Cards:\n";
-        for (int i = 0; i < cards.size(); i++) {
-            ret += cards.get(i).toString() + "\n";
+        for (PalaceCard card : cards) {
+            ret += card.toString() + "\n";
         }
         return ret;
     }
