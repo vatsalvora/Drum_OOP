@@ -94,7 +94,7 @@ public class PlayerTest {
                     tc.incrementFamePoints(score(in));
                     break;
                 case 2:
-                    tc.placeOtherBlock();
+                    tc.placeTwoBlock();
                     tc.incrementFamePoints(score(in));
                     break;
                 case 3:
