@@ -1,24 +1,11 @@
-package view;
+package controller;
+
+import view.hexgame;
 
 import java.awt.*;
 
-/* This is a companion class to hexgame.java. It handles all of the mechanics related to hexagon grids. */
 
-public class hexmech {
-	/*
-	 * Helpful references:
-	 * http://www.codeproject.com/Articles/14948/Hexagonal-grid
-	 * -for-games-and-other-projects-Part-1
-	 * http://weblogs.java.net/blog/malenkov/archive/2009/02/hexagonal_tile.html
-	 * http://www.tonypa.pri.ee/tbw/tut25.html
-	 */
-
-	/*
-	 * #define HEXEAST 0 #define HEXSOUTHEAST 1 #define HEXSOUTHWEST 2 #define
-	 * HEXWEST 3 #define HEXNORTHWEST 4 #define HEXNORTHEAST 5
-	 */
-
-	// Constants
+public class AreaViewportController {
 	public final static boolean orFLAT = true;
 	public final static boolean orPOINT = false;
 	public static boolean ORIENT = orFLAT; // this is not used. We're never
@@ -60,7 +47,7 @@ public class hexmech {
 
 	public static void setHeight(int height) {
 		h = height; // h = basic dimension: height (distance between two adj
-					// centresr aka size)
+					// centers aka size)
 		r = h / 2; // r = radius of inscribed circle
 		s = (int) (h / 1.73205); // s = (h/2)/cos(30)= (h/2) / (sqrt(3)/2) = h /
 									// sqrt(3)
@@ -122,7 +109,7 @@ public class hexmech {
 		int y = j * h + (i % 2) * h / 2;
 		Polygon poly = hex(x, y);
 		g2.setColor(hexgame.COLOURCELL);
-		// g2.fillPolygon(hexmech.hex(x,y));
+		// g2.fillPolygon(AreaViewportController.hex(x,y));
 		g2.fillPolygon(poly);
 		g2.setColor(hexgame.COLOURGRID);
 		g2.drawPolygon(poly);
