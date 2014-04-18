@@ -1,5 +1,6 @@
 package view;
 
+import controller.AreaViewportController;
 import model.*;
 import model.state.State;
 import model.state.Turn;
@@ -7,6 +8,7 @@ import view.keypressed.KeyPressed;
 import view.keypressed.KeyPressedI;
 import view.keypressed.KeyPressedP;
 import view.keypressed.KeyPressedV;
+
 
 
 import java.util.ArrayList;
@@ -21,18 +23,19 @@ import java.awt.event.MouseEvent;
 
 /**********************************
  * This is the main class of a Java program to play a game based on hexagonal
- * tiles. The mechanism of handling hexes is in the file hexmech.java.
+ * tiles. The mechanism of handling hexes is in the file AreaViewportController.java.
  * 
  * Written by: M.H. Date: December 2012
  ***********************************/
 
 public class hexgame {
 	// constants and global variables
+
 	final static Color COLOURBACK = Color.WHITE;
 
-    final static Color COLOURCELL = Color.ORANGE;
+    public final static Color COLOURCELL = Color.ORANGE;
 
-    final static Color COLOURGRID = Color.BLACK;
+    public final static Color COLOURGRID = Color.BLACK;
     final static Color COLOURONE = new Color(255, 255, 255, 200);
     final static Color COLOURONETXT = Color.BLUE;
     final static Color COLOURTWO = new Color(0, 0, 0, 200);
@@ -45,6 +48,7 @@ public class hexgame {
     private Board board = new Board();
     private List<KeyPressed> keyset;
     private State state;
+
     // dimension).
     // (vertical
     // size
@@ -57,11 +61,11 @@ public class hexgame {
 
 	void initGame() {
 
-		hexmech.setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
+		AreaViewportController.setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
 
-		hexmech.setHeight(HEXSIZE); // Either setHeight or setSize must be run
+		AreaViewportController.setHeight(HEXSIZE); // Either setHeight or setSize must be run
 									// to initialize the hex
-		hexmech.setBorders(BORDERS);
+		AreaViewportController.setBorders(BORDERS);
 
 		for (int i = 0; i < BSIZE; i++) {
 			for (int j = 0; j < BSIZE; j++) {
@@ -195,18 +199,18 @@ public class hexgame {
 			// draw grid
 			for (int i = 0; i < BSIZE; i++) {
 				for (int j = 0; j < BSIZE; j++) {
-					hexmech.drawHex(i, j, g2);
+					AreaViewportController.drawHex(i, j, g2);
 				}
 			}
 			// fill in hexes
 			for (int i = 0; i < BSIZE; i++) {
 				for (int j = 0; j < BSIZE; j++) {
 					// if (board[i][j] < 0)
-					// hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
-					// if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO,
+					// AreaViewportController.fillHex(i,j,COLOURONE,-board[i][j],g2);
+					// if (board[i][j] > 0) AreaViewportController.fillHex(i,j,COLOURTWO,
 					// board[i][j],g2);
-					hexmech.fillHex(i, j, ((HexSpace)board.getSpace(new Location(i, j))).status,
-							((HexSpace)board.getSpace(new Location(i, j))).color, g2);
+					AreaViewportController.fillHex(i, j, ((HexSpace) board.getSpace(new Location(i, j))).status,
+                            ((HexSpace) board.getSpace(new Location(i, j))).color, g2);
 				}
 			}
 
@@ -222,7 +226,7 @@ public class hexgame {
 				// mPt.x = x;
 				// mPt.y = y;
 
-				Point p = new Point(hexmech.pxtoHex(e.getX(), e.getY()));
+				Point p = new Point(AreaViewportController.pxtoHex(e.getX(), e.getY()));
 				if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 					return;
 

@@ -1,5 +1,6 @@
-package model;
+package test;
 
+import model.Board;
 import org.junit.Before;
 import org.junit.Test;
 
