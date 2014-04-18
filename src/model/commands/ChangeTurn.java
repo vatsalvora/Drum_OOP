@@ -2,6 +2,7 @@ package model.commands;
 
 import model.Command;
 import model.GameFacade;
+import model.customExceptions.BlockNotPlayedException;
 
 public class ChangeTurn implements Command {
 	private GameFacade gameFacade;
@@ -10,8 +11,15 @@ public class ChangeTurn implements Command {
 		this.gameFacade = gameFacade;
 	}
 
-	public void execute() {
-		gameFacade.changeTurn();
+	public void execute()
+    {
+        try {
+            gameFacade.changeTurn();
+        }
+        catch (BlockNotPlayedException e)
+        {
+            //do something with the exception
+        }
 	}
 
 	public void undo() {

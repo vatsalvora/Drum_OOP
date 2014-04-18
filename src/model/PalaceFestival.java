@@ -93,6 +93,7 @@ public class PalaceFestival {
 
     // Change current player
     public void nextPlayer() {
+        reEvaluateValidPlayers();
         if (inProgress) {
             currentPlayerIndex++;
             if (currentPlayerIndex >= players.size()) {
@@ -105,6 +106,29 @@ public class PalaceFestival {
             if (playerFrozen[currentPlayerIndex]) {
                 nextPlayer();
             }
+        }
+    }
+
+    private void reEvaluateValidPlayers()
+    {
+        boolean dummy = true;
+        for(int i = 0; i < players.size(); i++)
+        {
+            if(!playerFrozen[i])
+            {
+                if(!playable(players.get(i)))
+                {
+                    playerFrozen[i] = true;
+                }
+            }
+            if(!playerFrozen[i])
+            {
+                dummy = false;
+            }
+        }
+        if (dummy)
+        {
+            inProgress = false;
         }
     }
 

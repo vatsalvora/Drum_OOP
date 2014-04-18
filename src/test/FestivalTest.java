@@ -7,39 +7,24 @@ import model.*;
 import java.util.*;
 
 public class FestivalTest {
-	public static void main(String[] args) {
-		String playerNames[] = { "Player1", "Player2", "Player3", "Player4" };
 
-		TurnController turnController = new TurnController(playerNames);
+    public FestivalTest(){}
+
+
+	public void PerformFestival (TurnController tc, Deck d) {
+
+		TurnController turnController = tc;
 
 		Player[] players = turnController.getPlayers();
 
-		Deck deck = new Deck();
-		ArrayList<PalaceCard> startingDeck = deck.getDeck();
-
-		for (int i = 0; i < startingDeck.size(); i++) {
-			System.out.println(startingDeck.get(i).toString());
-		}
-
-		for (int i = 0; i < players.length; i++) {
-			players[i].addCard(deck.drawCard());
-			players[i].addCard(deck.drawCard());
-			players[i].addCard(deck.drawCard());
-		}
+		Deck deck = d;
 
 		System.out.println();
-
-		for (int i = 0; i < players.length; i++) {
-			System.out.println(players[i].toString());
-		}
-		turnController.putFestivalCard(deck.drawCard());
 
 		System.out.println();
 		System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
 		System.out.println();
 		String[] eligible = { "red", "blue", "green", "yellow" };
-
-
 
 		turnController.startFestival(eligible);
 
@@ -50,13 +35,6 @@ public class FestivalTest {
 		}
 
 		System.out.println();
-
-        ArrayList<PalaceCard> player1cards = festivalPlayers.get(0).getCards();
-
-        for(PalaceCard c : player1cards)
-        {
-            System.out.println(c.toString());
-        }
 
 		while (!turnController.festivalOver()) {
 
@@ -143,7 +121,7 @@ public class FestivalTest {
             }
             catch(Exception e)
             {
-                e.toString();
+                System.out.println(e.toString());
             }
 		}
 

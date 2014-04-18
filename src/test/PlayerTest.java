@@ -140,7 +140,8 @@ public class PlayerTest {
                         tc.useActionToken();
                         break;
                     case 15:
-                        //perform palace festival
+                        FestivalTest festival = new FestivalTest();
+                        festival.PerformFestival(tc, deck);
                         break;
                     case 16:
                         tc.nextTurn();

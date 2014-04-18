@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.BlockNotPlayedException;
+
 public class ChangeTurn implements Command {
 	private GameFacade gameFacade;
 
@@ -9,7 +11,12 @@ public class ChangeTurn implements Command {
 
 	@Override
 	public void execute() {
-		gameFacade.changeTurn();
+		try {
+            gameFacade.changeTurn();
+        }
+        catch(BlockNotPlayedException e){
+            //do something with exception
+        }
 	}
 
 	@Override

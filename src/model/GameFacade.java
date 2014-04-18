@@ -3,6 +3,7 @@ package model;
 import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
+import model.customExceptions.BlockNotPlayedException;
 
 public class GameFacade {
 	BoardController boardController;
@@ -38,7 +39,7 @@ public class GameFacade {
 
 	}
 
-	public void changeTurn() {
+	public void changeTurn() throws BlockNotPlayedException {
 		turnController.nextTurn();
 	}
 
