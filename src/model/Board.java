@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Board {
 	private List<List<Space>> board;
-
+    private Location current;
 	public Board() {
 		int[] height = { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 
@@ -53,9 +53,18 @@ public class Board {
         }
 	}
 
+    public void place(Location l, Tile tile){
+        Space s = getSpace(l);
+        s.place(tile);
+    }
+    
 	public Space getSpace(Location l) {
 		List<Space> column = board.get(l.getYLocation());
 		return column.get(l.getXLocation());
 	}
+
+    public void setLocation(int x, int y){
+        current.setLocation(x,y);
+    }
 
 }

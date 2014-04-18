@@ -9,6 +9,8 @@ import view.keypressed.*;
 import view.keypressed.KeyPressed1;
 import view.keypressed.KeyPressed2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -36,14 +38,14 @@ public class hexgame {
     final static int HEXSIZE = 60; // hex size in pixels
     final static int BORDERS = 15;
     final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
-    Board board = new Board();
-    public static State state;
+    private Board board = new Board();
+    private List<KeyPressed> keyset;
     // dimension).
     // (vertical
     // size
-    public hexgame(GameFacade b) {
+    public hexgame(GameFacade b, List<KeyPressed> keyset) {
+        this.keyset = keyset;
         initGame();
-        state = new Turn(b);
         createAndShowGUI();
     }
 
@@ -100,66 +102,32 @@ public class hexgame {
 
 			MyMouseListener ml = new MyMouseListener();
 			Location l = new Location(0, 0);
-			OneKey oneKey = new OneKey(l);
-			TwoKey twoKey = new TwoKey(l);
-			ThreeKey threeKey = new ThreeKey(l);
-			SevenKey sevenKey = new SevenKey(l);
-			EightKey eightKey = new EightKey(l);
-			NineKey nineKey = new NineKey(l);
-
-            KeyPressed1 keyPressed1 = new KeyPressed1(l, state);
-            KeyPressed2 keyPressed2 = new KeyPressed2(l, state);
-            KeyPressed3 keyPressed3 = new KeyPressed3(l, state);
-            KeyPressed7 keyPressed7 = new KeyPressed7(l, state);
-            KeyPressed8 keyPressed8 = new KeyPressed8(l, state);
-            KeyPressed9 keyPressed9 = new KeyPressed9(l, state);
-            KeyPressedTab keyPressedTab = new KeyPressedTab(l, state);
-            KeyPressedR keyPressedR = new KeyPressedR(l, state);
-            KeyPressedP keyPressedP = new KeyPressedP(l, state);
-            KeyPressedV keyPressedV = new KeyPressedV(l, state);
-            KeyPressedI keyPressedI = new KeyPressedI(l, state);
-            KeyPressedX keyPressedX = new KeyPressedX(l, state);
-            KeyPressedA keyPressedA = new KeyPressedA(l, state);
-            KeyPressedESC keyPressedESC = new KeyPressedESC(l, state);
-            KeyPressedF keyPressedF = new KeyPressedF(l, state);
-            KeyPressedU keyPressedU = new KeyPressedU(l, state);
-            KeyPressedW keyPressedW = new KeyPressedW(l, state);
-            KeyPressedE keyPressedE = new KeyPressedE(l, state);
-            KeyPressed4 keyPressed4 = new KeyPressed4(l, state);
-            KeyPressed6 keyPressed6 = new KeyPressed6(l, state);
-            KeyPressedS keyPressedS = new KeyPressedS(l, state);
-
-            addKeyListener(keyPressed1);
-            addKeyListener(keyPressed2);
-            addKeyListener(keyPressed3);
-            addKeyListener(keyPressed7);
-            addKeyListener(keyPressed8);
-            addKeyListener(keyPressed9);
-            addKeyListener(keyPressedTab);
-            addKeyListener(keyPressedR);
-            addKeyListener(keyPressedP);
-            addKeyListener(keyPressedV);
-            addKeyListener(keyPressedI);
-            addKeyListener(keyPressedX);
-            addKeyListener(keyPressedA);
-            addKeyListener(keyPressedESC);
-            addKeyListener(keyPressedF);
-            addKeyListener(keyPressedU);
-            addKeyListener(keyPressedW);
-            addKeyListener(keyPressedE);
-            addKeyListener(keyPressed4);
-            addKeyListener(keyPressedS);
-            addKeyListener(keyPressed6);
+            List<KeyAdapter> keys = new ArrayList<KeyAdapter>();
+			keys.add(new OneKey(l));
+			keys.add(new TwoKey(l));
+            keys.add(new ThreeKey(l));
+            keys.add(new SevenKey(l));
+            keys.add(new EightKey(l));
+            keys.add(new NineKey(l));
+            addListeners(keys);
+            //addListeners();
 
 			addMouseListener(ml);
-			addKeyListener(oneKey);
-			addKeyListener(twoKey);
-			addKeyListener(threeKey);
-			addKeyListener(sevenKey);
-			addKeyListener(eightKey);
-			addKeyListener(nineKey);
+
 
 		}
+
+        public void addListeners(){
+            for(KeyPressed kp: keyset){
+                addKeyListener(kp);
+            }
+        }
+
+        public void addListeners(List<KeyAdapter> keys){
+            for(KeyAdapter ka: keys){
+                addKeyListener(ka);
+            }
+        }
 
 		public void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g;
@@ -264,42 +232,42 @@ public class hexgame {
 			}
 		}
 
-		class TwoKey extends KeyAdapter {
-			private Location l;
+        class TwoKey extends KeyAdapter {
+            private Location l;
 
-			public TwoKey(Location l) {
-				this.l = l;
-			}
+            public TwoKey(Location l) {
+                this.l = l;
+            }
 
-			public void keyTyped(KeyEvent ke) {
-				int x = l.getXLocation();
-				int y = l.getYLocation();
-				System.out.println(ke.getKeyChar());
-				Point p = new Point(x, y);
-				if (ke.getKeyChar() == '2') {
-					p = new Point(x, y + 1);
-					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
-						return;
-					else {
-						x = p.x;
-						y = p.y;
-						System.out.println("LOC: " + x + " " + y + "");
-					}
-				}
-				l.setLocation(x, y);
-				board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
-				board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
-				repaint();
-			}
+            public void keyTyped(KeyEvent ke) {
+                int x = l.getXLocation();
+                int y = l.getYLocation();
+                System.out.println(ke.getKeyChar());
+                Point p = new Point(x, y);
+                if (ke.getKeyChar() == '2') {
+                    p = new Point(x, y + 1);
+                    if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
+                        return;
+                    else {
+                        x = p.x;
+                        y = p.y;
+                        System.out.println("LOC: " + x + " " + y + "");
+                    }
+                }
+                l.setLocation(x, y);
+                board.getSpace(new Location(p.x, p.y)).status = (int) 'X';
+                board.getSpace(new Location(p.x, p.y)).color = Color.GREEN;
+                repaint();
+            }
 
-			public void keyPressed(KeyEvent ke) {
+            public void keyPressed(KeyEvent ke) {
 
-			}
+            }
 
-			public void keyReleased(KeyEvent ke) {
+            public void keyReleased(KeyEvent ke) {
 
-			}
-		}
+            }
+        }
 
 		class ThreeKey extends KeyAdapter {
 			private Location l;

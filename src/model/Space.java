@@ -1,9 +1,11 @@
 package model;
 
 import java.awt.*;
+import java.util.Stack;
 
 public class Space {
 	private Space[] neighbors;
+    private Stack<Tile> tileStack;
 	private Location l;
     public int status;
     public Color color;
@@ -12,6 +14,7 @@ public class Space {
 		this.neighbors = new Space[6];
         this.status = 0;
         this.color = Color.BLUE;
+        this.tileStack = new Stack<Tile>();
 	}
 
 	public Developer getDeveloper() {
@@ -51,4 +54,13 @@ public class Space {
         return l;
     }
 
+    public void place(Tile tile) {
+        if(tileStack.size()==0){
+            tileStack.add(tile);
+        }
+        else{
+            Tile under = tileStack.peek();
+            under.place(tile);
+        }
+    }
 }
