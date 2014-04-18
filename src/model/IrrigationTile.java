@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Stack;
+
 /**
  * Created by Vatsal on 4/13/2014.
  */
@@ -31,8 +33,8 @@ public class IrrigationTile extends Tile {
 	}
 
 	@Override
-	public void place(Tile t) {
-		// TODO Auto-generated method stub
+	public void place(Tile t, Stack<Tile> tilesOnSpace) {
+		// Can't Place anything on Top
 
 	}
 }
