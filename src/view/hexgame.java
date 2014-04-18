@@ -37,7 +37,7 @@ public class hexgame {
 
     public final static Color COLOURGRID = Color.BLACK;
     final static Color COLOURONE = new Color(255, 255, 255, 200);
-    final static Color COLOURONETXT = Color.BLUE;
+    final static Color COLOURONETXT = new Color(255, 100, 255);
     final static Color COLOURTWO = new Color(0, 0, 0, 200);
     final static Color COLOURTWOTXT = new Color(255, 100, 255);
     final static int EMPTY = 0;
@@ -274,6 +274,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
@@ -312,6 +314,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
@@ -352,6 +356,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
@@ -392,6 +398,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
@@ -429,6 +437,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
@@ -469,6 +479,8 @@ public class hexgame {
 					if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
 						return;
 					else {
+                        ((HexSpace)board.getSpace(new Location(x, y))).status = (int) 'X';
+                        ((HexSpace)board.getSpace(new Location(x, y))).color = Color.ORANGE;
 						x = p.x;
 						y = p.y;
 						System.out.println("LOC: " + x + " " + y + "");
