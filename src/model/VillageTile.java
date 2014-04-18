@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Stack;
+
 /**
  * Created by Vatsal on 4/13/2014.
  */
@@ -30,7 +32,7 @@ public class VillageTile extends Tile {
     }
 
     @Override
-    public void place(Tile t) {
-        //TODO need to add to Space stack
+    public void place(Tile t, Stack<Tile> tilesOnSpace) {
+        if(!compareTo(t)) tilesOnSpace.push(t);
     }
 }

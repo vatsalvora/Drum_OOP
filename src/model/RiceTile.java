@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Stack;
+
 /**
  * Created by Vatsal on 4/13/2014.
  */
@@ -31,7 +33,7 @@ public class RiceTile extends Tile{
     }
 
     @Override
-    public void place(Tile t) {
-
+    public void place(Tile t, Stack<Tile> tilesOnSpace) {
+         if(!compareTo(t)) tilesOnSpace.push(t);
     }
 }

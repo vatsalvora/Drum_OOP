@@ -71,7 +71,7 @@ public class HexSpace implements Space {
         }
         else{
             Tile under = tilesOnSpace.peek();
-            under.place(tile);
+            under.place(tile,tilesOnSpace);
         }
     }
 
