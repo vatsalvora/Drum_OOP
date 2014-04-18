@@ -56,8 +56,7 @@ public class PlayerTest {
 
         boolean playing = true;
 
-        while(playing)
-        {
+        while(playing) {
             System.out.println("The current player is: " + tc.getCurrentPlayer().getName());
 
             System.out.println("What would you like to do?");
@@ -83,78 +82,83 @@ public class PlayerTest {
             System.out.println("You currently have " + tc.APLeft() + " AP left.");
 
             int decision = in.nextInt();
-
-            switch(decision)
+            try {
+                switch (decision) {
+                    case 0:
+                        System.out.println(tc.getCurrentPlayer().toString());
+                        break;
+                    case 1:
+                        tc.placeOtherBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 2:
+                        tc.placeTwoBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 3:
+                        tc.placeVillageBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 4:
+                        tc.placeRiceBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 5:
+                        tc.placeOtherBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 6:
+                        tc.placeOtherBlock();
+                        tc.incrementFamePoints(score(in));
+                        break;
+                    case 7:
+                        System.out.println("Size of the new palace?");
+                        int palaceSize = in.nextInt();
+                        tc.incrementFamePoints(palaceSize / 2);
+                        break;
+                    case 8:
+                        tc.placeDeveloper(1);
+                        break;
+                    case 9:
+                        tc.placeDeveloper(2);
+                        break;
+                    case 10:
+                        System.out.println("How much AP did the move take?");
+                        int move = in.nextInt();
+                        tc.performAction(move);
+                        break;
+                    case 11:
+                        tc.drawCard(deck.drawCard());
+                        break;
+                    case 12:
+                        System.out.println("Current festival card is " + tc.getFestivalCard());
+                        break;
+                    case 13:
+                        tc.drawFestivalCard(deck.drawCard());
+                        break;
+                    case 14:
+                        tc.useActionToken();
+                        break;
+                    case 15:
+                        //perform palace festival
+                        break;
+                    case 16:
+                        tc.nextTurn();
+                        break;
+                    case 17:
+                        playing = false;
+                        break;
+                    default:
+                        System.out.println("Make a real decision.");
+                        break;
+                }
+            }
+            catch(Exception e)
             {
-                case 0:
-                    System.out.println(tc.getCurrentPlayer().toString());
-                    break;
-                case 1:
-                    tc.placeOtherBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 2:
-                    tc.placeTwoBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 3:
-                    tc.placeVillageBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 4:
-                    tc.placeRiceBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 5:
-                    tc.placeOtherBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 6:
-                    tc.placeOtherBlock();
-                    tc.incrementFamePoints(score(in));
-                    break;
-                case 7:
-                    System.out.println("Size of the new palace?");
-                    int palaceSize = in.nextInt();
-                    tc.incrementFamePoints(palaceSize/2);
-                    break;
-                case 8:
-                    tc.placeDeveloper(1);
-                    break;
-                case 9:
-                    tc.placeDeveloper(2);
-                    break;
-                case 10:
-                    System.out.println("How much AP did the move take?");
-                    int move = in.nextInt();
-                    tc.performAction(move);
-                    break;
-                case 11:
-                    tc.drawCard(deck.drawCard());
-                    break;
-                case 12:
-                    System.out.println("Current festival card is " + tc.getFestivalCard());
-                    break;
-                case 13:
-                    tc.drawFestivalCard(deck.drawCard());
-                    break;
-                case 14:
-                    tc.useActionToken();
-                    break;
-                case 15:
-                    //perform palace festival
-                    break;
-                case 16:
-                    tc.nextTurn();
-                    break;
-                case 17:
-                    playing = false;
-                    break;
-                default:
-                    System.out.println("Make a real decision.");
-                    break;
+                e.toString();
             }
         }
+
         System.out.println("Congratulations, the game is over!");
         System.out.println("Winner(s):");
         int maxScore = 0;

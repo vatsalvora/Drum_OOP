@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.*;
+
 import java.util.*;
 
 /*
@@ -99,11 +101,11 @@ public class Player {
         famePoints -= i;
     }
 
-    public void placeDeveloper() {
+    public void placeDeveloper() throws NoDevsLeftException {
         if (developersLeft > 0) {
             developersLeft--;
         } else {
-            // put-in: throw not enough developers exception
+            throw new NoDevsLeftException();
         }
     }
 
@@ -111,11 +113,11 @@ public class Player {
         developersLeft++;
     }
 
-    public void useActionToken() {
+    public void useActionToken() throws NoActionTokensException {
         if (actionTokens > 0) {
             actionTokens--;
         } else {
-            // put-in: throw no more action tokens exception
+            throw new NoActionTokensException();
         }
     }
 
@@ -123,11 +125,11 @@ public class Player {
         actionTokens++;
     }
 
-    public void placeRiceBlock() {
+    public void placeRiceBlock() throws NoRiceBlocksException {
         if (riceBlocks > 0) {
             riceBlocks--;
         } else {
-            // put-in: throw no more rice blocks exception
+            throw new NoRiceBlocksException();
         }
     }
 
@@ -135,11 +137,11 @@ public class Player {
         riceBlocks++;
     }
 
-    public void placeVillageBlock() {
+    public void placeVillageBlock() throws NoVillageTilesException {
         if (villageBlocks > 0) {
             villageBlocks--;
         } else {
-            // put-in: throw no more village blocks exception
+            throw new NoVillageTilesException();
         }
     }
 
@@ -147,11 +149,11 @@ public class Player {
         villageBlocks++;
     }
 
-    public void placeTwoBlock() {
+    public void placeTwoBlock() throws NoTwoBlocksException {
         if (twoBlocks > 0) {
             twoBlocks--;
         } else {
-            // put-in: throw no more two blocks exception
+            throw new NoTwoBlocksException();
         }
     }
 
@@ -189,7 +191,7 @@ public class Player {
         return ret;
     }
 
-    public boolean hasCard(PalaceCard p) {
+    public boolean hasCard(PalaceCard p) throws CardNotInHandException {
         boolean ret = false;
         for(PalaceCard c : cards)
         {
@@ -201,7 +203,7 @@ public class Player {
         }
         if (ret == false)
         {
-            //put-in: player does not have that card exception
+            throw new CardNotInHandException();
         }
         return ret;
     }
