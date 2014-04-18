@@ -3,6 +3,7 @@ package controller;
 import model.PalaceCard;
 import model.PalaceFestival;
 import model.Player;
+import model.customExceptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,7 @@ public class TurnController {
         currentPlayer.decrementFamePoints(i);
     }
 
-    public void placeDeveloper(int i) {
+    public void placeDeveloper(int i) throws BlockNotPlayedException, NotEnoughAPException, NoDevsLeftException {
 
         currentPlayer.placeDeveloper();
         if(actionPoints > i)
@@ -97,13 +98,13 @@ public class TurnController {
             else
             {
                 currentPlayer.removeDeveloper();
-                //put-in: using all AP but no block has been played yet error
+                throw new BlockNotPlayedException();
             }
         }
         else
         {
             currentPlayer.removeDeveloper();
-            //put-in: not enough AP error
+            throw new NotEnoughAPException();
         }
     }
 
@@ -112,9 +113,9 @@ public class TurnController {
         currentPlayer.removeDeveloper();
     }
 
-    public void useActionToken() {
+    public void useActionToken() throws ActionTokenUsedException, NoActionTokensException{
         if (actionTokenUsed) {
-            // put-in: action token already used error
+            throw new ActionTokenUsedException();
         } else {
             currentPlayer.useActionToken();
             actionTokenUsed = true;
@@ -128,13 +129,13 @@ public class TurnController {
         actionPoints++;
     }
 
-    public void placeRiceBlock() {
+    public void placeRiceBlock() throws NoAPLeftException, NoRiceBlocksException {
         if (actionPoints > 0) {
             currentPlayer.placeRiceBlock();
             actionPoints--;
             blockPlayed++;
         } else {
-            // put-in: no AP left error
+            throw new NoAPLeftException();
         }
     }
 
@@ -144,13 +145,13 @@ public class TurnController {
         blockPlayed--;
     }
 
-    public void placeVillageBlock() {
+    public void placeVillageBlock() throws NoAPLeftException, NoVillageTilesException {
         if (actionPoints > 0) {
             currentPlayer.placeVillageBlock();
             actionPoints--;
             blockPlayed++;
         } else {
-            // put-in: no AP left error
+            throw new NoAPLeftException();
         }
     }
 
@@ -160,15 +161,13 @@ public class TurnController {
         blockPlayed--;
     }
 
-    public void placeTwoBlock() {
+    public void placeTwoBlock() throws NoAPLeftException, NoTwoBlocksException {
         if (actionPoints > 0) {
-            System.out.println("Placing two block");
             currentPlayer.placeTwoBlock();
             actionPoints--;
             blockPlayed++;
         } else {
-            System.out.println("Not placing two block");
-            // put-in: no AP left error
+            throw new NoAPLeftException();
         }
     }
 
@@ -184,41 +183,41 @@ public class TurnController {
         }
     }
 
-    public void drawCard(PalaceCard c) {
+    public void drawCard(PalaceCard c) throws NoAPLeftException, BlockNotPlayedException {
         if (actionPoints > 0) {
             if (actionPoints == 1 && blockPlayed == 0) {
-                // put-in: using all AP and block not placed error
+                throw new BlockNotPlayedException();
             } else {
                 actionPoints--;
                 currentPlayer.addCard(c);
             }
         } else {
-            // put-in: not enough AP error
+            throw new NoAPLeftException();
         }
     }
 
-    public void drawFestivalCard(PalaceCard c) {
+    public void drawFestivalCard(PalaceCard c) throws BlockNotPlayedException, NotEnoughAPException {
         if (c != null) {
             if (actionPoints > 0) {
                 if (actionPoints == 1 && blockPlayed == 0) {
-                    // put-in: using all AP and block not placed error
+                    throw new BlockNotPlayedException();
                 } else {
                     actionPoints--;
                     currentPlayer.addCard(festival.changeFestivalCard(c));
                 }
             } else {
-                // put-in: not enough AP error
+                throw new NotEnoughAPException();
             }
         }
     }
 
     // Actions that do not require the current player.
-    public void placeOtherBlock() {
+    public void placeOtherBlock() throws NotEnoughAPException {
         if (actionPoints > 0) {
             actionPoints--;
             blockPlayed++;
         } else {
-            // put-in: not enough AP error
+            throw new NotEnoughAPException();
         }
     }
 
@@ -227,16 +226,16 @@ public class TurnController {
         blockPlayed--;
     }
 
-    public void performAction(int i) {
+    public void performAction(int i) throws NoAPLeftException, BlockNotPlayedException, NotEnoughAPException {
         if (actionPoints == 0) {
-            // put-in: no AP error
+            throw new NoAPLeftException();
         } else if (actionPoints < i) {
-            // put-in: not enough AP error
+            throw new NotEnoughAPException();
         } else if (actionPoints == i) {
             if (blockPlayed > 0) {
                 actionPoints -= i;
             } else {
-                // put-in: using all AP but block has not been placed error
+                throw new BlockNotPlayedException();
             }
         } else {
             actionPoints -= i;
@@ -271,15 +270,14 @@ public class TurnController {
         festival.nextPlayer();
     }
 
-    public void playCard(String t1, String t2) {
+    public void playCard(String t1, String t2) throws CardNotPlayableException, CardNotInHandException {
         PalaceCard play = new PalaceCard(t1, t2);
         Player festivalPlayer = festival.getCurrentPlayer();
         if (festivalPlayer.hasCard(play) && play.compare(festival.getFestivalCard()) > 0) {
             festival.playCard(play);
             festivalPlayer.removeCard(play);
         } else {
-            // put-in: card cannot be played since it doesn't match festival
-            // card in any way
+            throw new CardNotPlayableException();
         }
     }
 

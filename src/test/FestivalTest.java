@@ -6,7 +6,6 @@ import model.*;
 
 import java.util.*;
 
-//TODO are we not using JUnit?
 public class FestivalTest {
 	public static void main(String[] args) {
 		String playerNames[] = { "Player1", "Player2", "Player3", "Player4" };
@@ -73,76 +72,79 @@ public class FestivalTest {
 			int decision = in.nextInt();
 
 			System.out.println();
-
-			switch (decision) {
-			case 1:
-				System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
-				System.out.println();
-				break;
-			case 2:
-				Player current = turnController.getCurrentFestivalPlayer();
-				ArrayList<PalaceCard> cards = current.getCards();
-				System.out.println("Your palace cards:");
-				System.out.println(cards.size());
-				for (int i = 0; i < cards.size(); i++) {
-					// Returns a null pointer exception only for the first
-					// player for some reason, saying he has 1 more card than he
-					// actually has
-					System.out.println(cards.get(i).toString());
-				}
-				System.out.println();
-				break;
-			case 3:
-				System.out.println("What card would you like to place?");
-				System.out.println("1. Mask");
-				System.out.println("2. Drum");
-				System.out.println("3. Puppet");
-				System.out.println("4. Mask Drum");
-				System.out.println("5. Drum Puppet");
-				System.out.println("6. Puppet Mask");
-				decision = in.nextInt();
-				System.out.println();
-				switch (decision) {
-				case 1:
-					turnController.playCard("MASK", "NONE");
-					deck.discardCard(new PalaceCard("MASK", "NONE"));
-					break;
-				case 2:
-					turnController.playCard("DRUM", "NONE");
-					deck.discardCard(new PalaceCard("DRUM", "NONE"));
-					break;
-				case 3:
-					turnController.playCard("PUPPET", "NONE");
-					deck.discardCard(new PalaceCard("PUPPET", "NONE"));
-					break;
-				case 4:
-					turnController.playCard("MASK", "DRUM");
-					deck.discardCard(new PalaceCard("MASK", "DRUM"));
-					break;
-				case 5:
-					turnController.playCard("DRUM", "PUPPET");
-					deck.discardCard(new PalaceCard("DRUM", "PUPPET"));
-					break;
-				case 6:
-					turnController.playCard("PUPPET", "MASK");
-					deck.discardCard(new PalaceCard("PUPPET", "MASK"));
-					break;
-				default:
-					break;
-				}
-				break;
-			case 4:
-                try {
-                    turnController.freezeFestivalPlayer();
+            try {
+                switch (decision) {
+                    case 1:
+                        System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
+                        System.out.println();
+                        break;
+                    case 2:
+                        Player current = turnController.getCurrentFestivalPlayer();
+                        ArrayList<PalaceCard> cards = current.getCards();
+                        System.out.println("Your palace cards:");
+                        System.out.println(cards.size());
+                        for (int i = 0; i < cards.size(); i++) {
+                            // Returns a null pointer exception only for the first
+                            // player for some reason, saying he has 1 more card than he
+                            // actually has
+                            System.out.println(cards.get(i).toString());
+                        }
+                        System.out.println();
+                        break;
+                    case 3:
+                        System.out.println("What card would you like to place?");
+                        System.out.println("1. Mask");
+                        System.out.println("2. Drum");
+                        System.out.println("3. Puppet");
+                        System.out.println("4. Mask Drum");
+                        System.out.println("5. Drum Puppet");
+                        System.out.println("6. Puppet Mask");
+                        decision = in.nextInt();
+                        System.out.println();
+                        switch (decision) {
+                            case 1:
+                                turnController.playCard("MASK", "NONE");
+                                deck.discardCard(new PalaceCard("MASK", "NONE"));
+                                break;
+                            case 2:
+                                turnController.playCard("DRUM", "NONE");
+                                deck.discardCard(new PalaceCard("DRUM", "NONE"));
+                                break;
+                            case 3:
+                                turnController.playCard("PUPPET", "NONE");
+                                deck.discardCard(new PalaceCard("PUPPET", "NONE"));
+                                break;
+                            case 4:
+                                turnController.playCard("MASK", "DRUM");
+                                deck.discardCard(new PalaceCard("MASK", "DRUM"));
+                                break;
+                            case 5:
+                                turnController.playCard("DRUM", "PUPPET");
+                                deck.discardCard(new PalaceCard("DRUM", "PUPPET"));
+                                break;
+                            case 6:
+                                turnController.playCard("PUPPET", "MASK");
+                                deck.discardCard(new PalaceCard("PUPPET", "MASK"));
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case 4:
+                        try {
+                            turnController.freezeFestivalPlayer();
+                        } catch (StackOverflowError e) {
+                            turnController.endFestival();
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                catch(StackOverflowError e)
-                {
-                    turnController.endFestival();
-                }
-				break;
-			default:
-				break;
-			}
+            }
+            catch(Exception e)
+            {
+                e.toString();
+            }
 		}
 
 		System.out.println("Festival Over!");

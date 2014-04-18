@@ -110,7 +110,6 @@ public class hexgame {
 		public DrawingPanel() {
 			setBackground(COLOURBACK);
 
-			MyMouseListener ml = new MyMouseListener();
 			Location l = new Location(0, 0);
 
             List<KeyAdapter> keys = new ArrayList<KeyAdapter>();
@@ -218,41 +217,6 @@ public class hexgame {
 			// g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 		}
 
-		class MyMouseListener extends MouseAdapter { // inner class inside
-														// DrawingPanel
-			public void mouseClicked(MouseEvent e) {
-				int x = e.getX();
-				int y = e.getY();
-				// mPt.x = x;
-				// mPt.y = y;
-
-				Point p = new Point(AreaViewportController.pxtoHex(e.getX(), e.getY()));
-				if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
-					return;
-
-				// DEBUG: colour in the hex which is supposedly the one clicked
-				// on
-				// clear the whole screen first.
-				/*
-				 * for (int i=0;i<BSIZE;i++) { for (int j=0;j<BSIZE;j++) {
-				 * board[i][j]=EMPTY; } }
-				 */
-
-				// What do you want to do when a hexagon is clicked?
-                //System.out.println("LOC: " + p.x + " " + p.y + "");
-				HexSpace s = (HexSpace)board.getSpace(new Location(p.x,p.y));
-                System.out.println("Current: "+ s.getLocation());
-                s.status = (int) 'X';
-                s.color = Color.GREEN;
-                Space[] neighbors = s.getNeighbors();
-                for(Space sp: neighbors){
-                    if(sp != null){
-                        System.out.println(sp.getLocation());
-                    }
-                }
-				repaint();
-			}
-		}
 
 		class OneKey extends KeyAdapter {
 			private Location l;
