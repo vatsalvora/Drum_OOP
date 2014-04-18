@@ -94,10 +94,7 @@ public class Player {
         famePoints += i;
     }
 
-    public void decrementFamePoints(int i) throws Exception {
-        if(famePoints - 1 < 0){
-            throw new Exception("Cannot decrement lower than 0.");
-        }
+    public void decrementFamePoints(int i){
         famePoints -= i;
     }
 
@@ -182,8 +179,8 @@ public class Player {
 
     public boolean hasPlayableCard(PalaceCard c) {
         boolean ret = false;
-        for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).compare(c) > 0) {
+        for (PalaceCard card : cards) {
+            if (card.compare(c) > 0) {
                 ret = true;
                 break;
             }
@@ -201,7 +198,7 @@ public class Player {
                 break;
             }
         }
-        if (ret == false)
+        if (!ret)
         {
             throw new CardNotInHandException();
         }
@@ -219,8 +216,8 @@ public class Player {
         ret += "Village Tiles: " + villageBlocks + "\n";
         ret += "Two Blocks: " + twoBlocks + "\n";
         ret += "Palace Cards:\n";
-        for (int i = 0; i < cards.size(); i++) {
-            ret += cards.get(i).toString() + "\n";
+        for (PalaceCard card : cards) {
+            ret += card.toString() + "\n";
         }
         return ret;
     }

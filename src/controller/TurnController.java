@@ -48,7 +48,7 @@ public class TurnController {
     }
 
     // Turn control methods
-    public void nextTurn() {
+    public void nextTurn() throws BlockNotPlayedException {
         if(blockPlayed > 0) {
             currentPlayerIndex++;
             if (currentPlayerIndex >= numPlayers) {
@@ -61,7 +61,7 @@ public class TurnController {
         }
         else
         {
-            //put-in: block has not been used error
+            throw new BlockNotPlayedException();
         }
     }
 
@@ -242,10 +242,7 @@ public class TurnController {
         }
     }
 
-    public void undoAction(int i) throws Exception {
-        if(i + actionPoints >= 7){
-            throw new Exception("Cannot undo action. Action points already over 7.");
-        }
+    public void undoAction(int i) {
         actionPoints += i;
     }
 

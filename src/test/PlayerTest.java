@@ -155,7 +155,7 @@ public class PlayerTest {
             }
             catch(Exception e)
             {
-                e.toString();
+                System.out.println(e.toString());
             }
         }
 
