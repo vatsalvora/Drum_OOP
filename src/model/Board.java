@@ -4,11 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Board {
+
     private List<List<Space>> board;
+    private Location current;
 
     public Board() {
 
         board = new LinkedList<List<Space>>();
+        this.current = new Location(0,0);
         initBoard();
         setNeighbors();
     }
@@ -63,5 +66,19 @@ public class Board {
         return column.get(l.getXLocation());
     }
 
+
+    public void place(Location l, Tile tile){
+        HexSpace s = (HexSpace)getSpace(l);
+        s.place(tile);
+    }
+
+
+    public void setCurrentLocation(int x, int y){
+        current.setLocation(x,y);
+    }
+
+    public Location getCurrentLocation(){
+        return current;
+    }
 
 }

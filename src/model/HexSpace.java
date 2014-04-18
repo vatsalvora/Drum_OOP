@@ -10,7 +10,7 @@ public class HexSpace implements Space {
     //TODO what is status?
     public int status;
     public Color color;
-    Stack<Tile> tilesOnSpace;
+    private Stack<Tile> tilesOnSpace;
 
 
     public HexSpace(Location l) {
@@ -64,6 +64,17 @@ public class HexSpace implements Space {
         return neighbors;
 
     }
+
+    public void place(Tile tile) {
+        if(tilesOnSpace.size()==0){
+            tilesOnSpace.add(tile);
+        }
+        else{
+            Tile under = tilesOnSpace.peek();
+            under.place(tile);
+        }
+    }
+
 
     public void setNeighbors(int index, Space s) {
         neighbors[index] = s;

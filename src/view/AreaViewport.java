@@ -7,36 +7,34 @@ import model.HexSpace;
 import model.Location;
 import model.state.State;
 import model.state.Turn;
+import view.keypressed.KeyPressed;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
-
-public class hexgame {
-//      Not used!
-//    public final static Color COLOURONE = new Color(255, 255, 255, 200);
-//    public final static Color COLOURONETXT = Color.BLUE;
-//    public final static Color COLOURTWO = new Color(0, 0, 0, 200);
-//    public final static Color COLOURTWOTXT = new Color(255, 100, 255);
-    public final static int EMPTY = 0;
-
-    // constants and global variables
-    public final static Color COLOURBACK = Color.WHITE;
+public class AreaViewport {
+    final static Color COLOURBACK = Color.WHITE;
 
     public final static Color COLOURCELL = Color.ORANGE;
-    public final static Color COLOURGRID = Color.BLACK;
-    public final static int BSIZE = 12; // board size.
-    public final static int HEXSIZE = 60; // hex size in pixels
-    public final static int BORDERS = 15;
-    public final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
-    Board board = new Board();
-    public static State state;
 
-    public hexgame(GameFacade b) {
+    public final static Color COLOURGRID = Color.BLACK;
+    final static int EMPTY = 0;
+    final static int BSIZE = 12; // board size.
+    final static int HEXSIZE = 60; // hex size in pixels
+    final static int BORDERS = 15;
+    final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
+    private Board board = new Board();
+    private List<KeyPressed> keySet;
+    private State state;
+
+    public AreaViewport(GameFacade b, List<KeyPressed> keySet) {
+        this.keySet = keySet;
+        this.state = new Turn(b);
         initGame();
-        state = new Turn(b);
         createAndShowGUI();
     }
 
@@ -45,7 +43,6 @@ public class hexgame {
         AreaViewportController.setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
 
         AreaViewportController.setHeight(HEXSIZE); // Either setHeight or setSize must be run
-        // to initialize the hex
         AreaViewportController.setBorders(BORDERS);
 
         for (int i = 0; i < BSIZE; i++) {
@@ -69,6 +66,7 @@ public class hexgame {
         frame.setFocusable(false);
         panel.setFocusable(true);
         content.add(panel);
+
         frame.setSize((int) (SCRSIZE / 1.23), SCRSIZE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
@@ -76,27 +74,30 @@ public class hexgame {
     }
 
     class DrawingPanel extends JPanel {
-        private static final long serialVersionUID = 1L;
 
+        private static final long serialVersionUID = 1L;
 
         public DrawingPanel() {
             setBackground(COLOURBACK);
 
             Location l = new Location(0, 0);
-            OneKey oneKey = new OneKey(l);
-            TwoKey twoKey = new TwoKey(l);
-            ThreeKey threeKey = new ThreeKey(l);
-            SevenKey sevenKey = new SevenKey(l);
-            EightKey eightKey = new EightKey(l);
-            NineKey nineKey = new NineKey(l);
+
+            List<KeyAdapter> keys = new ArrayList<KeyAdapter>();
+            keys.add(new OneKey(l));
+            keys.add(new TwoKey(l));
+            keys.add(new ThreeKey(l));
+            keys.add(new SevenKey(l));
+            keys.add(new EightKey(l));
+            keys.add(new NineKey(l));
+            addListeners(keys);
 
 
             KeyPressedP keyPressedP = new KeyPressedP(l);
             KeyPressedV keyPressedV = new KeyPressedV(l);
             KeyPressedI keyPressedI = new KeyPressedI(l);
-//            KeyPressed1 keyPressed1 = new KeyPressed1();
-//            KeyPressed2 keyPressed2 = new KeyPressed2();
-//            KeyPressed3 keyPressed3 = new KeyPressed3();
+            KeyPressed1 keyPressed1 = new KeyPressed1();
+            KeyPressed2 keyPressed2 = new KeyPressed2();
+            KeyPressed3 keyPressed3 = new KeyPressed3();
             KeyPressed7 keyPressed7 = new KeyPressed7();
             KeyPressed8 keyPressed8 = new KeyPressed8();
             KeyPressed9 keyPressed9 = new KeyPressed9();
@@ -113,9 +114,9 @@ public class hexgame {
             KeyPressed6 keyPressed6 = new KeyPressed6();
             KeyPressedS keyPressedS = new KeyPressedS();
 
-//            addKeyListener(keyPressed1);
-//            addKeyListener(keyPressed2);
-//            addKeyListener(keyPressed3);
+            addKeyListener(keyPressed1);
+            addKeyListener(keyPressed2);
+            addKeyListener(keyPressed3);
             addKeyListener(keyPressed7);
             addKeyListener(keyPressed8);
             addKeyListener(keyPressed9);
@@ -134,14 +135,12 @@ public class hexgame {
             addKeyListener(keyPressed4);
             addKeyListener(keyPressedS);
             addKeyListener(keyPressed6);
+        }
 
-            addKeyListener(oneKey);
-            addKeyListener(twoKey);
-            addKeyListener(threeKey);
-            addKeyListener(sevenKey);
-            addKeyListener(eightKey);
-            addKeyListener(nineKey);
-
+        public void addListeners(List<KeyAdapter> keys) {
+            for (KeyAdapter ka : keys) {
+                addKeyListener(ka);
+            }
         }
 
         public void paintComponent(Graphics g) {
@@ -162,9 +161,7 @@ public class hexgame {
                             ((HexSpace) board.getSpace(new Location(i, j))).color, g2);
                 }
             }
-
         }
-
 
         class OneKey extends KeyAdapter {
             private Location l;
@@ -205,6 +202,7 @@ public class hexgame {
 
             }
         }
+
 
         class TwoKey extends KeyAdapter {
             private Location l;
