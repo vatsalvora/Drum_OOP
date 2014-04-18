@@ -57,7 +57,7 @@ public class Board {
         Space s = getSpace(l);
         s.place(tile);
     }
-    
+
 	public Space getSpace(Location l) {
 		List<Space> column = board.get(l.getYLocation());
 		return column.get(l.getXLocation());
