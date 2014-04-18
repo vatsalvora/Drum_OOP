@@ -48,14 +48,20 @@ public class TurnController {
 
     // Turn control methods
     public void nextTurn() {
-        currentPlayerIndex++;
-        if (currentPlayerIndex >= numPlayers) {
-            currentPlayerIndex = 0;
+        if(blockPlayed > 0) {
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= numPlayers) {
+                currentPlayerIndex = 0;
+            }
+            currentPlayer = players[currentPlayerIndex];
+            actionTokenUsed = false;
+            blockPlayed = 0;
+            actionPoints = 6;
         }
-        currentPlayer = players[currentPlayerIndex];
-        actionTokenUsed = false;
-        blockPlayed = 0;
-        actionPoints = 6;
+        else
+        {
+            //put-in: block has not been used error
+        }
     }
 
     public void previousTurn() {
@@ -112,7 +118,7 @@ public class TurnController {
         } else {
             currentPlayer.useActionToken();
             actionTokenUsed = true;
-            actionPoints--;
+            actionPoints++;
         }
     }
 
@@ -156,10 +162,12 @@ public class TurnController {
 
     public void placeTwoBlock() {
         if (actionPoints > 0) {
+            System.out.println("Placing two block");
             currentPlayer.placeTwoBlock();
             actionPoints--;
             blockPlayed++;
         } else {
+            System.out.println("Not placing two block");
             // put-in: no AP left error
         }
     }
