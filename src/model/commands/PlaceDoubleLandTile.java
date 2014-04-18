@@ -13,11 +13,18 @@ public class PlaceDoubleLandTile implements Command {
 		this.l = l;
 	}
 
-	public void execute() {
+    //TODO which Location of the three land tiles is l?
+    public void execute() {
 		b.placeDoubleLandTile(l);
 	}
 
-	public void undo() {
+    @Override
+    public void undo() {
 
-	}
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+    }
 }

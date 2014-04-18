@@ -51,8 +51,6 @@ public class PalaceFestival {
         players = new ArrayList<Player>();
         currentPlayer = null;
         currentPlayerIndex = 0;
-        playerScores = new int[4];
-        playerFrozen = new boolean[4];
         inProgress = true;
     }
 
@@ -63,14 +61,17 @@ public class PalaceFestival {
         currentPlayerIndex = 0;
         currentPlayer = players.get(currentPlayerIndex);
         ArrayList<Player> takeOut = new ArrayList<Player>();
-        for (int i = 0; i < players.size(); i++) {
-            if (!playable(players.get(i))) {
-                takeOut.add(players.get(i));
+        for (Player player : players) {
+            if (!playable(player)) {
+                takeOut.add(player);
             }
         }
-        for (int i = 0; i < takeOut.size(); i++) {
-            players.remove(takeOut.get(i));
+        for (Player aTakeOut : takeOut) {
+            players.remove(aTakeOut);
         }
+
+        playerScores = new int[players.size()];
+        playerFrozen = new boolean[players.size()];
     }
 
     // Change festival card
@@ -120,8 +121,8 @@ public class PalaceFestival {
         if (inProgress) {
             playerFrozen[currentPlayerIndex] = true;
             boolean dummy = true;
-            for (int i = 0; i < playerFrozen.length; i++) {
-                if (!playerFrozen[i]) {
+            for (boolean aPlayerFrozen : playerFrozen) {
+                if (!aPlayerFrozen) {
                     dummy = false;
                     nextPlayer();
                     break;
@@ -137,9 +138,9 @@ public class PalaceFestival {
     public ArrayList<Player> getVictors() {
         int maxScore = 0;
         ArrayList<Player> ret = new ArrayList<Player>();
-        for (int i = 0; i < playerScores.length; i++) {
-            if (playerScores[i] > maxScore) {
-                maxScore = playerScores[i];
+        for (int playerScore : playerScores) {
+            if (playerScore > maxScore) {
+                maxScore = playerScore;
             }
         }
         for (int i = 0; i < playerScores.length; i++) {
@@ -153,5 +154,10 @@ public class PalaceFestival {
     // Check if the festival is over
     public boolean festivalOver() {
         return !inProgress;
+    }
+
+    public void endFestival()
+    {
+        inProgress = false;
     }
 }

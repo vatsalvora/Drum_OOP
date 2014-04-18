@@ -4,17 +4,24 @@ import model.Command;
 import model.GameFacade;
 
 public class InitiatePalaceFestival implements Command {
-	private GameFacade b;
+    private GameFacade b;
 
-	public InitiatePalaceFestival(GameFacade b) {
-		this.b = b;
-	}
+    public InitiatePalaceFestival(GameFacade b) {
+        this.b = b;
+    }
 
-	public void execute() {
-		b.initiatePalaceFestival();
-	}
+    @Override
+    public void execute() {
+        b.initiatePalaceFestival();
+    }
 
-	public void undo() {
+    @Override
+    public void undo() {
 
-	}
+    }
+
+    @Override
+    public String toString(){
+        return "Initiating Palace Festival";
+    }
 }

@@ -14,8 +14,10 @@ public class Start extends State {
 
     @Override
     public void keyPressed1() {
-        incorrectKeyPressed();
-    }
+		//TODO: Load a game
+		// Get file? 
+		commandCreator.load("somestring");
+	}
 
     @Override
     public void keyPressed2() {
@@ -114,7 +116,11 @@ public class Start extends State {
 
     @Override
     public void keyPressedS() {
-
+        incorrectKeyPressed();
     }
 
+    @Override
+    public void keyPressedEnter() {
+		// TODO: Create new game
+    }
 }

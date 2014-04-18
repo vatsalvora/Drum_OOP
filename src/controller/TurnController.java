@@ -6,8 +6,6 @@ import model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -24,16 +22,13 @@ public class TurnController {
     private boolean actionTokenUsed;
     private int blockPlayed;
     private PalaceFestival festival;
-    private final static Logger LOGGER = Logger.getLogger(TurnController.class.getName());
 
 
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
         numPlayers = name.length;
 
-        //TODO throw exception if greater that 4
         if (numPlayers > 4) {
-            LOGGER.log(Level.WARNING, "Incorrect number of players. Setting numPlayers to 4.");
             numPlayers = 4;
         }
 
@@ -53,14 +48,20 @@ public class TurnController {
 
     // Turn control methods
     public void nextTurn() {
-        currentPlayerIndex++;
-        if (currentPlayerIndex >= numPlayers) {
-            currentPlayerIndex = 0;
+        if(blockPlayed > 0) {
+            currentPlayerIndex++;
+            if (currentPlayerIndex >= numPlayers) {
+                currentPlayerIndex = 0;
+            }
+            currentPlayer = players[currentPlayerIndex];
+            actionTokenUsed = false;
+            blockPlayed = 0;
+            actionPoints = 6;
         }
-        currentPlayer = players[currentPlayerIndex];
-        actionTokenUsed = false;
-        blockPlayed = 0;
-        actionPoints = 6;
+        else
+        {
+            //put-in: block has not been used error
+        }
     }
 
     public void previousTurn() {
@@ -80,11 +81,34 @@ public class TurnController {
         currentPlayer.decrementFamePoints(i);
     }
 
-    public void placeDeveloper() {
+    public void placeDeveloper(int i) {
+
         currentPlayer.placeDeveloper();
+        if(actionPoints > i)
+        {
+            actionPoints -= i;
+        }
+        else if (actionPoints == i)
+        {
+            if(blockPlayed > 0)
+            {
+                actionPoints -= i;
+            }
+            else
+            {
+                currentPlayer.removeDeveloper();
+                //put-in: using all AP but no block has been played yet error
+            }
+        }
+        else
+        {
+            currentPlayer.removeDeveloper();
+            //put-in: not enough AP error
+        }
     }
 
     public void removeDeveloper() {
+
         currentPlayer.removeDeveloper();
     }
 
@@ -94,7 +118,7 @@ public class TurnController {
         } else {
             currentPlayer.useActionToken();
             actionTokenUsed = true;
-            actionPoints--;
+            actionPoints++;
         }
     }
 
@@ -107,9 +131,8 @@ public class TurnController {
     public void placeRiceBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeRiceBlock();
-//            actionPoints--;
-//            blockPlayed++;
-            decrementActionPointsAndIncrementBlockPlayed();
+            actionPoints--;
+            blockPlayed++;
         } else {
             // put-in: no AP left error
         }
@@ -117,17 +140,15 @@ public class TurnController {
 
     public void returnRiceBlock() {
         currentPlayer.returnRiceBlock();
-//        actionPoints++;
-//        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayed();
+        actionPoints++;
+        blockPlayed--;
     }
 
     public void placeVillageBlock() {
         if (actionPoints > 0) {
             currentPlayer.placeVillageBlock();
-//            actionPoints--;
-//            blockPlayed++;
-            decrementActionPointsAndIncrementBlockPlayed();
+            actionPoints--;
+            blockPlayed++;
         } else {
             // put-in: no AP left error
         }
@@ -135,27 +156,26 @@ public class TurnController {
 
     public void returnVillageBlock() {
         currentPlayer.returnVillageBlock();
-//        actionPoints++;
-//        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayed();
+        actionPoints++;
+        blockPlayed--;
     }
 
     public void placeTwoBlock() {
         if (actionPoints > 0) {
+            System.out.println("Placing two block");
             currentPlayer.placeTwoBlock();
-//            actionPoints--;
-//            blockPlayed++;
-            decrementActionPointsAndIncrementBlockPlayed();
+            actionPoints--;
+            blockPlayed++;
         } else {
+            System.out.println("Not placing two block");
             // put-in: no AP left error
         }
     }
 
     public void returnTwoBlock() {
         currentPlayer.returnTwoBlock();
-//        actionPoints++;
-//        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayed();
+        actionPoints++;
+        blockPlayed--;
     }
 
     public void addCard(PalaceCard c) {
@@ -195,18 +215,16 @@ public class TurnController {
     // Actions that do not require the current player.
     public void placeOtherBlock() {
         if (actionPoints > 0) {
-//            actionPoints--;
-//            blockPlayed++;
-            decrementActionPointsAndIncrementBlockPlayed();
+            actionPoints--;
+            blockPlayed++;
         } else {
             // put-in: not enough AP error
         }
     }
 
     public void returnOtherBlock() {
-//        actionPoints++;
-//        blockPlayed--;
-        incrementActionPointsAndDecrementBlockPlayed();
+        actionPoints++;
+        blockPlayed--;
     }
 
     public void performAction(int i) {
@@ -255,9 +273,10 @@ public class TurnController {
 
     public void playCard(String t1, String t2) {
         PalaceCard play = new PalaceCard(t1, t2);
-        if (currentPlayer.hasPlayableCard(play) && play.compare(festival.getFestivalCard()) > 0) {
+        Player festivalPlayer = festival.getCurrentPlayer();
+        if (festivalPlayer.hasCard(play) && play.compare(festival.getFestivalCard()) > 0) {
             festival.playCard(play);
-            currentPlayer.removeCard(play);
+            festivalPlayer.removeCard(play);
         } else {
             // put-in: card cannot be played since it doesn't match festival
             // card in any way
@@ -328,13 +347,13 @@ public class TurnController {
         return currentPlayer.getCards();
     }
 
-    private void decrementActionPointsAndIncrementBlockPlayed() {
-        actionPoints--;
-        blockPlayed++;
+    public void putFestivalCard(PalaceCard c)
+    {
+        festival.changeFestivalCard(c);
     }
 
-    private void incrementActionPointsAndDecrementBlockPlayed() {
-        actionPoints++;
-        blockPlayed--;
+    public void endFestival()
+    {
+        festival.endFestival();
     }
 }

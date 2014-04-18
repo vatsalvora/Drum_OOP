@@ -94,6 +94,7 @@ public class CommandCreator {
 		// After this loop, we should be back at the original state before replay
 	}
 
+    @Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
@@ -104,7 +105,7 @@ public class CommandCreator {
 	}
 
 	public void save(String fileName) {
-		PrintWriter writer = null;
+		PrintWriter writer;
 		File file = new File(fileName);
 
 		try {
@@ -119,5 +120,8 @@ public class CommandCreator {
 			e.printStackTrace();
 		}
 
+	}
+    public void load(String filename) {
+		// TODO: lots of shit
 	}
 }

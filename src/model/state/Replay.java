@@ -15,13 +15,12 @@ public class Replay extends State {
 
     @Override
     public void keyPressed4() {
-        // TODO: Go back
-    }
+		commandCreator.undoLastCommand();
+	}
 
     @Override
     public void keyPressed6() {
-        // TODO: Go forward
-
+		commandCreator.redoLastCommand();
     }
 
     @Override
@@ -31,7 +30,7 @@ public class Replay extends State {
 
     @Override
     public void keyPressedR() {
-        // TODO: Restart
+		commandCreator.restart();
     }
 
     @Override
@@ -118,4 +117,7 @@ public class Replay extends State {
     public void keyPressedE() {
         incorrectKeyPressed();
     }
+
+    @Override
+    public void keyPressedEnter() { incorrectKeyPressed();}
 }

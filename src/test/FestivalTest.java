@@ -1,12 +1,15 @@
 package test;
 
+
 import controller.TurnController;
 import model.*;
+
 import java.util.*;
 
+//TODO are we not using JUnit?
 public class FestivalTest {
 	public static void main(String[] args) {
-		String playerNames[] = { "Bob", "Dave", "Stan", "Matt" };
+		String playerNames[] = { "Player1", "Player2", "Player3", "Player4" };
 
 		TurnController turnController = new TurnController(playerNames);
 
@@ -30,12 +33,14 @@ public class FestivalTest {
 		for (int i = 0; i < players.length; i++) {
 			System.out.println(players[i].toString());
 		}
-		turnController.drawFestivalCard(deck.drawCard());
+		turnController.putFestivalCard(deck.drawCard());
 
 		System.out.println();
 		System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
 		System.out.println();
-		String[] eligible = { "red", "blue", "yellow", "green" };
+		String[] eligible = { "red", "blue", "green", "yellow" };
+
+
 
 		turnController.startFestival(eligible);
 
@@ -46,6 +51,13 @@ public class FestivalTest {
 		}
 
 		System.out.println();
+
+        ArrayList<PalaceCard> player1cards = festivalPlayers.get(0).getCards();
+
+        for(PalaceCard c : player1cards)
+        {
+            System.out.println(c.toString());
+        }
 
 		while (!turnController.festivalOver()) {
 
@@ -120,7 +132,13 @@ public class FestivalTest {
 				}
 				break;
 			case 4:
-				turnController.freezeFestivalPlayer();
+                try {
+                    turnController.freezeFestivalPlayer();
+                }
+                catch(StackOverflowError e)
+                {
+                    turnController.endFestival();
+                }
 				break;
 			default:
 				break;
@@ -133,5 +151,46 @@ public class FestivalTest {
 		for (int i = 0; i < victors.size(); i++) {
 			System.out.println(victors.get(i).getName());
 		}
+/*
+        PalaceCard mask = new PalaceCard("MASK");
+        PalaceCard drum = new PalaceCard("DRUM");
+        PalaceCard puppet = new PalaceCard("PUPPET");
+        PalaceCard md = new PalaceCard("MASK", "DRUM");
+        PalaceCard dp = new PalaceCard("DRUM", "PUPPET");
+        PalaceCard pm = new PalaceCard("PUPPET", "MASK");
+
+        System.out.println("Comparing Cards:");
+        ArrayList<PalaceCard> list = new ArrayList<PalaceCard>();
+
+        list.add(mask);
+        list.add(drum);
+        list.add(puppet);
+        list.add(md);
+        list.add(dp);
+        list.add(pm);
+
+        ArrayList<PalaceCard> invertedList = new ArrayList<PalaceCard>();
+
+        PalaceCard mask2 = new PalaceCard("MASK");
+        PalaceCard drum2 = new PalaceCard("DRUM");
+        PalaceCard puppet2 = new PalaceCard("PUPPET");
+        PalaceCard dm = new PalaceCard("DRUM", "MASK");
+        PalaceCard pd = new PalaceCard( "PUPPET", "DRUM");
+        PalaceCard mp = new PalaceCard("MASK", "PUPPET");
+
+        invertedList.add(mask2);
+        invertedList.add(drum2);
+        invertedList.add(puppet2);
+        invertedList.add(dm);
+        invertedList.add(pd);
+        invertedList.add(mp);
+
+        for(PalaceCard p : list)
+        {
+            for(PalaceCard c : invertedList)
+            {
+                System.out.println("Palace cards: " + p.toString() + " and " + c.toString() + " are equal: " + c.sameCardAs(p));
+            }
+        }*/
 	}
 }

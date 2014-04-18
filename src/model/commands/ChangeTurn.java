@@ -17,4 +17,9 @@ public class ChangeTurn implements Command {
 	public void undo() {
 
 	}
+
+    @Override
+    public String toString(){
+        return "Changing turns";
+    }
 }

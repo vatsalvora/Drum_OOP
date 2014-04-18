@@ -169,14 +169,11 @@ public class Player {
     }
 
     public void removeCard(PalaceCard c) {
-        for (int i = 0; i < cards.size(); i++) {
-            System.out.println("Comparing played card: ");
-            System.out.println(c.toString());
-            System.out.println("to the player's:");
-            System.out.println(c.toString());
+        boolean removed = false;
+        for (int i = 0; i < cards.size() && !removed; i++) {
             if (c.sameCardAs(cards.get(i))) {
-                cards.remove(cards.get(i));
-                break;
+                cards.remove(i);
+                removed = true;
             }
         }
     }
@@ -188,6 +185,23 @@ public class Player {
                 ret = true;
                 break;
             }
+        }
+        return ret;
+    }
+
+    public boolean hasCard(PalaceCard p) {
+        boolean ret = false;
+        for(PalaceCard c : cards)
+        {
+            if(p.sameCardAs(c))
+            {
+                ret = true;
+                break;
+            }
+        }
+        if (ret == false)
+        {
+            //put-in: player does not have that card exception
         }
         return ret;
     }
