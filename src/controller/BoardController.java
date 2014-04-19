@@ -50,7 +50,7 @@ public class BoardController {
 
 	public ArrayList<Space> shortestPath(Location initial, Location fin) {
 		DeveloperPathFinding developerPathFinding = new DeveloperPathFinding();
-return null;
+        return developerPathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
 
 	}
 
