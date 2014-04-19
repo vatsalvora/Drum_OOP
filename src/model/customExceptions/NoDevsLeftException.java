@@ -2,10 +2,10 @@ package model.customExceptions;
 
 public class NoDevsLeftException extends Exception {
 
-    public NoDevsLeftException(){}
+	public NoDevsLeftException() {
+	}
 
-    public String toString()
-    {
-        return "No developers left to play";
-    }
+	public String toString() {
+		return "No developers left to play";
+	}
 }

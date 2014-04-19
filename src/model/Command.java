@@ -6,6 +6,5 @@ public interface Command {
 
 	void undo();
 
-    @Override
-    String toString();
+	String toString();
 }

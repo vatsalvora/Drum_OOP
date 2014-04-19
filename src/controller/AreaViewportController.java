@@ -91,7 +91,7 @@ public class AreaViewportController {
      * point of the hexagon g2: the Graphics2D object to draw on. Returns: void
      * Calls: hex() Purpose: This function draws a hexagon based on the initial
      * point (x,y). The hexagon is drawn in the colour specified in
-     * hexgame.COLOURELL.
+     * AreaViewport.COLOURELL.
      * *******************************************************************
      */
     public static void drawHex(int i, int j, Graphics2D g2) {
@@ -111,8 +111,8 @@ public class AreaViewportController {
      * in the hex g2 : the graphics context to draw on Return: void Called from:
      * Calls: hex() Purpose: This draws a filled in polygon based on the
      * coordinates of the hexagon. The colour depends on whether n is negative
-     * or positive. The colour is set by hexgame.COLOURONE and
-     * hexgame.COLOURTWO. The value of n is converted to letter and drawn in the
+     * or positive. The colour is set by AreaViewport.COLOURONE and
+     * AreaViewport.COLOURTWO. The value of n is converted to letter and drawn in the
      * hexagon.
      * ***************************************************************************
      */
@@ -120,10 +120,12 @@ public class AreaViewportController {
         char c;
         int x = i * (s + t);
         int y = j * h + (i % 2) * h / 2;
+        Polygon poly = hex(x, y);
         if (n < 0) {
             g2.setColor(color);
-            g2.fillPolygon(hex(x, y));
+            g2.fillPolygon(poly);
             g2.setColor(Color.BLACK);
+            g2.drawPolygon(poly);
             c = (char) (-n);
             g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
         }
@@ -132,6 +134,7 @@ public class AreaViewportController {
             g2.setColor(color);
             g2.fillPolygon(hex(x, y));
             g2.setColor(Color.BLACK);
+            g2.drawPolygon(poly);
             c = (char) n;
             g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
         }

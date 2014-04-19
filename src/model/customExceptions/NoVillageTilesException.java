@@ -2,10 +2,10 @@ package model.customExceptions;
 
 public class NoVillageTilesException extends Exception {
 
-    public NoVillageTilesException(){}
+	public NoVillageTilesException() {
+	}
 
-    public String toString()
-    {
-        return "No village tiles left.";
-    }
+	public String toString() {
+		return "No village tiles left.";
+	}
 }

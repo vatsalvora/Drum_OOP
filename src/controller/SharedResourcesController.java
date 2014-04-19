@@ -1,37 +1,50 @@
 package controller;
 
 import model.PalaceCard;
+import model.SharedResources;
+import model.customExceptions.NoIrrigationLeftException;
+import model.customExceptions.NoPalaceTilesLeft;
+import model.customExceptions.NoThreeBlockLeftException;
 
 public class SharedResourcesController {
-	public PalaceCard drawCard() {
-		return null;
 
+    SharedResources resources;
+
+    public SharedResourcesController()
+    {
+        resources = new SharedResources();
+    }
+
+	public PalaceCard drawCard() {
+		return resources.drawCard();
 	}
 
 	public int getThreeBlocksLeft() {
-		return 0;
-
+		return resources.getNumThreeBlockTiles();
 	}
 
-	public void placeThreeBlock() {
-
+	public void placeThreeBlock() throws NoThreeBlockLeftException {
+        resources.placeThreeBlock();
 	}
 
-	public int getIrrigationsLeft() {
-		return 0;
-
+	public int getIrrigationTilesLeft() {
+		return resources.getNumIrrigationTiles();
 	}
 
-	public void placeIrrigationTile() {
-
+	public void placeIrrigationTile() throws NoIrrigationLeftException {
+        resources.placeIrrigationTile();
 	}
 
 	public void discardCard(PalaceCard p) {
-
+        resources.discardCard(p);
 	}
 
-	public void placePalace(int level) {
-
+	public void placePalace(int level) throws NoPalaceTilesLeft {
+        resources.placePalaceTile(level);
 	}
 
+    public void returnPalaceCard(PalaceCard c)
+    {
+        resources.returnCard(c);
+    }
 }
