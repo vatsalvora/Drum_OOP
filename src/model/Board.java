@@ -48,6 +48,10 @@ public class Board {
         return current;
     }
 
+    public void setCurrentSpace(HexSpace space){
+        current = space;
+    }
+
     private void setNeighbors() {
         int[] gap =    {1,0,1,-1,0,0,1,-1,0,0,1,-1,0,0,1,-1,0,-1,0};
         int[] gapLeft= {1,-1,0,-1,1,0,0,-1,1,0,0,-1,1,0,0,-1,1,0,1};
