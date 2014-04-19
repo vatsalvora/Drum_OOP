@@ -221,4 +221,8 @@ public class Player {
         }
         return ret;
     }
+
+    public PalaceCard returnCard() {
+        return cards.remove(cards.size()-1);
+    }
 }

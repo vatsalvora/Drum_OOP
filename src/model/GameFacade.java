@@ -245,6 +245,11 @@ public class GameFacade {
         }
     }
 
+    public void undoDrawCard()
+    {
+        sharedResourcesController.returnPalaceCard(turnController.returnCard());
+    }
+
     public void playCard(String t1, String t2)
     {
         try {

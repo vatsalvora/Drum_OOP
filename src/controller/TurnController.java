@@ -196,6 +196,11 @@ public class TurnController {
         }
     }
 
+    public PalaceCard returnCard()
+    {
+        return currentPlayer.returnCard();
+    }
+
     public void drawFestivalCard(PalaceCard c) throws BlockNotPlayedException, NotEnoughAPException {
         if (c != null) {
             if (actionPoints > 0) {
