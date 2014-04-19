@@ -2,7 +2,7 @@ package controller;
 
 import model.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class BoardController {
 	private Board board;
@@ -19,6 +19,9 @@ public class BoardController {
 
 	}
 
+    public HexSpace getCurrentSpace(){
+        return board.getCurrentSpace();
+    }
 	public void placeTile(Location location, Tile tile) {
         board.place(location, tile);
 	}
@@ -45,7 +48,7 @@ public class BoardController {
 
 	}
 
-	public List<Space> shortestPath(Location initial, Location fin) {
+	public ArrayList<Space> shortestPath(Location initial, Location fin) {
 		DeveloperPathFinding developerPathFinding = new DeveloperPathFinding();
 return null;
 

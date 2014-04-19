@@ -6,16 +6,16 @@ import java.util.List;
 public class Board {
 
     private List<List<Space>> board;
-    private Location current;
+    private HexSpace current;
     private int width;
     private int altitude;
 
     public Board() {
 
         board = new LinkedList<List<Space>>();
-        this.current = new Location(0, 0);
         initBoard();
         setNeighbors();
+        this.current = (HexSpace)getSpace(new Location(0, 0));
     }
 
     private void initBoard() {
@@ -42,6 +42,10 @@ public class Board {
     public int getMaxLen(){return altitude;}
     public int getWidth() {
         return width;
+    }
+
+    public HexSpace getCurrentSpace(){
+        return current;
     }
 
     private void setNeighbors() {
@@ -92,12 +96,5 @@ public class Board {
     }
 
 
-    public void setCurrentLocation(int x, int y) {
-        current.setLocation(x, y);
-    }
-
-    public Location getCurrentLocation() {
-        return current;
-    }
 
 }

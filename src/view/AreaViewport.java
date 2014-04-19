@@ -30,12 +30,14 @@ public class AreaViewport {
     public static int BORDERS = 15;
     public static int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     public static int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
-    private Board board = new Board();
+    private Board board;
     private List<KeyPressed> keySet;
     private State state;
+    private DrawingPanel panel;
 
     public AreaViewport(GameFacade b, List<KeyPressed> keySet) {
         this.keySet = keySet;
+        this.board = b.getBoard();
         this.state = new Turn(b);
         BOARD_SIZE = board.getWidth();
         int maxLen = board.getMaxLen();
@@ -67,13 +69,15 @@ public class AreaViewport {
 
         // set up board here
         ((HexSpace) board.getSpace(new Location(3, 3))).status = "I";
+        ((HexSpace) board.getSpace(new Location(3, 3))).color = Color.BLUE;
         ((HexSpace) board.getSpace(new Location(5, 8))).status = "I";
+        ((HexSpace) board.getSpace(new Location(5, 8))).color = Color.BLUE;
         ((HexSpace) board.getSpace(new Location(3, 15))).status = "I";
+        ((HexSpace) board.getSpace(new Location(3, 15))).color = Color.BLUE;
     }
 
     private void createAndShowGUI() {
-        DrawingPanel panel = new DrawingPanel();
-
+        panel = new DrawingPanel();
         JFrame frame = new JFrame("Hex Testing 4");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
@@ -85,6 +89,10 @@ public class AreaViewport {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public void render(){
+        panel.repaint();
     }
 
     class DrawingPanel extends JPanel {
@@ -154,7 +162,8 @@ public class AreaViewport {
                     // board[i][j],g2);
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
-                    AreaViewportController.fillHex(loc.getXLocation(), loc.getYLocation(), curr.status,
+                    String status = (curr.getHeight()>0) ? curr.getHeight()+"" : curr.status;
+                    AreaViewportController.fillHex(loc.getXLocation(), loc.getYLocation(), status,
                             curr.color, g2);
                 }
             }
@@ -220,7 +229,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(0) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(0);
-                        neighbor.status = neighbor.getHeight()+"";
+                        
                         neighbor.color = Color.RED;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -249,7 +258,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(1) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(1);
-                        neighbor.status = neighbor.getHeight()+"";
+                        
                         neighbor.color = Color.CYAN;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -276,7 +285,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(2) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(2);
-                        neighbor.status = neighbor.getHeight()+"";
+                        
                         neighbor.color = Color.GREEN;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -304,7 +313,7 @@ public class AreaViewport {
                     if(getNode().getNeighbor(3) != null)
                     {
                         HexSpace neighbor = (HexSpace)getNode().getNeighbor(3);
-                        neighbor.status = neighbor.getHeight()+"";
+                        
                         neighbor.color = Color.WHITE;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -333,7 +342,7 @@ public class AreaViewport {
                     System.out.println(getNode().numberOfNeighbors());
                     if (getNode().getNeighbor(4) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(4);
-                        neighbor.status = neighbor.getHeight()+"";
+
                         neighbor.color = Color.BLUE;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -360,7 +369,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(5) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(5);
-                        neighbor.status = neighbor.getHeight()+"";
+                        
                         neighbor.color = Color.GRAY;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);

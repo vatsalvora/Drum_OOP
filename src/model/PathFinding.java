@@ -1,9 +1,9 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface PathFinding {
 
-    public List<Space> getShortestPath(Location initial, Location fin);
+    public ArrayList<Space> getShortestPath(Location start, Location end);
 
 }

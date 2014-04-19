@@ -6,7 +6,6 @@ import model.Player;
 import model.customExceptions.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*
  * TurnController manages anything a player can do with their 
@@ -319,12 +318,7 @@ public class TurnController {
         return actionPoints;
     }
 
-    public boolean playedBlock() {
-//        boolean ret = false;
-//        if (blockPlayed > 0) {
-//            ret = true;
-//        }
-//        return ret;
+    private boolean playedBlock() {
         return (blockPlayed > 0);
     }
 
@@ -350,7 +344,7 @@ public class TurnController {
         return currentPlayer.getColor();
     }
 
-    public List<PalaceCard> getCurrentCards() {
+    public ArrayList<PalaceCard> getCurrentCards() {
         return currentPlayer.getCards();
     }
 

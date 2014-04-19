@@ -45,6 +45,25 @@ public class GameFacade {
         return boardController.getBoard();
     }
 
+
+    public HexSpace getCurrentSpace(){return boardController.getCurrentSpace();}
+
+    public int getAPLeft()
+    {
+        return turnController.APLeft();
+    }
+
+    public String currentPlayerName()
+    {
+        return turnController.getPlayerName();
+    }
+
+    public ArrayList<PalaceCard> currentPlayerCards()
+    {
+        return turnController.getCurrentCards();
+    }
+
+
 	public void placeIrrigationTile(Location location) {
         try
         {
@@ -205,7 +224,7 @@ public class GameFacade {
         turnController.startFestival(colors);
 	}
 
-	public void placePalaceTile(Location l, int level) {
+	public void placePalaceTile(HexSpace s, int level) {
         try
         {
             sharedResourcesController.placePalace(level);
@@ -214,6 +233,8 @@ public class GameFacade {
                 try {
                     //place the palace at the proper spot
                     //give fame points to proper player
+                    Tile t = new PalaceTile();
+                    s.place(t);
                 }
                 catch (Exception e) {
                     sharedResourcesController.returnPalace(level);
@@ -306,6 +327,16 @@ public class GameFacade {
         turnController.freezeFestivalPlayer();
     }
 
+    public Player getCurrentFestivalPlayer()
+    {
+        return turnController.getCurrentFestivalPlayer();
+    }
+
+    public boolean festivalOver()
+    {
+        return turnController.festivalOver();
+    }
+
     public void placeDeveloper(Location location)
     {
         String color = turnController.getPlayerColor();
@@ -362,7 +393,6 @@ public class GameFacade {
             {
                 //tell the user why they cannot move the developer
                 forceDeveloperMove(end, start);         //force the developer to move back
-                turnController.undoAction(APUsed);
             }
         }
         catch(Exception e)
@@ -371,7 +401,7 @@ public class GameFacade {
         }
     }
 
-    public void forceDeveloperMove(Location start, Location end)
+    private void forceDeveloperMove(Location start, Location end)
     {
         //force any developer on start location to move to end location, if possible
     }
@@ -391,4 +421,11 @@ public class GameFacade {
     {
         turnController.returnActionToken();
     }
+
+    public PalaceFestival getFestival()
+    {
+        return turnController.getFestival();
+    }
+
+
 }
