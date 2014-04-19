@@ -1,13 +1,10 @@
 package model;
 
-
-
-
 /**
  * Created by Vatsal on 4/13/2014.
+ * edited by jose
  */
 public class PalaceTile extends Tile {
-
 
 
 	private int possition;
@@ -27,6 +24,10 @@ public class PalaceTile extends Tile {
 		this.possition = possiton;
 	}
 
+	public int getPossition(){
+		return possition;
+	}
+	
 	@Override
 	public void rotateClockwise() {
 		

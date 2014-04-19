@@ -8,12 +8,12 @@ public class TwoBlock extends Block{
 	Location center;
 	Tile centerType;
 	Tile[] neighbors;
+	final private int numberOfNeighbors = 1;
 	
-	TwoBlock(Space loc){
+	TwoBlock(){
 		initNeighbors();
-		setCenter(loc);
 		assignCenterType();
-		assignNeighbors(1);
+		assignNeighbors(numberOfNeighbors);
 	}
 
 	
@@ -34,13 +34,21 @@ public class TwoBlock extends Block{
 	}
 	
 	private void initNeighbors(){
-		neighbors= new Tile[2];
+		neighbors= new Tile[numberOfNeighbors];
 		
 		for(int i = 0; i < neighbors.length; i++){
 			neighbors[i] = null;
 		}
 	}
 	
+	public int[] getNeighborsPossition(){
+		int[] possitions = new int[numberOfNeighbors];
+		
+		for(int i = 0 ; i < numberOfNeighbors; i++)
+				possitions[i] = neighbors[i].getPossition();
+		
+		return possitions;
+	}
 	
 	@Override
 	public void rotateClockwise() {
@@ -67,7 +75,7 @@ public class TwoBlock extends Block{
 
 	@Override
 	public void placeOn(Space loc) {
-		
+		setCenter(loc);
 	}
 
 }
