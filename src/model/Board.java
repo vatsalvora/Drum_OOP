@@ -8,6 +8,7 @@ public class Board {
     private List<List<Space>> board;
     private Location current;
     private int width;
+    private int altitude;
 
     public Board() {
 
@@ -22,6 +23,9 @@ public class Board {
         int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
         int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
         width = height.length;
+        altitude = 0;
+        for(int i: height) altitude = Math.max(i,altitude);
+
         for (int p = 0; p < height.length; p++) {
             int n = height[p];
             List<Space> column = new LinkedList<Space>();
@@ -35,6 +39,7 @@ public class Board {
         }
     }
 
+    public int getMaxLen(){return altitude;}
     public int getWidth() {
         return width;
     }

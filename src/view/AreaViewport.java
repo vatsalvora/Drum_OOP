@@ -28,7 +28,8 @@ public class AreaViewport {
     public static int BOARD_SIZE = 12; // board size.
     public static int HEX_SIZE = 46; // hex size in pixels
     public static int BORDERS = 15;
-    public static int SCREEN_SIZE = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
+    public static int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
+    public static int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
     private Board board = new Board();
     private List<KeyPressed> keySet;
     private State state;
@@ -37,7 +38,9 @@ public class AreaViewport {
         this.keySet = keySet;
         this.state = new Turn(b);
         BOARD_SIZE = board.getWidth();
-        SCREEN_SIZE = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
+        int maxLen = board.getMaxLen();
+        SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
+        SCREEN_LEN = HEX_SIZE * (maxLen + 1) + BORDERS * 3;
 
         initGame();
         createAndShowGUI();
@@ -78,7 +81,7 @@ public class AreaViewport {
         panel.setFocusable(true);
         content.add(panel);
 
-        frame.setSize((int) (SCREEN_SIZE / 1.23), SCREEN_SIZE);
+        frame.setSize((int) (SCREEN_Width / 1.23), (int)(SCREEN_LEN*1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
