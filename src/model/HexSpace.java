@@ -82,5 +82,8 @@ public class HexSpace implements Space {
         return l;
     }
 
-
+    public Space[] getNeighbors()
+    {
+        return neighbors;
+    }
 }

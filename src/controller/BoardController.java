@@ -51,7 +51,6 @@ public class BoardController {
 	public ArrayList<Space> shortestPath(Location initial, Location fin) {
 		DeveloperPathFinding developerPathFinding = new DeveloperPathFinding();
         return developerPathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
-
 	}
 
 	public int shortestPathCost() {
