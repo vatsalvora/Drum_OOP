@@ -27,33 +27,34 @@ public class CommandCreator {
 	}
 
 	public void move1() {
-		current = new Move1(gameFacade);
+		Command c = new Move1(gameFacade);
+		c.execute();
 
 	}
 
 	public void move2() {
-		current = new Move2(gameFacade);
-
+		Command c = new Move2(gameFacade);
+		c.execute();
 	}
 
 	public void move3() {
-		current = new Move3(gameFacade);
-
+		Command c = new Move3(gameFacade);
+		c.execute();
 	}
 
 	public void move7() {
-		current = new Move7(gameFacade);
-
+		Command c = new Move7(gameFacade);
+		c.execute();
 	}
 
 	public void move8() {
-		current = new Move8(gameFacade);
-
+		Command c = new Move8(gameFacade);
+		c.execute();
 	}
 
 	public void move9() {
-		current = new Move9(gameFacade);
-
+		Command c = new Move9(gameFacade);
+		c.execute();
 	}
 
 	public void placeTripleLandTile() {
