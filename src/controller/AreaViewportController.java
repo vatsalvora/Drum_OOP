@@ -98,9 +98,9 @@ public class AreaViewportController {
         int x = i * (s + t);
         int y = j * h + (i % 2) * h / 2;
         Polygon poly = hex(x, y);
-        g2.setColor(AreaViewport.COLOURCELL);
+        g2.setColor(AreaViewport.COLOR_CELL);
         g2.fillPolygon(poly);
-        g2.setColor(AreaViewport.COLOURGRID);
+        g2.setColor(AreaViewport.COLOR_GRID);
         g2.drawPolygon(poly);
     }
 
