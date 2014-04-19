@@ -266,4 +266,47 @@ public class GameFacade {
     {
         turnController.freezeFestivalPlayer();
     }
+
+    public void placeDeveloper(Location location)
+    {
+        String color = turnController.getPlayerColor();
+
+        try{
+            int APForPlacement = 0;
+            //place a developer at location and get AP spent on action
+            try{
+                turnController.placeDeveloper(APForPlacement);
+            }
+            catch(Exception e)
+            {
+                //tell user developer cannot be placed due to certain restrictions
+                //take the developer off of the location it was placed
+            }
+        }
+        catch(Exception e)
+        {
+            //tell user why developer cannot be placed at that location
+        }
+    }
+
+    public void undoDeveloperPlacement(Location location)
+    {
+        int APForPlacement = 0;
+        //undo the developer placement at that location and return the AP spent as a result
+        turnController.undoDeveloperPlacement(APForPlacement);
+    }
+
+    public void removeDeveloper(Location location)
+    {
+        try{
+            //remove a developer of the current player's color from the specified location
+            int APForRemoval = 0;
+            //return the amount of AP spent removing the developer
+            turnController.removeDeveloper(APForRemoval);
+        }
+        catch(Exception e)
+        {
+            //tell user they do not own a developer at that location
+        }
+    }
 }

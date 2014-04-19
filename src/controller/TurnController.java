@@ -108,8 +108,14 @@ public class TurnController {
         }
     }
 
-    public void removeDeveloper() {
+    public void undoDeveloperPlacement(int i)
+    {
+        currentPlayer.removeDeveloper();
+        actionPoints += i;
+    }
 
+    public void removeDeveloper(int i) {
+        actionPoints -= i;
         currentPlayer.removeDeveloper();
     }
 
