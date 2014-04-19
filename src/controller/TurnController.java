@@ -294,8 +294,8 @@ public class TurnController {
         return festival.getFestivalCard();
     }
 
-    public boolean isFestivalOver() {
-        return festival.isFestivalOver();
+    public boolean festivalOver() {
+        return festival.festivalOver();
     }
 
     // General getters

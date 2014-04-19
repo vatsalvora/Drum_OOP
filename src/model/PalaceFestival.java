@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /*
  * PalaceFestival holds information for and does calculations
@@ -18,7 +18,7 @@ public class PalaceFestival {
 
     public PalaceFestival() {
         festivalCard = null;
-        players = new ArrayList<>();
+        players = new ArrayList<Player>();
         currentPlayer = null;
         currentPlayerIndex = 0;
         playerScores = new int[4];
@@ -28,7 +28,7 @@ public class PalaceFestival {
 
     public PalaceFestival(PalaceCard c) {
         festivalCard = c;
-        players = new ArrayList<>();
+        players = new ArrayList<Player>();
         currentPlayer = null;
         currentPlayerIndex = 0;
         playerScores = new int[4];
@@ -48,7 +48,7 @@ public class PalaceFestival {
 
     // Reset the festival
     private void reset() {
-        players = new ArrayList<>();
+        players = new ArrayList<Player>();
         currentPlayer = null;
         currentPlayerIndex = 0;
         inProgress = true;
@@ -58,7 +58,7 @@ public class PalaceFestival {
     public void startFestival(ArrayList<Player> p) {
         reset();
         players = p;
-        ArrayList<Player> takeOut = new ArrayList<>();
+        ArrayList<Player> takeOut = new ArrayList<Player>();
         for (Player player : players) {
             if (!playable(player)) {
                 takeOut.add(player);
@@ -162,7 +162,7 @@ public class PalaceFestival {
     // Calculate victors
     public ArrayList<Player> getVictors() {
         int maxScore = 0;
-        ArrayList<Player> ret = new ArrayList<>();
+        ArrayList<Player> ret = new ArrayList<Player>();
         for (int playerScore : playerScores) {
             if (playerScore > maxScore) {
                 maxScore = playerScore;
@@ -177,7 +177,7 @@ public class PalaceFestival {
     }
 
     // Check if the festival is over
-    public boolean isFestivalOver() {
+    public boolean festivalOver() {
         return !inProgress;
     }
 
