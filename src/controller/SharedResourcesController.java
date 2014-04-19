@@ -28,11 +28,7 @@ public class SharedResourcesController {
     }
 
     public void placeThreeBlock() throws NoThreeBlockLeftException {
-        if (getThreeBlocksLeft() > 0) {
-            resources.placeThreeBlock();
-        } else {
-            throw new NoThreeBlockLeftException();
-        }
+        resources.placeThreeBlock();
     }
 
     public void returnThreeBlock() {
@@ -44,11 +40,8 @@ public class SharedResourcesController {
     }
 
     public void placeIrrigationTile() throws NoIrrigationLeftException {
-        if (getIrrigationTilesLeft() > 0) {
-            resources.placeIrrigationTile();
-        } else {
-            throw new NoIrrigationLeftException();
-        }
+
+        resources.placeIrrigationTile();
     }
 
     public void returnIrrigationTile() {
