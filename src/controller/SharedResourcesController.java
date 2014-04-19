@@ -2,7 +2,11 @@ package controller;
 
 import model.PalaceCard;
 import model.SharedResources;
+
+import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NoPalaceTilesLeft;
+import model.customExceptions.NoThreeBlockLeftException;
+
 
 public class SharedResourcesController {
 
@@ -21,7 +25,7 @@ public class SharedResourcesController {
 		return resources.getNumThreeBlockTiles();
 	}
 
-	public void placeThreeBlock() {
+	public void placeThreeBlock() throws NoThreeBlockLeftException {
         resources.placeThreeBlock();
 	}
 
@@ -29,7 +33,8 @@ public class SharedResourcesController {
 		return resources.getNumIrrigationTiles();
 	}
 
-	public void placeIrrigationTile() {
+	public void placeIrrigationTile() throws NoIrrigationLeftException {
+
         resources.placeIrrigationTile();
 	}
 

@@ -12,7 +12,7 @@ public class GameFacade {
 
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
-		boardController = new BoardController(new Board());
+		boardController = new BoardController();
 		sharedResourcesController = new SharedResourcesController();
 	}
 

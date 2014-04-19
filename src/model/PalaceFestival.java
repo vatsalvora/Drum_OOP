@@ -58,8 +58,6 @@ public class PalaceFestival {
     public void startFestival(ArrayList<Player> p) {
         reset();
         players = p;
-        currentPlayerIndex = 0;
-        currentPlayer = players.get(currentPlayerIndex);
         ArrayList<Player> takeOut = new ArrayList<Player>();
         for (Player player : players) {
             if (!playable(player)) {
@@ -70,6 +68,8 @@ public class PalaceFestival {
             players.remove(aTakeOut);
         }
 
+        currentPlayerIndex = 0;
+        currentPlayer = players.get(currentPlayerIndex);
         playerScores = new int[players.size()];
         playerFrozen = new boolean[players.size()];
     }
@@ -136,6 +136,7 @@ public class PalaceFestival {
     public void playCard(PalaceCard c) {
         if (inProgress) {
             playerScores[currentPlayerIndex] += festivalCard.compare(c);
+			currentPlayer.removeCard(c);
             nextPlayer();
         }
     }
