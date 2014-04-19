@@ -1,8 +1,12 @@
 package model;
 
+
+import model.customExceptions.NoPalaceTilesLeft;
+
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NoPalaceTilesLeft;
 import model.customExceptions.NoThreeBlockLeftException;
+
 
 import java.util.ArrayList;
 
@@ -68,6 +72,7 @@ public class SharedResources {
     }
 
     public void placeIrrigationTile() throws NoIrrigationLeftException
+
     {
         if(numIrrigationTiles > 0)
         {
@@ -75,11 +80,15 @@ public class SharedResources {
         }
         else
         {
-            throw new NoIrrigationLeftException();
+
+            //put-in: no irrigation tiles left
         }
     }
 
+
+
     public void placeThreeBlock() throws NoThreeBlockLeftException
+
     {
         if(numThreeBlockTiles > 0)
         {
@@ -87,7 +96,9 @@ public class SharedResources {
         }
         else
         {
+
             throw new NoThreeBlockLeftException();
+
         }
     }
 

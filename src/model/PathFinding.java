@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PathFinding {
 
-	public List<Space> getShortestPath();
-	
+    public List<Space> getShortestPath(Location initial, Location fin);
+
 }

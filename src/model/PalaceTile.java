@@ -8,6 +8,7 @@ import java.util.Stack;
 public class PalaceTile extends Tile{
 
 
+
     public PalaceTile(){
 
     }
@@ -24,16 +25,15 @@ public class PalaceTile extends Tile{
     }
 
     @Override
+
     public boolean equals(Object t) {
         if (!(t instanceof PalaceTile)) return false;
-        else{
+        else {
 
         }
         return true;
+
     }
 
 
-    public void place(Tile t, Stack<Tile> tilesOnSpace) {
-         //Can't Place Anything on top
-    }
 }
