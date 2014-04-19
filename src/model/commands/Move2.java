@@ -7,6 +7,12 @@ public class Move2 implements Command {
 
 	public Move2(GameFacade gameFacade) {
 		// TODO Auto-generated constructor stub
+        try{
+
+        }
+        catch(Exception e){
+            System.out.println();
+        }
 	}
 
 	@Override

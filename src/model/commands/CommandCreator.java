@@ -11,8 +11,8 @@ import java.util.Stack;
 public class CommandCreator {
 	private GameFacade gameFacade;
 	private Command current;
-	private Stack<Command> commands = new Stack<>();
-	private Stack<Command> secondCommands = new Stack<>();
+	private Stack<Command> commands = new Stack<Command>();
+	private Stack<Command> secondCommands = new Stack<Command>();
 
 	public CommandCreator(GameFacade gameFacade) {
 		this.gameFacade = gameFacade;
