@@ -5,7 +5,6 @@ import model.Command;
 import model.GameFacade;
 import model.Location;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Stack;
@@ -70,31 +69,32 @@ public class CommandCreator {
 	}
 
 	public void undoLastCommand() {
-		if(!commands.empty()) 
-		{		Command command = commands.pop();
-				command.undo();
-				secondCommands.push(command); //Saves command for re-do in replay
+		if (!commands.empty()) {
+			Command command = commands.pop();
+			command.undo();
+			secondCommands.push(command); // Saves command for re-do in replay
 		}
-		// TODO: Handle case where stack is empty	
-	}
-	public void redoLastCommand() {
-		if(!secondCommands.empty())
-		{
-				Command command = secondCommands.pop();
-				command.execute();
-				commands.push(command);
-		}
-		// TODO: Handle case where stack is empty	
-	}
-	public void restart()
-	{
-		// For replay mode
-		while(!secondCommands.empty())
-				redoLastCommand();
-		// After this loop, we should be back at the original state before replay
+		// TODO: Handle case where stack is empty
 	}
 
-    @Override
+	public void redoLastCommand() {
+		if (!secondCommands.empty()) {
+			Command command = secondCommands.pop();
+			command.execute();
+			commands.push(command);
+		}
+		// TODO: Handle case where stack is empty
+	}
+
+	public void restart() {
+		// For replay mode
+		while (!secondCommands.empty())
+			redoLastCommand();
+		// After this loop, we should be back at the original state before
+		// replay
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
@@ -106,22 +106,19 @@ public class CommandCreator {
 
 	public void save(String fileName) {
 		PrintWriter writer;
-		File file = new File(fileName);
-
 		try {
-			writer = new PrintWriter(file);
+			writer = new PrintWriter(fileName);
 			for (Command comm : commands) {
 				writer.println(comm);
 			}
 			writer.close();
 			System.out.println("File saved");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-    public void load(String filename) {
-		// TODO: lots of shit
+
+	public void load(String filename) {
 	}
 }

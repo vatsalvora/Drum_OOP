@@ -21,4 +21,8 @@ public class PlaceIrrigationTile implements Command {
 
 	}
 
+	public String toString() {
+		return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+	}
+
 }
