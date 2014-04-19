@@ -15,7 +15,7 @@ public class ChangeTurn implements Command {
             gameFacade.changeTurn();
         }
         catch(BlockNotPlayedException e){
-            System.out.println(e.toString());
+            //print error to user
         }
 	}
 

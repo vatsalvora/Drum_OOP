@@ -58,7 +58,7 @@ public class GameFacade {
         }
         catch(NoIrrigationLeftException e)
         {
-            System.out.println(e.toString());
+            //print error to user
         }
 	}
 
@@ -215,14 +215,8 @@ public class GameFacade {
         }
 	}
 
-	public void changeTurn(){
-		try {
-            turnController.nextTurn();
-        }
-        catch(BlockNotPlayedException e)
-        {
-            //tell user to play a block
-        }
+	public void changeTurn() throws BlockNotPlayedException {
+        turnController.nextTurn();
 	}
 
     public void undoChangeTurn()
