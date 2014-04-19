@@ -263,10 +263,6 @@ public class TurnController {
         festival.startFestival(inFestival);
     }
 
-    public void changeFestivalPlayer() {
-        festival.nextPlayer();
-    }
-
     public void playCard(String t1, String t2) throws CardNotPlayableException, CardNotInHandException {
         PalaceCard play = new PalaceCard(t1, t2);
         Player festivalPlayer = festival.getCurrentPlayer();
