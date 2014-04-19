@@ -42,7 +42,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressed2() {
-		commandCreator.move2();
+        commandCreator.move2();
 	}
 
 	@Override

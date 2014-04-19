@@ -68,14 +68,12 @@ public class Board {
                     col = new int[]{-1, 0, 1, -1, 0, 1};
                     row = new int[]{1, 1, 1 + gap[q], 0, -1, gap[q]};
                 }
-                System.out.println("Col: " + q + " Row: " + w);
+
                 for (int c = 0; c < col.length; c++) {
                     if ((q + col[c]) >= 0 && (q + col[c]) < board.size()) {
                         List<Space> neighborList = board.get(q + col[c]);
                         if ((w + row[c]) >= 0 && (w + row[c]) < neighborList.size()) {
                             s.setNeighbors(c, neighborList.get(w + row[c]));
-                            System.out.println("Num: " + c + " Col: " + (q + col[c]) + " Row: " + (w + row[c]));
-
                         }
                     }
                 }

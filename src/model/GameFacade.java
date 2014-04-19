@@ -366,32 +366,74 @@ public class GameFacade {
 	}
 
 	public void move1() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(0) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(0);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 
 	public void move2() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(1) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(1);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 
 	public void move3() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(2) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(2);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 
 	public void move7() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(3) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(3);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 
 	public void move8() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(4) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(4);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 
 	public void move9() {
-		// TODO Auto-generated method stub
+        if (boardController.getCurrentSpace().getNeighbor(5) != null) {
+            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(5);
+
+
+            System.out.println("LOC: " + neighbor.getLocation());
+            boardController.setCurrentSpace(neighbor);
+        }
+        render();
 
 	}
 

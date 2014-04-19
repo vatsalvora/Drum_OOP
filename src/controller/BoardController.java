@@ -25,6 +25,10 @@ public class BoardController {
         return board.getCurrentSpace();
     }
 
+    public void setCurrentSpace(HexSpace space){
+         board.setCurrentSpace(space);
+    }
+
 	public void placeTile(Location location, Tile tile) {
         board.place(location, tile);
 	}
