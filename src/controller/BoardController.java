@@ -8,11 +8,7 @@ public class BoardController {
 	private Board board;
 
     public BoardController() {
-
-    }
-
-    public BoardController(Board board) {
-        this.board = board;
+        board = new Board();
     }
 
     public Board getBoard() {
