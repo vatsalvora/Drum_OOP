@@ -11,22 +11,22 @@ public class Board {
 
     public Board() {
 
-        board = new LinkedList<List<Space>>();
-        this.current = new Location(0,0);
+        board = new LinkedList<>();
+        this.current = new Location(0, 0);
         initBoard();
         setNeighbors();
     }
 
     private void initBoard() {
 
-        int[] height = {4,5,8,10,10,10,10,9,9,9,9,11,11,10,9,9,7,6,4};
-        int[] gap =    {2,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,2};
+        int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
+        int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
         width = height.length;
         for (int p = 0; p < height.length; p++) {
             int n = height[p];
-            List<Space> column = new LinkedList<Space>();
+            List<Space> column = new LinkedList<>();
             for (int i = 0; i < n; i++) {
-                Location location = new Location(p, i+gap[p]);
+                Location location = new Location(p, i + gap[p]);
                 Space space = new HexSpace(location);
                 column.add(space);
 
@@ -35,12 +35,12 @@ public class Board {
         }
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return width;
     }
 
     private void setNeighbors() {
-        int[] gap =    {1,0,1,-1,0,0,1,-1,0,0,1,-1,0,0,1,-1,0,-1,0};
+        int[] gap = {1, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, -1, 0, -1, 0};
         for (int q = 0; q < board.size(); q++) {
             List<Space> list = board.get(q);
             int t = list.size();
@@ -51,10 +51,10 @@ public class Board {
                 int[] row;
                 if (q % 2 == 0) {
                     col = new int[]{-1, 0, 1, -1, 0, 1};
-                    row = new int[]{0, 1, 0+gap[q], -1, -1, -1+gap[q]};
+                    row = new int[]{0, 1, gap[q], -1, -1, -1 + gap[q]};
                 } else {
                     col = new int[]{-1, 0, 1, -1, 0, 1};
-                    row = new int[]{1, 1, 1+gap[q], 0, -1, 0+gap[q]};
+                    row = new int[]{1, 1, 1 + gap[q], 0, -1, gap[q]};
                 }
                 System.out.println("Col: " + q + " Row: " + w);
                 for (int c = 0; c < col.length; c++) {
@@ -76,22 +76,22 @@ public class Board {
         return column.get(l.getXLocation());
     }
 
-    public int getLength(int y){
+    public int getLength(int y) {
         return board.get(y).size();
     }
 
 
-    public void place(Location l, Tile tile){
-        HexSpace s = (HexSpace)getSpace(l);
+    public void place(Location l, Tile tile) {
+        HexSpace s = (HexSpace) getSpace(l);
         s.place(tile);
     }
 
 
-    public void setCurrentLocation(int x, int y){
-        current.setLocation(x,y);
+    public void setCurrentLocation(int x, int y) {
+        current.setLocation(x, y);
     }
 
-    public Location getCurrentLocation(){
+    public Location getCurrentLocation() {
         return current;
     }
 
