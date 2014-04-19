@@ -2,107 +2,103 @@ package test;
 
 
 import controller.TurnController;
-import model.*;
+import model.Deck;
+import model.PalaceCard;
+import model.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FestivalTest {
 
-    public FestivalTest(){}
+    public FestivalTest() {
+    }
 
 
-	public void PerformFestival (TurnController tc, Deck d) {
+    public void PerformFestival(TurnController tc, Deck d) {
 
-		TurnController turnController = tc;
+        Player[] players = tc.getPlayers();
 
-		Player[] players = turnController.getPlayers();
+        System.out.println("\n\nPalace Festival Card: " + tc.getFestivalCard());
+        System.out.println("");
+        String[] eligible = {"red", "blue", "green", "yellow"};
 
-		Deck deck = d;
+        tc.startFestival(eligible);
 
-		System.out.println();
+        ArrayList<Player> festivalPlayers = tc.getFestivalPlayers();
 
-		System.out.println();
-		System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
-		System.out.println();
-		String[] eligible = { "red", "blue", "green", "yellow" };
+        for (Player festivalPlayer : festivalPlayers) {
+            System.out.println(festivalPlayer.getName());
+        }
 
-		turnController.startFestival(eligible);
+        System.out.println();
 
-		ArrayList<Player> festivalPlayers = turnController.getFestivalPlayers();
+        while (!tc.isFestivalOver()) {
 
-		for (int i = 0; i < festivalPlayers.size(); i++) {
-			System.out.println(festivalPlayers.get(i).getName());
-		}
+            System.out.println("Current player in festival: " + tc.getCurrentFestivalPlayer().getName());
+            String toString = "What would you like to do?\n " +
+                    "1. View the palace festival card.\n " +
+                    "2. View your palace cards\n " +
+                    "3. Play a palace card\n " +
+                    "4. Drop out of the palace festival";
+            System.out.println(toString);
+            Scanner in = new Scanner(System.in);
 
-		System.out.println();
+            int decision = in.nextInt();
 
-		while (!turnController.festivalOver()) {
-
-			System.out.println("Current player in festival: " + turnController.getCurrentFestivalPlayer().getName());
-			System.out.println("What would you like to do?");
-			System.out.println("1. View the palace festival card.");
-			System.out.println("2. View your palace cards");
-			System.out.println("3. Play a palace card");
-			System.out.println("4. Drop out of the palace festival");
-
-			Scanner in = new Scanner(System.in);
-
-			int decision = in.nextInt();
-
-			System.out.println();
+            System.out.println();
             try {
                 switch (decision) {
                     case 1:
-                        System.out.println("Palace Festival Card: " + turnController.getFestivalCard());
-                        System.out.println();
+                        System.out.println("Palace Festival Card: " + tc.getFestivalCard() + "\n");
                         break;
                     case 2:
-                        Player current = turnController.getCurrentFestivalPlayer();
+                        Player current = tc.getCurrentFestivalPlayer();
                         ArrayList<PalaceCard> cards = current.getCards();
-                        System.out.println("Your palace cards:");
-                        System.out.println(cards.size());
-                        for (int i = 0; i < cards.size(); i++) {
+                        System.out.println("Your palace cards:\n" + cards.size());
+                        for (PalaceCard card : cards) {
                             // Returns a null pointer exception only for the first
                             // player for some reason, saying he has 1 more card than he
                             // actually has
-                            System.out.println(cards.get(i).toString());
+                            System.out.println(card.toString());
                         }
                         System.out.println();
                         break;
                     case 3:
                         System.out.println("What card would you like to place?");
-                        System.out.println("1. Mask");
-                        System.out.println("2. Drum");
-                        System.out.println("3. Puppet");
-                        System.out.println("4. Mask Drum");
-                        System.out.println("5. Drum Puppet");
-                        System.out.println("6. Puppet Mask");
+                        String a = "1. Mask\n" +
+                                "2. Drum\n" +
+                                "3. Puppet\n" +
+                                "4. Mask Drum\n" +
+                                "5. Drum Puppet\n" +
+                                "6. Puppet Mask\n";
+                        System.out.println(a);
                         decision = in.nextInt();
                         System.out.println();
                         switch (decision) {
                             case 1:
-                                turnController.playCard("MASK", "NONE");
-                                deck.discardCard(new PalaceCard("MASK", "NONE"));
+                                tc.playCard("MASK", "NONE");
+                                d.discardCard(new PalaceCard("MASK", "NONE"));
                                 break;
                             case 2:
-                                turnController.playCard("DRUM", "NONE");
-                                deck.discardCard(new PalaceCard("DRUM", "NONE"));
+                                tc.playCard("DRUM", "NONE");
+                                d.discardCard(new PalaceCard("DRUM", "NONE"));
                                 break;
                             case 3:
-                                turnController.playCard("PUPPET", "NONE");
-                                deck.discardCard(new PalaceCard("PUPPET", "NONE"));
+                                tc.playCard("PUPPET", "NONE");
+                                d.discardCard(new PalaceCard("PUPPET", "NONE"));
                                 break;
                             case 4:
-                                turnController.playCard("MASK", "DRUM");
-                                deck.discardCard(new PalaceCard("MASK", "DRUM"));
+                                tc.playCard("MASK", "DRUM");
+                                d.discardCard(new PalaceCard("MASK", "DRUM"));
                                 break;
                             case 5:
-                                turnController.playCard("DRUM", "PUPPET");
-                                deck.discardCard(new PalaceCard("DRUM", "PUPPET"));
+                                tc.playCard("DRUM", "PUPPET");
+                                d.discardCard(new PalaceCard("DRUM", "PUPPET"));
                                 break;
                             case 6:
-                                turnController.playCard("PUPPET", "MASK");
-                                deck.discardCard(new PalaceCard("PUPPET", "MASK"));
+                                tc.playCard("PUPPET", "MASK");
+                                d.discardCard(new PalaceCard("PUPPET", "MASK"));
                                 break;
                             default:
                                 break;
@@ -110,27 +106,25 @@ public class FestivalTest {
                         break;
                     case 4:
                         try {
-                            turnController.freezeFestivalPlayer();
+                            tc.freezeFestivalPlayer();
                         } catch (StackOverflowError e) {
-                            turnController.endFestival();
+                            tc.endFestival();
                         }
                         break;
                     default:
                         break;
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println(e.toString());
             }
-		}
+        }
 
-		System.out.println("Festival Over!");
-		System.out.println("Winner(s): ");
-		ArrayList<Player> victors = turnController.getVictors();
-		for (int i = 0; i < victors.size(); i++) {
-			System.out.println(victors.get(i).getName());
-		}
+        System.out.println("Festival Over!");
+        System.out.println("Winner(s): ");
+        ArrayList<Player> victors = tc.getVictors();
+        for (Player victor : victors) {
+            System.out.println(victor.getName());
+        }
 /*
         PalaceCard mask = new PalaceCard("MASK");
         PalaceCard drum = new PalaceCard("DRUM");
@@ -172,5 +166,5 @@ public class FestivalTest {
                 System.out.println("Palace cards: " + p.toString() + " and " + c.toString() + " are equal: " + c.sameCardAs(p));
             }
         }*/
-	}
+    }
 }
