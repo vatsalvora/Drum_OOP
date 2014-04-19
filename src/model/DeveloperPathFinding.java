@@ -1,17 +1,25 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class DeveloperPathFinding implements PathFinding {
 
-    public DeveloperPathFinding() {
+    ArrayList<Space> shortestPath;
+    int APUsed;
 
+    public DeveloperPathFinding() {
+        shortestPath = new ArrayList<Space>();
+        APUsed = 99;
     }
-	
-	@Override
-    public List<Space> getShortestPath(Location initial, Location fin) {
-        // TODO Auto-generated method stub -- If you touch the parameters, make sure to change the board controllers getShortestPath
+
+    public ArrayList<Space> getShortestPath(Space start, Space end) {
+
         return null;
 	}
+
+    public int getAPUsed()
+    {
+        return APUsed;
+    }
 
 }
