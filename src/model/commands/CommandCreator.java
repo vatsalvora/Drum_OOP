@@ -45,9 +45,8 @@ public class CommandCreator {
 	}
 
 	public void placeVillageTile(Location location) {
-		Command command = new PlaceVillageTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlaceVillageTile(gameFacade, location);
+
 	}
 
 	public void placePalaceTile(Location location) {
