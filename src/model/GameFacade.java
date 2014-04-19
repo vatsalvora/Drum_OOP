@@ -349,6 +349,33 @@ public class GameFacade {
         }
     }
 
+    public void moveDeveloper(Location start, Location end)
+    {
+        try {
+            //move the developer from start to end
+            int APUsed = 0;
+            //get the AP used by the move
+            try {
+                turnController.performAction(APUsed);
+            }
+            catch(Exception e)
+            {
+                //tell the user why they cannot move the developer
+                forceDeveloperMove(end, start);         //force the developer to move back
+                turnController.undoAction(APUsed);
+            }
+        }
+        catch(Exception e)
+        {
+            //tell user why they cannot move developer
+        }
+    }
+
+    public void forceDeveloperMove(Location start, Location end)
+    {
+        //force any developer on start location to move to end location, if possible
+    }
+
     public void useActionToken()
     {
         try{
