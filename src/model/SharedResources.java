@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,24 +21,16 @@ public class SharedResources {
         return deck;
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
+    public void setDeck(ArrayList<PalaceCard> list) {
+        deck.reset(list, new ArrayList<PalaceCard>());
     }
 
     public int getNumIrrigationTiles() {
         return numIrrigationTiles;
     }
 
-    public void setNumIrrigationTiles(int numIrrigationTiles) {
-        this.numIrrigationTiles = numIrrigationTiles;
-    }
-
     public int getNumThreeBlockTiles() {
         return numThreeBlockTiles;
-    }
-
-    public void setNumThreeBlockTiles(int numThreeBlockTiles) {
-        this.numThreeBlockTiles = numThreeBlockTiles;
     }
 
     public int getNumTilesInPalaceLevel(PalaceLevel level) {
