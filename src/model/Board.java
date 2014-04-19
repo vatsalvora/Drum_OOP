@@ -11,7 +11,7 @@ public class Board {
 
     public Board() {
 
-        board = new LinkedList<>();
+        board = new LinkedList<List<Space>>();
         this.current = new Location(0, 0);
         initBoard();
         setNeighbors();
@@ -24,7 +24,7 @@ public class Board {
         width = height.length;
         for (int p = 0; p < height.length; p++) {
             int n = height[p];
-            List<Space> column = new LinkedList<>();
+            List<Space> column = new LinkedList<Space>();
             for (int i = 0; i < n; i++) {
                 Location location = new Location(p, i + gap[p]);
                 Space space = new HexSpace(location);
