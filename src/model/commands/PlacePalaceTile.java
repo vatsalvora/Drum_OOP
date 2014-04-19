@@ -9,7 +9,7 @@ public class PlacePalaceTile implements Command {
 	private Location l;
     private int level;
 
-	public PlacePalaceTile(GameFacade b, Location l, int level) {
+	public PlacePalaceTile(GameFacade b, int level) {
 		this.b = b;
 		this.l = l;
         this.level = level;

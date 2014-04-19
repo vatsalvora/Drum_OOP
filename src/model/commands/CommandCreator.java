@@ -1,12 +1,11 @@
 package model.commands;
 
+import controller.FileController;
 import model.ChangeTurn;
 import model.Command;
 import model.GameFacade;
-import model.Location;
+import model.HexSpace;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Stack;
 
 public class CommandCreator {
@@ -19,8 +18,8 @@ public class CommandCreator {
 		this.gameFacade = gameFacade;
 	}
 
-	public void placeDoubleLandTile(Location location) {
-		current = new PlaceDoubleLandTile(gameFacade, location);
+	public void placeDoubleLandTile() {
+		current = new PlaceDoubleLandTile(gameFacade);
 	}
 
 	public void execute() {
@@ -29,28 +28,58 @@ public class CommandCreator {
 
 	}
 
-	public void placeTripleLandTile(Location location) {
-		current = new PlaceTripleLandTile(gameFacade, location);
+	public void placeTripleLandTile() {
+		current = new PlaceTripleLandTile(gameFacade);
 
 	}
 
-	public void placeIrrigationTile(Location location) {
-		current = new PlaceIrrigationTile(gameFacade, location);
+	public void move1() {
+		current = new Move1(gameFacade);
 
 	}
 
-	public void placeRiceTile(Location location) {
-		current = new PlaceRiceTile(gameFacade, location);
+	public void move2() {
+		current = new Move2(gameFacade);
 
 	}
 
-	public void placeVillageTile(Location location) {
-		current = new PlaceVillageTile(gameFacade, location);
+	public void move3() {
+		current = new Move3(gameFacade);
 
 	}
 
-	public void placePalaceTile(Location location, int level) {
-		current = new PlacePalaceTile(gameFacade, location, level);
+	public void move7() {
+		current = new Move7(gameFacade);
+
+	}
+
+	public void move8() {
+		current = new Move8(gameFacade);
+
+	}
+
+	public void move9(HexSpace hex) {
+		current = new Move9(gameFacade);
+
+	}
+
+	public void placeIrrigationTile() {
+		current = new PlaceIrrigationTile(gameFacade);
+
+	}
+
+	public void placeRiceTile() {
+		current = new PlaceRiceTile(gameFacade);
+
+	}
+
+	public void placeVillageTile() {
+		current = new PlaceVillageTile(gameFacade);
+
+	}
+
+	public void placePalaceTile(int level) {
+		current = new PlacePalaceTile(gameFacade, level);
 
 	}
 
@@ -101,19 +130,9 @@ public class CommandCreator {
 	}
 
 	public void save(String fileName) {
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(fileName);
-			for (Command comm : commands) {
-				writer.println(comm);
-			}
-			writer.close();
-			System.out.println("File saved");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-	}
+        FileController fileController = new FileController();
+        fileController.save(fileName, commands);
+    }
 
 	public void load(String filename) {
 	}
