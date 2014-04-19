@@ -10,14 +10,14 @@ import java.awt.event.KeyEvent;
  */
 public class KeyPressedV extends KeyPressed {
 
-    public KeyPressedV(Location location, State state) {
-        super(location, state);
+    public KeyPressedV(State state) {
+        super(state);
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
         if(ke.getKeyChar() == 'v'){
-            state.keyPressedV(location);
+            state.keyPressedV();
         }
     }
 }

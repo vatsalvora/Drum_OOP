@@ -31,26 +31,21 @@ public class AreaViewport {
     public static int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     public static int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
     public static Color movement;
-    private Board board;
-    private List<KeyPressed> keySet;
     private State state;
     private DrawingPanel panel;
 
-    public AreaViewport(GameFacade b, List<KeyPressed> keySet) {
-        this.keySet = keySet;
-        this.board = b.getBoard();
-        this.state = new Turn(b);
+    public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         int maxLen = board.getMaxLen();
         movement = Color.BLUE;
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
         SCREEN_LEN = HEX_SIZE * (maxLen + 1) + BORDERS * 3;
 
-        initGame();
-        createAndShowGUI();
+        initGame(board);
+        createAndShowGUI(board);
     }
 
-    void initGame() {
+    public void initGame(Board board) {
 
         AreaViewportController.setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
 
@@ -78,8 +73,8 @@ public class AreaViewport {
         ((HexSpace) board.getSpace(new Location(3, 15))).color = Color.BLUE;
     }
 
-    private void createAndShowGUI() {
-        panel = new DrawingPanel();
+    private void createAndShowGUI(Board board) {
+        panel = new DrawingPanel(board);
         JFrame frame = new JFrame("Hex Testing 4");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
@@ -93,32 +88,26 @@ public class AreaViewport {
         frame.setVisible(true);
     }
 
-    public void render(){
+    public void render(Board board){
         panel.repaint();
+    }
+
+    public void addKeyListeners(List<KeyPressed> keySet){
+        panel.addListeners(keySet);
     }
 
     class DrawingPanel extends JPanel {
 
-        private HexSpace root;
+        private Board board;
         private static final long serialVersionUID = 1L;
 
-        public DrawingPanel() {
+        public DrawingPanel(Board board) {
+            this.board = board;
             setBackground(COLOR_BACK);
 
-            Location l = new Location(0, 0);
-
-            List<KeyAdapter> keys = new ArrayList<KeyAdapter>();
-            keys.add(new OneKey());
-            keys.add(new TwoKey());
-            keys.add(new ThreeKey());
-            keys.add(new SevenKey());
-            keys.add(new EightKey());
-            keys.add(new NineKey());
-            keys.add(new PKey(l));
-            keys.add(new EnterKey(l));
-            addListeners(keys);
-            //addListeners();
-
+        }
+        public void setBoard(Board board){
+            this.board = board;
         }
 
         public void setNode(HexSpace node) {
@@ -129,15 +118,9 @@ public class AreaViewport {
             return board.getCurrentSpace();
         }
 
-        public void addListeners() {
+        public void addListeners(List<KeyPressed> keySet) {
             for (KeyPressed kp : keySet) {
                 addKeyListener(kp);
-            }
-        }
-
-        public void addListeners(List<KeyAdapter> keys) {
-            for (KeyAdapter ka : keys) {
-                addKeyListener(ka);
             }
         }
 
@@ -165,7 +148,6 @@ public class AreaViewport {
                     Location loc = curr.getLocation();
                     String status = (curr.getHeight()>0) ? curr.getHeight()+"" : curr.status;
                     Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.color;
-                    System.out.println(curr.equals(board.getCurrentSpace()));
                     AreaViewportController.fillHex(loc.getXLocation(), loc.getYLocation(), status,
                             color, g2);
                 }

@@ -11,13 +11,13 @@ import java.awt.event.KeyEvent;
 public class KeyPressedP extends KeyPressed {
 
     public KeyPressedP(Location location, State state) {
-        super(location, state);
+        super(state);
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
         if(ke.getKeyChar() == 'p'){
-            state.keyPressedP(location);
+            state.keyPressedP();
         }
     }
 }

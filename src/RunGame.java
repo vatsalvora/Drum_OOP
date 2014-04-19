@@ -1,5 +1,7 @@
+import controller.AreaViewportController;
 import model.GameFacade;
 import model.Location;
+import model.commands.CommandCreator;
 import model.state.State;
 import model.state.Turn;
 import view.AreaViewport;
@@ -13,19 +15,16 @@ public class RunGame {
     public static void main(String[] args) {
         String[] names = { "Lucas", "Bob", "Billy" };
 
-        final GameFacade b = new GameFacade(names);
-        final List<KeyPressed> keySet = createListeners(b);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new AreaViewport(b, keySet);
-            }
-        });
+        GameFacade b = new GameFacade(names);
+        List<KeyPressed> keySet = createListeners(b);
+        b.addKeyListeners(keySet);
+
     }
 
     public static List<KeyPressed> createListeners(GameFacade b){
         State state = new Turn(b);
         Location l = new Location(0,0);
-        List<KeyPressed> keySet = new ArrayList<KeyPressed>();
+        java.util.List<KeyPressed> keySet = new ArrayList<KeyPressed>();
 
         keySet.add(new KeyPressed1(l, state));
         keySet.add(new KeyPressed2(l, state));
@@ -50,4 +49,5 @@ public class RunGame {
         keySet.add(new KeyPressedS(l, state));
         return keySet;
     }
+
 }

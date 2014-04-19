@@ -1,7 +1,6 @@
 package model.state;
 
 import model.GameFacade;
-import model.HexSpace;
 import model.Location;
 
 public class Turn extends State {
@@ -39,7 +38,6 @@ public class Turn extends State {
 	@Override
 	public void keyPressed1() {
 		// TODO: Move to SW
-       
 	}
 
 	@Override
@@ -78,7 +76,7 @@ public class Turn extends State {
 	}
 
 	@Override
-	public void keyPressedP(Location location) {
+	public void keyPressedP() {
         //defaulting level of palace to 2
         //TODO change level of palace somehow
 		commandCreator.placePalaceTile(location, 2);

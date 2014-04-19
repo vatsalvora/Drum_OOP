@@ -10,8 +10,8 @@ import java.awt.event.KeyEvent;
  */
 public class KeyPressedX extends KeyPressed {
 
-    public KeyPressedX(Location location, State state) {
-        super(location, state);
+    public KeyPressedX(State state) {
+        super(state);
     }
 
     @Override

@@ -40,11 +40,11 @@ public abstract class State {
 
 	public abstract void keyPressedR();
 
-	public abstract void keyPressedP(Location location);
+	public abstract void keyPressedP();
 
-	public abstract void keyPressedV(Location location);
+	public abstract void keyPressedV();
 
-	public abstract void keyPressedI(Location location);
+	public abstract void keyPressedI();
 
 	public abstract void keyPressedX();
 

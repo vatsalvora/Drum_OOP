@@ -1,24 +1,43 @@
 package model;
 
+import controller.AreaViewportController;
 import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
 import model.customExceptions.BlockNotPlayedException;
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NotEnoughAPException;
+import model.state.State;
+import model.state.Turn;
+import view.AreaViewport;
+import view.keypressed.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameFacade {
-	BoardController boardController;
-	TurnController turnController;
-	SharedResourcesController sharedResourcesController;
+	private BoardController boardController;
+	private TurnController turnController;
+	private SharedResourcesController sharedResourcesController;
+    private AreaViewportController areaViewportController;
 
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
 		sharedResourcesController = new SharedResourcesController();
+        areaViewportController = new AreaViewportController(boardController.getBoard());
+
 	}
+
+    public void addKeyListeners(List<KeyPressed> keySet){
+            areaViewportController.addListeners(keySet);
+    }
+
+    public void render(){
+        areaViewportController.render(boardController.getBoard());
+    }
+
 
     public void startGame()
     {
