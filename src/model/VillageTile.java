@@ -44,7 +44,7 @@ public class VillageTile extends Tile {
     }
 
  
-    public boolean compareTo(Tile t) {
+    public boolean equals(Object t) {
         return (t instanceof VillageTile);
     }
 

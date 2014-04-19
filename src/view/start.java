@@ -36,8 +36,7 @@ public class start {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-						| UnsupportedLookAndFeelException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 
@@ -64,7 +63,7 @@ public class start {
 		public TestPane() {
 			setBackground(Color.BLACK);
 			painter = new MenuPainter();
-			menuItems = new ArrayList<>(25);
+			menuItems = new ArrayList<String>();
 			menuItems.add("Start Game");
 			menuItems.add("Load Game");
 			menuItems.add("Exit");
@@ -94,7 +93,7 @@ public class start {
 			super.paintComponent(g);
 			Graphics2D g2d = (Graphics2D) g.create();
 			if (menuBounds == null) {
-				menuBounds = new HashMap<>(menuItems.size());
+				menuBounds = new HashMap<String, Rectangle>(menuItems.size());
 				int width = 0;
 				int height = 0;
 				for (String text : menuItems) {

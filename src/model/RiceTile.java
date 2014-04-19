@@ -43,7 +43,7 @@ public class RiceTile extends Tile{
     				neighbors[i] = 6;
     }
  
-    public boolean compareTo(Tile t) {
+    public boolean equals(Object t) {
         return (t instanceof VillageTile);
     }
 
