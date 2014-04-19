@@ -1,7 +1,10 @@
 package view;
 
 import controller.AreaViewportController;
-import model.*;
+import model.Board;
+import model.GameFacade;
+import model.HexSpace;
+import model.Location;
 import model.state.State;
 import model.state.Turn;
 import view.keypressed.KeyPressed;
@@ -13,17 +16,19 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 public class AreaViewport {
-    public Color COLOURBACK = Color.WHITE;
+    public Color COLOR_BACK = Color.WHITE;
 
-    public static Color COLOURCELL = Color.ORANGE;
+    public static Color COLOR_CELL = Color.ORANGE;
 
-    public static Color COLOURGRID = Color.BLACK;
+    public static Color COLOR_GRID = Color.BLACK;
     public static int EMPTY = 0;
-    public static int BSIZE = 12; // board size.
-    public static int HEXSIZE = 46; // hex size in pixels
+    public static int BOARD_SIZE = 12; // board size.
+    public static int HEX_SIZE = 46; // hex size in pixels
     public static int BORDERS = 15;
-    public static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3; // screen
+    public static int SCREEN_SIZE = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     private Board board = new Board();
     private List<KeyPressed> keySet;
     private State state;
@@ -31,8 +36,8 @@ public class AreaViewport {
     public AreaViewport(GameFacade b, List<KeyPressed> keySet) {
         this.keySet = keySet;
         this.state = new Turn(b);
-        BSIZE = board.getWidth();
-        SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS * 3;
+        BOARD_SIZE = board.getWidth();
+        SCREEN_SIZE = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
 
         initGame();
         createAndShowGUI();
@@ -42,15 +47,14 @@ public class AreaViewport {
 
         AreaViewportController.setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
 
-        AreaViewportController.setHeight(HEXSIZE); // Either setHeight or setSize must be run
+        AreaViewportController.setHeight(HEX_SIZE); // Either setHeight or setSize must be run
         AreaViewportController.setBorders(BORDERS);
 
-        for (int i = 0; i < BSIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < board.getLength(i); j++) {
                 try {
                     ((HexSpace) board.getSpace(new Location(j, i))).status = EMPTY;
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println(i);
                     System.exit(1);
@@ -68,33 +72,28 @@ public class AreaViewport {
         DrawingPanel panel = new DrawingPanel();
 
         JFrame frame = new JFrame("Hex Testing 4");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
         frame.setFocusable(false);
         panel.setFocusable(true);
         content.add(panel);
 
-        frame.setSize((int) (SCRSIZE / 1.23), SCRSIZE);
+        frame.setSize((int) (SCREEN_SIZE / 1.23), SCREEN_SIZE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     class DrawingPanel extends JPanel {
-        /**
-         *
-         */
+
         private HexSpace root;
         private static final long serialVersionUID = 1L;
 
-        // mouse variables here
-        // Point mPt = new Point(0,0);
-
         public DrawingPanel() {
-            setBackground(COLOURBACK);
+            setBackground(COLOR_BACK);
 
             Location l = new Location(0, 0);
-            root = (HexSpace)board.getSpace(l);
+            root = (HexSpace) board.getSpace(l);
 
             List<KeyAdapter> keys = new ArrayList<KeyAdapter>();
             keys.add(new OneKey());
@@ -110,20 +109,22 @@ public class AreaViewport {
 
         }
 
-        public void setNode(HexSpace node){
+        public void setNode(HexSpace node) {
             this.root = node;
         }
-        public HexSpace getNode(){
+
+        public HexSpace getNode() {
             return root;
         }
-        public void addListeners(){
-            for(KeyPressed kp: keySet){
+
+        public void addListeners() {
+            for (KeyPressed kp : keySet) {
                 addKeyListener(kp);
             }
         }
 
-        public void addListeners(List<KeyAdapter> keys){
-            for(KeyAdapter ka: keys){
+        public void addListeners(List<KeyAdapter> keys) {
+            for (KeyAdapter ka : keys) {
                 addKeyListener(ka);
             }
         }
@@ -134,7 +135,7 @@ public class AreaViewport {
             g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             super.paintComponent(g2);
             // draw grid
-            for (int i = 0; i < BSIZE; i++) {
+            for (int i = 0; i < BOARD_SIZE; i++) {
                 for (int j = 0; j < board.getLength(i); j++) {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
@@ -142,11 +143,11 @@ public class AreaViewport {
                 }
             }
             // fill in hexes
-            for (int i = 0; i < BSIZE; i++) {
+            for (int i = 0; i < BOARD_SIZE; i++) {
                 for (int j = 0; j < board.getLength(i); j++) {
                     // if (board[i][j] < 0)
-                    // AreaViewportController.fillHex(i,j,COLOURONE,-board[i][j],g2);
-                    // if (board[i][j] > 0) AreaViewportController.fillHex(i,j,COLOURTWO,
+                    // AreaViewportController.fillHex(i,j,COLOR_ONE,-board[i][j],g2);
+                    // if (board[i][j] > 0) AreaViewportController.fillHex(i,j,COLOR_TWO,
                     // board[i][j],g2);
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
@@ -159,7 +160,7 @@ public class AreaViewport {
             // g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
         }
 
-        class PKey extends KeyAdapter{
+        class PKey extends KeyAdapter {
             private Location l;
 
             public PKey(Location l) {
@@ -183,7 +184,7 @@ public class AreaViewport {
             }
         }
 
-        class EnterKey extends KeyAdapter{
+        class EnterKey extends KeyAdapter {
             private Location l;
 
             public EnterKey(Location l) {
@@ -214,9 +215,8 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 if (ke.getKeyChar() == '1') {
                     System.out.println(ke.getKeyChar());
-                    if(getNode().getNeighbor(0) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(0);
+                    if (getNode().getNeighbor(0) != null) {
+                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(0);
                         neighbor.status = (int) 'X';
                         neighbor.color = Color.RED;
                         System.out.println("LOC: " + neighbor.getLocation());
@@ -244,9 +244,8 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 if (ke.getKeyChar() == '2') {
                     System.out.println(ke.getKeyChar());
-                    if(getNode().getNeighbor(1) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(1);
+                    if (getNode().getNeighbor(1) != null) {
+                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(1);
                         neighbor.status = (int) 'X';
                         neighbor.color = Color.CYAN;
                         System.out.println("LOC: " + neighbor.getLocation());
@@ -272,9 +271,8 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 if (ke.getKeyChar() == '3') {
                     System.out.println(ke.getKeyChar());
-                    if(getNode().getNeighbor(2) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(2);
+                    if (getNode().getNeighbor(2) != null) {
+                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(2);
                         neighbor.status = (int) 'X';
                         neighbor.color = Color.GREEN;
                         System.out.println("LOC: " + neighbor.getLocation());
@@ -330,9 +328,8 @@ public class AreaViewport {
                 if (ke.getKeyChar() == '8') {
                     System.out.println(ke.getKeyChar());
                     System.out.println(getNode().numberOfNeighbors());
-                    if(getNode().getNeighbor(4) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(4);
+                    if (getNode().getNeighbor(4) != null) {
+                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(4);
                         neighbor.status = (int) 'X';
                         neighbor.color = Color.BLUE;
                         System.out.println("LOC: " + neighbor.getLocation());
@@ -341,6 +338,7 @@ public class AreaViewport {
                 }
                 repaint();
             }
+
             public void keyPressed(KeyEvent ke) {
 
             }
@@ -357,9 +355,8 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 if (ke.getKeyChar() == '9') {
                     System.out.println(ke.getKeyChar());
-                    if(getNode().getNeighbor(5) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(5);
+                    if (getNode().getNeighbor(5) != null) {
+                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(5);
                         neighbor.status = (int) 'X';
                         neighbor.color = Color.GRAY;
                         System.out.println("LOC: " + neighbor.getLocation());

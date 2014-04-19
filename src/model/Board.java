@@ -12,21 +12,21 @@ public class Board {
     public Board() {
 
         board = new LinkedList<List<Space>>();
-        this.current = new Location(0,0);
+        this.current = new Location(0, 0);
         initBoard();
         setNeighbors();
     }
 
     private void initBoard() {
 
-        int[] height = {4,5,8,10,10,10,10,9,9,9,9,11,11,10,9,9,7,6,4};
-        int[] gap =    {2,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,2};
+        int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
+        int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
         width = height.length;
         for (int p = 0; p < height.length; p++) {
             int n = height[p];
             List<Space> column = new LinkedList<Space>();
             for (int i = 0; i < n; i++) {
-                Location location = new Location(p, i+gap[p]);
+                Location location = new Location(p, i + gap[p]);
                 Space space = new HexSpace(location);
                 column.add(space);
 
@@ -35,7 +35,7 @@ public class Board {
         }
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return width;
     }
 
@@ -76,22 +76,22 @@ public class Board {
         return column.get(l.getXLocation());
     }
 
-    public int getLength(int y){
+    public int getLength(int y) {
         return board.get(y).size();
     }
 
 
-    public void place(Location l, Tile tile){
-        HexSpace s = (HexSpace)getSpace(l);
+    public void place(Location l, Tile tile) {
+        HexSpace s = (HexSpace) getSpace(l);
         s.place(tile);
     }
 
 
-    public void setCurrentLocation(int x, int y){
-        current.setLocation(x,y);
+    public void setCurrentLocation(int x, int y) {
+        current.setLocation(x, y);
     }
 
-    public Location getCurrentLocation(){
+    public Location getCurrentLocation() {
         return current;
     }
 

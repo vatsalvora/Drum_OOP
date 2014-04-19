@@ -1,12 +1,9 @@
 package model;
 
 
-import model.customExceptions.NoPalaceTilesLeft;
-
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NoPalaceTilesLeft;
 import model.customExceptions.NoThreeBlockLeftException;
-
 
 import java.util.ArrayList;
 
@@ -85,7 +82,10 @@ public class SharedResources {
         }
     }
 
-
+    public void returnIrrigationTile()
+    {
+        numIrrigationTiles++;
+    }
 
     public void placeThreeBlock() throws NoThreeBlockLeftException
 
@@ -100,6 +100,11 @@ public class SharedResources {
             throw new NoThreeBlockLeftException();
 
         }
+    }
+
+    public void returnThreeBlock()
+    {
+        numThreeBlockTiles++;
     }
 
     public void placePalaceTile(int i) throws NoPalaceTilesLeft
@@ -158,6 +163,30 @@ public class SharedResources {
                 break;
             default:
                 throw new NoPalaceTilesLeft("" + i + "");
+        }
+    }
+
+    public void returnPalace(int i)
+    {
+        switch(i)
+        {
+            case 2:
+                levelTwoPalace++;
+                break;
+            case 4:
+                levelFourPalace++;
+                break;
+            case 6:
+                levelSixPalace++;
+                break;
+            case 8:
+                levelEightPalace++;
+                break;
+            case 10:
+                levelTenPalace++;
+                break;
+            default:
+                break;
         }
     }
 
