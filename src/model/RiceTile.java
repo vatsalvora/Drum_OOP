@@ -8,48 +8,20 @@ package model;
 public class RiceTile extends Tile{
  
 
-	private int possition;
+	private Block belongsTo;
+	
 
-    public RiceTile(){
-    	possition = 0;
+    public RiceTile(Block belongsTo){
+    	this.belongsTo = belongsTo;
     }
-
-     
+	
+    public Block block(){
+    	return belongsTo;
+    }
+	
     public boolean compareTo(Tile t) {
 
         return (t instanceof VillageTile);
     }
-
-	@Override
-	public void assignPossition(int possiton) {
-
-		this.possition = possiton;
-	}
-
-	@Override
-	public void rotateClockwise() {
-		
-		if(possition == 6)
-			possition = 1;
-		else
-			possition++;
-		
-	}
-
-	@Override
-	public void rotateCounterclockwise() {
-		if(possition == 1)
-			possition = 6;
-		else
-			possition--;
-		
-	}
-
-
-	@Override
-	public int getPossition() {
-		// TODO Auto-generated method stub
-		return possition;
-	}
 
 }

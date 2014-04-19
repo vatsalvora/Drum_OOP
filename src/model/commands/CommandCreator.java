@@ -1,12 +1,11 @@
 package model.commands;
 
+import controller.FileController;
 import model.ChangeTurn;
 import model.Command;
 import model.GameFacade;
 import model.HexSpace;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Stack;
 
 public class CommandCreator {
@@ -131,19 +130,9 @@ public class CommandCreator {
 	}
 
 	public void save(String fileName) {
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(fileName);
-			for (Command comm : commands) {
-				writer.println(comm);
-			}
-			writer.close();
-			System.out.println("File saved");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-	}
+        FileController fileController = new FileController();
+        fileController.save(fileName, commands);
+    }
 
 	public void load(String filename) {
 	}

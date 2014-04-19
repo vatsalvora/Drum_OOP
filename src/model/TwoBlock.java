@@ -4,13 +4,17 @@ package model;
 
 
 public class TwoBlock extends Block{
-
-	Location center;
-	Tile centerType;
+	
+	final protected int[] validPossitions = {1,2,3,7,8,9};
+	
+	Space loc;
+	int[] neighborsPostion = new int[1];
+	Tile centerTile;
 	Tile[] neighbors;
 	final private int numberOfNeighbors = 1;
 	
-	TwoBlock(){
+	TwoBlock(Space loc){
+		this.loc = loc;
 		initNeighbors();
 		assignCenterType();
 		assignNeighbors(numberOfNeighbors);
@@ -18,19 +22,20 @@ public class TwoBlock extends Block{
 
 	
 	private void assignNeighbors(int numberOfNeighbors){
+		
     	for(int i = 0; i < numberOfNeighbors; i++){
-    			neighbors[i] = new RiceTile();
-    			neighbors[i].assignPossition(i+1);
+    			neighbors[i] = new RiceTile(this);
+    			neighborsPostion[i] = validPossitions[i];
+    			HexSpace temp =  (HexSpace) ((HexSpace)loc).getNeighbor(i);
+    			temp.addTile(neighbors[i]);
+    			((HexSpace)loc).setNeighbors(i, temp);
     	}
     }
-	
-	private void setCenter(Space loc) {
-		center = loc.getLocation();
-		
-	}
+
 	
 	private void assignCenterType(){
-		centerType = new VillageTile();
+		centerTile = new VillageTile(this);
+		((HexSpace)loc).addTile(centerTile);
 	}
 	
 	private void initNeighbors(){
@@ -42,28 +47,28 @@ public class TwoBlock extends Block{
 	}
 	
 	public int[] getNeighborsPossition(){
-		int[] possitions = new int[numberOfNeighbors];
 		
-		for(int i = 0 ; i < numberOfNeighbors; i++)
-				possitions[i] = neighbors[i].getPossition();
-		
-		return possitions;
+		return neighborsPostion;
 	}
 	
 	@Override
 	public void rotateClockwise() {
 		
-    	for(int i = 0 ; i < neighbors.length; i++)
-    			neighbors[i].rotateClockwise();
-    			
-    	
+		for(int i = 0; i < neighbors.length; i++)
+			if(i+1 == 7)
+			neighborsPostion[i] = validPossitions[0];
+			else
+				neighborsPostion[i] = validPossitions[i+1];	
     }
 
 	@Override
     public void rotateCounterclockwise() {
     	
-		for(int i = 0 ; i < neighbors.length; i++)
-    				neighbors[i].rotateCounterclockwise();
+		for(int i = 0; i < neighbors.length; i++)
+			if(i-1 == -1)
+			neighborsPostion[i] = validPossitions[6];
+			else
+				neighborsPostion[i] = validPossitions[i-1];	
 
     }
 
@@ -73,9 +78,12 @@ public class TwoBlock extends Block{
 		return block instanceof TwoBlock;
 	}
 
+
 	@Override
 	public void placeOn(Space loc) {
-		setCenter(loc);
+		// TODO Auto-generated method stub
+		
 	}
+
 
 }

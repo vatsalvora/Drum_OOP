@@ -7,16 +7,14 @@ package model;
 public class PalaceTile extends Tile {
 
 
+	private Location location;
 	private int possition;
+	
 
+    public PalaceTile(int possition){
+    	this.possition = possition ;
+    }
 
-    public PalaceTile(){
-    	possition = 0;
-    }
-     
-    public boolean compareTo(Tile t) {
-        return (t instanceof VillageTile);
-    }
 
 	@Override
 	public void assignPossition(int possiton) {
@@ -28,25 +26,17 @@ public class PalaceTile extends Tile {
 		return possition;
 	}
 	
-	@Override
-	public void rotateClockwise() {
-		
-		if(possition == 6)
-			possition = 1;
-		else
-			possition++;
+	
+    public boolean compareTo(Tile t) {
+
+        return (t instanceof VillageTile);
+    }
+    
+    @Override
+	public void updateLocation(Location loc) {
+		location = loc;
 		
 	}
-
-	@Override
-	public void rotateCounterclockwise() {
-		if(possition == 1)
-			possition = 6;
-		else
-			possition--;
-		
-	}
-
 
 
 
