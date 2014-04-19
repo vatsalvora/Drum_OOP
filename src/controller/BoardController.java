@@ -7,11 +7,15 @@ import java.util.List;
 public class BoardController {
 	private Board board;
 
-	public BoardController(Board board) {
-		this.board = board;
-	}
+    public BoardController() {
 
-	Board getBoard() {
+    }
+
+    public BoardController(Board board) {
+        this.board = board;
+    }
+
+    public Board getBoard() {
 		return board;
 	}
 
