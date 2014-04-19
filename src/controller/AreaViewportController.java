@@ -10,7 +10,7 @@ public class AreaViewportController {
 //    public final static boolean orPOINT = false;
 
     public static boolean XYVertex = true;  // true: x,y are the coords of the first vertex.
-                                            // false: x,y are the coords of the top left rect. co-ord.
+    // false: x,y are the coords of the top left rect. co-ord.
 
     private static int BORDERS = 50; // default number of pixels for the border.
 
@@ -41,7 +41,6 @@ public class AreaViewportController {
 //        r = (int) (s * 0.8660254037844); // r = s cos(30) = (int) CalculateR(s);
 //        h = 2 * r;
 //    }
-
     public static void setHeight(int height) {
         h = height; // h = basic dimension: height (distance between two adj
         // centers aka size)
@@ -87,11 +86,11 @@ public class AreaViewportController {
 
     /**
      * *****************************************************************
-     * Name: drawHex() Parameters: (i,j) : the x,y coordinates of the inital
+     * Name: drawHex() Parameters: (i,j) : the x,y coordinates of the initial
      * point of the hexagon g2: the Graphics2D object to draw on. Returns: void
      * Calls: hex() Purpose: This function draws a hexagon based on the initial
      * point (x,y). The hexagon is drawn in the colour specified in
-     * AreaViewport.COLOURELL.
+     * AreaViewport.COLOR_CELL.
      * *******************************************************************
      */
     public static void drawHex(int i, int j, Graphics2D g2) {
@@ -111,8 +110,8 @@ public class AreaViewportController {
      * in the hex g2 : the graphics context to draw on Return: void Called from:
      * Calls: hex() Purpose: This draws a filled in polygon based on the
      * coordinates of the hexagon. The colour depends on whether n is negative
-     * or positive. The colour is set by AreaViewport.COLOURONE and
-     * AreaViewport.COLOURTWO. The value of n is converted to letter and drawn in the
+     * or positive. The colour is set by AreaViewport.COLOR_ONE and
+     * AreaViewport.COLOR_TWO. The value of n is converted to letter and drawn in the
      * hexagon.
      * ***************************************************************************
      */
