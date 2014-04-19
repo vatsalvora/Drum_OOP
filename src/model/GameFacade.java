@@ -32,7 +32,7 @@ public class GameFacade {
         }
         catch(NoIrrigationLeftException e)
         {
-            //possibly do something with the exception, such as print it to the user
+            System.out.println(e.toString());
         }
 	}
 
