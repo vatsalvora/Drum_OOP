@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
     private ArrayList<PalaceCard> deck = new ArrayList<PalaceCard>();

@@ -8,11 +8,7 @@ public class BoardController {
 	private Board board;
 
     public BoardController() {
-
-    }
-
-    public BoardController(Board board) {
-        this.board = board;
+        board = new Board();
     }
 
     public Board getBoard() {
@@ -24,7 +20,7 @@ public class BoardController {
 	}
 
 	public void placeTile(Location location, Tile tile) {
-
+        board.place(location, tile);
 	}
 
 	public boolean checkTilePlacement(Location location, Tile tile) {
@@ -49,8 +45,9 @@ public class BoardController {
 
 	}
 
-	public List<Space> shortestPath() {
-		return null;
+	public List<Space> shortestPath(Location initial, Location fin) {
+		DeveloperPathFinding developerPathFinding = new DeveloperPathFinding();
+return null;
 
 	}
 

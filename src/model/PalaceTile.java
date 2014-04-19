@@ -1,13 +1,17 @@
 package model;
 
 
+
+
 /**
  * Created by Vatsal on 4/13/2014.
  */
-public class PalaceTile extends Tile{
+public class PalaceTile extends Tile {
+
 
 
 	private int possition;
+
 
     public PalaceTile(){
     	possition = 0;
@@ -41,6 +45,7 @@ public class PalaceTile extends Tile{
 			possition--;
 		
 	}
+
 
 
 

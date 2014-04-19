@@ -108,8 +108,14 @@ public class TurnController {
         }
     }
 
-    public void removeDeveloper() {
+    public void undoDeveloperPlacement(int i)
+    {
+        currentPlayer.removeDeveloper();
+        actionPoints += i;
+    }
 
+    public void removeDeveloper(int i) {
+        actionPoints -= i;
         currentPlayer.removeDeveloper();
     }
 
@@ -126,7 +132,7 @@ public class TurnController {
     public void returnActionToken() {
         currentPlayer.returnActionToken();
         actionTokenUsed = false;
-        actionPoints++;
+        actionPoints--;
     }
 
     public void placeRiceBlock() throws NoAPLeftException, NoRiceBlocksException {
@@ -196,6 +202,11 @@ public class TurnController {
         }
     }
 
+    public PalaceCard returnCard()
+    {
+        return currentPlayer.returnCard();
+    }
+
     public void drawFestivalCard(PalaceCard c) throws BlockNotPlayedException, NotEnoughAPException {
         if (c != null) {
             if (actionPoints > 0) {
@@ -211,7 +222,12 @@ public class TurnController {
         }
     }
 
-    // Actions that do not require the current player.
+    public PalaceCard returnFestivalCard()
+    {
+        return festival.changeFestivalCard(currentPlayer.returnCard());
+    }
+
+    // Actions that do not require the current player's inventory.
     public void placeOtherBlock() throws NotEnoughAPException {
         if (actionPoints > 0) {
             actionPoints--;
@@ -261,10 +277,6 @@ public class TurnController {
             }
         }
         festival.startFestival(inFestival);
-    }
-
-    public void changeFestivalPlayer() {
-        festival.nextPlayer();
     }
 
     public void playCard(String t1, String t2) throws CardNotPlayableException, CardNotInHandException {

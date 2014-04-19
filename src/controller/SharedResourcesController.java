@@ -21,6 +21,11 @@ public class SharedResourcesController {
 		return resources.drawCard();
 	}
 
+    public void returnCard(PalaceCard c)
+    {
+        resources.returnCard(c);
+    }
+
 	public int getThreeBlocksLeft() {
 		return resources.getNumThreeBlockTiles();
 	}
@@ -28,6 +33,11 @@ public class SharedResourcesController {
 	public void placeThreeBlock() throws NoThreeBlockLeftException {
         resources.placeThreeBlock();
 	}
+
+    public void returnThreeBlock()
+    {
+        resources.returnThreeBlock();
+    }
 
 	public int getIrrigationTilesLeft() {
 		return resources.getNumIrrigationTiles();
@@ -38,6 +48,11 @@ public class SharedResourcesController {
         resources.placeIrrigationTile();
 	}
 
+    public void returnIrrigationTile()
+    {
+        resources.returnIrrigationTile();
+    }
+
 	public void discardCard(PalaceCard p) {
         resources.discardCard(p);
 	}
@@ -45,6 +60,11 @@ public class SharedResourcesController {
 	public void placePalace(int level) throws NoPalaceTilesLeft {
         resources.placePalaceTile(level);
 	}
+
+    public void returnPalace(int i)
+    {
+        resources.returnPalace(i);
+    }
 
     public void returnPalaceCard(PalaceCard c)
     {

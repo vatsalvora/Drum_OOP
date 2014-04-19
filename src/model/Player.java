@@ -215,10 +215,14 @@ public class Player {
         ret += "Rice Tiles: " + riceBlocks + "\n";
         ret += "Village Tiles: " + villageBlocks + "\n";
         ret += "Two Blocks: " + twoBlocks + "\n";
-        ret += "Palace Cards:\n";
+        ret += "Palace Cards:\n";/*
         for (PalaceCard card : cards) {
             ret += card.toString() + "\n";
-        }
+        }*/
         return ret;
+    }
+
+    public PalaceCard returnCard() {
+        return cards.remove(cards.size()-1);
     }
 }

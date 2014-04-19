@@ -12,8 +12,10 @@ public class IrrigationTile extends Tile {
     public IrrigationTile(){
     	possition = 0;
     }
+
      
     public boolean compareTo(Tile t) {
+
         return (t instanceof VillageTile);
     }
 

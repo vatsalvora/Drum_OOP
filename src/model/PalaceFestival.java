@@ -92,7 +92,7 @@ public class PalaceFestival {
     }
 
     // Change current player
-    public void nextPlayer() {
+    private void nextPlayer() {
         reEvaluateValidPlayers();
         if (inProgress) {
             currentPlayerIndex++;

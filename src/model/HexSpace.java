@@ -46,7 +46,7 @@ public class HexSpace implements Space {
 
 	}
 
-	private int numberOfNeighbors() {
+	public int numberOfNeighbors() {
 
 		int number = 0;
 
@@ -58,9 +58,9 @@ public class HexSpace implements Space {
 		return number;
 	}
 
-	public Space[] getNeighbors() {
-		return neighbors;
-
+	public Space getNeighbor(int index) {
+        if(index<neighbors.length && index >=0) return neighbors[index];
+		return null;
 	}
 
 

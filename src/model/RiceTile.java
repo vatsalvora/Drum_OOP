@@ -13,8 +13,10 @@ public class RiceTile extends Tile{
     public RiceTile(){
     	possition = 0;
     }
+
      
     public boolean compareTo(Tile t) {
+
         return (t instanceof VillageTile);
     }
 
