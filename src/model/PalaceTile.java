@@ -24,7 +24,9 @@ public class PalaceTile extends Tile {
     @Override
 
     public boolean equals(Object t) {
+        //TODO It is an equals method, not a method to check the instance of... Should include .equals() or similar to that
         return (t instanceof PalaceTile);
+
     }
 
 }
