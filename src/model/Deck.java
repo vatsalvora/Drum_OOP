@@ -1,10 +1,11 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
-    private ArrayList<PalaceCard> deck = new ArrayList<PalaceCard>();
-    private ArrayList<PalaceCard> discard = new ArrayList<PalaceCard>();
+    private ArrayList<PalaceCard> deck = new ArrayList<>();
+    private ArrayList<PalaceCard> discard = new ArrayList<>();
 
     public Deck() {
         for (int i = 0; i < 5; i++) {
