@@ -16,7 +16,7 @@ public class PlacePalaceTile implements Command {
 	}
 
 	public void execute() {
-		b.placePalaceTile(l, level);
+		b.placePalaceTile(b.getCurrentSpace(), level);
 	}
 
 	public void undo() {

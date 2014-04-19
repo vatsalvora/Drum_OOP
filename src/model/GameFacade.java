@@ -45,6 +45,7 @@ public class GameFacade {
         return boardController.getBoard();
     }
 
+    public HexSpace getCurrentSpace(){return boardController.getCurrentSpace();}
 	public void placeIrrigationTile(Location location) {
         try
         {
@@ -205,7 +206,7 @@ public class GameFacade {
         turnController.startFestival(colors);
 	}
 
-	public void placePalaceTile(Location l, int level) {
+	public void placePalaceTile(HexSpace s, int level) {
         try
         {
             sharedResourcesController.placePalace(level);
@@ -214,6 +215,8 @@ public class GameFacade {
                 try {
                     //place the palace at the proper spot
                     //give fame points to proper player
+                    Tile t = new PalaceTile();
+                    s.place(t);
                 }
                 catch (Exception e) {
                     sharedResourcesController.returnPalace(level);
