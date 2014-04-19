@@ -9,8 +9,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,15 +20,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
-public class start {
+public class Start {
 
+    //TODO why is there the main in here?!
 	public static void main(String[] args) {
-		new start();
+		new Start();
 	}
 
-	public start() {
+	public Start() {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
