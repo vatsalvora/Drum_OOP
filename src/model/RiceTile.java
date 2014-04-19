@@ -45,4 +45,11 @@ public class RiceTile extends Tile{
 		
 	}
 
+
+	@Override
+	public int getPossition() {
+		// TODO Auto-generated method stub
+		return possition;
+	}
+
 }

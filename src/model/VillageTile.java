@@ -13,11 +13,6 @@ public class VillageTile extends Tile {
     	possition = 0;
     }
 
-     
-    public boolean compareTo(Tile t) {
-
-        return (t instanceof VillageTile);
-    }
 
 	@Override
 	public void assignPossition(int possiton) {
@@ -25,6 +20,10 @@ public class VillageTile extends Tile {
 		this.possition = possiton;
 	}
 
+	public int getPossition(){
+		return possition;
+	}
+	
 	@Override
 	public void rotateClockwise() {
 		
@@ -43,5 +42,10 @@ public class VillageTile extends Tile {
 			possition--;
 		
 	}
+	
+    public boolean compareTo(Tile t) {
+
+        return (t instanceof VillageTile);
+    }
 
 }
