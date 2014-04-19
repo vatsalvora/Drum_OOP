@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Stack;
 
 /**
  * Created by Vatsal on 4/13/2014.
@@ -8,31 +7,41 @@ import java.util.Stack;
 public class PalaceTile extends Tile{
 
 
+	private int possition;
+
     public PalaceTile(){
-
+    	possition = 0;
+    }
+     
+    public boolean compareTo(Tile t) {
+        return (t instanceof VillageTile);
     }
 
+	@Override
+	public void assignPossition(int possiton) {
 
-    @Override
-    public void rotateClockwise() {
+		this.possition = possiton;
+	}
 
-    }
+	@Override
+	public void rotateClockwise() {
+		
+		if(possition == 6)
+			possition = 1;
+		else
+			possition++;
+		
+	}
 
-    @Override
-    public void rotateCounterclockwise() {
+	@Override
+	public void rotateCounterclockwise() {
+		if(possition == 1)
+			possition = 6;
+		else
+			possition--;
+		
+	}
 
-    }
-
-    @Override
-
-    public boolean equals(Object t) {
-        if (!(t instanceof PalaceTile)) return false;
-        else{
-
-        }
-        return true;
-
-    }
 
 
 }

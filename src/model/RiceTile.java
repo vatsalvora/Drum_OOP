@@ -8,43 +8,39 @@ package model;
 public class RiceTile extends Tile{
  
 
-    public RiceTile(int numberOfNeighbors){
-        assignNeighbors(numberOfNeighbors); 
-    }
-    
+	private int possition;
 
-    private void assignNeighbors(int numberOfNeighbors){
-    	for(int i = 0; i < numberOfNeighbors; i++)
-    			neighbors[0] = i+1;
+    public RiceTile(){
+    	possition = 0;
     }
-    
-    public int[] getNeighborsLocations() {
-        return neighbors;
-    }
-
- 
-    public void rotateClockwise() {
-    	for(int i = 0 ; i < neighbors.length; i++)
-    		if(neighbors[i] != 0)
-    			if(neighbors[i] != 6)
-    				neighbors[i] = i+1;
-    			else
-    				neighbors[i] = 1;
-    	
-    }
-
-
-    public void rotateCounterclockwise() {
-    	for(int i = 0 ; i < neighbors.length; i++)
-    		if(neighbors[i] != 0)
-    			if(neighbors[i] != 1)
-    				neighbors[i] = i-1;
-    			else
-    				neighbors[i] = 6;
-    }
- 
+     
     public boolean compareTo(Tile t) {
         return (t instanceof VillageTile);
     }
+
+	@Override
+	public void assignPossition(int possiton) {
+
+		this.possition = possiton;
+	}
+
+	@Override
+	public void rotateClockwise() {
+		
+		if(possition == 6)
+			possition = 1;
+		else
+			possition++;
+		
+	}
+
+	@Override
+	public void rotateCounterclockwise() {
+		if(possition == 1)
+			possition = 6;
+		else
+			possition--;
+		
+	}
 
 }

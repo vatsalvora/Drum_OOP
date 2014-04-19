@@ -6,47 +6,40 @@ package model;
  * edited by Jose
  */
 public class VillageTile extends Tile {
-   
 
-    public VillageTile(int numberOfNeighbors){
-        assignNeighbors(numberOfNeighbors); 
+	private int possition;
+
+    public VillageTile(){
+    	possition = 0;
     }
-    
-
-    private void assignNeighbors(int numberOfNeighbors){
-    	for(int i = 0; i < numberOfNeighbors; i++)
-    			neighbors[0] = i+1;
-    }
-    
-    public int[] getNeighborsLocations() {
-        return neighbors;
-    }
-
- 
-    public void rotateClockwise() {
-    	for(int i = 0 ; i < neighbors.length; i++)
-    		if(neighbors[i] != 0)
-    			if(neighbors[i] != 6)
-    				neighbors[i] = i+1;
-    			else
-    				neighbors[i] = 1;
-    	
-    }
-
-
-    public void rotateCounterclockwise() {
-    	for(int i = 0 ; i < neighbors.length; i++)
-    		if(neighbors[i] != 0)
-    			if(neighbors[i] != 1)
-    				neighbors[i] = i-1;
-    			else
-    				neighbors[i] = 6;
-    }
-
- 
+     
     public boolean compareTo(Tile t) {
         return (t instanceof VillageTile);
     }
 
+	@Override
+	public void assignPossition(int possiton) {
+
+		this.possition = possiton;
+	}
+
+	@Override
+	public void rotateClockwise() {
+		
+		if(possition == 6)
+			possition = 1;
+		else
+			possition++;
+		
+	}
+
+	@Override
+	public void rotateCounterclockwise() {
+		if(possition == 1)
+			possition = 6;
+		else
+			possition--;
+		
+	}
 
 }
