@@ -115,28 +115,16 @@ public class AreaViewportController {
      * hexagon.
      * ***************************************************************************
      */
-    public static void fillHex(int i, int j, int n, Color color, Graphics2D g2) {
+    public static void fillHex(int i, int j, String n, Color color, Graphics2D g2) {
         char c;
         int x = i * (s + t);
         int y = j * h + (i % 2) * h / 2;
         Polygon poly = hex(x, y);
-        if (n < 0) {
             g2.setColor(color);
             g2.fillPolygon(poly);
             g2.setColor(Color.BLACK);
             g2.drawPolygon(poly);
-            c = (char) (-n);
-            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
-        }
-
-        if (n > 0) {
-            g2.setColor(color);
-            g2.fillPolygon(hex(x, y));
-            g2.setColor(Color.BLACK);
-            g2.drawPolygon(poly);
-            c = (char) n;
-            g2.drawString("" + c, x + r + BORDERS, y + r + BORDERS + 4);
-        }
+            g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
     }
 
 }

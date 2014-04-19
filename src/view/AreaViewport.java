@@ -24,7 +24,7 @@ public class AreaViewport {
     public static Color COLOR_CELL = Color.ORANGE;
 
     public static Color COLOR_GRID = Color.BLACK;
-    public static int EMPTY = 0;
+    public static String EMPTY = "";
     public static int BOARD_SIZE = 12; // board size.
     public static int HEX_SIZE = 46; // hex size in pixels
     public static int BORDERS = 15;
@@ -66,9 +66,9 @@ public class AreaViewport {
         }
 
         // set up board here
-        ((HexSpace) board.getSpace(new Location(3, 3))).status = (int) 'I';
-        ((HexSpace) board.getSpace(new Location(5, 8))).status = (int) 'I';
-        ((HexSpace) board.getSpace(new Location(3, 15))).status = (int) 'I';
+        ((HexSpace) board.getSpace(new Location(3, 3))).status = "I";
+        ((HexSpace) board.getSpace(new Location(5, 8))).status = "I";
+        ((HexSpace) board.getSpace(new Location(3, 15))).status = "I";
     }
 
     private void createAndShowGUI() {
@@ -220,7 +220,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(0) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(0);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.RED;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -249,7 +249,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(1) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(1);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.CYAN;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -276,7 +276,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(2) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(2);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.GREEN;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -304,7 +304,7 @@ public class AreaViewport {
                     if(getNode().getNeighbor(3) != null)
                     {
                         HexSpace neighbor = (HexSpace)getNode().getNeighbor(3);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.WHITE;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -333,7 +333,7 @@ public class AreaViewport {
                     System.out.println(getNode().numberOfNeighbors());
                     if (getNode().getNeighbor(4) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(4);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.BLUE;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
@@ -360,7 +360,7 @@ public class AreaViewport {
                     System.out.println(ke.getKeyChar());
                     if (getNode().getNeighbor(5) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(5);
-                        neighbor.status = (int) 'X';
+                        neighbor.status = neighbor.getHeight()+"";
                         neighbor.color = Color.GRAY;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);

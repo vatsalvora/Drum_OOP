@@ -8,15 +8,15 @@ public class HexSpace implements Space {
 	private Space[] neighbors;
 	private Location l;
 	// TODO what is status?
-	public int status;
+	public String status;
 	public Color color;
 	private Stack<Tile> tilesOnSpace;
 
 	public HexSpace(Location l) {
 		this.l = l;
 		this.neighbors = new Space[6];
-		this.status = 0;
-		this.color = Color.BLUE;
+		this.status = "";
+		this.color = Color.ORANGE;
 		tilesOnSpace = new Stack<Tile>();
 	}
 
