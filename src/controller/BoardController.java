@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 public class BoardController {
 	private Board board;
+    private DeveloperPathFinding pathFinding;
 
     public BoardController() {
         board = new Board();
+        pathFinding = new DeveloperPathFinding();
     }
 
     public Board getBoard() {
@@ -49,13 +51,10 @@ public class BoardController {
 	}
 
 	public ArrayList<Space> shortestPath(Location initial, Location fin) {
-		DeveloperPathFinding developerPathFinding = new DeveloperPathFinding();
-        return developerPathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
-
+        return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
 	}
-
 	public int shortestPathCost() {
-		return 0;
+		return pathFinding.getAPUsed();
 
 	}
 

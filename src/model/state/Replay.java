@@ -68,17 +68,17 @@ public class Replay extends State {
 	}
 
 	@Override
-	public void keyPressedP(Location location) {
+	public void keyPressedP() {
 		incorrectKeyPressed();
 	}
 
 	@Override
-	public void keyPressedV(Location location) {
+	public void keyPressedV() {
 		incorrectKeyPressed();
 	}
 
 	@Override
-	public void keyPressedI(Location location) {
+	public void keyPressedI() {
 		incorrectKeyPressed();
 	}
 

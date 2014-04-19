@@ -45,20 +45,20 @@ public class Planning extends State {
 	}
 
 	@Override
-	public void keyPressedP(Location location) {
+	public void keyPressedP() {
         //defaulting level of palace to 2
         //TODO change level of palace somehow
-		commandCreator.placePalaceTile(location, 2);
+		commandCreator.placePalaceTile(2);
 	}
 
 	@Override
-	public void keyPressedV(Location location) {
-		commandCreator.placeVillageTile(location);
+	public void keyPressedV() {
+		commandCreator.placeVillageTile();
 	}
 
 	@Override
-	public void keyPressedI(Location location) {
-		commandCreator.placeIrrigationTile(location);
+	public void keyPressedI() {
+		commandCreator.placeIrrigationTile();
 	}
 
 	public void keyPressedU() {

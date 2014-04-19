@@ -7,15 +7,12 @@ public class HexSpace implements Space {
 
 	private Space[] neighbors;
 	private Location l;
-	// TODO what is status?
-	public String status;
 	public Color color;
 	private Stack<Tile> tilesOnSpace;
 
 	public HexSpace(Location l) {
 		this.l = l;
 		this.neighbors = new Space[6];
-		this.status = "";
 		this.color = Color.ORANGE;
 		tilesOnSpace = new Stack<Tile>();
 	}
@@ -26,16 +23,26 @@ public class HexSpace implements Space {
 	}
 
 	public void removeDeveloper() {
-
+		tilesOnSpace.pop();
 	}
+	
 
+	public void removeTile(){
+		
+	}
+	
 	public int getHeight() {
 		return tilesOnSpace.size();
 	}
 
 	public Tile getTopTile() {
-		return tilesOnSpace.pop();
+		return tilesOnSpace.peek();
 	}
+
+    public Tile removeTopTile()
+    {
+        return tilesOnSpace.pop();
+    }
 
 	public void addTile(Tile tile) {
 		tilesOnSpace.push(tile);
@@ -62,6 +69,11 @@ public class HexSpace implements Space {
         if(index<neighbors.length && index >=0) return neighbors[index];
 		return null;
 	}
+	
+	public Location getNeighborLocation(int index) {
+        if(index<neighbors.length && index >=0) return neighbors[index].getLocation();
+		return null;
+	}
 
 
     public void place(Tile tile) {
@@ -82,5 +94,8 @@ public class HexSpace implements Space {
         return l;
     }
 
-
+    public Space[] getNeighbors()
+    {
+        return neighbors;
+    }
 }

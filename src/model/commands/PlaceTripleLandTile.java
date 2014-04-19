@@ -8,15 +8,14 @@ public class PlaceTripleLandTile implements Command {
 	private GameFacade b;
 	private Location l;
 
-	public PlaceTripleLandTile(GameFacade b, Location l) {
+	public PlaceTripleLandTile(GameFacade b) {
 		this.b = b;
-		this.l = l;
 	}
 
 	// TODO which Location of the three land tiles is l?
 	@Override
 	public void execute() {
-		b.placeTripleLandTile(l);
+		b.placeTripleLandTile();
 	}
 
 	@Override

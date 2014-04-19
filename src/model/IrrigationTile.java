@@ -7,48 +7,35 @@ package model;
  */
 public class IrrigationTile extends Tile {
 
+	private Location location;
 	private int possition;
+	
 
-    public IrrigationTile(){
-    	possition = 0;
+    public IrrigationTile(int possition){
+    	this.possition = possition ;
     }
 
-     
+
+
+	public void assignPossition(int position) {
+
+		this.possition = position;
+	}
+
+	public int getPossition(){
+		return possition;
+	}
+	
+	
     public boolean compareTo(Tile t) {
 
         return (t instanceof VillageTile);
     }
+    
 
-	@Override
-	public void assignPossition(int possiton) {
-
-		this.possition = possiton;
-	}
-
-	@Override
-	public void rotateClockwise() {
+	public void updateLocation(Location loc) {
+		location = loc;
 		
-		if(possition == 6)
-			possition = 1;
-		else
-			possition++;
-		
-	}
-
-	@Override
-	public void rotateCounterclockwise() {
-		if(possition == 1)
-			possition = 6;
-		else
-			possition--;
-		
-	}
-
-
-	@Override
-	public int getPossition() {
-		// TODO Auto-generated method stub
-		return possition;
 	}
 
 }

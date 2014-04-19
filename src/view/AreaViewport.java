@@ -52,24 +52,11 @@ public class AreaViewport {
         AreaViewportController.setHeight(HEX_SIZE); // Either setHeight or setSize must be run
         AreaViewportController.setBorders(BORDERS);
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < board.getLength(i); j++) {
-                try {
-                    ((HexSpace) board.getSpace(new Location(j, i))).status = EMPTY;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println(i);
-                    System.exit(1);
-                }
-            }
-        }
 
         // set up board here
-        ((HexSpace) board.getSpace(new Location(3, 3))).status = "I";
+
         ((HexSpace) board.getSpace(new Location(3, 3))).color = Color.BLUE;
-        ((HexSpace) board.getSpace(new Location(5, 8))).status = "I";
         ((HexSpace) board.getSpace(new Location(5, 8))).color = Color.BLUE;
-        ((HexSpace) board.getSpace(new Location(3, 15))).status = "I";
         ((HexSpace) board.getSpace(new Location(3, 15))).color = Color.BLUE;
     }
 
@@ -146,7 +133,7 @@ public class AreaViewport {
                     // board[i][j],g2);
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
-                    String status = (curr.getHeight()>0) ? curr.getHeight()+"" : curr.status;
+                    String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
                     Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.color;
                     AreaViewportController.fillHex(loc.getXLocation(), loc.getYLocation(), status,
                             color, g2);
@@ -167,7 +154,7 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
 
                 if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
-                    state.keyPressedP(l);
+                    state.keyPressedP();
                 }
                 repaint();
             }

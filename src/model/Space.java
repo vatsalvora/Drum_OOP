@@ -5,10 +5,13 @@ package model;
 */
 public interface Space {
 
-		
 		public boolean onBoarder();
 
 	    public void setNeighbors(int index, Space s);
+
+    public Space[] getNeighbors();
+
+    public Tile getTopTile();
 
 	    public Location getLocation();
 	    
