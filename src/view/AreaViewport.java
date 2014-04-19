@@ -74,8 +74,13 @@ public class AreaViewport {
     }
 
     class DrawingPanel extends JPanel {
-
+        /**
+         *
+         */
         private static final long serialVersionUID = 1L;
+
+        // mouse variables here
+        // Point mPt = new Point(0,0);
 
         public DrawingPanel() {
             setBackground(COLOURBACK);
@@ -90,55 +95,18 @@ public class AreaViewport {
             keys.add(new EightKey(l));
             keys.add(new NineKey(l));
             addListeners(keys);
+            //addListeners();
 
-
-            KeyPressedP keyPressedP = new KeyPressedP(l);
-            KeyPressedV keyPressedV = new KeyPressedV(l);
-            KeyPressedI keyPressedI = new KeyPressedI(l);
-            KeyPressed1 keyPressed1 = new KeyPressed1();
-            KeyPressed2 keyPressed2 = new KeyPressed2();
-            KeyPressed3 keyPressed3 = new KeyPressed3();
-            KeyPressed7 keyPressed7 = new KeyPressed7();
-            KeyPressed8 keyPressed8 = new KeyPressed8();
-            KeyPressed9 keyPressed9 = new KeyPressed9();
-            KeyPressedTab keyPressedTab = new KeyPressedTab();
-            KeyPressedR keyPressedR = new KeyPressedR();
-            KeyPressedX keyPressedX = new KeyPressedX();
-            KeyPressedA keyPressedA = new KeyPressedA();
-            KeyPressedESC keyPressedESC = new KeyPressedESC();
-            KeyPressedF keyPressedF = new KeyPressedF();
-            KeyPressedU keyPressedU = new KeyPressedU();
-            KeyPressedW keyPressedW = new KeyPressedW();
-            KeyPressedE keyPressedE = new KeyPressedE();
-            KeyPressed4 keyPressed4 = new KeyPressed4();
-            KeyPressed6 keyPressed6 = new KeyPressed6();
-            KeyPressedS keyPressedS = new KeyPressedS();
-
-            addKeyListener(keyPressed1);
-            addKeyListener(keyPressed2);
-            addKeyListener(keyPressed3);
-            addKeyListener(keyPressed7);
-            addKeyListener(keyPressed8);
-            addKeyListener(keyPressed9);
-            addKeyListener(keyPressedTab);
-            addKeyListener(keyPressedR);
-            addKeyListener(keyPressedP);
-            addKeyListener(keyPressedV);
-            addKeyListener(keyPressedI);
-            addKeyListener(keyPressedX);
-            addKeyListener(keyPressedA);
-            addKeyListener(keyPressedESC);
-            addKeyListener(keyPressedF);
-            addKeyListener(keyPressedU);
-            addKeyListener(keyPressedW);
-            addKeyListener(keyPressedE);
-            addKeyListener(keyPressed4);
-            addKeyListener(keyPressedS);
-            addKeyListener(keyPressed6);
         }
 
-        public void addListeners(List<KeyAdapter> keys) {
-            for (KeyAdapter ka : keys) {
+        public void addListeners(){
+            for(KeyPressed kp: keySet){
+                addKeyListener(kp);
+            }
+        }
+
+        public void addListeners(List<KeyAdapter> keys){
+            for(KeyAdapter ka: keys){
                 addKeyListener(ka);
             }
         }
@@ -157,11 +125,20 @@ public class AreaViewport {
             // fill in hexes
             for (int i = 0; i < BSIZE; i++) {
                 for (int j = 0; j < BSIZE; j++) {
-                    AreaViewportController.fillHex(i, j, ((HexSpace) board.getSpace(new Location(i, j))).status,
-                            ((HexSpace) board.getSpace(new Location(i, j))).color, g2);
+                    // if (board[i][j] < 0)
+                    // AreaViewportController.fillHex(i,j,COLOURONE,-board[i][j],g2);
+                    // if (board[i][j] > 0) AreaViewportController.fillHex(i,j,COLOURTWO,
+                    // board[i][j],g2);
+                    HexSpace curr = (HexSpace) board.getSpace(new Location(i, j));
+                    AreaViewportController.fillHex(i, j, curr.status,
+                            curr.color, g2);
                 }
             }
+
+            // g.setColor(Color.RED);
+            // g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
         }
+
 
         class OneKey extends KeyAdapter {
             private Location l;
@@ -173,9 +150,10 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '1') {
+                    //System.out.println("One:" + ke.getKeyChar());
                     if (x % 2 == 0)
                         p = new Point(x - 1, y);
                     else
@@ -183,14 +161,17 @@ public class AreaViewport {
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;
                 repaint();
             }
 
@@ -214,21 +195,25 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '2') {
+                    //System.out.println(ke.getKeyChar());
                     p = new Point(x, y + 1);
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;
                 repaint();
             }
 
@@ -251,9 +236,10 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '3') {
+                    //System.out.println(ke.getKeyChar());
                     if (x % 2 == 0)
                         p = new Point(x + 1, y);
                     else
@@ -261,14 +247,17 @@ public class AreaViewport {
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;
                 repaint();
             }
 
@@ -291,9 +280,10 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '7') {
+                    //System.out.println(ke.getKeyChar());
                     if (x % 2 == 0)
                         p = new Point(x - 1, y - 1);
                     else
@@ -301,14 +291,17 @@ public class AreaViewport {
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;;
                 repaint();
             }
 
@@ -331,21 +324,25 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '8') {
+                    //System.out.println(ke.getKeyChar());
                     p = new Point(x, y - 1);
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;
                 repaint();
             }
 
@@ -368,9 +365,10 @@ public class AreaViewport {
             public void keyTyped(KeyEvent ke) {
                 int x = l.getXLocation();
                 int y = l.getYLocation();
-                System.out.println(ke.getKeyChar());
+                HexSpace curr = (HexSpace) board.getSpace(l);
                 Point p = new Point(x, y);
                 if (ke.getKeyChar() == '9') {
+                    //System.out.println(ke.getKeyChar());
                     if (x % 2 == 0)
                         p = new Point(x + 1, y - 1);
                     else
@@ -378,459 +376,18 @@ public class AreaViewport {
                     if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
                         return;
                     else {
+                        curr.status = (int) ' ';
+                        curr.color = Color.ORANGE;
                         x = p.x;
                         y = p.y;
                         System.out.println("LOC: " + x + " " + y + "");
                     }
                 }
                 l.setLocation(x, y);
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).status = (int) 'X';
-                ((HexSpace) board.getSpace(new Location(p.x, p.y))).color = Color.GREEN;
+                HexSpace hexSpace = (HexSpace) board.getSpace(l);
+                hexSpace.status = (int) 'X';
+                hexSpace.color = Color.GREEN;
                 repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed1 extends KeyAdapter {
-
-            public KeyPressed1() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '1') {
-                    state.keyPressed1();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed2 extends KeyAdapter {
-
-            public KeyPressed2() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '2') {
-                    state.keyPressed2();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed3 extends KeyAdapter {
-
-            public KeyPressed3() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '3') {
-                    state.keyPressed3();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed7 extends KeyAdapter {
-
-            public KeyPressed7() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '7') {
-                    state.keyPressed7();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed8 extends KeyAdapter {
-
-            public KeyPressed8() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '8') {
-                    state.keyPressed8();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed9 extends KeyAdapter {
-
-            public KeyPressed9() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '9') {
-                    state.keyPressed9();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedTab extends KeyAdapter {
-
-            public KeyPressedTab() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (KeyEvent.VK_TAB == ke.getKeyCode()) {
-                    state.keyPressedTab();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedR extends KeyAdapter {
-
-            public KeyPressedR() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'r') {
-                    state.keyPressedR();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedX extends KeyAdapter {
-
-            public KeyPressedX() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'x') {
-                    state.keyPressedX();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedA extends KeyAdapter {
-
-            public KeyPressedA() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'a') {
-                    state.keyPressedA();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedESC extends KeyAdapter {
-
-            public KeyPressedESC() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    state.keyPressedESC();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedF extends KeyAdapter {
-
-            public KeyPressedF() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'f') {
-                    state.keyPressedF();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedU extends KeyAdapter {
-
-            public KeyPressedU() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'u') {
-                    state.keyPressedU();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedW extends KeyAdapter {
-
-            public KeyPressedW() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'w') {
-                    state.keyPressedW();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedE extends KeyAdapter {
-
-            public KeyPressedE() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'e') {
-                    state.keyPressedE();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed4 extends KeyAdapter {
-
-            public KeyPressed4() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '4') {
-                    state.keyPressed4();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressed6 extends KeyAdapter {
-
-            public KeyPressed6() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '6') {
-                    state.keyPressed6();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedS extends KeyAdapter {
-
-            public KeyPressedS() {
-
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 's') {
-                    state.keyPressedS();
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedP extends KeyAdapter {
-            private Location l;
-
-            public KeyPressedP(Location l) {
-                this.l = l;
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'p') {
-                    state.keyPressedP(l);
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedV extends KeyAdapter {
-            private Location l;
-
-            public KeyPressedV(Location l) {
-                this.l = l;
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'v') {
-                    state.keyPressedV(l);
-                }
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class KeyPressedI extends KeyAdapter {
-            private Location l;
-
-            public KeyPressedI(Location l) {
-                this.l = l;
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == 'i') {
-                    state.keyPressedI(l);
-                }
             }
 
             public void keyPressed(KeyEvent ke) {

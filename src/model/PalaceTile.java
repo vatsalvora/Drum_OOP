@@ -24,7 +24,7 @@ public class PalaceTile extends Tile{
     }
 
     @Override
-    public boolean compareTo(Tile t) {
+    public boolean equals(Object t) {
         if (!(t instanceof PalaceTile)) return false;
         else{
 

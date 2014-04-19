@@ -28,7 +28,7 @@ public class IrrigationTile extends Tile {
 	}
 
 	@Override
-	public boolean compareTo(Tile t) {
+	public boolean equals(Object t) {
 		return (t instanceof IrrigationTile);
 	}
 

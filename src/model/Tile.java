@@ -8,7 +8,7 @@ public abstract class Tile {
 
 	public abstract void rotateCounterclockwise();
 
-	public abstract boolean compareTo(Tile t);
+	public abstract boolean equals(Object t);
 
 	public abstract void place(Tile t, Stack<Tile> tilesOnSpace);
 

@@ -28,12 +28,12 @@ public class RiceTile extends Tile{
     }
 
     @Override
-    public boolean compareTo(Tile t) {
+    public boolean equals(Object t) {
         return (t instanceof RiceTile);
     }
 
     @Override
     public void place(Tile t, Stack<Tile> tilesOnSpace) {
-         if(!compareTo(t)) tilesOnSpace.push(t);
+         if(!equals(t)) tilesOnSpace.push(t);
     }
 }
