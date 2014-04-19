@@ -33,6 +33,7 @@ public class AreaViewport {
     private Board board;
     private List<KeyPressed> keySet;
     private State state;
+    private DrawingPanel panel;
 
     public AreaViewport(GameFacade b, List<KeyPressed> keySet) {
         this.keySet = keySet;
@@ -76,8 +77,7 @@ public class AreaViewport {
     }
 
     private void createAndShowGUI() {
-        DrawingPanel panel = new DrawingPanel();
-
+        panel = new DrawingPanel();
         JFrame frame = new JFrame("Hex Testing 4");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
@@ -89,6 +89,10 @@ public class AreaViewport {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public void render(){
+        panel.repaint();
     }
 
     class DrawingPanel extends JPanel {
@@ -338,7 +342,7 @@ public class AreaViewport {
                     System.out.println(getNode().numberOfNeighbors());
                     if (getNode().getNeighbor(4) != null) {
                         HexSpace neighbor = (HexSpace) getNode().getNeighbor(4);
-                        
+
                         neighbor.color = Color.BLUE;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
