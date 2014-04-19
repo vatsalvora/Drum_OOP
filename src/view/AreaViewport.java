@@ -75,6 +75,9 @@ public class AreaViewport {
         frame.setVisible(true);
     }
 
+    public void setMovement(Color color){
+        movement = color;
+    }
     public void render(Board board){
         panel.repaint();
     }

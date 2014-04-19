@@ -7,16 +7,14 @@ package model;
  */
 public class VillageTile extends Tile {
 
-	private Block belongsTo;
+
 	
 
-    public VillageTile(Block belongsTo){
-    	this.belongsTo = belongsTo;
+    public VillageTile(){
+
     }
 	
-    public Block block(){
-    	return belongsTo;
-    }
+
 	
     public boolean compareTo(Tile t) {
 

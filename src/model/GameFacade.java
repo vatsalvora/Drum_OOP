@@ -13,6 +13,7 @@ import view.AreaViewport;
 import view.keypressed.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,9 @@ public class GameFacade {
 		}
 	}
 
+    public void setMovementColor(Color color){
+        areaViewportController.setMovementColor(color);
+    }
 	public Player[] getPlayers() {
 		return turnController.getPlayers();
 	}
@@ -104,18 +108,19 @@ public class GameFacade {
 	}
 
 	public void placeVillageTile() {
-		try {
-			turnController.placeVillageBlock();
-			try {
-				// place the village at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnVillageBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
+
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new VillageTile();
+            current.place(t);
+            current.color = Color.RED;
+            setMovementColor(Color.BLUE);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
 	}
 
 	public void undoVillageTile() {

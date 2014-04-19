@@ -34,7 +34,7 @@ public class TwoBlock extends Block{
 
 	
 	private void assignCenterType(){
-		centerTile = new VillageTile(this);
+		centerTile = new VillageTile();
 		((HexSpace)loc).addTile(centerTile);
 	}
 	

@@ -1,0 +1,3 @@
+model.commands.PlacePalaceTile
+model.commands.PlacePalaceTile
+model.commands.PlacePalaceTile

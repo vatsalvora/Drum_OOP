@@ -27,6 +27,9 @@ public class AreaViewportController {
 //    public final static boolean orFLAT = true;
 //    public final static boolean orPOINT = false;
 
+    public void setMovementColor(Color color){
+        areaViewport.setMovement(color);
+    }
     public static boolean XYVertex = true;  // true: x,y are the coords of the first vertex.
     // false: x,y are the coords of the top left rect. co-ord.
 
