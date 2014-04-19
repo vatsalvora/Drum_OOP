@@ -23,6 +23,6 @@ public class EndPalaceFestival implements Command {
 
     @Override
     public String toString() {
-        return "Ending palace festival";
+		return this.getClass().getName();
     }
 }

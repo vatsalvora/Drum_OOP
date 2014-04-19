@@ -25,15 +25,8 @@ public class PalaceTile extends Tile{
 
     @Override
     public boolean compareTo(Tile t) {
-        if (!(t instanceof PalaceTile)) return false;
-        else{
-
-        }
-        return true;
+        return (t instanceof PalaceTile);
     }
 
-    @Override
-    public void place(Tile t, Stack<Tile> tilesOnSpace) {
-         //Can't Place Anything on top
-    }
+
 }

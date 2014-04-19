@@ -2,13 +2,11 @@ package model.customExceptions;
 
 public class NoRiceBlocksException extends Exception {
 
-    public NoRiceBlocksException()
-    {
+	public NoRiceBlocksException() {
 
-    }
+	}
 
-    public String toString()
-    {
-        return "No rice tiles remaining.";
-    }
+	public String toString() {
+		return "No rice tiles remaining.";
+	}
 }

@@ -136,6 +136,8 @@ public class Turn extends State {
 		incorrectKeyPressed();
 	}
 
-    @Override
-    public void keyPressedEnter() { incorrectKeyPressed();}
+	@Override
+	public void keyPressedEnter() {
+		incorrectKeyPressed();
+	}
 }

@@ -8,100 +8,100 @@ import model.Location;
  */
 public class Planning extends State {
 
+	public Planning(GameFacade gameFacade) {
+		super(gameFacade);
+	}
 
-    public Planning(GameFacade gameFacade) {
-        super(gameFacade);
-    }
+	public void keyPressed1() {
+		// TODO: Move to SW position
+	}
 
-    public void keyPressed1() {
-        // TODO: Move to SW position
-    }
+	public void keyPressed2() {
+		// TODO: Move to S position
+	}
 
-    public void keyPressed2() {
-        // TODO: Move to S position
-    }
+	public void keyPressed3() {
+		// TODO: Move to SE position
+	}
 
-    public void keyPressed3() {
-        // TODO: Move to SE position
-    }
+	public void keyPressed7() {
+		// TODO: Move to NE position
+	}
 
-    public void keyPressed7() {
-        // TODO: Move to NE position
-    }
+	public void keyPressed8() {
+		// TODO: Move to N position
+	}
 
-    public void keyPressed8() {
-        // TODO: Move to N position
-    }
+	public void keyPressed9() {
+		// TODO: Move to NW position
+	}
 
-    public void keyPressed9() {
-        // TODO: Move to NW position
-    }
+	public void keyPressedTab() {
+		// TODO: Tab through developers
+	}
 
-    public void keyPressedTab() {
-        // TODO: Tab through developers
-    }
+	public void keyPressedR() {
+		// TODO: Select rice tile
+	}
 
-    public void keyPressedR() {
-        // TODO: Select rice tile
-    }
+	@Override
+	public void keyPressedP(Location location) {
+		commandCreator.placePalaceTile(location);
+	}
 
-    @Override
-    public void keyPressedP(Location location) {
-        commandCreator.placePalaceTile(location);
-    }
+	@Override
+	public void keyPressedV(Location location) {
+		commandCreator.placeVillageTile(location);
+	}
 
-    @Override
-    public void keyPressedV(Location location) {
-        commandCreator.placeVillageTile(location);
-    }
+	@Override
+	public void keyPressedI(Location location) {
+		commandCreator.placeIrrigationTile(location);
+	}
 
-    @Override
-    public void keyPressedI(Location location) {
-        commandCreator.placeIrrigationTile(location);
-    }
+	public void keyPressedU() {
+		commandCreator.undoLastCommand();
+	}
 
+	public void keyPressedX() {
+		// TODO: End planning mode
+	}
 
-    public void keyPressedU() {
-        commandCreator.undoLastCommand();
-    }
+	public void keyPressedA() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedX() {
-        // TODO: End planning mode
-    }
+	public void keyPressedESC() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedA() {
-        incorrectKeyPressed();
-    }
+	public void keyPressedF() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedESC() {
-        incorrectKeyPressed();
-    }
+	public void keyPressedW() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedF() {
-        incorrectKeyPressed();
-    }
+	public void keyPressedE() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedW() {
-        incorrectKeyPressed();
-    }
+	public void keyPressed4() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedE() {
-        incorrectKeyPressed();
-    }
+	public void keyPressed6() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressed4() {
-        incorrectKeyPressed();
-    }
+	@Override
+	public void keyPressedS() {
 
-    public void keyPressed6() {
-        incorrectKeyPressed();
-    }
+	}
 
-    @Override
-    public void keyPressedS() {
-
-    }
-
-    @Override
-    public void keyPressedEnter() { incorrectKeyPressed();}
+	@Override
+	public void keyPressedEnter() {
+		incorrectKeyPressed();
+	}
 }

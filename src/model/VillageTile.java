@@ -1,38 +1,52 @@
 package model;
 
-import java.util.Stack;
 
 /**
  * Created by Vatsal on 4/13/2014.
+ * edited by Jose
  */
 public class VillageTile extends Tile {
-    private Tile[] neighbors;
+   
 
-    public VillageTile(int numNeighbors){
-        this.neighbors = new Tile[numNeighbors];
+    public VillageTile(int numberOfNeighbors){
+        assignNeighbors(numberOfNeighbors); 
     }
-    @Override
-    public Tile[] getNeighbors() {
+    
+
+    private void assignNeighbors(int numberOfNeighbors){
+    	for(int i = 0; i < numberOfNeighbors; i++)
+    			neighbors[0] = i+1;
+    }
+    
+    public int[] getNeighborsLocations() {
         return neighbors;
     }
 
-    @Override
+ 
     public void rotateClockwise() {
-
+    	for(int i = 0 ; i < neighbors.length; i++)
+    		if(neighbors[i] != 0)
+    			if(neighbors[i] != 6)
+    				neighbors[i] = i+1;
+    			else
+    				neighbors[i] = 1;
+    	
     }
 
-    @Override
+
     public void rotateCounterclockwise() {
-
+    	for(int i = 0 ; i < neighbors.length; i++)
+    		if(neighbors[i] != 0)
+    			if(neighbors[i] != 1)
+    				neighbors[i] = i-1;
+    			else
+    				neighbors[i] = 6;
     }
 
-    @Override
+ 
     public boolean compareTo(Tile t) {
         return (t instanceof VillageTile);
     }
 
-    @Override
-    public void place(Tile t, Stack<Tile> tilesOnSpace) {
-        if(!compareTo(t)) tilesOnSpace.push(t);
-    }
+
 }

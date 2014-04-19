@@ -5,10 +5,10 @@ package model.customExceptions;
  */
 public class CardNotInHandException extends Exception {
 
-    public CardNotInHandException(){}
+	public CardNotInHandException() {
+	}
 
-    public String toString()
-    {
-        return "You do not own this card.";
-    }
+	public String toString() {
+		return "You do not own this card.";
+	}
 }

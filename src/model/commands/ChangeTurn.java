@@ -11,23 +11,20 @@ public class ChangeTurn implements Command {
 		this.gameFacade = gameFacade;
 	}
 
-	public void execute()
-    {
-        try {
-            gameFacade.changeTurn();
-        }
-        catch (BlockNotPlayedException e)
-        {
-            //do something with the exception
-        }
+	public void execute() {
+		try {
+			gameFacade.changeTurn();
+		} catch (BlockNotPlayedException e) {
+			// do something with the exception
+		}
 	}
 
 	public void undo() {
 
 	}
 
-    @Override
-    public String toString(){
-        return "Changing turns";
-    }
+	@Override
+	public String toString() {
+		return this.getClass().getName();
+	}
 }
