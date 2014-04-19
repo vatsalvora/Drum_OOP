@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.TileHeightWrongException;
+
 import java.awt.*;
 import java.util.Stack;
 
@@ -7,15 +9,12 @@ public class HexSpace implements Space {
 
 	private Space[] neighbors;
 	private Location l;
-	// TODO what is status?
-	public String status;
 	public Color color;
 	private Stack<Tile> tilesOnSpace;
 
 	public HexSpace(Location l) {
 		this.l = l;
 		this.neighbors = new Space[6];
-		this.status = "";
 		this.color = Color.ORANGE;
 		tilesOnSpace = new Stack<Tile>();
 	}
@@ -26,9 +25,14 @@ public class HexSpace implements Space {
 	}
 
 	public void removeDeveloper() {
-
+		tilesOnSpace.pop();
 	}
+	
 
+	public void removeTile(){
+		
+	}
+	
 	public int getHeight() {
 		return tilesOnSpace.size();
 	}
@@ -67,15 +71,46 @@ public class HexSpace implements Space {
         if(index<neighbors.length && index >=0) return neighbors[index];
 		return null;
 	}
+	
+	public Location getNeighborLocation(int index) {
+        if(index<neighbors.length && index >=0) return neighbors[index].getLocation();
+		return null;
+	}
 
 
     public void place(Tile tile) {
         if(tilesOnSpace.size()==0){
             tilesOnSpace.add(tile);
+            try {
+                //check tile's connections and place connected tiles down as well, throwing exception if error occurs
+            }
+            catch(Exception e)
+            {
+                tilesOnSpace.pop();
+                //tell user what went wrong with tile placement
+            }
         }
         else{
             Tile under = tilesOnSpace.peek();
 //            under.place(tile,tilesOnSpace);
+            //check tile's connections and place connected tiles down as well, throwing exception if error occurs
+        }
+    }
+
+    public void place(Tile tile, int height) throws TileHeightWrongException
+    {
+        if(tilesOnSpace.size()==height){
+            if(height == 0) {
+                tilesOnSpace.add(tile);
+            }
+            else
+            {
+                Tile under = tilesOnSpace.peek();
+//              under.place(tile,tilesOnSpace);
+            }
+        }
+        else{
+            throw new TileHeightWrongException();
         }
     }
 

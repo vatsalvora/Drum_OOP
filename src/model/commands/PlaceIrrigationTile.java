@@ -8,13 +8,12 @@ public class PlaceIrrigationTile implements Command {
 	private GameFacade b;
 	private Location l;
 
-	public PlaceIrrigationTile(GameFacade b, Location l) {
+	public PlaceIrrigationTile(GameFacade b) {
 		this.b = b;
-		this.l = l;
 	}
 
 	public void execute() {
-		b.placeIrrigationTile(l);
+		b.placeIrrigationTile();
 	}
 
 	public void undo() {
