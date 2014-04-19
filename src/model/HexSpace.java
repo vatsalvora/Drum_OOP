@@ -17,7 +17,7 @@ public class HexSpace implements Space {
 		this.neighbors = new Space[6];
 		this.status = 0;
 		this.color = Color.BLUE;
-		tilesOnSpace = new Stack<Tile>();
+		tilesOnSpace = new Stack<>();
 	}
 
 	public Developer getDeveloper() {
