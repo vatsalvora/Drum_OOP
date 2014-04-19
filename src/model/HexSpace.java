@@ -63,21 +63,25 @@ public class HexSpace implements Space {
 
 	}
 
-	public void place(Tile tile) {
-		if (tilesOnSpace.size() == 0) {
-			tilesOnSpace.add(tile);
-		} else {
-			Tile under = tilesOnSpace.peek();
-			under.place(tile, tilesOnSpace);
-		}
-	}
 
-	public void setNeighbors(int index, Space s) {
-		neighbors[index] = s;
-	}
+    public void place(Tile tile) {
+        if(tilesOnSpace.size()==0){
+            tilesOnSpace.add(tile);
+        }
+        else{
+            Tile under = tilesOnSpace.peek();
+//            under.place(tile,tilesOnSpace);
+        }
+    }
 
-	public Location getLocation() {
-		return l;
-	}
+
+    public void setNeighbors(int index, Space s) {
+        neighbors[index] = s;
+    }
+
+    public Location getLocation() {
+        return l;
+    }
+
 
 }

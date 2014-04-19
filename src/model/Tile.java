@@ -4,17 +4,18 @@ import java.util.Stack;
 
 public abstract class Tile {
 
+	 protected int[] neighbors = new int[2];
+	 
 	public abstract void rotateClockwise();
 
 	public abstract void rotateCounterclockwise();
 
-	public abstract boolean equals(Object t);
+	public abstract boolean compareTo(Tile t);
 
-	public abstract void place(Tile t, Stack<Tile> tilesOnSpace);
 
-	public Tile[] getNeighbors() {
+	public int[] getNeighborsLocations() {
 		// TODO Auto-generated method stub
-		return null;
+		return neighbors;
 	}
 
 }
