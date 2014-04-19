@@ -1,34 +1,22 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-import javax.swing.UIManager;
 
-public class Start {
+public class start {
 
     //TODO why is there the main in here?!
 	public static void main(String[] args) {
-		new Start();
+		new start();
 	}
 
-	public Start() {
+	public start() {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {

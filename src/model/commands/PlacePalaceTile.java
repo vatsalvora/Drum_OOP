@@ -7,14 +7,16 @@ import model.Location;
 public class PlacePalaceTile implements Command {
 	private GameFacade b;
 	private Location l;
+    private int level;
 
-	public PlacePalaceTile(GameFacade b, Location l) {
+	public PlacePalaceTile(GameFacade b, Location l, int level) {
 		this.b = b;
 		this.l = l;
+        this.level = level;
 	}
 
 	public void execute() {
-		b.placePalaceTile(l);
+		b.placePalaceTile(l, level);
 	}
 
 	public void undo() {

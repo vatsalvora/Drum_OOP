@@ -49,8 +49,8 @@ public class CommandCreator {
 
 	}
 
-	public void placePalaceTile(Location location) {
-		current = new PlacePalaceTile(gameFacade, location);
+	public void placePalaceTile(Location location, int level) {
+		current = new PlacePalaceTile(gameFacade, location, level);
 
 	}
 
