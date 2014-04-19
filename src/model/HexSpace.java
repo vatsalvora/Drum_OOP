@@ -34,8 +34,13 @@ public class HexSpace implements Space {
 	}
 
 	public Tile getTopTile() {
-		return tilesOnSpace.pop();
+		return tilesOnSpace.peek();
 	}
+
+    public Tile removeTopTile()
+    {
+        return tilesOnSpace.pop();
+    }
 
 	public void addTile(Tile tile) {
 		tilesOnSpace.push(tile);

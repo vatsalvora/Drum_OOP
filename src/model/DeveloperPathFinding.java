@@ -42,7 +42,32 @@ public class DeveloperPathFinding implements PathFinding {
         }
         else
         {
-
+            Space[] neighbors = currSpace.getNeighbors();
+            int newAP = currAP;
+            for(Space nextSpace : neighbors)
+            {
+                if(nextSpace != null) {
+                    if (!nextSpace.getTopTile().getClass().equals(currSpace.getTopTile().getClass())) {
+                        newAP++;
+                    }
+                    if (spaceHolder.contains(nextSpace)) {
+                        if (spaceAP.get(spaceHolder.indexOf(nextSpace)) > newAP) {
+                            spaceAP.set(spaceHolder.indexOf(nextSpace), newAP);
+                            ArrayList<Space> newList = new ArrayList<Space>();
+                            newList.addAll(list);
+                            list.add(nextSpace);
+                            traverse(nextSpace, end, newList, newAP);
+                        }
+                    } else {
+                        spaceHolder.add(nextSpace);
+                        spaceAP.add(newAP);
+                        ArrayList<Space> newList = new ArrayList<Space>();
+                        newList.addAll(list);
+                        list.add(nextSpace);
+                        traverse(nextSpace, end, newList, newAP);
+                    }
+                }
+            }
         }
     }
 

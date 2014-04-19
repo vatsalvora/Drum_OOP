@@ -11,6 +11,8 @@ public interface Space {
 
     public Space[] getNeighbors();
 
+    public Tile getTopTile();
+
 	    public Location getLocation();
 	    
 	    
