@@ -74,7 +74,6 @@ public class HexSpace implements Space {
         }
     }
 
-
     public void setNeighbors(int index, Space s) {
         neighbors[index] = s;
     }
