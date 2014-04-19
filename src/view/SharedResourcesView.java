@@ -39,7 +39,7 @@ public class SharedResourcesView extends JPanel
 
 		public SharedResourcesView()
 		{
-
+		
 				SharedResourcesController src;
 /*				this.numThreeBlocks = src.getThreeBlocksLeft();
 				this.numIrrigationTiles = src.getIrrigationTilesLeft();
@@ -48,15 +48,18 @@ public class SharedResourcesView extends JPanel
 				this.numSixPalaceTiles = src.getNumSixPalaceTiles();
 				this.numEightPalaceTiles = src.getNumEightPalaceTiles();
 				this.numTenPalaceTiles = src.getNumTenPalaceTiles();
-*/				}
+*/			
+				setPreferredSize(new Dimension(300, 300));
+				go();
+		}
+
 
 		private void go()
 		{
 				JPanel buttonPanel = new JPanel();
 				buttonPanel.setPreferredSize(new Dimension(140, 90));
 				buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-				add(buttonPanel);
-
+				add(buttonPanel); 
 				planningMode = new JButton("Planning Mode");
 				/* TODO */
 				add(planningMode);
@@ -70,25 +73,25 @@ public class SharedResourcesView extends JPanel
 				add(palaceCards);
 
 				festivalCards = new JButton("Festival Cards");
-				numThreeBlocks = new JLabel("NumThreeBlocks");
+				numThreeBlocks = newJLabel("NumThreeBlocks");
 				add(numThreeBlocks);
 				
-				numIrrigationTiles = new JLabel("NumIrrigationTiles");
+				numIrrigationTiles = newJLabel("NumIrrigationTiles");
 				add(numIrrigationTiles);
 				
-				numTwoPalaceTiles = new JLabel("NumTwoPalaceTiles");
+				numTwoPalaceTiles = newJLabel("NumTwoPalaceTiles");
 				add(numTwoPalaceTiles);
 				
-				numFourPalaceTiles = new JLabel("NumFourPalaceTiles");
+				numFourPalaceTiles = newJLabel("NumFourPalaceTiles");
 				add(numFourPalaceTiles);
 				
-				numSixPalaceTiles = new JLabel("NumSixPalaceTiles");
+				numSixPalaceTiles = newJLabel("NumSixPalaceTiles");
 				add(numSixPalaceTiles);
 				
-				numEightPalaceTiles = new JLabel("NumEightPalaceTiles");
+				numEightPalaceTiles = newJLabel("NumEightPalaceTiles");
 				add(numEightPalaceTiles);
 
-				numTenPalaceTiles = new JLabel("NumTenPalaceTiles");
+				numTenPalaceTiles = newJLabel("NumTenPalaceTiles");
 				add(numTenPalaceTiles);
 		}		
 				
@@ -174,6 +177,17 @@ public class SharedResourcesView extends JPanel
 						- Drawing
 						- Images
 				*/
-
-					
-}
+				private JLabel newJLabel(String value)
+				{
+						JLabel label= new JLabel(value);
+					//	label.setIcon(new ImageIcon(src));
+						label.setFont(new Font("Lucida Grande", 0, 14));
+						label.setPreferredSize(new Dimension(40, 90));
+						label.setHorizontalTextPosition(SwingConstants.CENTER);
+						label.setVerticalTextPosition(SwingConstants.BOTTOM);
+						label.setVerticalAlignment(SwingConstants.BOTTOM);
+						label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+						return label;
+				}
+				
+} // End class
