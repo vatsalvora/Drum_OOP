@@ -11,7 +11,7 @@ import java.util.Stack;
 
 public class CommandCreator {
 	private GameFacade gameFacade;
-
+	private Command current;
 	private Stack<Command> commands = new Stack<Command>();
 	private Stack<Command> secondCommands = new Stack<Command>();
 
@@ -20,27 +20,28 @@ public class CommandCreator {
 	}
 
 	public void placeDoubleLandTile(Location location) {
-		Command command = new PlaceDoubleLandTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlaceDoubleLandTile(gameFacade, location);
+	}
+
+	public void execute() {
+		current.execute();
+		commands.push(current);
+
 	}
 
 	public void placeTripleLandTile(Location location) {
-		Command command = new PlaceTripleLandTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlaceTripleLandTile(gameFacade, location);
+
 	}
 
 	public void placeIrrigationTile(Location location) {
-		Command command = new PlaceIrrigationTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlaceIrrigationTile(gameFacade, location);
+
 	}
 
 	public void placeRiceTile(Location location) {
-		Command command = new PlaceRiceTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlaceRiceTile(gameFacade, location);
+
 	}
 
 	public void placeVillageTile(Location location) {
@@ -50,22 +51,18 @@ public class CommandCreator {
 	}
 
 	public void placePalaceTile(Location location) {
-		System.out.println("Placing palace at" + location);
-		Command command = new PlacePalaceTile(gameFacade, location);
-		command.execute();
-		commands.push(command);
+		current = new PlacePalaceTile(gameFacade, location);
+
 	}
 
 	public void initiatePalaceFestival() {
-		Command command = new InitiatePalaceFestival(gameFacade);
-		command.execute();
-		commands.push(command);
+		current = new InitiatePalaceFestival(gameFacade);
+
 	}
 
 	public void changeTurn() {
-		Command command = new ChangeTurn(gameFacade);
-		command.execute();
-		commands.push(command);
+		current = new ChangeTurn(gameFacade);
+
 	}
 
 	public void undoLastCommand() {

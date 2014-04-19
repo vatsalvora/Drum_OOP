@@ -138,6 +138,6 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedEnter() {
-		incorrectKeyPressed();
+		commandCreator.execute();
 	}
 }
