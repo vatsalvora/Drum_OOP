@@ -132,7 +132,7 @@ public class TurnController {
     public void returnActionToken() {
         currentPlayer.returnActionToken();
         actionTokenUsed = false;
-        actionPoints++;
+        actionPoints--;
     }
 
     public void placeRiceBlock() throws NoAPLeftException, NoRiceBlocksException {
@@ -222,7 +222,12 @@ public class TurnController {
         }
     }
 
-    // Actions that do not require the current player.
+    public PalaceCard returnFestivalCard()
+    {
+        return festival.changeFestivalCard(currentPlayer.returnCard());
+    }
+
+    // Actions that do not require the current player's inventory.
     public void placeOtherBlock() throws NotEnoughAPException {
         if (actionPoints > 0) {
             actionPoints--;

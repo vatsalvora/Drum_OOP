@@ -20,6 +20,16 @@ public class GameFacade {
 		sharedResourcesController = new SharedResourcesController();
 	}
 
+    public void startGame()
+    {
+        for(Player p : turnController.getPlayers())
+        {
+            p.addCard(sharedResourcesController.drawCard());
+            p.addCard(sharedResourcesController.drawCard());
+            p.addCard(sharedResourcesController.drawCard());
+        }
+    }
+
     public Player[] getPlayers()
     {
         return turnController.getPlayers();
@@ -67,6 +77,7 @@ public class GameFacade {
         sharedResourcesController.returnIrrigationTile();
         turnController.returnOtherBlock();
         //remove the irrigation tile from the location it was placed
+        //remove fame points if applicable
     }
 
 	public void placeVillageTile(Location location) {
@@ -94,6 +105,7 @@ public class GameFacade {
     {
         turnController.returnVillageBlock();
         //remove the village tile from the location it was placed
+        //remove fame points if applicable
     }
 
 	public void placeRiceTile(Location location) {
@@ -121,6 +133,7 @@ public class GameFacade {
     {
         turnController.returnRiceBlock();
         //remove the rice tile from the location it was placed
+        //remove fame points if applicable
     }
 
 	public void placeDoubleLandTile(Location location) {
@@ -148,6 +161,7 @@ public class GameFacade {
     {
         turnController.returnTwoBlock();
         //remove the two block from the location it was placed
+        //remove fame points if applicable
     }
 
 	public void placeTripleLandTile(Location location) {
@@ -182,6 +196,7 @@ public class GameFacade {
         sharedResourcesController.returnThreeBlock();
         turnController.returnOtherBlock();
         //remove three tile block from location it was placed
+        //remove fame points if applicable
     }
 
 	public void initiatePalaceFestival() {
@@ -198,6 +213,7 @@ public class GameFacade {
                 turnController.placeOtherBlock();
                 try {
                     //place the palace at the proper spot
+                    //give fame points to proper player
                 }
                 catch (Exception e) {
                     sharedResourcesController.returnPalace(level);
@@ -214,6 +230,13 @@ public class GameFacade {
             //do something with exception
         }
 	}
+
+    public void undoPalaceTile(Location l, int level)
+    {
+        sharedResourcesController.returnPalace(level);
+        //remove palace tile from the specified location
+        //remove fame points if applicable
+    }
 
 	public void changeTurn() throws BlockNotPlayedException {
         turnController.nextTurn();
@@ -248,6 +271,22 @@ public class GameFacade {
     public void undoDrawCard()
     {
         sharedResourcesController.returnPalaceCard(turnController.returnCard());
+    }
+
+    public void drawFestivalCard()
+    {
+        try{
+            turnController.drawFestivalCard(sharedResourcesController.drawCard());
+        }
+        catch(Exception e)
+        {
+            //tell user why card could not be drawn
+        }
+    }
+
+    public void returnFestivalCard()
+    {
+        sharedResourcesController.returnCard(turnController.returnFestivalCard());
     }
 
     public void playCard(String t1, String t2)
@@ -308,5 +347,21 @@ public class GameFacade {
         {
             //tell user they do not own a developer at that location
         }
+    }
+
+    public void useActionToken()
+    {
+        try{
+            turnController.useActionToken();
+        }
+        catch(Exception e)
+        {
+            //tell user why action token could not be used
+        }
+    }
+
+    public void undoActionToken()
+    {
+        turnController.returnActionToken();
     }
 }

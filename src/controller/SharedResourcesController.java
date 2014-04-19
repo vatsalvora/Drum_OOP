@@ -21,6 +21,11 @@ public class SharedResourcesController {
 		return resources.drawCard();
 	}
 
+    public void returnCard(PalaceCard c)
+    {
+        resources.returnCard(c);
+    }
+
 	public int getThreeBlocksLeft() {
 		return resources.getNumThreeBlockTiles();
 	}
