@@ -100,7 +100,7 @@ public class AreaViewport {
             keys.add(new OneKey());
             keys.add(new TwoKey());
             keys.add(new ThreeKey());
-            keys.add(new SevenKey(l));
+            keys.add(new SevenKey());
             keys.add(new EightKey());
             keys.add(new NineKey());
             keys.add(new PKey(l));
@@ -218,7 +218,7 @@ public class AreaViewport {
                     {
                         HexSpace neighbor = (HexSpace)getNode().getNeighbor(0);
                         neighbor.status = (int) 'X';
-                        neighbor.color = Color.GREEN;
+                        neighbor.color = Color.RED;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
                     }
@@ -248,7 +248,7 @@ public class AreaViewport {
                     {
                         HexSpace neighbor = (HexSpace)getNode().getNeighbor(1);
                         neighbor.status = (int) 'X';
-                        neighbor.color = Color.GREEN;
+                        neighbor.color = Color.CYAN;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
                     }
@@ -294,37 +294,21 @@ public class AreaViewport {
         }
 
         class SevenKey extends KeyAdapter {
-            private Location l;
-
-            public SevenKey(Location l) {
-                this.l = l;
+            public SevenKey() {
             }
 
             public void keyTyped(KeyEvent ke) {
-                int x = l.getXLocation();
-                int y = l.getYLocation();
-                HexSpace curr = (HexSpace) board.getSpace(l);
-                Point p = new Point(x, y);
                 if (ke.getKeyChar() == '7') {
-                    //System.out.println(ke.getKeyChar());
-                    if (x % 2 == 0)
-                        p = new Point(x - 1, y - 1);
-                    else
-                        p = new Point(x - 1, y);
-                    if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE)
-                        return;
-                    else {
-                        curr.status = (int) ' ';
-                        curr.color = Color.ORANGE;
-                        x = p.x;
-                        y = p.y;
-                        System.out.println("LOC: " + x + " " + y + "");
+                    System.out.println(ke.getKeyChar());
+                    if(getNode().getNeighbor(3) != null)
+                    {
+                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(3);
+                        neighbor.status = (int) 'X';
+                        neighbor.color = Color.WHITE;
+                        System.out.println("LOC: " + neighbor.getLocation());
+                        setNode(neighbor);
                     }
                 }
-                l.setLocation(x, y);
-                HexSpace hexSpace = (HexSpace) board.getSpace(l);
-                hexSpace.status = (int) 'X';
-                hexSpace.color = Color.GREEN;;
                 repaint();
             }
 
@@ -377,7 +361,7 @@ public class AreaViewport {
                     {
                         HexSpace neighbor = (HexSpace)getNode().getNeighbor(5);
                         neighbor.status = (int) 'X';
-                        neighbor.color = Color.GREEN;
+                        neighbor.color = Color.GRAY;
                         System.out.println("LOC: " + neighbor.getLocation());
                         setNode(neighbor);
                     }
