@@ -37,33 +37,32 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressed1() {
-		// TODO: Move to SW
-
+		commandCreator.move1();
 	}
 
 	@Override
 	public void keyPressed2() {
-		// TODO: Move to S
+		commandCreator.move2();
 	}
 
 	@Override
 	public void keyPressed3() {
-		// TODO: Move to SE
+		commandCreator.move3();
 	}
 
 	@Override
 	public void keyPressed7() {
-		// TODO: Move to NE
+		commandCreator.move7();
 	}
 
 	@Override
 	public void keyPressed8() {
-		// TODO: Move to N
+		commandCreator.move8();
 	}
 
 	@Override
 	public void keyPressed9() {
-		// TODO: Move to NW
+		commandCreator.move9();
 	}
 
 	@Override
@@ -73,16 +72,15 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedR() {
-		// TODO: Select Rice tile
+		commandCreator.placeRiceTile();
 	}
 
 	@Override
-
 	public void keyPressedP() {
-        //defaulting level of palace to 2
-        //TODO change level of palace somehow
-        commandCreator.placePalaceTile(2);
-    }
+		// defaulting level of palace to 2
+		// TODO change level of palace somehow
+		commandCreator.placePalaceTile(2);
+	}
 
 	@Override
 	public void keyPressedV() {

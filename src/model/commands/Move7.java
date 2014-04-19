@@ -4,21 +4,22 @@ import model.Command;
 import model.GameFacade;
 
 public class Move7 implements Command {
+	private GameFacade b;
 
-	public Move7(GameFacade gameFacade) {
-		// TODO Auto-generated constructor stub
+	public Move7(GameFacade b) {
+		this.b = b;
 	}
 
-	@Override
+	// TODO which Location of the three land tiles is l?
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		b.move7();
 	}
 
-	@Override
 	public void undo() {
-		// TODO Auto-generated method stub
 
 	}
 
+	public String toString() {
+		return this.getClass().getName();
+	}
 }

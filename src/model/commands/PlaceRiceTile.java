@@ -2,11 +2,9 @@ package model.commands;
 
 import model.Command;
 import model.GameFacade;
-import model.Location;
 
 public class PlaceRiceTile implements Command {
 	private GameFacade b;
-	private Location l;
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
@@ -21,6 +19,6 @@ public class PlaceRiceTile implements Command {
 	}
 
 	public String toString() {
-		return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+		return this.getClass().getName();
 	}
 }

@@ -4,7 +4,6 @@ import controller.FileController;
 import model.ChangeTurn;
 import model.Command;
 import model.GameFacade;
-import model.HexSpace;
 
 import java.util.Stack;
 
@@ -25,11 +24,6 @@ public class CommandCreator {
 	public void execute() {
 		current.execute();
 		commands.push(current);
-	}
-
-	public void placeTripleLandTile() {
-		current = new PlaceTripleLandTile(gameFacade);
-
 	}
 
 	public void move1() {
@@ -57,8 +51,13 @@ public class CommandCreator {
 
 	}
 
-	public void move9(HexSpace hex) {
+	public void move9() {
 		current = new Move9(gameFacade);
+
+	}
+
+	public void placeTripleLandTile() {
+		current = new PlaceTripleLandTile(gameFacade);
 
 	}
 
@@ -129,9 +128,9 @@ public class CommandCreator {
 	}
 
 	public void save(String fileName) {
-        FileController fileController = new FileController();
-        fileController.save(fileName, commands);
-    }
+		FileController fileController = new FileController();
+		fileController.save(fileName, commands);
+	}
 
 	public void load(String filename) {
 

@@ -20,223 +20,180 @@ public class GameFacade {
 	private BoardController boardController;
 	private TurnController turnController;
 	private SharedResourcesController sharedResourcesController;
-    private AreaViewportController areaViewportController;
+	private AreaViewportController areaViewportController;
 
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
 		sharedResourcesController = new SharedResourcesController();
-        areaViewportController = new AreaViewportController(boardController.getBoard());
+		areaViewportController = new AreaViewportController(boardController.getBoard());
 
 	}
 
-    public void addKeyListeners(List<KeyPressed> keySet){
-            areaViewportController.addListeners(keySet);
-    }
+	public void addKeyListeners(List<KeyPressed> keySet) {
+		areaViewportController.addListeners(keySet);
+	}
 
-    public void render(){
-        areaViewportController.render(boardController.getBoard());
-    }
+	public void render() {
+		areaViewportController.render(boardController.getBoard());
+	}
 
+	public void startGame() {
+		for (Player p : turnController.getPlayers()) {
+			p.addCard(sharedResourcesController.drawCard());
+			p.addCard(sharedResourcesController.drawCard());
+			p.addCard(sharedResourcesController.drawCard());
+		}
+	}
 
-    public void startGame()
-    {
-        for(Player p : turnController.getPlayers())
-        {
-            p.addCard(sharedResourcesController.drawCard());
-            p.addCard(sharedResourcesController.drawCard());
-            p.addCard(sharedResourcesController.drawCard());
-        }
-    }
+	public Player[] getPlayers() {
+		return turnController.getPlayers();
+	}
 
-    public Player[] getPlayers()
-    {
-        return turnController.getPlayers();
-    }
+	public Player getCurrentPlayer() {
+		return turnController.getCurrentPlayer();
+	}
 
-    public Player getCurrentPlayer()
-    {
-        return turnController.getCurrentPlayer();
-    }
+	public Board getBoard() {
+		return boardController.getBoard();
+	}
 
-    public Board getBoard()
-    {
-        return boardController.getBoard();
-    }
+	public HexSpace getCurrentSpace() {
+		return boardController.getCurrentSpace();
+	}
 
+	public int getAPLeft() {
+		return turnController.APLeft();
+	}
 
-    public HexSpace getCurrentSpace(){return boardController.getCurrentSpace();}
+	public String currentPlayerName() {
+		return turnController.getPlayerName();
+	}
 
-    public int getAPLeft()
-    {
-        return turnController.APLeft();
-    }
-
-    public String currentPlayerName()
-    {
-        return turnController.getPlayerName();
-    }
-
-    public ArrayList<PalaceCard> currentPlayerCards()
-    {
-        return turnController.getCurrentCards();
-    }
-
+	public ArrayList<PalaceCard> currentPlayerCards() {
+		return turnController.getCurrentCards();
+	}
 
 	public void placeIrrigationTile() {
-        try
-        {
-            sharedResourcesController.placeIrrigationTile();
-            try {
-                turnController.placeOtherBlock();
-                try {
-                    //place the irrigation at the proper spot
-                    //give player the proper points (if applicable)
-                } catch (Exception e) {
-                    sharedResourcesController.returnIrrigationTile();
-                    turnController.returnOtherBlock();
-                    //tell user about error
-                }
-            }
-            catch(NotEnoughAPException e)
-            {
-                //tell user there was not enough AP to play the irrigation tile
-                sharedResourcesController.returnIrrigationTile();
-            }
-        }
-        catch(NoIrrigationLeftException e)
-        {
-            //print error to user
-        }
+		try {
+			sharedResourcesController.placeIrrigationTile();
+			try {
+				turnController.placeOtherBlock();
+				try {
+					// place the irrigation at the proper spot
+					// give player the proper points (if applicable)
+				} catch (Exception e) {
+					sharedResourcesController.returnIrrigationTile();
+					turnController.returnOtherBlock();
+					// tell user about error
+				}
+			} catch (NotEnoughAPException e) {
+				// tell user there was not enough AP to play the irrigation tile
+				sharedResourcesController.returnIrrigationTile();
+			}
+		} catch (NoIrrigationLeftException e) {
+			// print error to user
+		}
 	}
 
-    public void undoIrrigationTile()
-    {
-        sharedResourcesController.returnIrrigationTile();
-        turnController.returnOtherBlock();
-        //remove the irrigation tile from the location it was placed
-        //remove fame points if applicable
-    }
+	public void undoIrrigationTile() {
+		sharedResourcesController.returnIrrigationTile();
+		turnController.returnOtherBlock();
+		// remove the irrigation tile from the location it was placed
+		// remove fame points if applicable
+	}
 
 	public void placeVillageTile() {
-        try
-        {
-            turnController.placeVillageBlock();
-            try
-            {
-                //place the village at the proper spot
-                //give player the proper points (if applicable)
-            }
-            catch(Exception e)
-            {
-                turnController.returnVillageBlock();
-                //tell user about error
-            }
-        }
-        catch(Exception e)
-        {
-            //do something with exception
-        }
+		try {
+			turnController.placeVillageBlock();
+			try {
+				// place the village at the proper spot
+				// give player the proper points (if applicable)
+			} catch (Exception e) {
+				turnController.returnVillageBlock();
+				// tell user about error
+			}
+		} catch (Exception e) {
+			// do something with exception
+		}
 	}
 
-    public void undoVillageTile()
-    {
-        turnController.returnVillageBlock();
-        //remove the village tile from the location it was placed
-        //remove fame points if applicable
-    }
+	public void undoVillageTile() {
+		turnController.returnVillageBlock();
+		// remove the village tile from the location it was placed
+		// remove fame points if applicable
+	}
 
 	public void placeRiceTile() {
-        try
-        {
-            turnController.placeRiceBlock();
-            try
-            {
-                //place the rice at the proper spot
-                //give player the proper points (if applicable)
-            }
-            catch(Exception e)
-            {
-                turnController.returnRiceBlock();
-                //tell user about error
-            }
-        }
-        catch(Exception e)
-        {
-            //do something with exception
-        }
+		try {
+			turnController.placeRiceBlock();
+			try {
+				// place the rice at the proper spot
+				// give player the proper points (if applicable)
+			} catch (Exception e) {
+				turnController.returnRiceBlock();
+				// tell user about error
+			}
+		} catch (Exception e) {
+			// do something with exception
+		}
 	}
 
-    public void undoRiceTile()
-    {
-        turnController.returnRiceBlock();
-        //remove the rice tile from the location it was placed
-        //remove fame points if applicable
-    }
+	public void undoRiceTile() {
+		turnController.returnRiceBlock();
+		// remove the rice tile from the location it was placed
+		// remove fame points if applicable
+	}
 
 	public void placeDoubleLandTile() {
-        try
-        {
-            turnController.placeTwoBlock();
-            try
-            {
-                //place the two block at the proper spot
-                //give player the proper points (if applicable)
-            }
-            catch(Exception e)
-            {
-                turnController.returnTwoBlock();
-                //tell user about error
-            }
-        }
-        catch(Exception e)
-        {
-            //do something with exception
-        }
+		try {
+			turnController.placeTwoBlock();
+			try {
+				// place the two block at the proper spot
+				// give player the proper points (if applicable)
+			} catch (Exception e) {
+				turnController.returnTwoBlock();
+				// tell user about error
+			}
+		} catch (Exception e) {
+			// do something with exception
+		}
 	}
 
-    public void undoDoubleLandTile()
-    {
-        turnController.returnTwoBlock();
-        //remove the two block from the location it was placed
-        //remove fame points if applicable
-    }
+	public void undoDoubleLandTile() {
+		turnController.returnTwoBlock();
+		// remove the two block from the location it was placed
+		// remove fame points if applicable
+	}
 
 	public void placeTripleLandTile() {
-        try
-        {
-            sharedResourcesController.placeThreeBlock();
-            try {
-                turnController.placeOtherBlock();
-                try {
-                    //place the rice at the proper spot
-                    //give player the proper points (if applicable)
-                } catch (Exception e) {
-                    sharedResourcesController.returnThreeBlock();
-                    turnController.returnOtherBlock();
-                    //tell user about error
-                }
-            }
-            catch(NotEnoughAPException e)
-            {
-                //tell user not enough AP remained to play block
-                sharedResourcesController.returnThreeBlock();
-            }
-        }
-        catch(Exception e)
-        {
-            //do something with exception
-        }
+		try {
+			sharedResourcesController.placeThreeBlock();
+			try {
+				turnController.placeOtherBlock();
+				try {
+					// place the rice at the proper spot
+					// give player the proper points (if applicable)
+				} catch (Exception e) {
+					sharedResourcesController.returnThreeBlock();
+					turnController.returnOtherBlock();
+					// tell user about error
+				}
+			} catch (NotEnoughAPException e) {
+				// tell user not enough AP remained to play block
+				sharedResourcesController.returnThreeBlock();
+			}
+		} catch (Exception e) {
+			// do something with exception
+		}
 	}
 
-    public void undoTripleLandTile()
-    {
-        sharedResourcesController.returnThreeBlock();
-        turnController.returnOtherBlock();
-        //remove three tile block from location it was placed
-        //remove fame points if applicable
-    }
-
+	public void undoTripleLandTile() {
+		sharedResourcesController.returnThreeBlock();
+		turnController.returnOtherBlock();
+		// remove three tile block from location it was placed
+		// remove fame points if applicable
+	}
 
 	public void initiatePalaceFestival() {
 		String[] colors = {};
@@ -406,6 +363,36 @@ public class GameFacade {
 
 	public PalaceFestival getFestival() {
 		return turnController.getFestival();
+	}
+
+	public void move1() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void move2() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void move3() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void move7() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void move8() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void move9() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
