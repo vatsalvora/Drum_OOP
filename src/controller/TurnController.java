@@ -116,9 +116,25 @@ public class TurnController {
         actionPoints += i;
     }
 
-    public void removeDeveloper(int i) {
-        actionPoints -= i;
-        currentPlayer.removeDeveloper();
+    public void removeDeveloper(int i) throws Exception {
+        if (actionPoints > i){
+            actionPoints -= i;
+            currentPlayer.removeDeveloper();
+        }
+        else if(actionPoints == i)
+        {
+            if(playedBlock())
+            {
+                actionPoints -= i;
+                currentPlayer.removeDeveloper();
+            }
+            else
+                throw new BlockNotPlayedException();
+        }
+        else
+        {
+            throw new NoAPLeftException();
+        }
     }
 
     public void useActionToken() throws ActionTokenUsedException, NoActionTokensException{
@@ -346,15 +362,44 @@ public class TurnController {
     public String getPlayerColor() {
         return currentPlayer.getColor();
     }
+    
+    public int getNumPlayers()
+    {
+    	return numPlayers;
+    }
+    
+    public int getCurrentPlayerIndex()
+    {
+    	return currentPlayerIndex;
+    }
+    
+    public String getPlayerInfo(int playerNumber)
+    {
+    	if(playerNumber <= numPlayers)
+    		return players[playerNumber-1].toString();
+    	else
+    		return "";
+    }
 
+    public String getPlayerCardInfo()
+    {
+    	return players[currentPlayerIndex].palaceCardsToString();
+    }
     public ArrayList<PalaceCard> getCurrentCards() {
         return currentPlayer.getCards();
+    }
+    
+    public String getCurrentFestivalCard()
+    {
+    	return (festival.getFestivalCard().toString());
     }
 
     public void putFestivalCard(PalaceCard c)
     {
         festival.changeFestivalCard(c);
     }
+    
+  
 
     public void endFestival()
     {

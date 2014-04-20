@@ -1,16 +1,10 @@
 package view;
 
-import controller.AreaViewportController;
 import model.*;
-import model.state.State;
-import model.state.Turn;
 import view.keypressed.KeyPressed;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,7 +13,7 @@ public class AreaViewport {
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
     public Color GREEN = new Color(34,139,34);
-
+    private Color cornflower_blue = new Color(100, 149, 237);
     public  Color COLOR_GRID = Color.BLACK;
 
     public  String EMPTY = "";
@@ -38,13 +32,14 @@ public class AreaViewport {
     // adjacent hexes. Distance between two opposite
     // sides in a hex.
     public int scrolldown;
+    public Color devColor;
     private  Color movement;
-    private State state;
     private DrawingPanel panel;
 
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         scrolldown = 0;
+        devColor = cornflower_blue;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
@@ -54,7 +49,9 @@ public class AreaViewport {
         createAndShowGUI(board);
     }
 
-
+    public void setDevColor(Color color){
+        devColor = color;
+    }
     public  void setXYasVertex(boolean b) {
         XYVertex = b;
     }
@@ -75,20 +72,7 @@ public class AreaViewport {
         // sqrt(3)) = r / sqrt(3)
     }
 
-    public  Polygon square(int x0, int y0) {
-        int y = y0 + BORDERS;
-        int x = x0 + BORDERS;
-        if (s == 0 || h == 0) {
-            System.out.println("ERROR: size of hex has not been set");
-            return new Polygon();
-        }
 
-        int[] cx, cy;
-
-        cx = new int[]{x, x + 1, x, x + 1}; // this is for the top left vertex being at x,y. Which
-        cy = new int[]{y, y, y + 1, y + 1};
-        return new Polygon(cx, cy, 4);
-    }
     public  Polygon hex(int x0, int y0) {
 
         int y = y0 + BORDERS;
@@ -147,11 +131,15 @@ public class AreaViewport {
         g2.setColor(color);
         g2.fillPolygon(poly);
         g2.setColor(Color.BLACK);
-        Polygon square = square(x,y);
-        g2.setColor(color);
-        g2.fillPolygon(poly);
-
         g2.drawPolygon(poly);
+
+
+
+        g2.setColor(devColor);
+        g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+
+        g2.setColor(Color.BLACK);
 
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
 
@@ -185,6 +173,7 @@ public class AreaViewport {
         frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setLocation(400,0);
         frame.setVisible(true);
     }
 
@@ -254,16 +243,21 @@ public class AreaViewport {
                     int[] dir = {0,1,2,5,4,3};
 
                     Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
-                    color = (curr.equals(board.getCurrentSpace())) ? movement : color;
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
-                    if(curr.hasDeveloper()) {
-                        Developer dev = curr.getDeveloper();
-                        Color devColor = dev.getViewColor();
+                    if(curr.equals(board.getCurrentSpace()))
+                    {
+                        color = movement;
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
                                 color,devColor,g2);
+                    }
+                    else if(curr.hasDeveloper()) {
+                        Developer dev = curr.getDeveloper();
+                        Color developerColor = dev.getViewColor();
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color,developerColor,g2);
                     }
                     else {
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,

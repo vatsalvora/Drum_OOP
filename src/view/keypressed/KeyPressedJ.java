@@ -13,7 +13,7 @@ public class KeyPressedJ extends KeyPressed {
     @Override
     public void keyTyped(KeyEvent ke) {
         if(ke.getKeyChar() == 'j'){
-            state.keyPressedF();
+            state.keyPressedJ();
         }
     }
 }

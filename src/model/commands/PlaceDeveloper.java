@@ -3,14 +3,24 @@ package model.commands;
 import model.Command;
 import model.GameFacade;
 
+import java.awt.*;
+
 public class PlaceDeveloper implements Command {
     private GameFacade gameFacade;
     private boolean save;
     private int APForPlacement;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
     public PlaceDeveloper(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
+
         save = true;
+        Color color = gameFacade.getCurrentPlayerColor();
+        int[] rotation = new int[0];
+        gameFacade.setRotation(rotation);
+        gameFacade.setMovementColor(cornflower_blue);
+        gameFacade.setDevColor(color);
+        gameFacade.render();
         APForPlacement = 0;
     }
 
@@ -49,6 +59,6 @@ public class PlaceDeveloper implements Command {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + APForPlacement;
+        return this.getClass().getName() + " " + APForPlacement;
     }
 }

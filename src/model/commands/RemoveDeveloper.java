@@ -22,7 +22,13 @@ public class RemoveDeveloper implements Command {
             }
             catch(Exception e)
             {
-                gameFacade.replaceDeveloper();
+                try {
+                    gameFacade.replaceDeveloper();
+                }
+                catch(Exception f)
+                {
+                    //should never occur
+                }
                 save = false;
                 gameFacade.sendErrorMessage(e.toString());
             }
@@ -49,6 +55,6 @@ public class RemoveDeveloper implements Command {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + APForPlacement;
+        return this.getClass().getName() + " " + APForPlacement;
     }
 }

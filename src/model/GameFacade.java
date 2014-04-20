@@ -42,7 +42,9 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 		}
         turnController.putFestivalCard(sharedResourcesController.drawCard());
+        sharedResourcesController.updatePlayers(turnController);
 	}
+	
 
 	public void setMovementColor(Color color) {
 		areaViewportController.setMovementColor(color);
@@ -113,6 +115,7 @@ public class GameFacade {
             Tile t = new IrrigationTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -142,6 +145,7 @@ public class GameFacade {
             Tile t = new VillageTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -174,6 +178,7 @@ public class GameFacade {
             Tile t = new RiceTile(0, "blah");
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -218,6 +223,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -284,6 +290,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -322,6 +329,7 @@ public class GameFacade {
                     HexSpace current = boardController.getCurrentSpace();
 					boardController.placeTile(t);
                     setMovementColor(cornflower_blue);
+                    setDevColor(cornflower_blue);
 
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);
@@ -410,14 +418,26 @@ public class GameFacade {
 		//place a developer at location and get AP spent on action
         Developer d = new Developer(color, viewColor);
         int APUsed = boardController.placeDeveloper(d);
+        areaViewportController.setMovementColor(cornflower_blue);
+        areaViewportController.setDevColor(cornflower_blue);
+        render();
         //then return said AP
         return APUsed;
 	}
+
+    public Color getCurrentPlayerColor(){
+        return turnController.getPlayerViewColor();
+    }
 
     public void pullDeveloper(int i) throws Exception
     {
         turnController.placeDeveloper(i);
     }
+
+    public void setDevColor(Color color){
+        areaViewportController.setDevColor(color);
+    }
+
 
     public int removeDeveloper() throws Exception
     {
@@ -433,7 +453,7 @@ public class GameFacade {
         removeDeveloper();
     }
 
-    public void pushDeveloper(int i)
+    public void pushDeveloper(int i) throws Exception
     {
         turnController.removeDeveloper(i);
     }
@@ -448,12 +468,13 @@ public class GameFacade {
         turnController.removeDeveloper(i);
     }
 
-    public void replaceDeveloper()
+    public void replaceDeveloper() throws Exception
     {
         //put developer on the current space of the board
         String color = turnController.getPlayerColor();
         Color viewColor = turnController.getPlayerViewColor();
         Developer d = new Developer(color, viewColor);
+        boardController.placeDeveloper(d);
     }
 
 	public void moveDeveloper(Location start, Location end) {

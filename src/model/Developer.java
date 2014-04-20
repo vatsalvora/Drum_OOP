@@ -7,7 +7,7 @@ public class Developer {
     Color viewColor;
 	public Developer(String color, Color viewColor) {
 		this.color = color;
-        viewColor = viewColor;
+        this.viewColor = viewColor;
 	}
     public Color getViewColor(){return viewColor;}
 	public String getColor() {

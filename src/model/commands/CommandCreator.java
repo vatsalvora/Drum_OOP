@@ -102,6 +102,11 @@ public class CommandCreator {
 
     }
 
+    public void upgradePalaceTile(int level) {
+        current = new PlacePalaceTile(gameFacade, level);
+    }
+
+
     public void initiatePalaceFestival() {
         //current = new InitiatePalaceFestival(gameFacade);
         Command c = new InitiatePalaceFestival(gameFacade);
@@ -124,6 +129,12 @@ public class CommandCreator {
     public void removeDeveloper()
     {
         current = new RemoveDeveloper(gameFacade);
+    }
+
+    public void undoAll(){
+        while(!commands.empty()){
+            undoLastCommand();
+        }
     }
 
     public void undoLastCommand() {
