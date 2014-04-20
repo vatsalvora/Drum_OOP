@@ -75,7 +75,8 @@ public class RiceTile extends Tile{
         return (t instanceof RiceTile);
     }
 
-    public void compareNeighbors(int[] indexes) throws SameBlockException {
+    public void compareNeighbors(Tile tile) throws SameBlockException {
+        int[] indexes = tile.getNeighborsIndex();
         boolean check = false;
 
         for(int i : indexes)

@@ -127,13 +127,13 @@ public class HexSpace implements Space {
 
 
         try {
-
-         int[] neighLocations = tile.getNeighborsIndex();
             if(!spaceEmpty())
-                getTopTile().compareNeighbors(neighLocations);
-           checkingOutSideJava(tile);
-            tilesOnSpace.add(tile);
+                getTopTile().compareNeighbors(tile);
 
+
+
+            checkingOutSideJava(tile);
+            tilesOnSpace.add(tile);
             System.out.println(this);
         } catch (Exception e) {
 
@@ -172,6 +172,11 @@ public class HexSpace implements Space {
 
         for(int a : tile.getNeighborsIndex())
             heights.add(((HexSpace) getNeighbor(a)).getHeight());
+
+        IrrigationTile a = new IrrigationTile(0);
+        if(a.compareTo(tile))
+           if(((HexSpace)getCurrentSpace()).getHeight() != 0)
+               throw new TileHeightWrongException("You can only place an Irrigation Tile on an empty space");
 
         if (heights.size() != 1 &&  length != 0 )
             throw new TileHeightWrongException("Tile heights are inconsistent in the area the block is being placed.");

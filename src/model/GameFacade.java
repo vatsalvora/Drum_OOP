@@ -324,6 +324,7 @@ public class GameFacade {
 
 	public int placePalaceTile(int level) {
 
+
         Tile t = new PalaceTile(level);
         HexSpace current = boardController.getCurrentSpace();
         boardController.placeTile(t);
@@ -331,6 +332,32 @@ public class GameFacade {
         //return fame points gained by palace placement
         return 0;
     }
+/*
+		try {
+        sharedResourcesController.placePalace(level);
+        try {
+        turnController.placeOtherBlock();
+        try {
+        // place the palace at the proper spot
+        // give fame points to proper player
+        Tile t = new PalaceTile(0);
+        HexSpace current = boardController.getCurrentSpace();
+        boardController.placeTile(t);
+        setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
+
+        } catch (Exception e) {
+        sharedResourcesController.returnPalace(level);
+        // tell user about error
+        }
+        } catch (NotEnoughAPException e) {
+        // tell user not enough ap to perform action
+        }
+        } catch (Exception e) {
+        // do something with exception
+        }
+        return 0;
+        }*/
 
 	public void pullPalaceTile(int level) throws NoPalaceTilesLeft {
 		sharedResourcesController.placePalace(level);

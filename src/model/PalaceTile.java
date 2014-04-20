@@ -78,12 +78,14 @@ public class PalaceTile extends Tile {
     }
 
 
-    public void compareNeighbors(int[] indexes) throws SameBlockException {
-        boolean check = false;
+    public void compareNeighbors(Tile tile) throws SameBlockException {
+        int[] indexes = tile.getNeighborsIndex();
+        boolean check = true;
 
         for (int i : indexes) {
-            check = hasNeighborAt(i);
+            check = compareTo(tile.getNeighborAt(i));
         }
+
 
         if (check)
             throw new SameBlockException("Cannot place " + (numberOfNeighbors + 1) + "block on top of a" + (numberOfNeighbors + 1));
