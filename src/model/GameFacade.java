@@ -275,6 +275,31 @@ public class GameFacade {
 	}
 
 	public int placeThreeBlock() throws Exception {
+
+
+        HexSpace current = boardController.getCurrentSpace();
+        int[] rotations = boardController.getRotations();
+        VillageTile village = new VillageTile(2);
+
+        RiceTile rice = new RiceTile(2);
+        village.createReff(rice,rotations[0]);
+        rice.createReff(village,5-rotations[0]);
+
+
+        RiceTile riceTwo = new RiceTile(2);
+        village.createReff(riceTwo,rotations[1]);
+        riceTwo.createReff(village,5-rotations[1]);
+
+
+
+        boardController.placeTile(village);
+
+        /* here i will create the refferences
+        Tile t = new VillageTile(0);
+        boardController.placeTile(t);*/
+        setMovementColor(cornflower_blue);
+        render();
+
 		// place the three block on the board
 		// give the player the appropriate points (if applicable) and return the
 		// points to the command

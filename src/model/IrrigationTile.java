@@ -70,6 +70,13 @@ public class IrrigationTile extends Tile {
         return (t instanceof IrrigationTile);
     }
 
+    public void sameNeighbors(Tile tile){
+        if(tile.getNeighborsIndex().length == getNeighborsIndex().length){
+
+        }
+            //throw exception here
+    }
+
 
 
 

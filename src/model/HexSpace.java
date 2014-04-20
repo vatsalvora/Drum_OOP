@@ -98,14 +98,15 @@ public class HexSpace implements Space {
 
         try {
 
-            increaseHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
+            /*increaseHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
 
             int[] neighLocations = tile.getNeighborsIndex();
 
             for(int i = 0; i < neighLocations.length; i++)
                 updateNeighbor(neighbors[neighLocations[i]] ,tile.getNeighborAt(neighLocations[i]));
 
-            //going to finish this later
+            //going to finish this later*/
+            if(getHeight() == 0)
             addTile(tile);
             //check tile's connections and place connected tiles down as well, throwing exception if error occurs
         } catch (Exception e) {
