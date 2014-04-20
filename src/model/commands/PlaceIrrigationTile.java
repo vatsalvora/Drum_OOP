@@ -2,13 +2,11 @@ package model.commands;
 
 import model.Command;
 import model.GameFacade;
-import model.Location;
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NotEnoughAPException;
 
 public class PlaceIrrigationTile implements Command {
 	private GameFacade b;
-	private Location l;
     private int points;
 
 	public PlaceIrrigationTile(GameFacade b) {
@@ -16,10 +14,9 @@ public class PlaceIrrigationTile implements Command {
         points = 0;
 	}
 
-    public PlaceIrrigationTile(GameFacade b, Location l, int points)
+    public PlaceIrrigationTile(GameFacade b, int points)
     {
         this.b = b;
-        this.l = l;
         this.points = points;
     }
 
@@ -30,11 +27,11 @@ public class PlaceIrrigationTile implements Command {
                 b.placeOtherBlock();
                 try{
                     points = b.placeIrrigationTile();
+                    //save self
                 }
                 catch(Exception e)
                 {
                     b.returnIrrigationTile();
-                    b.returnOtherBlock();
                     b.sendErrorMessage(e.toString());
                 }
             }
@@ -55,7 +52,7 @@ public class PlaceIrrigationTile implements Command {
 	}
 
 	public String toString() {
-		return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation() + " " + points;
+		return this.getClass().getName() + points;
 	}
 
 }

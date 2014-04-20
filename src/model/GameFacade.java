@@ -88,28 +88,6 @@ public class GameFacade {
     {
         turnController.returnOtherBlock();
     }
-/*
-	public void placeIrrigationTile() {
-		try {
-			sharedResourcesController.placeIrrigationTile();
-			try {
-				turnController.placeOtherBlock();
-				try {
-					// place the irrigation at the proper spot
-					// give player the proper points (if applicable)
-				} catch (Exception e) {
-					sharedResourcesController.returnIrrigationTile();
-					turnController.returnOtherBlock();
-					// tell user about error
-				}
-			} catch (NotEnoughAPException e) {
-				// tell user there was not enough AP to play the irrigation tile
-				sharedResourcesController.returnIrrigationTile();
-			}
-		} catch (NoIrrigationLeftException e) {
-			// print error to user
-		}
-	}*/
 
     public void pullIrrigationTile() throws NoIrrigationLeftException
     {
@@ -139,7 +117,7 @@ public class GameFacade {
 		turnController.returnOtherBlock();
 		removeIrrigationTile(i);
 	}
-
+/*
 	public void placeVillageTile() {
 
         try {
@@ -153,33 +131,52 @@ public class GameFacade {
         } catch (Exception e) {
             // tell user about error
         }
-	}
+	}*/
 
-	public void undoVillageTile() {
+    public int placeVillageTile()
+    {
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void pullVillageTile() throws Exception
+    {
+        turnController.placeVillageBlock();
+    }
+
+    public void returnVillageTile()
+    {
+        turnController.returnVillageBlock();
+    }
+
+	public void undoVillageTile(int i) {
 		turnController.returnVillageBlock();
 		// remove the village tile from the location it was placed
-		// remove fame points if applicable
+		turnController.decrementFamePoints(i);
 	}
 
-	public void placeRiceTile() {
-		try {
-			turnController.placeRiceBlock();
-			try {
-				// place the rice at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnRiceBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}
+    public int placeRiceTile()
+    {
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
 
-	public void undoRiceTile() {
+    public void pullRiceTile() throws Exception
+    {
+        turnController.placeRiceBlock();
+    }
+
+    public void returnRiceTile()
+    {
+        turnController.returnRiceBlock();
+    }
+
+	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
 		// remove the rice tile from the location it was placed
-		// remove fame points if applicable
+		turnController.decrementFamePoints(i);
 	}
 
 	public void placeDoubleLandTile() {
@@ -473,5 +470,6 @@ public class GameFacade {
         render();
 
 	}
+
 
 }
