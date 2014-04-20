@@ -134,6 +134,7 @@ public class GameFacade {
 		sharedResourcesController.returnIrrigationTile();
 		turnController.returnOtherBlock();
 		removeIrrigationTile(i);
+        boardController.undoTilePlacement();
 	}
 
 	public int placeVillageTile() {
@@ -165,6 +166,7 @@ public class GameFacade {
 	public void undoVillageTile(int i) {
 		turnController.returnVillageBlock();
 		// remove the village tile from the location it was placed
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(i);
 	}
 
@@ -200,6 +202,7 @@ public class GameFacade {
 	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
 		// remove the rice tile from the location it was placed
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(i);
 	}
 
@@ -248,6 +251,7 @@ public class GameFacade {
     public void undoTwoBlock(int i) {
         turnController.returnTwoBlock();
         // remove the two block from the location it was placed
+        boardController.undoTilePlacement();
         turnController.decrementFamePoints(i);
     }
 
@@ -310,9 +314,10 @@ public class GameFacade {
 	}
 
 	public void undoThreeBlock(int i) {
-		sharedResourcesController.returnIrrigationTile();
+		sharedResourcesController.returnThreeBlock();
 		turnController.returnOtherBlock();
-		removeIrrigationTile(i);
+		removeThreeBlock(i);
+        boardController.undoTilePlacement();
 	}
 
 	public void initiatePalaceFestival() {
@@ -362,6 +367,7 @@ public class GameFacade {
 		sharedResourcesController.returnPalace(level);
 		turnController.returnOtherBlock();
 		// remove palace tile from board
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(points);
 	}
 

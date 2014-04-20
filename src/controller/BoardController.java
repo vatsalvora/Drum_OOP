@@ -29,6 +29,8 @@ public class BoardController {
         return board.getCurrentSpace();
     }
 
+    public void undoTilePlacement(){board.undoTilePlacement();}
+
     public int[] getRotations(){
         return board.getRotations();
     }
