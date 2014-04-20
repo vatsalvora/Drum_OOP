@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.DevOnSpaceException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -111,6 +113,10 @@ public class Board {
                 s.place(t);
             }
         }
+    }
+
+    public void placeDeveloper(Developer developer) throws DevOnSpaceException {
+            current.placeDeveloper(developer);
     }
 
     public void rotateClockwise(){

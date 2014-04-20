@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import model.customExceptions.DevOnSpaceException;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,10 @@ public class BoardController {
 		return null;
 
 	}
+
+    public void placeDeveloper(Developer developer) throws DevOnSpaceException {
+        board.placeDeveloper(developer);
+    }
 
 	public ArrayList<Space> shortestPath(Location initial, Location fin) {
         return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
