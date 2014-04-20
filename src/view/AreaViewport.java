@@ -1,16 +1,10 @@
 package view;
 
-import controller.AreaViewportController;
 import model.*;
-import model.state.State;
-import model.state.Turn;
 import view.keypressed.KeyPressed;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,7 +34,6 @@ public class AreaViewport {
     public int scrolldown;
     public Color devColor;
     private  Color movement;
-    private State state;
     private DrawingPanel panel;
 
     public AreaViewport(Board board) {
@@ -143,8 +136,8 @@ public class AreaViewport {
 
 
         g2.setColor(devColor);
-        g2.fillRect(x+10+BORDERS,y+10+BORDERS,10,10);
-        g2.drawRect(x+10+BORDERS,y+10+BORDERS,10,10);
+        g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
 
         g2.setColor(Color.BLACK);
 
