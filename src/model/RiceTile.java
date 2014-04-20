@@ -1,22 +1,25 @@
 package model;
 
 
+import java.awt.*;
+
 /**
  * Created by Vatsal on 4/13/2014.
  * edited by Jose
  */
 public class RiceTile extends Tile{
  
+    private Color color;
 
-	private Block belongsTo;
-	
 
-    public RiceTile(Block belongsTo){
-    	this.belongsTo = belongsTo;
+
+    public RiceTile(){
+    	color = Color.GREEN;
     }
-	
-    public Block block(){
-    	return belongsTo;
+
+
+    public Color getColor(){
+        return color;
     }
 	
     public boolean compareTo(Tile t) {

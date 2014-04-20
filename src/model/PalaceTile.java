@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.*;
+
 /**
  * Created by Vatsal on 4/13/2014.
  * edited by jose
@@ -7,15 +9,19 @@ package model;
 public class PalaceTile extends Tile {
 
 
-	private Location location;
+	private Color color;
 	private int position;
 	
 
     public PalaceTile(int position){
     	this.position = position ;
+        this.color = new Color(218,165,32);
     }
 
 
+    public Color getColor(){
+        return color;
+    }
 
 	public void assignPosition(int positon) {
 
@@ -33,10 +39,6 @@ public class PalaceTile extends Tile {
     }
     
 
-	public void updateLocation(Location loc) {
-		location = loc;
-		
-	}
 
 
 

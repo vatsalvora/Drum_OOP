@@ -10,14 +10,12 @@ public class HexSpace implements Space {
 
 	private Space[] neighbors;
 	private Location l;
-	public Color color;
 	private Stack<Tile> tilesOnSpace;
     private Developer developer;
 
 	public HexSpace(Location l) {
 		this.l = l;
 		this.neighbors = new Space[6];
-		this.color = Color.ORANGE;
 		tilesOnSpace = new Stack<Tile>();
         developer = null;
 	}
@@ -92,6 +90,16 @@ public class HexSpace implements Space {
 		return null;
 	}
 
+
+    public Color getColor(){
+        if(getHeight()==0){
+            return Color.ORANGE;
+        }
+        else{
+            Tile s = tilesOnSpace.peek();
+            return s.getColor();
+        }
+    }
 
     public void place(Tile tile) {
         if(tilesOnSpace.size()==0){

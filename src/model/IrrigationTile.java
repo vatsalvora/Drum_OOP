@@ -1,29 +1,34 @@
 package model;
 
 
+import java.awt.*;
+
 /**
  * Created by Vatsal on 4/13/2014.
  * edited by Jose
  */
 public class IrrigationTile extends Tile {
 
-	private Location location;
-	private int possition;
+	private int position;
+    private Color color;
 	
 
-    public IrrigationTile(int possition){
-    	this.possition = possition ;
+    public IrrigationTile(){
+    	this.position = position ;
+        this.color = Color.BLUE;
     }
 
+    public Color getColor(){
+        return color;
+    }
 
+	public void assignPosition(int position) {
 
-	public void assignPossition(int position) {
-
-		this.possition = position;
+		this.position = position;
 	}
 
-	public int getPossition(){
-		return possition;
+	public int getPosition(){
+		return position;
 	}
 	
 	
@@ -33,9 +38,6 @@ public class IrrigationTile extends Tile {
     }
     
 
-	public void updateLocation(Location loc) {
-		location = loc;
-		
-	}
+
 
 }

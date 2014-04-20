@@ -148,7 +148,6 @@ public class GameFacade {
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new VillageTile();
             current.place(t);
-            current.color = Color.RED;
             setMovementColor(Color.BLUE);
             render();
         } catch (Exception e) {
