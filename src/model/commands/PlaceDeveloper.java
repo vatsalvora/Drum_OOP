@@ -49,6 +49,6 @@ public class PlaceDeveloper implements Command {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + APForPlacement;
+        return this.getClass().getName() + " " + APForPlacement;
     }
 }

@@ -130,7 +130,7 @@ public class BoardController {
 	}
 
 
-	public ArrayList<Space> shortestPath(Location initial, Location fin) {
+	public ArrayList<Space> shortestPath(Location initial, Location fin) throws Exception {
         return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
 	}
 	public int shortestPathCost() {
