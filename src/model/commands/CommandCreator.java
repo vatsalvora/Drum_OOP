@@ -23,38 +23,63 @@ public class CommandCreator {
 
 	public void execute() {
 		current.execute();
-		commands.push(current);
+        if(current.save()) {
+            commands.push(current);
+        }
 	}
 
 	public void move1() {
 		Command c = new Move1(gameFacade);
 		c.execute();
-
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move2() {
 		Command c = new Move2(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move3() {
 		Command c = new Move3(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move7() {
 		Command c = new Move7(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move8() {
 		Command c = new Move8(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move9() {
 		Command c = new Move9(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void placeTripleLandTile() {
@@ -88,8 +113,12 @@ public class CommandCreator {
 	}
 
 	public void changeTurn() {
-		current = new ChangeTurn(gameFacade);
-
+		Command c = new ChangeTurn(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void undoLastCommand() {
@@ -98,7 +127,6 @@ public class CommandCreator {
 			command.undo();
 			secondCommands.push(command); // Saves command for re-do in replay
 		}
-		// TODO: Handle case where stack is empty
 	}
 
 	public void redoLastCommand() {
@@ -107,7 +135,6 @@ public class CommandCreator {
 			command.execute();
 			commands.push(command);
 		}
-		// TODO: Handle case where stack is empty
 	}
 
 	public void restart() {
@@ -117,6 +144,36 @@ public class CommandCreator {
 		// After this loop, we should be back at the original state before
 		// replay
 	}
+
+    public void useActionToken()
+    {
+        Command c = new UseActionToken(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
+
+    public void drawCard()
+    {
+        Command c = new DrawCard(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
+
+    public void drawFestivalCard()
+    {
+        Command c = new DrawPalaceCard(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
 
 	@Override
 	public String toString() {
@@ -136,4 +193,10 @@ public class CommandCreator {
 	public void load(String filename) {
 
 	}
+
+    public void rotate(){
+        Command c = new Rotate(gameFacade);
+        c.execute();
+        commands.push(c);
+    }
 }

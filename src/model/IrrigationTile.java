@@ -20,7 +20,9 @@ public class IrrigationTile extends Tile {
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }
-
+    public Tile getReferences(int i){
+        return neighbors[i];
+    }
     public void assignNumberOfNeighbors(int numberOfNeighbors){
         this.numberOfNeighbors = numberOfNeighbors;
     }

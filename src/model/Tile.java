@@ -16,6 +16,7 @@ public abstract class Tile {
     public abstract Tile getNeighborAt(int index);
     public abstract void removeReff(int index);
     public abstract void assignColor(int a ,int b,int c);
+    public abstract Tile getReferences(int i);
 
 
 }

@@ -213,10 +213,11 @@ public class AreaViewport {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
                     String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
+                    int[] dir = {0,1,2,5,4,3};
                     Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.getColor();
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
-                        color = (curr.equals(board.getCurrentSpace().getNeighbor(rotations[q]))) ? movement : curr.getColor();
+                        color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
                     fillHex(loc.getXLocation(), loc.getYLocation(), status,
                             color, g2);

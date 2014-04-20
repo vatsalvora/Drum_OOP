@@ -31,6 +31,11 @@ public class PalaceTile extends Tile {
             neighbors[i] = null;
     }
 
+    public Tile getReferences(int i){
+        return neighbors[i];
+    }
+
+
     public int[] getNeighborsIndex(){
         int[] temp = new int[numberOfNeighbors];
 

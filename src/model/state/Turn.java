@@ -1,7 +1,6 @@
 package model.state;
 
 import model.GameFacade;
-import model.Location;
 
 public class Turn extends State {
 
@@ -94,7 +93,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedX() {
-		commandCreator.changeTurn();
+        commandCreator.changeTurn();
 	}
 
 	@Override
@@ -110,7 +109,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedA() {
-		incorrectKeyPressed();
+		commandCreator.placeDoubleLandTile();
 	}
 
 	@Override
@@ -120,7 +119,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedF() {
-		incorrectKeyPressed();
+		commandCreator.drawFestivalCard();
 	}
 
 	@Override
@@ -130,7 +129,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedW() {
-		incorrectKeyPressed();
+		commandCreator.placeTripleLandTile();
 	}
 
 	@Override
@@ -142,4 +141,17 @@ public class Turn extends State {
 	public void keyPressedEnter() {
 		commandCreator.execute();
 	}
+
+    @Override
+    public void keyPressedSpace() {
+       commandCreator.rotate();
+    }
+
+    public void keyPressedT()
+    {
+        commandCreator.useActionToken();
+    }
+
+    public void keyPressedC() { commandCreator.drawCard();}
+
 }

@@ -1,13 +1,9 @@
-import controller.AreaViewportController;
 import model.GameFacade;
 import model.Location;
-import model.commands.CommandCreator;
 import model.state.State;
 import model.state.Turn;
-import view.AreaViewport;
 import view.keypressed.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +44,9 @@ public class RunGame {
         keySet.add(new KeyPressed6(state));
         keySet.add(new KeyPressedS(state));
         keySet.add(new KeyPressedEnter(state));
+        keySet.add(new KeyPressedSpace(state));
+        keySet.add(new KeyPressedT(state));
+        keySet.add(new KeyPressedC(state));
         return keySet;
     }
 

@@ -8,18 +8,23 @@ import java.awt.*;
 public class PlaceVillageTile implements Command {
 	private GameFacade b;
     private int points;
+    private boolean save;
 
 	public PlaceVillageTile(GameFacade b) {
 		this.b = b;
         b.setMovementColor(Color.RED);
+        int[] rotation = new int[0];
+        b.setRotation(rotation);
         b.render();
         points = 0;
+        save = true;
 	}
 
     public PlaceVillageTile(GameFacade b, int points)
     {
         this.b = b;
         this.points = points;
+        save = true;
     }
 
     public void execute() {
@@ -31,18 +36,29 @@ public class PlaceVillageTile implements Command {
             }
             catch(Exception e)
             {
+                save = false;
                 b.returnVillageTile();
                 b.sendErrorMessage(e.toString());
+                b.setMovementColor(new Color(100, 149, 237));
+                b.render();
             }
         }
         catch(Exception e)
         {
+            save = false;
             b.sendErrorMessage(e.toString());
+            b.setMovementColor(new Color(100, 149, 237));
+            b.render();
         }
     }
 
     public void undo() {
         b.undoVillageTile(points);
+    }
+
+    public boolean save()
+    {
+        return save;
     }
 
     public String toString() {

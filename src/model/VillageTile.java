@@ -16,7 +16,8 @@ public class VillageTile extends Tile {
 
     public VillageTile(int numberOfNeighbors){
 
-        assignColor(34,139,34);
+
+        assignColor(214,166,81);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }
@@ -47,6 +48,10 @@ public class VillageTile extends Tile {
 
     public Tile getNeighborAt(int index){
         return neighbors[index];
+    }
+
+    public Tile getReferences(int i){
+        return neighbors[i];
     }
 
     public void createReff(Tile tile, int index){
