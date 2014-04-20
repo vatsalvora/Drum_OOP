@@ -21,7 +21,7 @@ public class Board {
         this.current = (HexSpace)getSpace(new Location(0, 0));
     }
 
-    private void setRotations(int[] rotations){
+    public void setRotations(int[] rotations){
         this.rotations = rotations;
     }
 
@@ -105,7 +105,10 @@ public class Board {
         current.place(tile);
     }
 
-
+    public void rotateClockwise(){
+        for(int i = 0; i < rotations.length; i++)
+            rotations[i] = (rotations[i] + 1)%6;
+    }
 
 
 }

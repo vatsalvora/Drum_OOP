@@ -17,7 +17,7 @@ import java.util.List;
 public class AreaViewport {
     public Color COLOR_BACK = Color.WHITE;
 
-    public  Color COLOR_CELL = new Color(239, 221, 111);
+    public  Color COLOR_CELL = Color.ORANGE;
 
     public  Color COLOR_GRID = Color.BLACK;
     public  String EMPTY = "";
@@ -26,7 +26,10 @@ public class AreaViewport {
     public  int BORDERS = 15;
     public  int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     public  int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
-    public  boolean XYVertex = true;
+    public  boolean XYVertex = true;  // true: x,y are the coords of the first vertex.
+    // false: x,y are the coords of the top left rect. co-ord.
+
+    //private  int BORDERS = 50; // default number of pixels for the border.
 
     private  int s = 0; // length of one side
     private  int t = 0; // short side of 30o triangle outside of each hex
@@ -42,7 +45,7 @@ public class AreaViewport {
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         int maxLen = board.getMaxLen();
-        movement = new Color(100,149,237);
+        movement = Color.BLUE;
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
         SCREEN_LEN = HEX_SIZE * (maxLen + 1) + BORDERS * 3;
 
@@ -127,27 +130,25 @@ public class AreaViewport {
 
 
         // set up board here
-        Tile t1 = new IrrigationTile(0);
-        Tile t2 = new IrrigationTile(0);
-        Tile t3 = new IrrigationTile(0);
-        ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
-        ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
-        ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
+
     }
 
     private void createAndShowGUI(Board board) {
         panel = new DrawingPanel(board);
-        JFrame frame = new JFrame("Java: The Board Game");
+        JFrame frame = new JFrame("Hex Testing 4");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
         frame.setFocusable(false);
         panel.setFocusable(true);
         content.add(panel);
+        content.setBackground(Color.BLUE);
 
         frame.setSize((int) (SCREEN_Width / 1.23), (int)(SCREEN_LEN*1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        content.setBackground(Color.BLUE);
+
     }
 
     public void setMovement(Color color){

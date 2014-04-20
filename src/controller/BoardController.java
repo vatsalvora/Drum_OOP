@@ -29,11 +29,15 @@ public class BoardController {
         return board.getRotations();
     }
 
+    public void setRotations(int[] rotations){
+        board.setRotations(rotations);
+    }
+
     public void setCurrentSpace(HexSpace space){
          board.setCurrentSpace(space);
     }
 
-	public void placeTile(Tile... tile) {
+	public void placeTile(Tile tile) {
         board.place(tile);
 	}
 
@@ -66,5 +70,9 @@ public class BoardController {
 		return pathFinding.getAPUsed();
 
 	}
+
+    public void rotate(){
+        board.rotateClockwise();
+    }
 
 }
