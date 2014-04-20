@@ -23,38 +23,63 @@ public class CommandCreator {
 
 	public void execute() {
 		current.execute();
-		commands.push(current);
+        if(current.save()) {
+            commands.push(current);
+        }
 	}
 
 	public void move1() {
 		Command c = new Move1(gameFacade);
 		c.execute();
-
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move2() {
 		Command c = new Move2(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move3() {
 		Command c = new Move3(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move7() {
 		Command c = new Move7(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move8() {
 		Command c = new Move8(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void move9() {
 		Command c = new Move9(gameFacade);
 		c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void placeTripleLandTile() {
@@ -138,5 +163,6 @@ public class CommandCreator {
     public void rotate(){
         Command c = new Rotate(gameFacade);
         c.execute();
+        commands.push(c);
     }
 }
