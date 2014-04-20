@@ -1,9 +1,0 @@
-model.commands.PlaceVillageTile 0
-model.commands.PlaceTripleLandTile 0
-model.commands.PlaceDoubleLandTile 0
-model.commands.PlacePalaceTile 2 0
-model.commands.PlacePalaceTile 2 0
-model.commands.PlaceIrrigationTile 0
-model.commands.PlaceDoubleLandTile 0
-model.commands.PlaceTripleLandTile 0
-model.commands.PlaceTripleLandTile 0

@@ -8,6 +8,7 @@ import java.awt.*;
 public class PlaceDoubleLandTile implements Command {
     private GameFacade b;
     private int points;
+    private boolean save;
 
     public PlaceDoubleLandTile(GameFacade b) {
         this.b = b;
@@ -16,13 +17,14 @@ public class PlaceDoubleLandTile implements Command {
         b.setMovementColor(Color.GREEN);
         b.render();
         points = 0;
-
+        save = true;
     }
 
     public PlaceDoubleLandTile(GameFacade b, int p)
     {
         this.b = b;
         points = p;
+        save = true;
     }
 
     public void execute() {
@@ -33,6 +35,7 @@ public class PlaceDoubleLandTile implements Command {
             }
             catch(Exception e)
             {
+                save = false;
                 b.returnTwoBlock();
                 b.sendErrorMessage(e.toString());
                 int[] rotation = new int[0];
@@ -43,6 +46,7 @@ public class PlaceDoubleLandTile implements Command {
         }
         catch(Exception e)
         {
+            save = false;
             b.sendErrorMessage(e.toString());
             int[] rotation = new int[0];
             b.setRotation(rotation);
@@ -56,6 +60,11 @@ public class PlaceDoubleLandTile implements Command {
 
     public void undo() {
         b.undoRiceTile(points);
+    }
+
+    public boolean save()
+    {
+        return save;
     }
 
     public String toString() {

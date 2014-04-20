@@ -1,6 +1,5 @@
 package view.keypressed;
 
-import model.Location;
 import model.state.State;
 
 import java.awt.event.KeyEvent;

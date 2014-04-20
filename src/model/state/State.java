@@ -1,8 +1,8 @@
 package model.state;
 
 import model.GameFacade;
-import model.Location;
 import model.commands.CommandCreator;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,6 +67,10 @@ public abstract class State {
 	public abstract void keyPressedEnter();
 
     public abstract void keyPressedSpace();
+
+    public abstract void keyPressedT();
+
+    public abstract void keyPressedC();
 
 	public StateType getCurrentState() {
 		return stateType;

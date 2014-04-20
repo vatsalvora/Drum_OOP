@@ -196,22 +196,6 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-/*
-	public void placeDoubleLandTile() {
-		try {
-			turnController.placeTwoBlock();
-			try {
-				// place the two block at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnTwoBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}*/
-
     public int placeTwoBlock() throws Exception
     {
         HexSpace current = boardController.getCurrentSpace();
@@ -224,7 +208,7 @@ public class GameFacade {
 
         boardController.placeTile(village);
 
-        /* here i will create the refferences
+        /* here i will create the references
         Tile t = new VillageTile(0);
         boardController.placeTile(t);*/
         setRotation(new int[0]);
@@ -258,18 +242,6 @@ public class GameFacade {
 		// remove fame points if applicable
 	}
 
-	/*
-	 * public void placeTripleLandTile() { try {
-	 * sharedResourcesController.placeThreeBlock(); try {
-	 * turnController.placeOtherBlock(); try { // place the rice at the proper
-	 * spot // give player the proper points (if applicable) } catch (Exception
-	 * e) { sharedResourcesController.returnThreeBlock();
-	 * turnController.returnOtherBlock(); // tell user about error } } catch
-	 * (NotEnoughAPException e) { // tell user not enough AP remained to play
-	 * block sharedResourcesController.returnThreeBlock(); } } catch (Exception
-	 * e) { // do something with exception } }
-	 */
-
 	public void pullThreeBlock() throws NoThreeBlockLeftException {
 		sharedResourcesController.placeThreeBlock();
 	}
@@ -296,7 +268,7 @@ public class GameFacade {
 
         boardController.placeTile(village);
 
-        /* here i will create the refferences
+        /* here i will create the references
         Tile t = new VillageTile(0);
         boardController.placeTile(t);*/
         setRotation(new int[0]);
@@ -305,6 +277,7 @@ public class GameFacade {
         //place the village tile on the board
         //give the player the appropriate points and return them
         return 0;
+
 	}
 
 	public void removeThreeBlock(int i) {
@@ -381,24 +354,16 @@ public class GameFacade {
 		return turnController.getVictors();
 	}
 
-	public void drawCard() {
-		try {
-			turnController.drawCard(sharedResourcesController.drawCard());
-		} catch (Exception e) {
-			// tell user why card could not be drawn
-		}
+	public void drawCard() throws Exception {
+		turnController.drawCard(sharedResourcesController.drawCard());
 	}
 
 	public void undoDrawCard() {
 		sharedResourcesController.returnPalaceCard(turnController.returnCard());
 	}
 
-	public void drawFestivalCard() {
-		try {
-			turnController.drawFestivalCard(sharedResourcesController.drawCard());
-		} catch (Exception e) {
-			// tell user why card could not be drawn
-		}
+	public void drawFestivalCard() throws Exception {
+		turnController.drawFestivalCard(sharedResourcesController.drawCard());
 	}
 
 	public void returnFestivalCard() {
@@ -485,12 +450,8 @@ public class GameFacade {
 		// possible
 	}
 
-	public void useActionToken() {
-		try {
-			turnController.useActionToken();
-		} catch (Exception e) {
-			// tell user why action token could not be used
-		}
+	public void useActionToken() throws Exception{
+        turnController.useActionToken();
 	}
 
 	public void undoActionToken() {
@@ -501,18 +462,22 @@ public class GameFacade {
 		return turnController.getFestival();
 	}
 
-	public void move1() {
+	public void move1() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(0) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(0);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move2() {
+	public void move2() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(1) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(1);
 
@@ -520,50 +485,70 @@ public class GameFacade {
 			boardController.setCurrentSpace(neighbor);
             //areaViewportController.scroll(); Test Could possibly do this if there is time
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move3() {
+	public void move3() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(2) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(2);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move7() {
+	public void move7() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(3) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(3);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move8() {
+	public void move8() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(4) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(4);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move9() {
+	public void move9() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(5) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(5);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
