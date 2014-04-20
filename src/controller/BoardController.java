@@ -1,7 +1,12 @@
 package controller;
 
 import model.*;
+
 import model.customExceptions.DevOnSpaceException;
+
+import model.customExceptions.NoDeveloperOnSpaceException;
+import model.customExceptions.SpaceNotOnEdgeException;
+import model.customExceptions.WrongDeveloperColorException;
 
 import java.util.ArrayList;
 
@@ -55,8 +60,64 @@ public class BoardController {
 
 	}
 
-	public void removeDeveloper(Developer developer) {
+    public int placeDeveloper(Developer d) throws Exception
+    {
+        //place developer at current location
+        HexSpace currentSpace = board.getCurrentSpace();
+        if(currentSpace.numberOfNeighbors() < 6)
+        {
+            currentSpace.placeDeveloper(d);
+        }
+        else
+        {
+            throw new SpaceNotOnEdgeException();
+        }
+        //return AP used based on location
+        int APUsed;
+        if(currentSpace.getLocation().getYLocation() < 5)
+        {
+            APUsed = 2;
+        }
+        else
+        {
+            APUsed = 1;
+        }
+        return APUsed;
+    }
 
+	public int removeDeveloper(String c) throws Exception{
+        //compare the developer color with the given color
+        HexSpace currentSpace = board.getCurrentSpace();
+        if(currentSpace.getDeveloper() != null)
+        {
+            if(currentSpace.numberOfNeighbors() > 6) {
+                if (currentSpace.getDeveloper().getColor().compareTo(c) == 0) {
+                    currentSpace.removeDeveloper();
+                } else {
+                    throw new WrongDeveloperColorException();
+                }
+            }
+            else
+            {
+                throw new SpaceNotOnEdgeException();
+            }
+        }
+        else
+        {
+            throw new NoDeveloperOnSpaceException();
+        }
+        //remove developer if of that color
+        //return AP used based on location
+        int APUsed;
+        if(currentSpace.getLocation().getYLocation() < 5)
+        {
+            APUsed = 2;
+        }
+        else
+        {
+            APUsed = 1;
+        }
+        return APUsed;
 	}
 
 	public Developer checkHighestDeveloper(Location location) {
@@ -64,9 +125,6 @@ public class BoardController {
 
 	}
 
-    public void placeDeveloper(Developer developer) throws DevOnSpaceException {
-        board.placeDeveloper(developer);
-    }
 
 	public ArrayList<Space> shortestPath(Location initial, Location fin) {
         return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));

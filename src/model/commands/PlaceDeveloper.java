@@ -33,7 +33,13 @@ public class PlaceDeveloper implements Command {
     }
 
     public void undo() {
-        gameFacade.undoDeveloperPlacement(APForPlacement);
+        try{
+            gameFacade.undoDeveloperPlacement(APForPlacement);
+        }
+        catch(Exception e)
+        {
+            //should never occur
+        }
     }
 
     public boolean save()

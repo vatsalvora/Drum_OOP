@@ -410,11 +410,14 @@ public class GameFacade {
 		return turnController.festivalOver();
 	}
 
-	public int placeDeveloper() {
+	public int placeDeveloper() throws Exception {
 		String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
 		//place a developer at location and get AP spent on action
+        Developer d = new Developer(color, viewColor);
+        int APUsed = boardController.placeDeveloper(d);
         //then return said AP
-        return 1;
+        return APUsed;
 	}
 
     public void pullDeveloper(int i) throws Exception
@@ -422,14 +425,15 @@ public class GameFacade {
         turnController.placeDeveloper(i);
     }
 
-    public int removeDeveloper()
+    public int removeDeveloper() throws Exception
     {
         //remove the developer on the current space of the board
+        int APUsed = boardController.removeDeveloper(turnController.getPlayerColor());
         //return the AP spent to remove it
-        return 1;
+        return APUsed;
     }
 
-    public void undoDeveloperPlacement(int i)
+    public void undoDeveloperPlacement(int i) throws Exception
     {
         turnController.undoDeveloperPlacement(i);
         removeDeveloper();
@@ -440,15 +444,22 @@ public class GameFacade {
         turnController.removeDeveloper(i);
     }
 
-    public void undoDeveloperRemoval(int i)
+    public void undoDeveloperRemoval(int i) throws Exception
     {
         //put developer back on the current space of the board
+        String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
+        Developer d = new Developer(color, viewColor);
+        boardController.placeDeveloper(d);
         turnController.removeDeveloper(i);
     }
 
     public void replaceDeveloper()
     {
         //put developer on the current space of the board
+        String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
+        Developer d = new Developer(color, viewColor);
     }
 
 	public void moveDeveloper(Location start, Location end) {

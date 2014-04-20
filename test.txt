@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+3
+red
+blue
+green
+model.commands.Move3
+model.commands.Move3
+model.commands.Move3
+model.commands.Move9
+model.commands.Move3
+model.commands.Move9
+model.commands.PlaceTripleLandTile 0
+model.commands.Move3
+model.commands.Move3
+model.commands.Move9
+model.commands.Move9
+model.commands.Move9
+model.commands.Move8
+model.commands.Move7
+model.commands.Move1
+model.commands.Move1
+model.commands.Move2
+=======
+>>>>>>> 3ca8c777b105cd40ed3458eddf9ebc2a79e33fa1
