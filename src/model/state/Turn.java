@@ -147,5 +147,9 @@ public class Turn extends State {
        commandCreator.rotate();
     }
 
+    public void keyPressedT()
+    {
+        commandCreator.useActionToken();
+    }
 
 }

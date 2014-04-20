@@ -457,12 +457,8 @@ public class GameFacade {
 		// possible
 	}
 
-	public void useActionToken() {
-		try {
-			turnController.useActionToken();
-		} catch (Exception e) {
-			// tell user why action token could not be used
-		}
+	public void useActionToken() throws Exception{
+        turnController.useActionToken();
 	}
 
 	public void undoActionToken() {

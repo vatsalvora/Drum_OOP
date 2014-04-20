@@ -145,6 +145,16 @@ public class CommandCreator {
 		// replay
 	}
 
+    public void useActionToken()
+    {
+        Command c = new UseActionToken(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

@@ -1,7 +1,6 @@
 package model.state;
 
 import model.GameFacade;
-import model.Location;
 
 /**
  * Created by devan on 4/9/14.
@@ -110,4 +109,6 @@ public class Planning extends State {
     public void keyPressedSpace() {
         incorrectKeyPressed();
     }
+
+    public void keyPressedT() { commandCreator.useActionToken();}
 }
