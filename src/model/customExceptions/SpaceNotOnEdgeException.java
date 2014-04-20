@@ -7,10 +7,19 @@ package model.customExceptions;
 
 public class SpaceNotOnEdgeException extends Exception {
 
-    public SpaceNotOnEdgeException(){}
+    String error;
+
+    public SpaceNotOnEdgeException(){
+        error = "Developer must be placed on the edge of the board.";
+    }
+
+    public SpaceNotOnEdgeException(String error){
+        this.error = error;
+    }
+
 
     public String toString()
     {
-        return "Developer must be placed on the edge of the board.";
+        return error;
     }
 }

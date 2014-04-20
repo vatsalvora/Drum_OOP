@@ -1,6 +1,7 @@
 package model;
 
 import model.customExceptions.DevOnSpaceException;
+import model.customExceptions.SpaceNotOnEdgeException;
 import model.customExceptions.TileHeightWrongException;
 
 import java.awt.*;
@@ -110,29 +111,13 @@ public class HexSpace implements Space {
 
     public void place(Tile tile) {
 
-    /*
 
-            *//*checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
-
-            int[] neighLocations = tile.getNeighborsIndex();
-
-            for(int i = 0; i < neighLocations.length; i++)
-                updateNeighbor(neighbors[neighLocations[i]] ,tile.getNeighborAt(neighLocations[i]));
-
-            //going to finish this later
-            if(getHeight() == 0)
-            addTile(tile);
-            //check tile's connections and place connected tiles down as well, throwing exception if error occurs
-        } catch (Exception e) {
-            removeTopTile();
-            //tell user what went wrong with tile placement
-        }*/
         try {
 
          int[] neighLocations = tile.getNeighborsIndex();
             if(!spaceEmpty())
                 getTopTile().compareNeighbors(neighLocations);
-
+           //checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
 
             System.out.println(this);
@@ -142,6 +127,25 @@ public class HexSpace implements Space {
             //removeTopTile();
             //tell user what went wrong with tile placement
         }
+    }
+
+    public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
+
+        boolean checking = true;
+
+        for(int a : tile.getNeighborsIndex()) {
+            checking = ((HexSpace) getNeighbor(a)).onBoarder();
+
+            System.out.println("checking: " + checking);
+
+            if(!checking)
+                break;
+        }
+
+        checking = getCurrentSpace().onBoarder();
+
+        if(checking )
+        throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
     }
 
     public void checkHeights(Tile tile) throws TileHeightWrongException {
