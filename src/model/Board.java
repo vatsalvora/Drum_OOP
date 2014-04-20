@@ -104,6 +104,15 @@ public class Board {
 
 
     public void place(Tile tile) {
+
+        try {
+
+            current.checkHeights(tile);
+        }catch(Exception e){
+            System.out.println(e);
+            return;
+        }
+
         current.place(tile);
 
         for(int i=0; i<6; i++){
@@ -113,6 +122,7 @@ public class Board {
                 s.place(t);
             }
         }
+
     }
 
     public void placeDeveloper(Developer developer) throws DevOnSpaceException {

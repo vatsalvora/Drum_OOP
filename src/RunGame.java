@@ -4,7 +4,6 @@ import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +47,8 @@ public class RunGame {
         keySet.add(new KeyPressedT(state));
         keySet.add(new KeyPressedC(state));
         keySet.add(new KeyPressedM(state));
+        keySet.add(new KeyPressedJ(state));
+        keySet.add(new KeyPressedK(state));
         return keySet;
     }
 

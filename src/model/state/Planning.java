@@ -115,4 +115,10 @@ public class Planning extends State {
     public void keyPressedC() { commandCreator.drawCard();}
 
     public void keyPressedM() { incorrectKeyPressed();}
+
+    public void keyPressedJ() { commandCreator.removeDeveloper();}
+
+    public void keyPressedK() { commandCreator.placeDeveloper();}
+
+
 }
