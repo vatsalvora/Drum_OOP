@@ -4,7 +4,6 @@ import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +11,9 @@ public class RunGame {
     public static void main(String[] args) {
         String[] names = { "Lucas", "Bob", "Billy" };
 
-        //GameFacade b = new GameFacade(names);
-        //List<KeyPressed> keySet = createListeners(b);
-        //b.addKeyListeners(keySet);
+        GameFacade b = new GameFacade(names);
+        List<KeyPressed> keySet = createListeners(b);
+        b.addKeyListeners(keySet);
     }
 
     public static List<KeyPressed> createListeners(GameFacade b){
