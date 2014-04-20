@@ -42,7 +42,9 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 		}
         turnController.putFestivalCard(sharedResourcesController.drawCard());
+        sharedResourcesController.updatePlayers(turnController);
 	}
+	
 
 	public void setMovementColor(Color color) {
 		areaViewportController.setMovementColor(color);

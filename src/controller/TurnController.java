@@ -343,15 +343,40 @@ public class TurnController {
     public String getPlayerColor() {
         return currentPlayer.getColor();
     }
+    
+    public int getNumPlayers()
+    {
+    	return numPlayers;
+    }
+    
+    public int getCurrentPlayerIndex()
+    {
+    	return currentPlayerIndex;
+    }
+    
+    public String getPlayerInfo(int playerNumber)
+    {
+    	if(playerNumber <= numPlayers)
+    		return players[playerNumber-1].toString();
+    	else
+    		return "";
+    }
 
     public ArrayList<PalaceCard> getCurrentCards() {
         return currentPlayer.getCards();
+    }
+    
+    public String getCurrentFestivalCard()
+    {
+    	return (festival.getFestivalCard().toString());
     }
 
     public void putFestivalCard(PalaceCard c)
     {
         festival.changeFestivalCard(c);
     }
+    
+  
 
     public void endFestival()
     {

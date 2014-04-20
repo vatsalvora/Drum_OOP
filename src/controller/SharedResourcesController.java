@@ -1,5 +1,6 @@
 package controller;
 
+import controller.TurnController;
 import model.Deck;
 import view.SharedResourcesView;
 import model.PalaceCard;
@@ -18,13 +19,18 @@ public class SharedResourcesController {
         resources = new SharedResources();
         srv = new SharedResourcesView();
         srv.updateFields(resources);
-
     }
 
     public PalaceCard drawCard() {
     	srv.updateFields(resources);
         return resources.drawCard();
     }
+    
+    public void updatePlayers(TurnController c)
+    {
+    	srv.updatePlayers(c);
+    }
+    
 
     public void returnCard(PalaceCard c) {
         resources.returnCard(c);
