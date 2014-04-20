@@ -6,13 +6,14 @@ import java.awt.*;
 public abstract class Tile {
 	
 
-/*
+
 	public abstract boolean compareTo(Tile t);
-	public abstract void assignPossition(int possiton);
-	public abstract int getPossition();
-	public abstract void updateLocation(Location loc);
-*/
-	
     public abstract Color getColor();
+    public abstract void assignNumberOfNeighbors(int numberOfNeighbors);
+    public abstract void initNeighbors();
+    public abstract void createReff(Tile tile, int index);
+    public abstract void removeReff(int index);
+    public abstract void assignColor(int a ,int b,int c);
+
 
 }

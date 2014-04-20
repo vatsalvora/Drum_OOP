@@ -10,13 +10,39 @@ import java.awt.*;
 public class VillageTile extends Tile {
 
     private Color color;
+    private final Tile[] neighbors = new Tile[6];
+    private int numberOfNeighbors;
 
-	
 
-    public VillageTile(){
-        this.color = new Color(214,166,81);
+    public VillageTile(int numberOfNeighbors){
+
+        assignColor(34,139,34);
+        initNeighbors();
+        assignNumberOfNeighbors(numberOfNeighbors);
     }
-	
+
+    public void assignNumberOfNeighbors(int numberOfNeighbors){
+        this.numberOfNeighbors = numberOfNeighbors;
+    }
+
+    public void initNeighbors(){
+
+        for(int i = 0; i < neighbors.length; i++)
+                neighbors[i] = null;
+    }
+
+    public void createReff(Tile tile, int index){
+        neighbors[index] = tile;
+    }
+
+    public void removeReff(int index){
+        neighbors[index] = null;
+    }
+
+    public void assignColor(int a ,int b,int c){
+        color = new Color(a,b,c);
+    }
+
     public Color getColor(){
         return color;
     }

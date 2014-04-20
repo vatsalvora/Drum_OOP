@@ -9,34 +9,49 @@ import java.awt.*;
  */
 public class IrrigationTile extends Tile {
 
-	private int position;
     private Color color;
-	
+    private final Tile[] neighbors = new Tile[6];
+    private int numberOfNeighbors;
 
-    public IrrigationTile(){
-    	this.position = position ;
-        this.color = Color.BLUE;
+
+    public IrrigationTile(int numberOfNeighbors){
+
+        assignColor(35,62,235);
+        initNeighbors();
+        assignNumberOfNeighbors(numberOfNeighbors);
+    }
+
+    public void assignNumberOfNeighbors(int numberOfNeighbors){
+        this.numberOfNeighbors = numberOfNeighbors;
+    }
+
+    public void initNeighbors(){
+
+        for(int i = 0; i < neighbors.length; i++)
+            neighbors[i] = null;
+    }
+
+    public void createReff(Tile tile, int index){
+        neighbors[index] = tile;
+    }
+
+    public void removeReff(int index){
+        neighbors[index] = null;
+    }
+
+    public void assignColor(int a ,int b,int c){
+        color = new Color(a,b,c);
     }
 
     public Color getColor(){
         return color;
     }
 
-	public void assignPosition(int position) {
-
-		this.position = position;
-	}
-
-	public int getPosition(){
-		return position;
-	}
-	
-	
     public boolean compareTo(Tile t) {
 
-        return (t instanceof VillageTile);
+        return (t instanceof IrrigationTile);
     }
-    
+
 
 
 
