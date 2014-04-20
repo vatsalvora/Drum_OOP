@@ -134,7 +134,7 @@ public class HexSpace implements Space {
         boolean checking = true;
 
         for(int a : tile.getNeighborsIndex()) {
-            checking = ((HexSpace) getNeighbor(a)).onBoarder();
+            checking = ((HexSpace) getNeighbor(a)).onBorder();
 
             System.out.println("checking: " + checking);
 
@@ -142,7 +142,7 @@ public class HexSpace implements Space {
                 break;
         }
 
-        checking = getCurrentSpace().onBoarder();
+        checking = getCurrentSpace().onBorder();
 
         if(checking )
         throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
