@@ -140,7 +140,7 @@ public class AreaViewport {
 
     private void createAndShowGUI(Board board) {
         panel = new DrawingPanel(board);
-        JFrame frame = new JFrame("Hex Testing 4");
+        JFrame frame = new JFrame("Java: The Board Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container content = frame.getContentPane();
         frame.setFocusable(false);
