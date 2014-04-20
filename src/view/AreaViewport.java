@@ -115,8 +115,11 @@ public class AreaViewport {
         g2.setColor(color);
         g2.fillPolygon(poly);
         g2.setColor(Color.BLACK);
+
         g2.drawPolygon(poly);
+
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
+
     }
     public void initGame(Board board) {
 
@@ -154,6 +157,7 @@ public class AreaViewport {
         movement = color;
     }
     public void render(Board board){
+        panel.setBoard(board);
         panel.repaint();
     }
 
@@ -219,219 +223,5 @@ public class AreaViewport {
             // g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
         }
 
-        class PKey extends KeyAdapter {
-            private Location l;
-
-            public PKey(Location l) {
-                this.l = l;
-            }
-
-            public void keyTyped(KeyEvent ke) {
-
-                if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
-                    state.keyPressedP();
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class EnterKey extends KeyAdapter {
-            private Location l;
-
-            public EnterKey(Location l) {
-                this.l = l;
-            }
-
-            public void keyTyped(KeyEvent ke) {
-
-                if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
-                    state.keyPressedEnter();
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class OneKey extends KeyAdapter {
-            public OneKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '1') {
-                    System.out.println(ke.getKeyChar());
-                    if (getNode().getNeighbor(0) != null) {
-                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(0);
-                        
-
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-
-        class TwoKey extends KeyAdapter {
-
-            public TwoKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '2') {
-                    System.out.println(ke.getKeyChar());
-                    if (getNode().getNeighbor(1) != null) {
-                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(1);
-                        
-
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class ThreeKey extends KeyAdapter {
-            public ThreeKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '3') {
-                    System.out.println(ke.getKeyChar());
-                    if (getNode().getNeighbor(2) != null) {
-                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(2);
-                        
-
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class SevenKey extends KeyAdapter {
-            public SevenKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '7') {
-                    System.out.println(ke.getKeyChar());
-                    if(getNode().getNeighbor(3) != null)
-                    {
-                        HexSpace neighbor = (HexSpace)getNode().getNeighbor(3);
-                        
-
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class EightKey extends KeyAdapter {
-
-            public EightKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '8') {
-                    System.out.println(ke.getKeyChar());
-                    System.out.println(getNode().numberOfNeighbors());
-                    if (getNode().getNeighbor(4) != null) {
-                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(4);
-
-
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        class NineKey extends KeyAdapter {
-            public NineKey() {
-            }
-
-            public void keyTyped(KeyEvent ke) {
-                if (ke.getKeyChar() == '9') {
-                    System.out.println(ke.getKeyChar());
-                    if (getNode().getNeighbor(5) != null) {
-                        HexSpace neighbor = (HexSpace) getNode().getNeighbor(5);
-                        System.out.println("LOC: " + neighbor.getLocation());
-                        setNode(neighbor);
-                    }
-                }
-                repaint();
-            }
-
-            public void keyPressed(KeyEvent ke) {
-
-            }
-
-            public void keyReleased(KeyEvent ke) {
-
-            }
-        }
-
-        // end of MyMouseListener class
     } // end of DrawingPanel class
 }
