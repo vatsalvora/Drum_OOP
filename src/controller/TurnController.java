@@ -5,6 +5,7 @@ import model.PalaceFestival;
 import model.Player;
 import model.customExceptions.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /*
@@ -26,6 +27,7 @@ public class TurnController {
 
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
+        Color[] viewColor = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
         numPlayers = name.length;
 
         if (numPlayers > 4) {
@@ -35,7 +37,7 @@ public class TurnController {
         players = new Player[numPlayers];
 
         for (int i = 0; i < numPlayers; i++) {
-            players[i] = new Player(name[i], color[i]);
+            players[i] = new Player(name[i], color[i],viewColor[i]);
         }
 
         actionTokenUsed = false;
@@ -72,6 +74,7 @@ public class TurnController {
         currentPlayer = players[currentPlayerIndex];
     }
 
+    public Color getCurrentPlayerColor(){return currentPlayer.getViewColor();}
     // Altering current player methods
     public void incrementFamePoints(int i) {
         currentPlayer.incrementFamePoints(i);

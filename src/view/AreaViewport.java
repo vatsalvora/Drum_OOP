@@ -149,7 +149,7 @@ public class AreaViewport {
         panel.setFocusable(true);
         content.add(panel);
 
-        frame.setSize((int) (SCREEN_Width / 1.23), (int)(SCREEN_LEN*1.05));
+        frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -202,7 +202,7 @@ public class AreaViewport {
             super.paintComponent(g2);
             // draw grid
             for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0+scrolldown; j < board.getLength(i); j++) {
+                for (int j = 0; j < board.getLength(i); j++) {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
                     drawHex(loc.getXLocation(), loc.getYLocation(), g2);
@@ -224,8 +224,16 @@ public class AreaViewport {
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
-                    fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                            color, g2);
+                    if(curr.hasDeveloper()) {
+                        Developer dev = curr.getDeveloper();
+                        Color devColor = dev.getViewColor();
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color, g2);
+                    }
+                    else {
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color, g2);
+                    }
                 }
             }
 

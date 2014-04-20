@@ -2,7 +2,9 @@ package model;
 
 import model.customExceptions.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /*
  The Player class is a state object containing the inventory and general information of a player.
@@ -17,6 +19,7 @@ public class Player {
     private int riceBlocks;
     private int villageBlocks;
     private int twoBlocks;
+    private Color viewColor;
     private ArrayList<PalaceCard> cards;
 
     public Player() {
@@ -28,12 +31,14 @@ public class Player {
         riceBlocks = 3;
         villageBlocks = 2;
         twoBlocks = 5;
+        viewColor = Color.BLUE;
         cards = new ArrayList<PalaceCard>();
     }
 
-    public Player(String n, String c) {
+    public Player(String n, String c, Color viewColor) {
         name = n;
         color = c;
+        this.viewColor = viewColor;
         famePoints = 0;
         developersLeft = 12;
         actionTokens = 3;
@@ -60,6 +65,8 @@ public class Player {
     public String getColor() {
         return color;
     }
+
+    public Color getViewColor(){return viewColor;}
 
     public int getFamePoints() {
         return famePoints;
