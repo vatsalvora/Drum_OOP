@@ -173,6 +173,7 @@ public class AreaViewport {
         frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setLocation(400,0);
         frame.setVisible(true);
     }
 

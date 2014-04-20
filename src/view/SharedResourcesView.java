@@ -150,7 +150,7 @@ public class SharedResourcesView extends JFrame
 				infoPanel.add(numTenPalaceTiles);
 				
 				player1 = customJLabel("Player 1");
-				player1.setMinimumSize(new Dimension(100,100));
+				player1.setMinimumSize(new Dimension(1000,1000));
 				player1.setFont(new Font("Charlemagne Std", Font.BOLD, 11));
 				playerPanel.add(player1);
 				
