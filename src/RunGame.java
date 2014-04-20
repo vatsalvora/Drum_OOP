@@ -9,17 +9,17 @@ import java.util.List;
 
 public class RunGame {
     public static void main(String[] args) {
-        String[] names = { "Lucas", "Bob", "Billy" };
+        String[] names = {"Lucas", "Bob", "Billy"};
 
         GameFacade b = new GameFacade(names);
         List<KeyPressed> keySet = createListeners(b);
         b.addKeyListeners(keySet);
     }
 
-    public static List<KeyPressed> createListeners(GameFacade b){
+    public static List<KeyPressed> createListeners(GameFacade b) {
         State state = new Turn(b);
-        Location l = new Location(0,0);
-        java.util.List<KeyPressed> keySet = new ArrayList<KeyPressed>();
+        Location l = new Location(0, 0);
+        java.util.List<KeyPressed> keySet = new ArrayList<>();
 
         keySet.add(new KeyPressed1(state));
         keySet.add(new KeyPressed2(state));
