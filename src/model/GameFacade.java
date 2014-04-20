@@ -16,7 +16,8 @@ public class GameFacade {
 	private TurnController turnController;
 	private SharedResourcesController sharedResourcesController;
 	private AreaViewportController areaViewportController;
-    private Color cornflower_blue = new Color(100,149,237);
+	private Color cornflower_blue = new Color(100, 149, 237);
+
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
@@ -41,9 +42,10 @@ public class GameFacade {
 		}
 	}
 
-    public void setMovementColor(Color color){
-        areaViewportController.setMovementColor(color);
-    }
+	public void setMovementColor(Color color) {
+		areaViewportController.setMovementColor(color);
+	}
+
 	public Player[] getPlayers() {
 		return turnController.getPlayers();
 	}
@@ -72,52 +74,45 @@ public class GameFacade {
 		return turnController.getCurrentCards();
 	}
 
-    public void sendErrorMessage(String s)
-    {
-        //send the error message to the view
-    }
+	public void sendErrorMessage(String s) {
+		// send the error message to the view
+	}
 
-    public void placeOtherBlock() throws NotEnoughAPException
-    {
-        turnController.placeOtherBlock();
-    }
+	public void placeOtherBlock() throws NotEnoughAPException {
+		turnController.placeOtherBlock();
+	}
 
-    public void returnOtherBlock()
-    {
-        turnController.returnOtherBlock();
-    }
+	public void returnOtherBlock() {
+		turnController.returnOtherBlock();
+	}
 
-    public void pullIrrigationTile() throws NoIrrigationLeftException
-    {
-        sharedResourcesController.placeIrrigationTile();
-    }
+	public void pullIrrigationTile() throws NoIrrigationLeftException {
+		sharedResourcesController.placeIrrigationTile();
+	}
 
-    public void returnIrrigationTile()
-    {
-        sharedResourcesController.returnIrrigationTile();
-    }
+	public void returnIrrigationTile() {
+		sharedResourcesController.returnIrrigationTile();
+	}
 
-    public int placeIrrigationTile() throws Exception
-    {
-        try {
-            // place the village at the proper spot
-            // give player the proper points (if applicable)
-            HexSpace current = boardController.getCurrentSpace();
-            Tile t = new IrrigationTile(0);
-            current.place(t);
-            setMovementColor(cornflower_blue);
-            render();
-        } catch (Exception e) {
-            // tell user about error
-        }
-        return 0;
-    }
+	public int placeIrrigationTile() throws Exception {
+		try {
+			// place the village at the proper spot
+			// give player the proper points (if applicable)
+			HexSpace current = boardController.getCurrentSpace();
+			Tile t = new IrrigationTile(0);
+			current.place(t);
+			setMovementColor(cornflower_blue);
+			render();
+		} catch (Exception e) {
+			// tell user about error
+		}
+		return 0;
+	}
 
-    public void removeIrrigationTile(int i)
-    {
-        //take the irrigation tile off of the board
-        turnController.decrementFamePoints(i);
-    }
+	public void removeIrrigationTile(int i) {
+		// take the irrigation tile off of the board
+		turnController.decrementFamePoints(i);
+	}
 
 	public void undoIrrigationTile(int i) {
 		sharedResourcesController.returnIrrigationTile();
@@ -127,31 +122,27 @@ public class GameFacade {
 
 	public int placeVillageTile() {
 
-        try {
-            // place the village at the proper spot
-            // give player the proper points (if applicable)
-            HexSpace current = boardController.getCurrentSpace();
-            Tile t = new VillageTile(0);
-            current.place(t);
-            setMovementColor(cornflower_blue);
-            render();
-        } catch (Exception e) {
-            // tell user about error
-        }
-        return 0;
+		try {
+			// place the village at the proper spot
+			// give player the proper points (if applicable)
+			HexSpace current = boardController.getCurrentSpace();
+			Tile t = new VillageTile(0);
+			current.place(t);
+			setMovementColor(cornflower_blue);
+			render();
+		} catch (Exception e) {
+			// tell user about error
+		}
+		return 0;
 	}
 
+	public void pullVillageTile() throws Exception {
+		turnController.placeVillageBlock();
+	}
 
-
-    public void pullVillageTile() throws Exception
-    {
-        turnController.placeVillageBlock();
-    }
-
-    public void returnVillageTile()
-    {
-        turnController.returnVillageBlock();
-    }
+	public void returnVillageTile() {
+		turnController.returnVillageBlock();
+	}
 
 	public void undoVillageTile(int i) {
 		turnController.returnVillageBlock();
@@ -159,132 +150,106 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-    public int placeRiceTile() throws Exception
-    {
-        try {
-            // place the village at the proper spot
-            // give player the proper points (if applicable)
-            HexSpace current = boardController.getCurrentSpace();
-            Tile t = new RiceTile(0);
-            current.place(t);
-            setMovementColor(cornflower_blue);
-            render();
-        } catch (Exception e) {
-            // tell user about error
-        }
-        return 0;
-    }
+	public int placeRiceTile() throws Exception {
+		try {
+			// place the village at the proper spot
+			// give player the proper points (if applicable)
+			HexSpace current = boardController.getCurrentSpace();
+			Tile t = new RiceTile(0);
+			current.place(t);
+			setMovementColor(cornflower_blue);
+			render();
+		} catch (Exception e) {
+			// tell user about error
+		}
+		return 0;
+	}
 
-    public void pullRiceTile() throws Exception
-    {
-        turnController.placeRiceBlock();
-    }
+	public void pullRiceTile() throws Exception {
+		turnController.placeRiceBlock();
+	}
 
-    public void returnRiceTile()
-    {
-        turnController.returnRiceBlock();
-    }
+	public void returnRiceTile() {
+		turnController.returnRiceBlock();
+	}
 
 	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
 		// remove the rice tile from the location it was placed
 		turnController.decrementFamePoints(i);
 	}
-/*
-	public void placeDoubleLandTile() {
-		try {
-			turnController.placeTwoBlock();
-			try {
-				// place the two block at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnTwoBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}*/
 
-    public int placeTwoBlock() throws Exception
-    {
-        //place the village tile on the board
-        //give the player the appropriate points and return them
-        return 0;
-    }
+	/*
+	 * public void placeDoubleLandTile() { try { turnController.placeTwoBlock();
+	 * try { // place the two block at the proper spot // give player the proper
+	 * points (if applicable) } catch (Exception e) {
+	 * turnController.returnTwoBlock(); // tell user about error } } catch
+	 * (Exception e) { // do something with exception } }
+	 */
 
-    public void pullTwoBlock() throws Exception
-    {
-        turnController.placeTwoBlock();
-    }
+	public int placeTwoBlock() throws Exception {
+		// place the village tile on the board
+		// give the player the appropriate points and return them
+		return 0;
+	}
 
-    public void returnTwoBlock()
-    {
-        turnController.returnTwoBlock();
-    }
+	public void pullTwoBlock() throws Exception {
+		turnController.placeTwoBlock();
+	}
 
-    public void undoTwoBlock(int i) {
-        turnController.returnTwoBlock();
-        // remove the two block from the location it was placed
-        turnController.decrementFamePoints(i);
-    }
+	public void returnTwoBlock() {
+		turnController.returnTwoBlock();
+	}
+
+	public void undoTwoBlock(int i) {
+		turnController.returnTwoBlock();
+		// remove the two block from the location it was placed
+		turnController.decrementFamePoints(i);
+	}
 
 	public void undoDoubleLandTile() {
 		turnController.returnTwoBlock();
 		// remove the two block from the location it was placed
 		// remove fame points if applicable
 	}
-/*
-	public void placeTripleLandTile() {
-		try {
-			sharedResourcesController.placeThreeBlock();
-			try {
-				turnController.placeOtherBlock();
-				try {
-					// place the rice at the proper spot
-					// give player the proper points (if applicable)
-				} catch (Exception e) {
-					sharedResourcesController.returnThreeBlock();
-					turnController.returnOtherBlock();
-					// tell user about error
-				}
-			} catch (NotEnoughAPException e) {
-				// tell user not enough AP remained to play block
-				sharedResourcesController.returnThreeBlock();
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}*/
 
-    public void pullThreeBlock() throws NoThreeBlockLeftException
-    {
-        sharedResourcesController.placeThreeBlock();
-    }
+	/*
+	 * public void placeTripleLandTile() { try {
+	 * sharedResourcesController.placeThreeBlock(); try {
+	 * turnController.placeOtherBlock(); try { // place the rice at the proper
+	 * spot // give player the proper points (if applicable) } catch (Exception
+	 * e) { sharedResourcesController.returnThreeBlock();
+	 * turnController.returnOtherBlock(); // tell user about error } } catch
+	 * (NotEnoughAPException e) { // tell user not enough AP remained to play
+	 * block sharedResourcesController.returnThreeBlock(); } } catch (Exception
+	 * e) { // do something with exception } }
+	 */
 
-    public void returnThreeBlock()
-    {
-        sharedResourcesController.returnThreeBlock();
-    }
+	public void pullThreeBlock() throws NoThreeBlockLeftException {
+		sharedResourcesController.placeThreeBlock();
+	}
 
-    public int placeThreeBlock() throws Exception
-    {
-        //place the three block on the board
-        //give the player the appropriate points (if applicable) and return the points to the command
-        return 0;
-    }
+	public void returnThreeBlock() {
+		sharedResourcesController.returnThreeBlock();
+	}
 
-    public void removeThreeBlock(int i)
-    {
-        //take the three block off of the board
-        turnController.decrementFamePoints(i);
-    }
+	public int placeThreeBlock() throws Exception {
+		// place the three block on the board
+		// give the player the appropriate points (if applicable) and return the
+		// points to the command
+		return 0;
+	}
 
-    public void undoThreeBlock(int i) {
-        sharedResourcesController.returnIrrigationTile();
-        turnController.returnOtherBlock();
-        removeIrrigationTile(i);
-    }
+	public void removeThreeBlock(int i) {
+		// take the three block off of the board
+		turnController.decrementFamePoints(i);
+	}
+
+	public void undoThreeBlock(int i) {
+		sharedResourcesController.returnIrrigationTile();
+		turnController.returnOtherBlock();
+		removeIrrigationTile(i);
+	}
 
 	public void initiatePalaceFestival() {
 		String[] colors = {};
@@ -301,9 +266,9 @@ public class GameFacade {
 					// place the palace at the proper spot
 					// give fame points to proper player
 					Tile t = new PalaceTile(level);
-                    HexSpace current = boardController.getCurrentSpace();
+					HexSpace current = boardController.getCurrentSpace();
 					current.place(t);
-                    setMovementColor(cornflower_blue);
+					setMovementColor(cornflower_blue);
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);
 					// tell user about error
@@ -317,25 +282,20 @@ public class GameFacade {
 		return 0;
 	}
 
-    public void pullPalaceTile(int level) throws NoPalaceTilesLeft
-    {
-        sharedResourcesController.placePalace(level);
-    }
+	public void pullPalaceTile(int level) throws NoPalaceTilesLeft {
+		sharedResourcesController.placePalace(level);
+	}
 
-    public void returnPalaceTile(int level)
-    {
-        sharedResourcesController.returnPalace(level);
-    }
+	public void returnPalaceTile(int level) {
+		sharedResourcesController.returnPalace(level);
+	}
 
-
-
-    public void undoPalaceTile(int level, int points)
-    {
-        sharedResourcesController.returnPalace(level);
-        turnController.returnOtherBlock();
-        //remove palace tile from board
-        turnController.decrementFamePoints(points);
-    }
+	public void undoPalaceTile(int level, int points) {
+		sharedResourcesController.returnPalace(level);
+		turnController.returnOtherBlock();
+		// remove palace tile from board
+		turnController.decrementFamePoints(points);
+	}
 
 	public void changeTurn() throws BlockNotPlayedException {
 		turnController.nextTurn();
@@ -474,76 +434,73 @@ public class GameFacade {
 	}
 
 	public void move1() {
-        if (boardController.getCurrentSpace().getNeighbor(0) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(0);
+		if (boardController.getCurrentSpace().getNeighbor(0) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(0);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
 	public void move2() {
-        if (boardController.getCurrentSpace().getNeighbor(1) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(1);
+		if (boardController.getCurrentSpace().getNeighbor(1) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(1);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
 	public void move3() {
-        if (boardController.getCurrentSpace().getNeighbor(2) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(2);
+		if (boardController.getCurrentSpace().getNeighbor(2) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(2);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
 	public void move7() {
-        if (boardController.getCurrentSpace().getNeighbor(3) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(3);
+		if (boardController.getCurrentSpace().getNeighbor(3) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(3);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
 	public void move8() {
-        if (boardController.getCurrentSpace().getNeighbor(4) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(4);
+		if (boardController.getCurrentSpace().getNeighbor(4) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(4);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
 	public void move9() {
-        if (boardController.getCurrentSpace().getNeighbor(5) != null) {
-            HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(5);
+		if (boardController.getCurrentSpace().getNeighbor(5) != null) {
+			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(5);
 
-
-            System.out.println("LOC: " + neighbor.getLocation());
-            boardController.setCurrentSpace(neighbor);
-        }
-        render();
+			System.out.println("LOC: " + neighbor.getLocation());
+			boardController.setCurrentSpace(neighbor);
+		}
+		render();
 
 	}
 
+	public void rotate() {
+		boardController.rotate();
+	}
 
 }
