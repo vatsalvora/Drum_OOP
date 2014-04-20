@@ -49,7 +49,7 @@ public class FileController {
         }
     }
 
-    public void loadCommands(BufferedReader br, GameFacade gameFacade) {
+    private void loadCommands(BufferedReader br, GameFacade gameFacade) {
         try {
             while (br.readLine() != null) {
                 String[] lineIn = br.readLine().split(" ");
@@ -61,7 +61,7 @@ public class FileController {
         }
     }
 
-    public Command determineCommand(String[] lineIn, GameFacade gameFacade) {
+    private Command determineCommand(String[] lineIn, GameFacade gameFacade) {
         String command = lineIn[0];
         String modelCommand = "model.commands.";
         if (command.contains("model.ChangeTurn")) {
@@ -113,7 +113,7 @@ public class FileController {
         }
     }
 
-    public String[] loadColors(BufferedReader br) {
+    private String[] loadColors(BufferedReader br) {
         String[] colors = new String[0];
         try {
             int numPlayers = Integer.parseInt(br.readLine());
