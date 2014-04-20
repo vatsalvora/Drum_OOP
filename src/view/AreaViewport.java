@@ -18,8 +18,10 @@ public class AreaViewport {
     public Color COLOR_BACK = Color.WHITE;
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
+    public Color GREEN = new Color(34,139,34);
 
     public  Color COLOR_GRID = Color.BLACK;
+
     public  String EMPTY = "";
     public  int BOARD_SIZE = 12; // board size.
     public  int HEX_SIZE = 46; // hex size in pixels
@@ -73,7 +75,20 @@ public class AreaViewport {
         // sqrt(3)) = r / sqrt(3)
     }
 
+    public  Polygon square(int x0, int y0) {
+        int y = y0 + BORDERS;
+        int x = x0 + BORDERS;
+        if (s == 0 || h == 0) {
+            System.out.println("ERROR: size of hex has not been set");
+            return new Polygon();
+        }
 
+        int[] cx, cy;
+
+        cx = new int[]{x, x + 1, x, x + 1}; // this is for the top left vertex being at x,y. Which
+        cy = new int[]{y, y, y + 1, y + 1};
+        return new Polygon(cx, cy, 4);
+    }
     public  Polygon hex(int x0, int y0) {
 
         int y = y0 + BORDERS;
@@ -117,6 +132,24 @@ public class AreaViewport {
         g2.setColor(color);
         g2.fillPolygon(poly);
         g2.setColor(Color.BLACK);
+
+        g2.drawPolygon(poly);
+
+        g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
+
+    }
+
+    public  void fillHex(int i, int j, String n, Color color, Color devColor, Graphics2D g2) {
+        char c;
+        int x = i * (s + t);
+        int y = j * h + (i % 2) * h / 2;
+        Polygon poly = hex(x, y);
+        g2.setColor(color);
+        g2.fillPolygon(poly);
+        g2.setColor(Color.BLACK);
+        Polygon square = square(x,y);
+        g2.setColor(color);
+        g2.fillPolygon(poly);
 
         g2.drawPolygon(poly);
 
@@ -219,7 +252,9 @@ public class AreaViewport {
                     Location loc = curr.getLocation();
                     String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
                     int[] dir = {0,1,2,5,4,3};
-                    Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.getColor();
+
+                    Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
+                    color = (curr.equals(board.getCurrentSpace())) ? movement : color;
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
@@ -228,7 +263,7 @@ public class AreaViewport {
                         Developer dev = curr.getDeveloper();
                         Color devColor = dev.getViewColor();
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                                color, g2);
+                                color,devColor,g2);
                     }
                     else {
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
@@ -242,4 +277,6 @@ public class AreaViewport {
         }
 
     } // end of DrawingPanel class
+
+
 }

@@ -12,6 +12,7 @@ public class HexSpace implements Space {
     private Location l;
     private Stack<Tile> tilesOnSpace;
     private Developer developer;
+    public Color BROWN = new Color(205,133,63);
 
     public HexSpace(Location l) {
         this.l = l;
@@ -61,7 +62,7 @@ public class HexSpace implements Space {
         return tilesOnSpace.empty();
     }
 
-    public boolean onBoarder() {
+    public boolean onBorder() {
         return (numberOfNeighbors() != 6);
 
     }
@@ -94,7 +95,10 @@ public class HexSpace implements Space {
 
 
     public Color getColor() {
-        if (getHeight() == 0) {
+        if(onBorder()){
+            return BROWN;
+        }
+        else if (getHeight() == 0) {
             return new Color(239, 221, 111);
         } else {
             Tile s = tilesOnSpace.peek();

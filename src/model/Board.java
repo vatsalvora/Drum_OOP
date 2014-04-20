@@ -32,7 +32,7 @@ public class Board {
     }
     private void initBoard() {
 
-        int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
+        int[] height = {5, 6, 9, 11, 11, 11, 11, 10, 10, 10, 10, 12, 12, 11, 10, 10, 8, 7, 5};
         int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
         for(int i=0; i<height.length; i++) size = Math.max(size, height[i]+gap[i]);
         width = height.length;

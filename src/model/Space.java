@@ -5,7 +5,7 @@ package model;
 */
 public interface Space {
 
-		public boolean onBoarder();
+		public boolean onBorder();
 
 	    public void setNeighbors(int index, Space s);
 
