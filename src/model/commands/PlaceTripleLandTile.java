@@ -52,6 +52,6 @@ public class PlaceTripleLandTile implements Command {
     }
 
     public String toString() {
-        return this.getClass().getName() + points;
+        return this.getClass().getName() + " " + points;
     }
 }

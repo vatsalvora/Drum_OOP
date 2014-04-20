@@ -2,8 +2,6 @@ package model.commands;
 
 import model.Command;
 import model.GameFacade;
-import model.customExceptions.NoVillageTilesException;
-import model.customExceptions.NotEnoughAPException;
 
 import java.awt.*;
 
@@ -48,6 +46,6 @@ public class PlaceVillageTile implements Command {
     }
 
     public String toString() {
-        return this.getClass().getName() + points;
+        return this.getClass().getName() + " " + points;
     }
 }
