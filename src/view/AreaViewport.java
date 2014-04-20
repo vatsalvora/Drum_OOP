@@ -214,6 +214,10 @@ public class AreaViewport {
                     Location loc = curr.getLocation();
                     String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
                     Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.getColor();
+                    int[] rotations = board.getRotations();
+                    for(int q=0; q<rotations.length; q++){
+                        color = (curr.equals(board.getCurrentSpace().getNeighbor(rotations[q]))) ? movement : curr.getColor();
+                    }
                     fillHex(loc.getXLocation(), loc.getYLocation(), status,
                             color, g2);
                 }
