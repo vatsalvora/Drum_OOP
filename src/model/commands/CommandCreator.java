@@ -116,6 +116,16 @@ public class CommandCreator {
         }
     }
 
+    public void placeDeveloper()
+    {
+        current = new PlaceDeveloper(gameFacade);
+    }
+
+    public void removeDeveloper()
+    {
+        current = new RemoveDeveloper(gameFacade);
+    }
+
     public void undoLastCommand() {
         if (!commands.empty()) {
             Command command = commands.pop();
