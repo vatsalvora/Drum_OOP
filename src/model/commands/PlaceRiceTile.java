@@ -9,10 +9,12 @@ public class PlaceRiceTile implements Command {
 	private GameFacade b;
     private int points;
     private boolean save;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
         b.setMovementColor(Color.GREEN);
+        b.setDevColor(Color.GREEN);
         int[] rotation = new int[0];
         b.setRotation(rotation);
         b.render();
@@ -38,6 +40,7 @@ public class PlaceRiceTile implements Command {
                 save = false;
                 b.returnRiceTile();
                 b.sendErrorMessage(e.toString());
+                b.setDevColor(cornflower_blue);
                 b.setMovementColor(new Color(100, 149, 237));
                 b.render();
             }
@@ -46,6 +49,7 @@ public class PlaceRiceTile implements Command {
         {
             save = false;
             b.sendErrorMessage(e.toString());
+            b.setDevColor(cornflower_blue);
             b.setMovementColor(new Color(100, 149, 237));
             b.render();
         }

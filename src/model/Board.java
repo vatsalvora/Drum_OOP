@@ -27,6 +27,17 @@ public class Board {
         this.rotations = rotations;
     }
 
+    public void undoTilePlacement() {
+        Tile t = current.removeTopTile();
+        for (int i = 0; i < 6; i++) {
+            Tile ref = t.getReferences(i);
+            if (ref != null) {
+                HexSpace s = (HexSpace) (current.getNeighbor(i));
+                s.removeTopTile();
+            }
+        }
+    }
+
     public int[] getRotations(){
         return rotations;
     }

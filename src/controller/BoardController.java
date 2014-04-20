@@ -38,6 +38,8 @@ public class BoardController {
         return board.getCurrentSpace();
     }
 
+    public void undoTilePlacement(){board.undoTilePlacement();}
+
     public int[] getRotations(){
         return board.getRotations();
     }
@@ -71,7 +73,9 @@ public class BoardController {
     {
         //place developer at current location
         HexSpace currentSpace = board.getCurrentSpace();
+
         if(currentSpace.onEdge())
+
         {
             if(!currentSpace.spaceEmpty()) {
                 currentSpace.placeDeveloper(d);
@@ -103,7 +107,9 @@ public class BoardController {
         HexSpace currentSpace = board.getCurrentSpace();
         if(currentSpace.getDeveloper() != null)
         {
+
             if(currentSpace.onEdge()) {
+
                 if (currentSpace.getDeveloper().getColor().compareTo(c) == 0) {
                     currentSpace.removeDeveloper();
                 } else {

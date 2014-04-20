@@ -95,6 +95,17 @@ public class Player {
     public ArrayList<PalaceCard> getCards() {
         return cards;
     }
+    
+    public String palaceCardsToString()
+    {
+    	String ret = "";
+    	ArrayList<PalaceCard> cards = getCards();
+    	for(PalaceCard card : cards)
+    		ret += card.toString() + " | ";
+    	return ret;
+    		
+
+    }
 
     // Functions for performing or undoing specific Player functions
     public void incrementFamePoints(int i) {

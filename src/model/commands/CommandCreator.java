@@ -162,6 +162,11 @@ public class CommandCreator {
 
     }
 
+    public void upgradePalaceTile(int level) {
+        current = new PlacePalaceTile(gameFacade, level);
+    }
+
+
     public void initiatePalaceFestival() {
         //current = new InitiatePalaceFestival(gameFacade);
         Command c = new InitiatePalaceFestival(gameFacade);
@@ -186,18 +191,21 @@ public class CommandCreator {
         current = new RemoveDeveloper(gameFacade);
     }
 
-    public void selectDeveloper()
-    {
+
+    public void selectDeveloper() {
         Command c = new SelectDeveloper(gameFacade);
         c.execute();
-        if(c.save())
-        {
+        if (c.save()) {
             commands.push(c);
             current = new MoveDeveloper(gameFacade);
-        }
-        else
-        {
+        } else {
             current = null;
+        }
+    }
+
+    public void undoAll(){
+        while(!commands.empty()){
+            undoLastCommand();
         }
     }
 

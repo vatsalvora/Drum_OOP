@@ -42,7 +42,9 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 		}
         turnController.putFestivalCard(sharedResourcesController.drawCard());
+        sharedResourcesController.updatePlayers(turnController);
 	}
+	
 
 	public void setMovementColor(Color color) {
 		areaViewportController.setMovementColor(color);
@@ -113,6 +115,7 @@ public class GameFacade {
             Tile t = new IrrigationTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -131,6 +134,7 @@ public class GameFacade {
 		sharedResourcesController.returnIrrigationTile();
 		turnController.returnOtherBlock();
 		removeIrrigationTile(i);
+        boardController.undoTilePlacement();
 	}
 
 	public int placeVillageTile() {
@@ -142,6 +146,7 @@ public class GameFacade {
             Tile t = new VillageTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -161,6 +166,7 @@ public class GameFacade {
 	public void undoVillageTile(int i) {
 		turnController.returnVillageBlock();
 		// remove the village tile from the location it was placed
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(i);
 	}
 
@@ -171,9 +177,10 @@ public class GameFacade {
             // place the village at the proper spot
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
-            Tile t = new RiceTile(0);
+            Tile t = new RiceTile(0, "blah");
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -195,6 +202,7 @@ public class GameFacade {
 	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
 		// remove the rice tile from the location it was placed
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(i);
 	}
 
@@ -206,13 +214,8 @@ public class GameFacade {
         int[] dir = {0,1,2,5,4,3};
 
 
-        for(int a : rotations)
-            System.out.println("asasaasa: " +a);
 
-
-
-
-        RiceTile rice = new RiceTile(1);
+        RiceTile rice = new RiceTile(1, "blah");
         village.createReff(rice,dir[rotations[0]]);
         rice.createReff(village,5-dir[rotations[0]]);
 
@@ -223,6 +226,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -242,6 +246,7 @@ public class GameFacade {
     public void undoTwoBlock(int i) {
         turnController.returnTwoBlock();
         // remove the two block from the location it was placed
+        boardController.undoTilePlacement();
         turnController.decrementFamePoints(i);
     }
 
@@ -264,24 +269,23 @@ public class GameFacade {
         HexSpace current = boardController.getCurrentSpace();
         int[] rotations = boardController.getRotations();
 
-  //////////////////////////////////////////
 
-        for(int a : rotations)
-            System.out.println("asasaasa: " +a);
-
-  /////////////////////////////////////////////
         VillageTile village = new VillageTile(2);
-        RiceTile rice = new RiceTile(2);
-        RiceTile rice2 = new RiceTile(2);
+        RiceTile rice = new RiceTile(2, "rice1");
+        RiceTile rice2 = new RiceTile(2, "rice2");
         int[] dir = {0,1,2,5,4,3};
+        int[] r1Tor2 = {3,0,1,4,5,2};
+        int[] r2Tor1 = {1,2,5,0,3,4};
             village.createReff(rice, dir[rotations[0]]);
             village.createReff(rice2, dir[rotations[1]]);
 
             rice.createReff(village, 5 - dir[rotations[0]]);
-            rice.createReff(rice2, (5 -dir[rotations[1]]+6)%6);
+            rice.createReff(rice2,r1Tor2[5 - dir[rotations[0]]]);
 
             rice2.createReff(village, 5 - dir[rotations[1]]);
-            rice2.createReff(rice,  (5-dir[rotations[0]]+6)%6);
+            rice2.createReff(rice, r2Tor1[5 - dir[rotations[1]]]);
+
+
 
         boardController.placeTile(village);
 
@@ -290,6 +294,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -303,9 +308,10 @@ public class GameFacade {
 	}
 
 	public void undoThreeBlock(int i) {
-		sharedResourcesController.returnIrrigationTile();
+		sharedResourcesController.returnThreeBlock();
 		turnController.returnOtherBlock();
-		removeIrrigationTile(i);
+		removeThreeBlock(i);
+        boardController.undoTilePlacement();
 	}
 
 	public void initiatePalaceFestival() {
@@ -317,6 +323,7 @@ public class GameFacade {
 	}
 
 	public int placePalaceTile(int level) {
+
         Tile t = new PalaceTile(level);
         HexSpace current = boardController.getCurrentSpace();
         boardController.placeTile(t);
@@ -337,6 +344,7 @@ public class GameFacade {
 		sharedResourcesController.returnPalace(level);
 		turnController.returnOtherBlock();
 		// remove palace tile from board
+        boardController.undoTilePlacement();
 		turnController.decrementFamePoints(points);
 	}
 
@@ -399,14 +407,26 @@ public class GameFacade {
 		//place a developer at location and get AP spent on action
         Developer d = new Developer(color, viewColor);
         int APUsed = boardController.placeDeveloper(d);
+        areaViewportController.setMovementColor(cornflower_blue);
+        areaViewportController.setDevColor(cornflower_blue);
+        render();
         //then return said AP
         return APUsed;
 	}
+
+    public Color getCurrentPlayerColor(){
+        return turnController.getPlayerViewColor();
+    }
 
     public void pullDeveloper(int i) throws Exception
     {
         turnController.placeDeveloper(i);
     }
+
+    public void setDevColor(Color color){
+        areaViewportController.setDevColor(color);
+    }
+
 
     public int removeDeveloper() throws Exception
     {
