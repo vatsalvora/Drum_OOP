@@ -5,6 +5,7 @@ import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
 import model.customExceptions.*;
+import test.FestivalTest;
 import view.keypressed.KeyPressed;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class GameFacade {
 		boardController = new BoardController();
 		sharedResourcesController = new SharedResourcesController();
 		areaViewportController = new AreaViewportController(boardController.getBoard());
-
+        startGame();
 	}
 
 	public void addKeyListeners(List<KeyPressed> keySet) {
@@ -40,6 +41,7 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 			p.addCard(sharedResourcesController.drawCard());
 		}
+        turnController.putFestivalCard(sharedResourcesController.drawCard());
 	}
 
 	public void setMovementColor(Color color) {
@@ -294,7 +296,9 @@ public class GameFacade {
 	public void initiatePalaceFestival() {
 		String[] colors = {};
 		// Get valid colors from the board to turn in to festivals
-		turnController.startFestival(colors);
+		//turnController.startFestival(colors);
+        FestivalTest festival = new FestivalTest();
+        festival.PerformFestival(turnController, sharedResourcesController.getDeck());
 	}
 
 	public int placePalaceTile(int level) {

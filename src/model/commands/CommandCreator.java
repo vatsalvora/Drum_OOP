@@ -108,8 +108,9 @@ public class CommandCreator {
 	}
 
 	public void initiatePalaceFestival() {
-		current = new InitiatePalaceFestival(gameFacade);
-
+		//current = new InitiatePalaceFestival(gameFacade);
+        Command c = new InitiatePalaceFestival(gameFacade);
+        c.execute();
 	}
 
 	public void changeTurn() {

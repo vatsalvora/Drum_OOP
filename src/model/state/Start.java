@@ -131,4 +131,6 @@ public class Start extends State {
 
     public void keyPressedC() { incorrectKeyPressed();}
 
+    public void keyPressedM() { incorrectKeyPressed();}
+
 }

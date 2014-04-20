@@ -1,5 +1,6 @@
 package controller;
 
+import model.Deck;
 import model.PalaceCard;
 import model.SharedResources;
 import model.customExceptions.NoIrrigationLeftException;
@@ -62,5 +63,9 @@ public class SharedResourcesController {
 
     public void returnPalaceCard(PalaceCard c) {
         resources.returnCard(c);
+    }
+
+    public Deck getDeck() {
+        return resources.getDeck();
     }
 }

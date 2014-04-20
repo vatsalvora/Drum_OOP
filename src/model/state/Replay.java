@@ -128,4 +128,6 @@ public class Replay extends State {
     public void keyPressedT() { incorrectKeyPressed();}
 
     public void keyPressedC() { incorrectKeyPressed();}
+
+    public void keyPressedM() { incorrectKeyPressed();}
 }
