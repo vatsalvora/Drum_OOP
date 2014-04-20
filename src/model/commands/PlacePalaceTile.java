@@ -12,11 +12,13 @@ public class PlacePalaceTile implements Command {
     private int level;
     private int points;
     private boolean save;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
     public PlacePalaceTile(GameFacade b, int level) {
         this.b = b;
         this.level = level;
         b.setMovementColor(Color.YELLOW);
+        b.setDevColor(Color.YELLOW);
         int[] rotation = new int[0];
         b.setRotation(rotation);
         b.render();

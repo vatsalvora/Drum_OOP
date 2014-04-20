@@ -26,7 +26,9 @@ public class AreaViewportController {
     }
 //    public final static boolean orFLAT = true;
 //    public final static boolean orPOINT = false;
-
+    public void setDevColor(Color color){
+        areaViewport.setDevColor(color);
+    }
     public void setMovementColor(Color color){
         areaViewport.setMovement(color);
     }
