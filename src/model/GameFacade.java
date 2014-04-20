@@ -99,7 +99,7 @@ public class GameFacade {
         sharedResourcesController.returnIrrigationTile();
     }
 
-    public int placeIrrigationTile()
+    public int placeIrrigationTile() throws Exception
     {
         //place the irrigation tile on the board
         //give the player the appropriate points (if applicable) and return the points to the command
@@ -133,7 +133,7 @@ public class GameFacade {
         }
 	}*/
 
-    public int placeVillageTile()
+    public int placeVillageTile() throws Exception
     {
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -156,7 +156,7 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-    public int placeRiceTile()
+    public int placeRiceTile() throws Exception
     {
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -178,7 +178,7 @@ public class GameFacade {
 		// remove the rice tile from the location it was placed
 		turnController.decrementFamePoints(i);
 	}
-
+/*
 	public void placeDoubleLandTile() {
 		try {
 			turnController.placeTwoBlock();
@@ -192,7 +192,30 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
+
+    public int placeTwoBlock() throws Exception
+    {
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void pullTwoBlock() throws Exception
+    {
+        turnController.placeTwoBlock();
+    }
+
+    public void returnTwoBlock()
+    {
+        turnController.returnTwoBlock();
+    }
+
+    public void undoTwoBlock(int i) {
+        turnController.returnTwoBlock();
+        // remove the rice tile from the location it was placed
+        turnController.decrementFamePoints(i);
+    }
 
 	public void undoDoubleLandTile() {
 		turnController.returnTwoBlock();
