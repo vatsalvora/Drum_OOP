@@ -113,6 +113,7 @@ public class GameFacade {
             Tile t = new IrrigationTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -142,6 +143,7 @@ public class GameFacade {
             Tile t = new VillageTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -174,6 +176,7 @@ public class GameFacade {
             Tile t = new RiceTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -223,6 +226,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -290,6 +294,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
