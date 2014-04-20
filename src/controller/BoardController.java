@@ -61,7 +61,7 @@ public class BoardController {
     {
         //place developer at current location
         HexSpace currentSpace = board.getCurrentSpace();
-        if(currentSpace.numberOfNeighbors() < 6)
+        if(currentSpace.onBoarder())
         {
             currentSpace.placeDeveloper(d);
         }
@@ -87,7 +87,7 @@ public class BoardController {
         HexSpace currentSpace = board.getCurrentSpace();
         if(currentSpace.getDeveloper() != null)
         {
-            if(currentSpace.numberOfNeighbors() > 6) {
+            if(currentSpace.onBoarder()) {
                 if (currentSpace.getDeveloper().getColor().compareTo(c) == 0) {
                     currentSpace.removeDeveloper();
                 } else {
