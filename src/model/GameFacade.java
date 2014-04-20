@@ -500,7 +500,7 @@ public class GameFacade {
 	}
 
 	public void rotate() {
-		boardController.rotate();
+		//boardController.rotate();
 	}
 
 }
