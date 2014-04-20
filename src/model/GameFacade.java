@@ -4,10 +4,7 @@ import controller.AreaViewportController;
 import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
-import model.customExceptions.BlockNotPlayedException;
-import model.customExceptions.NoIrrigationLeftException;
-import model.customExceptions.NoThreeBlockLeftException;
-import model.customExceptions.NotEnoughAPException;
+import model.customExceptions.*;
 import view.keypressed.KeyPressed;
 
 import java.awt.*;
@@ -280,7 +277,7 @@ public class GameFacade {
 		// Get valid colors from the board to turn in to festivals
 		turnController.startFestival(colors);
 	}
-
+/*
 	public void placePalaceTile(HexSpace s, int level) {
 		try {
 			sharedResourcesController.placePalace(level);
@@ -301,13 +298,32 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
 
-	public void undoPalaceTile(Location l, int level) {
-		sharedResourcesController.returnPalace(level);
-		// remove palace tile from the specified location
-		// remove fame points if applicable
-	}
+    public void pullPalaceTile(int level) throws NoPalaceTilesLeft
+    {
+        sharedResourcesController.placePalace(level);
+    }
+
+    public void returnPalaceTile(int level)
+    {
+        sharedResourcesController.returnPalace(level);
+    }
+
+    public int placePalaceTile(int level) throws Exception
+    {
+        //place the palace tile
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void undoPalaceTile(int level, int points)
+    {
+        sharedResourcesController.returnPalace(level);
+        turnController.returnOtherBlock();
+        //remove palace tile from board
+        turnController.decrementFamePoints(points);
+    }
 
 	public void changeTurn() throws BlockNotPlayedException {
 		turnController.nextTurn();
