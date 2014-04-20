@@ -83,24 +83,23 @@ public class SharedResourcesView extends JFrame
 				
 				// Shared resources information
 				// Palace Cards
-				palaceCards = new JLabel("Player Palace Cards");
+				palaceCards = customJLabel("Player Palace Cards");
 				/* TODO */
 				palaceCards.setHorizontalTextPosition(SwingConstants.CENTER);
 				palaceCards.setVerticalTextPosition(SwingConstants.BOTTOM);
 				palaceCards.setVerticalAlignment(SwingConstants.BOTTOM);
 				palaceCards.setBorder(emptyBorder);
-				palaceCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				palaceCards.setPreferredSize(new Dimension(200,25));
+				palaceCards.setPreferredSize(new Dimension(380,25));
 				palaceCards.setMinimumSize(palaceCards.getPreferredSize());
+				setFont(new Font("Charlemagne Std", Font.BOLD, 10));
 				infoPanel.add(palaceCards);
 
-				festivalCards = new JLabel("Festival Cards");
+				festivalCards = customJLabel ("Festival Cards");
 	
 				festivalCards.setBorder(emptyBorder);
 			
-				festivalCards.setPreferredSize(new Dimension(250,25));
+				festivalCards.setPreferredSize(new Dimension(380,25));
 				festivalCards.setMinimumSize(festivalCards.getPreferredSize());
-				festivalCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(festivalCards);
 
 				numThreeBlocks = customJLabel("Three Blocks:    ");
@@ -110,63 +109,52 @@ public class SharedResourcesView extends JFrame
 				numThreeBlocks.setVerticalTextPosition(SwingConstants.BOTTOM);
 				numThreeBlocks.setVerticalAlignment(SwingConstants.BOTTOM);
 				numThreeBlocks.setMinimumSize(numThreeBlocks.getPreferredSize());
-				numThreeBlocks.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numThreeBlocks);
 				
 				numIrrigationTiles = customJLabel("Irrigation Tiles");
 				numIrrigationTiles.setPreferredSize(new Dimension(200,25));
 				numIrrigationTiles.setMinimumSize(numIrrigationTiles.getPreferredSize());
-				numIrrigationTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numIrrigationTiles);
 				
 				numTwoPalaceTiles = customJLabel("Two Palace Tiles: ");
 				numTwoPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numTwoPalaceTiles.setMinimumSize(numTwoPalaceTiles.getPreferredSize());
-				numTwoPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numTwoPalaceTiles);
 				
 				numFourPalaceTiles = customJLabel("Four Palace Tiles: ");
 				numFourPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numFourPalaceTiles.setMinimumSize(numFourPalaceTiles.getPreferredSize());
-				numFourPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numFourPalaceTiles);
 				
 				numSixPalaceTiles = customJLabel("Six Palace Tiles: ");
 				numSixPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numSixPalaceTiles.setMinimumSize(numSixPalaceTiles.getPreferredSize());
-				numSixPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numSixPalaceTiles);
 				
 				numEightPalaceTiles = customJLabel("Eight Palace Tiles: ");
 				numEightPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numEightPalaceTiles.setMinimumSize(numEightPalaceTiles.getPreferredSize());
-				numEightPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numEightPalaceTiles);
 
-				numTenPalaceTiles = customJLabel("Ten Palace Tiles: ");
+				numTenPalaceTiles = customJLabel("Ten Palace Tiles: \n hereee ");
 				numTenPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numTenPalaceTiles.setMinimumSize(numTenPalaceTiles.getPreferredSize());
-				numTenPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numTenPalaceTiles);
 				
 				player1 = customJLabel("Player 1");
 				player1.setMinimumSize(new Dimension(1000,1000));
-				player1.setFont(new Font("Charlemagne Std", Font.BOLD, 11));
 				playerPanel.add(player1);
 				
 				player2 = customJLabel("Player 2");
 				player2.setMinimumSize(new Dimension(400,400));
-				player2.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				playerPanel.add(player2);
 				
 				player3 = customJLabel("Player 3");
 				player3.setMinimumSize(new Dimension(400,400));
-				player3.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				playerPanel.add(player3);
 				
 				player4 = customJLabel("Player 4");
 				player4.setMinimumSize(new Dimension(100,100));
-				player4.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				playerPanel.add(player4);
 
 				// Add panels			
@@ -283,6 +271,7 @@ public class SharedResourcesView extends JFrame
 					String p3 = c.getPlayerInfo(3);
 					String p4 = c.getPlayerInfo(4);
 					
+					this.palaceCards.setText("Player "+cp+"'s cards: "+c.getPlayerCardInfo());
 					this.festivalCards.setText("Festival Card:\n"+festivalCard);
 					this.player1.setText(p1);
 					this.player2.setText(p2);
@@ -292,7 +281,7 @@ public class SharedResourcesView extends JFrame
 				private JLabel customJLabel(String value)
 				{
 						JLabel label= new JLabel(value);
-						label.setFont(new Font("Charlemagne Std", Font.BOLD, 11));
+						label.setFont(new Font("Charlemagne Std", Font.BOLD, 12));
 						label.setPreferredSize(new Dimension(40, 90));
 						label.setHorizontalTextPosition(SwingConstants.CENTER);
 						label.setVerticalTextPosition(SwingConstants.BOTTOM);

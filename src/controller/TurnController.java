@@ -381,6 +381,10 @@ public class TurnController {
     		return "";
     }
 
+    public String getPlayerCardInfo()
+    {
+    	return players[currentPlayerIndex].palaceCardsToString();
+    }
     public ArrayList<PalaceCard> getCurrentCards() {
         return currentPlayer.getCards();
     }
