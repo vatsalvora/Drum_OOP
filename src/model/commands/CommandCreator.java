@@ -131,6 +131,12 @@ public class CommandCreator {
         current = new RemoveDeveloper(gameFacade);
     }
 
+    public void undoAll(){
+        while(!commands.empty()){
+            undoLastCommand();
+        }
+    }
+
     public void undoLastCommand() {
         if (!commands.empty()) {
             Command command = commands.pop();

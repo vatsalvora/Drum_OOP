@@ -124,7 +124,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedU() {
-		incorrectKeyPressed();
+		commandCreator.undoAll();
 	}
 
 	@Override
