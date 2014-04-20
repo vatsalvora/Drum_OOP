@@ -104,7 +104,7 @@ public class GameFacade {
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new IrrigationTile(0);
-            current.place(t);
+            boardController.placeTile(t);
             setMovementColor(cornflower_blue);
             render();
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class GameFacade {
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new VillageTile(0);
-            current.place(t);
+            boardController.placeTile(t);
             setMovementColor(cornflower_blue);
             render();
         } catch (Exception e) {
@@ -166,7 +166,7 @@ public class GameFacade {
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new RiceTile(0);
-            current.place(t);
+            boardController.placeTile(t);
             setMovementColor(cornflower_blue);
             render();
         } catch (Exception e) {
@@ -208,6 +208,21 @@ public class GameFacade {
 
     public int placeTwoBlock() throws Exception
     {
+        HexSpace current = boardController.getCurrentSpace();
+        int[] rotations = boardController.getRotations();
+        VillageTile village = new VillageTile(1);
+
+        RiceTile rice = new RiceTile(1);
+        village.createReff(rice,rotations[0]);
+        rice.createReff(village,5-rotations[0]);
+
+        boardController.placeTile(village);
+
+        /* here i will create the refferences
+        Tile t = new VillageTile(0);
+        boardController.placeTile(t);*/
+        setMovementColor(cornflower_blue);
+        render();
         //place the village tile on the board
         //give the player the appropriate points and return them
         return 0;
@@ -302,7 +317,7 @@ public class GameFacade {
 					// give fame points to proper player
 					Tile t = new PalaceTile(level);
                     HexSpace current = boardController.getCurrentSpace();
-					current.place(t);
+					boardController.placeTile(t);
                     setMovementColor(cornflower_blue);
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);

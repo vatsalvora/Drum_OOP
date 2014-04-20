@@ -10,6 +10,7 @@ public class PlaceDoubleLandTile implements Command {
     public PlaceDoubleLandTile(GameFacade b) {
         this.b = b;
         points = 0;
+
     }
 
     public PlaceDoubleLandTile(GameFacade b, int p)
