@@ -103,7 +103,7 @@ public class GameFacade {
             // place the village at the proper spot
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
-            Tile t = new IrrigationTile();
+            Tile t = new IrrigationTile(0);
             current.place(t);
             setMovementColor(cornflower_blue);
             render();
@@ -131,7 +131,7 @@ public class GameFacade {
             // place the village at the proper spot
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
-            Tile t = new VillageTile();
+            Tile t = new VillageTile(0);
             current.place(t);
             setMovementColor(cornflower_blue);
             render();
@@ -165,7 +165,7 @@ public class GameFacade {
             // place the village at the proper spot
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
-            Tile t = new RiceTile();
+            Tile t = new RiceTile(0);
             current.place(t);
             setMovementColor(cornflower_blue);
             render();

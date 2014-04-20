@@ -127,9 +127,9 @@ public class AreaViewport {
 
 
         // set up board here
-        Tile t1 = new IrrigationTile();
-        Tile t2 = new IrrigationTile();
-        Tile t3 = new IrrigationTile();
+        Tile t1 = new IrrigationTile(0);
+        Tile t2 = new IrrigationTile(0);
+        Tile t3 = new IrrigationTile(0);
         ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
         ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
         ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
