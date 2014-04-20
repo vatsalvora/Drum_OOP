@@ -95,7 +95,7 @@ public class HexSpace implements Space {
     }
 
     public void place(Tile tile) {
-
+        /*
         try {
 
             increaseHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
@@ -111,7 +111,8 @@ public class HexSpace implements Space {
         } catch (Exception e) {
             removeTopTile();
             //tell user what went wrong with tile placement
-        }
+        }*/
+        tilesOnSpace.add(tile);
 
     }
 
