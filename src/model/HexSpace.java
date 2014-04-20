@@ -4,6 +4,8 @@ import model.customExceptions.DevOnSpaceException;
 import model.customExceptions.TileHeightWrongException;
 
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class HexSpace implements Space {
@@ -122,7 +124,7 @@ public class HexSpace implements Space {
             //tell user what went wrong with tile placement
         }*/
         try {
-        checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
+
          int[] neighLocations = tile.getNeighborsIndex();
             if(!spaceEmpty())
                 getTopTile().compareNeighbors(neighLocations);
@@ -138,8 +140,18 @@ public class HexSpace implements Space {
         }
     }
 
-    public void checkHeight(Tile tile, int height) throws TileHeightWrongException {
-        if (getHeight() != height)
+    public void checkHeights(Tile tile) throws TileHeightWrongException {
+
+        Set<Integer> heights = new HashSet<Integer>();
+
+        heights.add(getHeight());
+
+        int length = tile.getNeighborsIndex().length;
+
+        for(int a : tile.getNeighborsIndex())
+            heights.add(((HexSpace) getNeighbor(a)).getHeight());
+
+        if (heights.size() != 1 &&  length != 0 )
             throw new TileHeightWrongException("Tile heights are inconsistent in the area the block is being placed.");
 
     }
