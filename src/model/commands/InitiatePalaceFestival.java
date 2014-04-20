@@ -5,9 +5,11 @@ import model.GameFacade;
 
 public class InitiatePalaceFestival implements Command {
 	private GameFacade b;
+    private boolean save;
 
 	public InitiatePalaceFestival(GameFacade b) {
 		this.b = b;
+        save = true;
 	}
 
 	@Override
@@ -19,6 +21,11 @@ public class InitiatePalaceFestival implements Command {
 	public void undo() {
 
 	}
+
+    public boolean save()
+    {
+        return save;
+    }
 
 	@Override
 	public String toString() {

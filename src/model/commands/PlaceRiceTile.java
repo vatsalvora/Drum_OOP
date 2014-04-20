@@ -8,6 +8,7 @@ import java.awt.*;
 public class PlaceRiceTile implements Command {
 	private GameFacade b;
     private int points;
+    private boolean save;
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
@@ -16,12 +17,14 @@ public class PlaceRiceTile implements Command {
         b.setRotation(rotation);
         b.render();
         points = 0;
+        save = true;
 	}
 
     public PlaceRiceTile(GameFacade b, int p)
     {
         this.b = b;
         points = p;
+        save = true;
     }
 
 	public void execute() {
@@ -32,6 +35,7 @@ public class PlaceRiceTile implements Command {
             }
             catch(Exception e)
             {
+                save = false;
                 b.returnRiceTile();
                 b.sendErrorMessage(e.toString());
                 b.setMovementColor(new Color(100, 149, 237));
@@ -40,6 +44,7 @@ public class PlaceRiceTile implements Command {
         }
         catch(Exception e)
         {
+            save = false;
             b.sendErrorMessage(e.toString());
             b.setMovementColor(new Color(100, 149, 237));
             b.render();
@@ -51,6 +56,11 @@ public class PlaceRiceTile implements Command {
 	public void undo() {
         b.undoRiceTile(points);
 	}
+
+    public boolean save()
+    {
+        return save;
+    }
 
 	public String toString() {
 		return this.getClass().getName() + " " + points;

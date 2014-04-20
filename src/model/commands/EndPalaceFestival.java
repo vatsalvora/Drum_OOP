@@ -5,9 +5,11 @@ import model.GameFacade;
 
 public class EndPalaceFestival implements Command {
     private GameFacade gameFacade;
+    private boolean save;
 
     public EndPalaceFestival(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
+        save = true;
     }
 
     @Override
@@ -19,6 +21,11 @@ public class EndPalaceFestival implements Command {
     @Override
     public void undo() {
 
+    }
+
+    public boolean save()
+    {
+        return save;
     }
 
     @Override

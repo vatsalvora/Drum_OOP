@@ -98,7 +98,6 @@ public class CommandCreator {
 			command.undo();
 			secondCommands.push(command); // Saves command for re-do in replay
 		}
-		// TODO: Handle case where stack is empty
 	}
 
 	public void redoLastCommand() {
@@ -107,7 +106,6 @@ public class CommandCreator {
 			command.execute();
 			commands.push(command);
 		}
-		// TODO: Handle case where stack is empty
 	}
 
 	public void restart() {

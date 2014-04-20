@@ -18,6 +18,11 @@ public class Rotate implements Command {
 
 	}
 
+    public boolean save()
+    {
+        return true;
+    }
+
 	@Override
 	public String toString() {
 		return this.getClass().getName();

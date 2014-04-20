@@ -11,6 +11,7 @@ public class PlacePalaceTile implements Command {
 	private GameFacade b;
     private int level;
     private int points;
+    private boolean save;
 
 	public PlacePalaceTile(GameFacade b, int level) {
 		this.b = b;
@@ -20,6 +21,7 @@ public class PlacePalaceTile implements Command {
         b.setRotation(rotation);
         b.render();
         points = 0;
+        save = true;
 	}
 
     public PlacePalaceTile(GameFacade b, int level, int points)
@@ -27,6 +29,7 @@ public class PlacePalaceTile implements Command {
         this.b = b;
         this.level = level;
         this.points = points;
+        save = true;
     }
 
 	public void execute() {
@@ -39,6 +42,7 @@ public class PlacePalaceTile implements Command {
                 }
                 catch(Exception e)
                 {
+                    save = false;
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
                     b.sendErrorMessage(e.toString());
@@ -48,6 +52,7 @@ public class PlacePalaceTile implements Command {
             }
             catch(NotEnoughAPException e)
             {
+                save = false;
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
                 b.setMovementColor(new Color(100, 149, 237));
@@ -55,6 +60,7 @@ public class PlacePalaceTile implements Command {
             }
         }
         catch(NoPalaceTilesLeft e){
+            save = false;
             b.sendErrorMessage(e.toString());
             b.setMovementColor(new Color(100, 149, 237));
             b.render();
@@ -64,6 +70,11 @@ public class PlacePalaceTile implements Command {
 	public void undo() {
         b.undoPalaceTile(level, points);
 	}
+
+    public boolean save()
+    {
+        return save;
+    }
 
 	public String toString() {
 		return this.getClass().getName() + " " + level + " " + points;

@@ -10,6 +10,7 @@ import java.awt.*;
 public class PlaceTripleLandTile implements Command {
     private GameFacade b;
     private int points;
+    private boolean save;
 
     public PlaceTripleLandTile(GameFacade b) {
         this.b = b;
@@ -18,12 +19,14 @@ public class PlaceTripleLandTile implements Command {
         b.setMovementColor(Color.MAGENTA);
         b.render();
         points = 0;
+        save = true;
     }
 
     public PlaceTripleLandTile(GameFacade b, int points)
     {
         this.b = b;
         this.points = points;
+        save = true;
     }
 
     public void execute() {
@@ -37,6 +40,7 @@ public class PlaceTripleLandTile implements Command {
                 }
                 catch(Exception e)
                 {
+                    save = false;
                     b.returnThreeBlock();
                     b.sendErrorMessage(e.toString());
                     int[] rotation = new int[0];
@@ -47,6 +51,7 @@ public class PlaceTripleLandTile implements Command {
             }
             catch(NotEnoughAPException e)
             {
+                save = false;
                 b.returnThreeBlock();
                 b.sendErrorMessage(e.toString());
                 int[] rotation = new int[0];
@@ -57,6 +62,7 @@ public class PlaceTripleLandTile implements Command {
         }
         catch(NoThreeBlockLeftException e)
         {
+            save = false;
             b.sendErrorMessage(e.toString());
             int[] rotation = new int[0];
             b.setRotation(rotation);
@@ -67,6 +73,11 @@ public class PlaceTripleLandTile implements Command {
 
     public void undo() {
         b.undoThreeBlock(points);
+    }
+
+    public boolean save()
+    {
+        return save;
     }
 
     public String toString() {

@@ -501,68 +501,92 @@ public class GameFacade {
 		return turnController.getFestival();
 	}
 
-	public void move1() {
+	public void move1() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(0) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(0);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move2() {
+	public void move2() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(1) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(1);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move3() {
+	public void move3() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(2) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(2);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move7() {
+	public void move7() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(3) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(3);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move8() {
+	public void move8() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(4) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(4);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}
 
-	public void move9() {
+	public void move9() throws LocationOutOfBoundsException {
 		if (boardController.getCurrentSpace().getNeighbor(5) != null) {
 			HexSpace neighbor = (HexSpace) boardController.getCurrentSpace().getNeighbor(5);
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
 		}
+        else
+        {
+            throw new LocationOutOfBoundsException();
+        }
 		render();
 
 	}

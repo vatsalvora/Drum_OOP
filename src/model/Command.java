@@ -6,5 +6,7 @@ public interface Command {
 
 	void undo();
 
+    boolean save();
+
 	String toString();
 }

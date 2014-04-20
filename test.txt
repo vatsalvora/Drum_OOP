@@ -1,5 +1,13 @@
 model.commands.PlaceTripleLandTile 0
-model.commands.PlaceTripleLandTile 0
-model.commands.PlaceTripleLandTile 0
+model.commands.PlaceDoubleLandTile 0
+model.commands.PlaceDoubleLandTile 0
+model.commands.PlaceDoubleLandTile 0
+model.commands.PlaceDoubleLandTile 0
 model.commands.PlaceRiceTile 0
+model.commands.PlaceRiceTile 0
+model.commands.PlaceRiceTile 0
+model.commands.PlaceRiceTile 0
+model.commands.PlaceRiceTile 0
+model.commands.PlacePalaceTile 2 0
+model.commands.PlacePalaceTile 2 0
 model.commands.PlaceTripleLandTile 0
