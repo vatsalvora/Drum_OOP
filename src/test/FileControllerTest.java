@@ -28,7 +28,7 @@ public class FileControllerTest {
 
     @Test
     public void testSave() throws Exception {
-        Stack<Command> commandStack = new Stack<>();
+        Stack<Command> commandStack = new Stack<Command>();
         commandStack.push(new ChangeTurn(gameFacade));
         commandStack.push(new DrawCard(gameFacade));
         commandStack.push(new DrawPalaceCard(gameFacade));
