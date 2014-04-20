@@ -39,17 +39,29 @@ public class PlaceTripleLandTile implements Command {
                 {
                     b.returnThreeBlock();
                     b.sendErrorMessage(e.toString());
+                    int[] rotation = new int[0];
+                    b.setRotation(rotation);
+                    b.setMovementColor(new Color(100, 149, 237));
+                    b.render();
                 }
             }
             catch(NotEnoughAPException e)
             {
                 b.returnThreeBlock();
                 b.sendErrorMessage(e.toString());
+                int[] rotation = new int[0];
+                b.setRotation(rotation);
+                b.setMovementColor(new Color(100, 149, 237));
+                b.render();
             }
         }
         catch(NoThreeBlockLeftException e)
         {
             b.sendErrorMessage(e.toString());
+            int[] rotation = new int[0];
+            b.setRotation(rotation);
+            b.setMovementColor(new Color(100, 149, 237));
+            b.render();
         }
     }
 

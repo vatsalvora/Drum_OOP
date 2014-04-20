@@ -12,6 +12,8 @@ public class PlaceVillageTile implements Command {
 	public PlaceVillageTile(GameFacade b) {
 		this.b = b;
         b.setMovementColor(Color.RED);
+        int[] rotation = new int[0];
+        b.setRotation(rotation);
         b.render();
         points = 0;
 	}
@@ -33,11 +35,15 @@ public class PlaceVillageTile implements Command {
             {
                 b.returnVillageTile();
                 b.sendErrorMessage(e.toString());
+                b.setMovementColor(new Color(100, 149, 237));
+                b.render();
             }
         }
         catch(Exception e)
         {
             b.sendErrorMessage(e.toString());
+            b.setMovementColor(new Color(100, 149, 237));
+            b.render();
         }
     }
 

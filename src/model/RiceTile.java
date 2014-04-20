@@ -16,7 +16,7 @@ public class RiceTile extends Tile{
 
     public RiceTile(int numberOfNeighbors){
 
-        assignColor(214,166,81);
+        assignColor(34,139,34);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }

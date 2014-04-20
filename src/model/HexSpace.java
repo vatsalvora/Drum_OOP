@@ -112,7 +112,7 @@ public class HexSpace implements Space {
             removeTopTile();
             //tell user what went wrong with tile placement
         }*/
-        tilesOnSpace.add(tile);
+        if(getHeight()==0) tilesOnSpace.add(tile);
 
     }
 

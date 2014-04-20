@@ -79,6 +79,7 @@ public class GameFacade {
     public void sendErrorMessage(String s)
     {
         //send the error message to the view
+        System.out.println(s);
     }
 
     public void placeOtherBlock() throws NotEnoughAPException

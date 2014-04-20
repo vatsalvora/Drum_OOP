@@ -35,11 +35,20 @@ public class PlaceDoubleLandTile implements Command {
             {
                 b.returnTwoBlock();
                 b.sendErrorMessage(e.toString());
+                int[] rotation = new int[0];
+                b.setRotation(rotation);
+                b.setMovementColor(new Color(100, 149, 237));
+                b.render();
             }
         }
         catch(Exception e)
         {
             b.sendErrorMessage(e.toString());
+            int[] rotation = new int[0];
+            b.setRotation(rotation);
+            b.setMovementColor(new Color(100, 149, 237));
+            b.render();
+
         }
 
 

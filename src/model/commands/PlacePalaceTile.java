@@ -16,6 +16,8 @@ public class PlacePalaceTile implements Command {
 		this.b = b;
         this.level = level;
         b.setMovementColor(Color.YELLOW);
+        int[] rotation = new int[0];
+        b.setRotation(rotation);
         b.render();
         points = 0;
 	}
@@ -40,16 +42,22 @@ public class PlacePalaceTile implements Command {
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
                     b.sendErrorMessage(e.toString());
+                    b.setMovementColor(new Color(100, 149, 237));
+                    b.render();
                 }
             }
             catch(NotEnoughAPException e)
             {
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
+                b.setMovementColor(new Color(100, 149, 237));
+                b.render();
             }
         }
         catch(NoPalaceTilesLeft e){
             b.sendErrorMessage(e.toString());
+            b.setMovementColor(new Color(100, 149, 237));
+            b.render();
         }
 	}
 

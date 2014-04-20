@@ -16,7 +16,8 @@ public class VillageTile extends Tile {
 
     public VillageTile(int numberOfNeighbors){
 
-        assignColor(34,139,34);
+
+        assignColor(214,166,81);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }
