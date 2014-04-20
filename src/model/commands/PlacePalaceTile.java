@@ -8,40 +8,39 @@ import model.customExceptions.NotEnoughAPException;
 import java.awt.*;
 
 public class PlacePalaceTile implements Command {
-	private GameFacade b;
+    private GameFacade b;
     private int level;
     private int points;
     private boolean save;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
-	public PlacePalaceTile(GameFacade b, int level) {
-		this.b = b;
+    public PlacePalaceTile(GameFacade b, int level) {
+        this.b = b;
         this.level = level;
         b.setMovementColor(Color.YELLOW);
+        b.setDevColor(Color.YELLOW);
         int[] rotation = new int[0];
         b.setRotation(rotation);
         b.render();
         points = 0;
         save = true;
-	}
+    }
 
-    public PlacePalaceTile(GameFacade b, int level, int points)
-    {
+    public PlacePalaceTile(GameFacade b, int level, int points) {
         this.b = b;
         this.level = level;
         this.points = points;
         save = true;
     }
 
-	public void execute() {
-        try{
+    public void execute() {
+        try {
             b.pullPalaceTile(level);
-            try{
+            try {
                 b.placeOtherBlock();
-                try{
+                try {
                     points = b.placePalaceTile(level);
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     save = false;
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
@@ -49,34 +48,30 @@ public class PlacePalaceTile implements Command {
                     b.setMovementColor(new Color(100, 149, 237));
                     b.render();
                 }
-            }
-            catch(NotEnoughAPException e)
-            {
+            } catch (NotEnoughAPException e) {
                 save = false;
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
                 b.setMovementColor(new Color(100, 149, 237));
                 b.render();
             }
-        }
-        catch(NoPalaceTilesLeft e){
+        } catch (NoPalaceTilesLeft e) {
             save = false;
             b.sendErrorMessage(e.toString());
             b.setMovementColor(new Color(100, 149, 237));
             b.render();
         }
-	}
+    }
 
-	public void undo() {
+    public void undo() {
         b.undoPalaceTile(level, points);
-	}
+    }
 
-    public boolean save()
-    {
+    public boolean save() {
         return save;
     }
 
-	public String toString() {
-		return this.getClass().getName() + " " + level + " " + points;
-	}
+    public String toString() {
+        return this.getClass().getName() + " " + level + " " + points;
+    }
 }

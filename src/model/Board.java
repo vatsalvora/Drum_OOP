@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.DevOnSpaceException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class Board {
     }
     private void initBoard() {
 
-        int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
+        int[] height = {5, 6, 9, 11, 11, 11, 11, 10, 10, 10, 10, 12, 12, 11, 10, 10, 8, 7, 5};
         int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
         for(int i=0; i<height.length; i++) size = Math.max(size, height[i]+gap[i]);
         width = height.length;
@@ -102,6 +104,15 @@ public class Board {
 
 
     public void place(Tile tile) {
+
+        try {
+
+            current.checkHeights(tile);
+        }catch(Exception e){
+            System.out.println(e);
+            return;
+        }
+
         current.place(tile);
 
         for(int i=0; i<6; i++){
@@ -111,6 +122,11 @@ public class Board {
                 s.place(t);
             }
         }
+
+    }
+
+    public void placeDeveloper(Developer developer) throws DevOnSpaceException {
+            current.placeDeveloper(developer);
     }
 
     public void rotateClockwise(){

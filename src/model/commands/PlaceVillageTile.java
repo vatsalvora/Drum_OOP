@@ -9,12 +9,14 @@ public class PlaceVillageTile implements Command {
 	private GameFacade b;
     private int points;
     private boolean save;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
 	public PlaceVillageTile(GameFacade b) {
 		this.b = b;
         b.setMovementColor(Color.RED);
         int[] rotation = new int[0];
         b.setRotation(rotation);
+        b.setDevColor(Color.RED);
         b.render();
         points = 0;
         save = true;

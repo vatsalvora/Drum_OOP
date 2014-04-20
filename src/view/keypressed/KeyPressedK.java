@@ -4,16 +4,16 @@ import model.state.State;
 
 import java.awt.event.KeyEvent;
 
-public class KeyPressedT extends KeyPressed {
+public class KeyPressedK extends KeyPressed {
 
-    public KeyPressedT(State state) {
+    public KeyPressedK(State state) {
         super(state);
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        if(ke.getKeyChar() == 't'){
-            state.keyPressedT();
+        if(ke.getKeyChar() == 'k'){
+            state.keyPressedK();
         }
     }
 }

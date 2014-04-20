@@ -1,13 +1,16 @@
 package model;
 
+import java.awt.*;
+
 public class Developer {
 	String color;
-
-	Developer(String color) {
+    Color viewColor;
+	public Developer(String color, Color viewColor) {
 		this.color = color;
+        this.viewColor = viewColor;
 	}
-
-	String getColor() {
+    public Color getViewColor(){return viewColor;}
+	public String getColor() {
 		return color;
 	}
 }

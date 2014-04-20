@@ -1,9 +1,12 @@
 package model;
 
 import model.customExceptions.DevOnSpaceException;
+import model.customExceptions.SpaceNotOnEdgeException;
 import model.customExceptions.TileHeightWrongException;
 
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class HexSpace implements Space {
@@ -12,6 +15,7 @@ public class HexSpace implements Space {
     private Location l;
     private Stack<Tile> tilesOnSpace;
     private Developer developer;
+    public Color BROWN = new Color(205,133,63);
 
     public HexSpace(Location l) {
         this.l = l;
@@ -37,6 +41,10 @@ public class HexSpace implements Space {
         developer = null;
     }
 
+    public boolean hasDeveloper() {
+        return (developer != null);
+    }
+
     public int getHeight() {
         return tilesOnSpace.size();
     }
@@ -57,9 +65,23 @@ public class HexSpace implements Space {
         return tilesOnSpace.empty();
     }
 
-    public boolean onBoarder() {
-        return (numberOfNeighbors() != 6);
+    public boolean onBorder() {
+        return(numberOfNeighbors() < 6);
+    }
 
+    public boolean onEdge()
+    {
+        boolean ret = false;
+        for(Space s : neighbors)
+        {
+            if(s != null) {
+                HexSpace h = (HexSpace) s;
+                if (h.numberOfNeighbors() != 6) {
+                    ret = true;
+                }
+            }
+        }
+        return ret;
     }
 
     public int numberOfNeighbors() {
@@ -90,7 +112,10 @@ public class HexSpace implements Space {
 
 
     public Color getColor() {
-        if (getHeight() == 0) {
+        if(onBorder()){
+            return BROWN;
+        }
+        else if (getHeight() == 0) {
             return new Color(239, 221, 111);
         } else {
             Tile s = tilesOnSpace.peek();
@@ -100,29 +125,13 @@ public class HexSpace implements Space {
 
     public void place(Tile tile) {
 
-    /*
 
-            *//*checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
-
-            int[] neighLocations = tile.getNeighborsIndex();
-
-            for(int i = 0; i < neighLocations.length; i++)
-                updateNeighbor(neighbors[neighLocations[i]] ,tile.getNeighborAt(neighLocations[i]));
-
-            //going to finish this later
-            if(getHeight() == 0)
-            addTile(tile);
-            //check tile's connections and place connected tiles down as well, throwing exception if error occurs
-        } catch (Exception e) {
-            removeTopTile();
-            //tell user what went wrong with tile placement
-        }*/
         try {
-        checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
+
          int[] neighLocations = tile.getNeighborsIndex();
             if(!spaceEmpty())
                 getTopTile().compareNeighbors(neighLocations);
-
+           //checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
 
             System.out.println(this);
@@ -134,8 +143,37 @@ public class HexSpace implements Space {
         }
     }
 
-    public void checkHeight(Tile tile, int height) throws TileHeightWrongException {
-        if (getHeight() != height)
+    public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
+
+        boolean checking = true;
+
+        for(int a : tile.getNeighborsIndex()) {
+            checking = ((HexSpace) getNeighbor(a)).onBorder();
+
+            System.out.println("checking: " + checking);
+
+            if(!checking)
+                break;
+        }
+
+        checking = getCurrentSpace().onBorder();
+
+        if(checking )
+        throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
+    }
+
+    public void checkHeights(Tile tile) throws TileHeightWrongException {
+
+        Set<Integer> heights = new HashSet<Integer>();
+
+        heights.add(getHeight());
+
+        int length = tile.getNeighborsIndex().length;
+
+        for(int a : tile.getNeighborsIndex())
+            heights.add(((HexSpace) getNeighbor(a)).getHeight());
+
+        if (heights.size() != 1 &&  length != 0 )
             throw new TileHeightWrongException("Tile heights are inconsistent in the area the block is being placed.");
 
     }

@@ -115,6 +115,7 @@ public class GameFacade {
             Tile t = new IrrigationTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -144,6 +145,7 @@ public class GameFacade {
             Tile t = new VillageTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -176,6 +178,7 @@ public class GameFacade {
             Tile t = new RiceTile(0);
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
+            setDevColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -225,6 +228,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -292,6 +296,7 @@ public class GameFacade {
         boardController.placeTile(t);*/
         setRotation(new int[0]);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
         render();
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -412,27 +417,69 @@ public class GameFacade {
 		return turnController.festivalOver();
 	}
 
-	public int placeDeveloper() {
+	public int placeDeveloper() throws Exception {
 		String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
 		//place a developer at location and get AP spent on action
+        Developer d = new Developer(color, viewColor);
+        int APUsed = boardController.placeDeveloper(d);
+        areaViewportController.setMovementColor(cornflower_blue);
+        areaViewportController.setDevColor(cornflower_blue);
+        render();
         //then return said AP
-        return 1;
+        return APUsed;
 	}
+
+    public Color getCurrentPlayerColor(){
+        return turnController.getPlayerViewColor();
+    }
 
     public void pullDeveloper(int i) throws Exception
     {
         turnController.placeDeveloper(i);
     }
 
-    public void removeDeveloper()
-    {
-        //remove the developer on the current space of the board
+    public void setDevColor(Color color){
+        areaViewportController.setDevColor(color);
     }
 
-    public void undoDeveloperPlacement(int i)
+
+    public int removeDeveloper() throws Exception
+    {
+        //remove the developer on the current space of the board
+        int APUsed = boardController.removeDeveloper(turnController.getPlayerColor());
+        //return the AP spent to remove it
+        return APUsed;
+    }
+
+    public void undoDeveloperPlacement(int i) throws Exception
     {
         turnController.undoDeveloperPlacement(i);
         removeDeveloper();
+    }
+
+    public void pushDeveloper(int i) throws Exception
+    {
+        turnController.removeDeveloper(i);
+    }
+
+    public void undoDeveloperRemoval(int i) throws Exception
+    {
+        //put developer back on the current space of the board
+        String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
+        Developer d = new Developer(color, viewColor);
+        boardController.placeDeveloper(d);
+        turnController.removeDeveloper(i);
+    }
+
+    public void replaceDeveloper() throws Exception
+    {
+        //put developer on the current space of the board
+        String color = turnController.getPlayerColor();
+        Color viewColor = turnController.getPlayerViewColor();
+        Developer d = new Developer(color, viewColor);
+        boardController.placeDeveloper(d);
     }
 
 	public void moveDeveloper(Location start, Location end) {
@@ -490,6 +537,7 @@ public class GameFacade {
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
+            //areaViewportController.scroll(); Test Could possibly do this if there is time
 		}
         else
         {

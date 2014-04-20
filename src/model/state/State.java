@@ -84,4 +84,8 @@ public abstract class State {
     public abstract void keyPressedS();
 
     public abstract void keyPressedM();
+
+    public abstract void keyPressedJ();
+
+    public abstract void keyPressedK();
 }

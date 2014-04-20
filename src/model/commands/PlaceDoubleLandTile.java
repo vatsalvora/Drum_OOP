@@ -9,12 +9,13 @@ public class PlaceDoubleLandTile implements Command {
     private GameFacade b;
     private int points;
     private boolean save;
-
+    private Color cornflower_blue = new Color(100, 149, 237);
     public PlaceDoubleLandTile(GameFacade b) {
         this.b = b;
         int[] rotation = {2};
         b.setRotation(rotation);
         b.setMovementColor(Color.GREEN);
+        b.setDevColor(Color.GREEN);
         b.render();
         points = 0;
         save = true;
@@ -40,6 +41,7 @@ public class PlaceDoubleLandTile implements Command {
                 b.sendErrorMessage(e.toString());
                 int[] rotation = new int[0];
                 b.setRotation(rotation);
+                b.setDevColor(cornflower_blue);
                 b.setMovementColor(new Color(100, 149, 237));
                 b.render();
             }
@@ -50,6 +52,7 @@ public class PlaceDoubleLandTile implements Command {
             b.sendErrorMessage(e.toString());
             int[] rotation = new int[0];
             b.setRotation(rotation);
+            b.setDevColor(cornflower_blue);
             b.setMovementColor(new Color(100, 149, 237));
             b.render();
 

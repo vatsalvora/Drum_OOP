@@ -1,16 +1,10 @@
 package view;
 
-import controller.AreaViewportController;
 import model.*;
-import model.state.State;
-import model.state.Turn;
 import view.keypressed.KeyPressed;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,8 +12,10 @@ public class AreaViewport {
     public Color COLOR_BACK = Color.WHITE;
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
-
+    public Color GREEN = new Color(34,139,34);
+    private Color cornflower_blue = new Color(100, 149, 237);
     public  Color COLOR_GRID = Color.BLACK;
+
     public  String EMPTY = "";
     public  int BOARD_SIZE = 12; // board size.
     public  int HEX_SIZE = 46; // hex size in pixels
@@ -35,12 +31,15 @@ public class AreaViewport {
     private  int h = 0; // height. Distance between centres of two
     // adjacent hexes. Distance between two opposite
     // sides in a hex.
-    public  Color movement;
-    private State state;
+    public int scrolldown;
+    public Color devColor;
+    private  Color movement;
     private DrawingPanel panel;
 
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
+        scrolldown = 0;
+        devColor = cornflower_blue;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
@@ -50,7 +49,9 @@ public class AreaViewport {
         createAndShowGUI(board);
     }
 
-
+    public void setDevColor(Color color){
+        devColor = color;
+    }
     public  void setXYasVertex(boolean b) {
         XYVertex = b;
     }
@@ -121,6 +122,28 @@ public class AreaViewport {
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
 
     }
+
+    public  void fillHex(int i, int j, String n, Color color, Color devColor, Graphics2D g2) {
+        char c;
+        int x = i * (s + t);
+        int y = j * h + (i % 2) * h / 2;
+        Polygon poly = hex(x, y);
+        g2.setColor(color);
+        g2.fillPolygon(poly);
+        g2.setColor(Color.BLACK);
+        g2.drawPolygon(poly);
+
+
+
+        g2.setColor(devColor);
+        g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+
+        g2.setColor(Color.BLACK);
+
+        g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
+
+    }
     public void initGame(Board board) {
 
         setXYasVertex(false); // RECOMMENDED: leave this as FALSE.
@@ -147,7 +170,7 @@ public class AreaViewport {
         panel.setFocusable(true);
         content.add(panel);
 
-        frame.setSize((int) (SCREEN_Width / 1.23), (int)(SCREEN_LEN*1.05));
+        frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -208,19 +231,37 @@ public class AreaViewport {
             }
             // fill in hexes
             for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0; j < board.getLength(i); j++) {
+                int len = board.getLength(i);
+                //if(len>5 && 5+scrolldown<len) len = 5+scrolldown;
+                //0+scrolldown
+                for (int j = 0; j <len; j++) {
 
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
                     String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
                     int[] dir = {0,1,2,5,4,3};
-                    Color color = (curr.equals(board.getCurrentSpace())) ? movement : curr.getColor();
+
+                    Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
-                    fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                            color, g2);
+                    if(curr.equals(board.getCurrentSpace()))
+                    {
+                        color = movement;
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color,devColor,g2);
+                    }
+                    else if(curr.hasDeveloper()) {
+                        Developer dev = curr.getDeveloper();
+                        Color developerColor = dev.getViewColor();
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color,developerColor,g2);
+                    }
+                    else {
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color, g2);
+                    }
                 }
             }
 
@@ -229,4 +270,6 @@ public class AreaViewport {
         }
 
     } // end of DrawingPanel class
+
+
 }

@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.NoConnectingPathException;
+
 import java.util.ArrayList;
 
 public class DeveloperPathFinding implements PathFinding {
@@ -16,11 +18,15 @@ public class DeveloperPathFinding implements PathFinding {
         spaceAP = new ArrayList<Integer>();
     }
 
-    public ArrayList<Space> getShortestPath(Space start, Space end) {
+    public ArrayList<Space> getShortestPath(Space start, Space end) throws Exception {
         shortestPath.add(start);
         ArrayList<Space> newSpace = new ArrayList<Space>();
         newSpace.addAll(shortestPath);
         traverse(start, end, newSpace, 0);
+        if(shortestPath.size() == 1 || APUsed == 99)
+        {
+            throw new NoConnectingPathException();
+        }
         return shortestPath;
 	}
 
@@ -31,6 +37,7 @@ public class DeveloperPathFinding implements PathFinding {
             if(currAP < APUsed)
             {
                 shortestPath = list;
+                APUsed = currAP;
             }
             else if(currAP == APUsed)
             {
@@ -43,7 +50,7 @@ public class DeveloperPathFinding implements PathFinding {
         else
         {
             Space[] neighbors = currSpace.getNeighbors();
-            int newAP = currAP;
+            int newAP = 0 + currAP;
             for(Space nextSpace : neighbors)
             {
                 if(nextSpace != null) {
