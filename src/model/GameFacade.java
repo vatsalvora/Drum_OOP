@@ -416,14 +416,26 @@ public class GameFacade {
 		//place a developer at location and get AP spent on action
         Developer d = new Developer(color, viewColor);
         int APUsed = boardController.placeDeveloper(d);
+        areaViewportController.setMovementColor(cornflower_blue);
+        areaViewportController.setDevColor(cornflower_blue);
+        render();
         //then return said AP
         return APUsed;
 	}
+
+    public Color getCurrentPlayerColor(){
+        return turnController.getPlayerViewColor();
+    }
 
     public void pullDeveloper(int i) throws Exception
     {
         turnController.placeDeveloper(i);
     }
+
+    public void setDevColor(Color color){
+        areaViewportController.setDevColor(color);
+    }
+
 
     public int removeDeveloper() throws Exception
     {

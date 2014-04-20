@@ -19,7 +19,7 @@ public class AreaViewport {
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
     public Color GREEN = new Color(34,139,34);
-
+    private Color cornflower_blue = new Color(100, 149, 237);
     public  Color COLOR_GRID = Color.BLACK;
 
     public  String EMPTY = "";
@@ -38,6 +38,7 @@ public class AreaViewport {
     // adjacent hexes. Distance between two opposite
     // sides in a hex.
     public int scrolldown;
+    public Color devColor;
     private  Color movement;
     private State state;
     private DrawingPanel panel;
@@ -45,6 +46,7 @@ public class AreaViewport {
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         scrolldown = 0;
+        devColor = cornflower_blue;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
@@ -54,7 +56,9 @@ public class AreaViewport {
         createAndShowGUI(board);
     }
 
-
+    public void setDevColor(Color color){
+        devColor = color;
+    }
     public  void setXYasVertex(boolean b) {
         XYVertex = b;
     }
@@ -159,16 +163,7 @@ public class AreaViewport {
         Tile t1 = new IrrigationTile(0);
         Tile t2 = new IrrigationTile(0);
         Tile t3 = new IrrigationTile(0);
-        Tile t4 = new RiceTile(0);
         ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
-        ((HexSpace) board.getSpace(new Location(4, 4))).place(t4);
-        Developer d = new Developer("Green", Color.BLACK);
-        try {
-            ((HexSpace) board.getSpace(new Location(4, 4))).placeDeveloper(d);
-        }
-        catch(Exception e){
-            System.out.println(e.toString());
-        }
         ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
         ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
     }
@@ -254,16 +249,21 @@ public class AreaViewport {
                     int[] dir = {0,1,2,5,4,3};
 
                     Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
-                    color = (curr.equals(board.getCurrentSpace())) ? movement : color;
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
-                    if(curr.hasDeveloper()) {
-                        Developer dev = curr.getDeveloper();
-                        Color devColor = dev.getViewColor();
+                    if(curr.equals(board.getCurrentSpace()))
+                    {
+                        color = movement;
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
                                 color,devColor,g2);
+                    }
+                    else if(curr.hasDeveloper()) {
+                        Developer dev = curr.getDeveloper();
+                        Color developerColor = dev.getViewColor();
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color,developerColor,g2);
                     }
                     else {
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,

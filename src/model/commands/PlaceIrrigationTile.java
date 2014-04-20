@@ -10,6 +10,7 @@ public class PlaceIrrigationTile implements Command {
 	private GameFacade b;
     private int points;
     private boolean save;
+    private Color cornflower_blue = new Color(100, 149, 237);
 
 	public PlaceIrrigationTile(GameFacade b) {
         save = true;
@@ -17,6 +18,7 @@ public class PlaceIrrigationTile implements Command {
         b.setMovementColor(Color.BLUE);
         int[] rotation = new int[0];
         b.setRotation(rotation);
+        b.setDevColor(Color.BLUE);
         b.render();
         points = 0;
 	}
