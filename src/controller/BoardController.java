@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import model.customExceptions.NoDeveloperOnSpaceException;
+import model.customExceptions.SpaceIsEmptyException;
 import model.customExceptions.SpaceNotOnEdgeException;
 import model.customExceptions.WrongDeveloperColorException;
 
@@ -63,7 +64,13 @@ public class BoardController {
         HexSpace currentSpace = board.getCurrentSpace();
         if(currentSpace.onEdge())
         {
-            currentSpace.placeDeveloper(d);
+            if(!currentSpace.spaceEmpty()) {
+                currentSpace.placeDeveloper(d);
+            }
+            else
+            {
+                throw new SpaceIsEmptyException();
+            }
         }
         else
         {
@@ -123,7 +130,7 @@ public class BoardController {
 	}
 
 
-	public ArrayList<Space> shortestPath(Location initial, Location fin) {
+	public ArrayList<Space> shortestPath(Location initial, Location fin) throws Exception {
         return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
 	}
 	public int shortestPathCost() {
