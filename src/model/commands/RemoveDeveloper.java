@@ -22,7 +22,13 @@ public class RemoveDeveloper implements Command {
             }
             catch(Exception e)
             {
-                gameFacade.replaceDeveloper();
+                try {
+                    gameFacade.replaceDeveloper();
+                }
+                catch(Exception f)
+                {
+                    //should never occur
+                }
                 save = false;
                 gameFacade.sendErrorMessage(e.toString());
             }

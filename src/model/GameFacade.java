@@ -454,12 +454,13 @@ public class GameFacade {
         turnController.removeDeveloper(i);
     }
 
-    public void replaceDeveloper()
+    public void replaceDeveloper() throws Exception
     {
         //put developer on the current space of the board
         String color = turnController.getPlayerColor();
         Color viewColor = turnController.getPlayerViewColor();
         Developer d = new Developer(color, viewColor);
+        boardController.placeDeveloper(d);
     }
 
 	public void moveDeveloper(Location start, Location end) {
