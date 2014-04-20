@@ -8,10 +8,12 @@ public class Board {
     private List<List<Space>> board;
     private HexSpace current;
     private int width;
+    private int size;
 
     public Board() {
 
         board = new LinkedList<List<Space>>();
+        size = 0;
         initBoard();
         setNeighbors();
         this.current = (HexSpace)getSpace(new Location(0, 0));
@@ -21,6 +23,7 @@ public class Board {
 
         int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
         int[] gap = {2, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 2};
+        for(int i=0; i<height.length; i++) size = Math.max(size, height[i]+gap[i]);
         width = height.length;
         for (int p = 0; p < height.length; p++) {
             int n = height[p];
@@ -35,6 +38,7 @@ public class Board {
         }
     }
 
+    public int getMaxLen(){return size;}
     public int getWidth() {
         return width;
     }
@@ -48,7 +52,8 @@ public class Board {
     }
 
     private void setNeighbors() {
-        int[] gap = {1, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, -1, 0, -1, 0};
+        int[] gap =    {1,0,1,-1,0,0,1,-1,0,0,1,-1,0,0,1,-1,0,-1,0};
+        int[] gapLeft= {1,-1,0,-1,1,0,0,-1,1,0,0,-1,1,0,0,-1,1,0,1};
         for (int q = 0; q < board.size(); q++) {
             List<Space> list = board.get(q);
             int t = list.size();
@@ -59,19 +64,17 @@ public class Board {
                 int[] row;
                 if (q % 2 == 0) {
                     col = new int[]{-1, 0, 1, -1, 0, 1};
-                    row = new int[]{0, 1, gap[q], -1, -1, -1 + gap[q]};
+                    row = new int[]{0+gapLeft[q], 1, 0+gap[q], -1+gapLeft[q], -1, -1+gap[q]};
                 } else {
                     col = new int[]{-1, 0, 1, -1, 0, 1};
-                    row = new int[]{1, 1, 1 + gap[q], 0, -1, gap[q]};
+                    row = new int[]{1+gapLeft[q], 1, 1+gap[q], 0+gapLeft[q], -1, 0+gap[q]};
                 }
-                System.out.println("Col: " + q + " Row: " + w);
+
                 for (int c = 0; c < col.length; c++) {
                     if ((q + col[c]) >= 0 && (q + col[c]) < board.size()) {
                         List<Space> neighborList = board.get(q + col[c]);
                         if ((w + row[c]) >= 0 && (w + row[c]) < neighborList.size()) {
                             s.setNeighbors(c, neighborList.get(w + row[c]));
-                            System.out.println("Num: " + c + " Col: " + (q + col[c]) + " Row: " + (w + row[c]));
-
                         }
                     }
                 }

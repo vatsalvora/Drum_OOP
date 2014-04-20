@@ -10,8 +10,8 @@ import java.awt.event.KeyEvent;
  */
 public class KeyPressedTab extends KeyPressed {
 
-    public KeyPressedTab(Location location, State state) {
-        super(location, state);
+    public KeyPressedTab(State state) {
+        super(state);
     }
 
     @Override

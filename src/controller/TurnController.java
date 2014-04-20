@@ -77,7 +77,7 @@ public class TurnController {
         currentPlayer.incrementFamePoints(i);
     }
 
-    public void decrementFamePoints(int i) throws Exception {
+    public void decrementFamePoints(int i){
         currentPlayer.decrementFamePoints(i);
     }
 

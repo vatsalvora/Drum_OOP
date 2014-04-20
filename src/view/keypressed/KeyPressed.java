@@ -10,11 +10,10 @@ import java.awt.event.KeyEvent;
  * Created by devan on 4/14/14.
  */
 public abstract class KeyPressed extends KeyAdapter {
-    protected Location location;
     protected State state;
 
-    protected KeyPressed(Location location, State state) {
-        this.location = location;
+    protected KeyPressed(State state) {
+        this.state = state;
     }
 
     public abstract void keyTyped(KeyEvent ke);

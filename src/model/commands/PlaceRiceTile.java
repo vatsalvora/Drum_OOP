@@ -2,25 +2,47 @@ package model.commands;
 
 import model.Command;
 import model.GameFacade;
-import model.Location;
 
 public class PlaceRiceTile implements Command {
 	private GameFacade b;
-	private Location l;
+    private int points;
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
+        points = 0;
 	}
 
+    public PlaceRiceTile(GameFacade b, int p)
+    {
+        this.b = b;
+        points = p;
+    }
+
 	public void execute() {
-		b.placeRiceTile();
+        try{
+            b.pullRiceTile();
+            try {
+                points = b.placeRiceTile();
+            }
+            catch(Exception e)
+            {
+                b.returnRiceTile();
+                b.sendErrorMessage(e.toString());
+            }
+        }
+        catch(Exception e)
+        {
+            b.sendErrorMessage(e.toString());
+        }
+
+
 	}
 
 	public void undo() {
-
+        b.undoRiceTile(points);
 	}
 
 	public String toString() {
-		return this.getClass().getName() + " " + l.getXLocation() + " " + l.getYLocation();
+		return this.getClass().getName() + points;
 	}
 }

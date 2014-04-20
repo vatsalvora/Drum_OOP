@@ -1,5 +1,6 @@
 package model;
 
+import model.customExceptions.DevOnSpaceException;
 import model.customExceptions.TileHeightWrongException;
 
 import java.awt.*;
@@ -9,28 +10,40 @@ public class HexSpace implements Space {
 
 	private Space[] neighbors;
 	private Location l;
-	public Color color;
 	private Stack<Tile> tilesOnSpace;
+    private Developer developer;
 
 	public HexSpace(Location l) {
 		this.l = l;
 		this.neighbors = new Space[6];
-		this.color = Color.ORANGE;
 		tilesOnSpace = new Stack<Tile>();
+        developer = null;
 	}
 
 	public Developer getDeveloper() {
-		return null;
+		return developer;
 
 	}
 
+    public void placeDeveloper(Developer d) throws DevOnSpaceException
+    {
+        if(developer == null)
+        {
+            developer = d;
+        }
+        else
+        {
+            throw new DevOnSpaceException();
+        }
+    }
+
 	public void removeDeveloper() {
-		tilesOnSpace.pop();
+        developer = null;
 	}
 	
 
 	public void removeTile(){
-		
+        tilesOnSpace.pop();
 	}
 	
 	public int getHeight() {
@@ -77,6 +90,16 @@ public class HexSpace implements Space {
 		return null;
 	}
 
+
+    public Color getColor(){
+        if(getHeight()==0){
+            return Color.ORANGE;
+        }
+        else{
+            Tile s = tilesOnSpace.peek();
+            return s.getColor();
+        }
+    }
 
     public void place(Tile tile) {
         if(tilesOnSpace.size()==0){

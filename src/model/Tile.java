@@ -1,6 +1,8 @@
 package model;
 
 
+import java.awt.*;
+
 public abstract class Tile {
 	
 
@@ -11,6 +13,6 @@ public abstract class Tile {
 	public abstract void updateLocation(Location loc);
 */
 	
-
+    public abstract Color getColor();
 
 }
