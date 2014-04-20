@@ -25,6 +25,24 @@ public class IrrigationTile extends Tile {
         this.numberOfNeighbors = numberOfNeighbors;
     }
 
+    public int[] getNeighborsIndex(){
+        int[] temp = new int[numberOfNeighbors];
+
+        for(int i = 0, j = 0; i < neighbors.length; i++)
+            if(hasNeighborAt(i))
+                temp[j++] = i;
+
+        return temp;
+    }
+
+    private boolean hasNeighborAt(int index){
+        return (neighbors[index] != null)? true: false;
+    }
+
+    public Tile getNeighborAt(int index){
+        return neighbors[index];
+    }
+
     public void initNeighbors(){
 
         for(int i = 0; i < neighbors.length; i++)
