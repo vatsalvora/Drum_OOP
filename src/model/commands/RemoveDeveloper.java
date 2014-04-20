@@ -33,7 +33,13 @@ public class RemoveDeveloper implements Command {
     }
 
     public void undo() {
-        gameFacade.undoDeveloperRemoval(APForPlacement);
+        try {
+            gameFacade.undoDeveloperRemoval(APForPlacement);
+        }
+        catch(Exception e)
+        {
+            //should never happen
+        }
     }
 
     public boolean save()

@@ -74,7 +74,7 @@ public class TurnController {
         currentPlayer = players[currentPlayerIndex];
     }
 
-    public Color getCurrentPlayerColor(){return currentPlayer.getViewColor();}
+    public Color getPlayerViewColor(){return currentPlayer.getViewColor();}
     // Altering current player methods
     public void incrementFamePoints(int i) {
         currentPlayer.incrementFamePoints(i);
