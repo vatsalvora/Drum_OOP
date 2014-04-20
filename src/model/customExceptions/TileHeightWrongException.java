@@ -7,10 +7,14 @@ package model.customExceptions;
 
 public class TileHeightWrongException extends Exception {
 
-    public TileHeightWrongException(){}
+    private String message;
+
+    public TileHeightWrongException(String message){
+        this.message = message;
+    }
 
     public String toString()
     {
-        return "Tile heights are inconsistent in the area the block is being placed.";
+        return message;
     }
 }
