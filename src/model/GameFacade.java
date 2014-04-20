@@ -6,6 +6,7 @@ import controller.SharedResourcesController;
 import controller.TurnController;
 import model.customExceptions.BlockNotPlayedException;
 import model.customExceptions.NoIrrigationLeftException;
+import model.customExceptions.NoThreeBlockLeftException;
 import model.customExceptions.NotEnoughAPException;
 import view.keypressed.KeyPressed;
 
@@ -213,7 +214,7 @@ public class GameFacade {
 
     public void undoTwoBlock(int i) {
         turnController.returnTwoBlock();
-        // remove the rice tile from the location it was placed
+        // remove the two block from the location it was placed
         turnController.decrementFamePoints(i);
     }
 
@@ -222,7 +223,7 @@ public class GameFacade {
 		// remove the two block from the location it was placed
 		// remove fame points if applicable
 	}
-
+/*
 	public void placeTripleLandTile() {
 		try {
 			sharedResourcesController.placeThreeBlock();
@@ -243,14 +244,36 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
 
-	public void undoTripleLandTile() {
-		sharedResourcesController.returnThreeBlock();
-		turnController.returnOtherBlock();
-		// remove three tile block from location it was placed
-		// remove fame points if applicable
-	}
+    public void pullThreeBlock() throws NoThreeBlockLeftException
+    {
+        sharedResourcesController.placeThreeBlock();
+    }
+
+    public void returnThreeBlock()
+    {
+        sharedResourcesController.returnThreeBlock();
+    }
+
+    public int placeThreeBlock() throws Exception
+    {
+        //place the three block on the board
+        //give the player the appropriate points (if applicable) and return the points to the command
+        return 0;
+    }
+
+    public void removeThreeBlock(int i)
+    {
+        //take the three block off of the board
+        turnController.decrementFamePoints(i);
+    }
+
+    public void undoThreeBlock(int i) {
+        sharedResourcesController.returnIrrigationTile();
+        turnController.returnOtherBlock();
+        removeIrrigationTile(i);
+    }
 
 	public void initiatePalaceFestival() {
 		String[] colors = {};
