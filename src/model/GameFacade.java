@@ -4,9 +4,7 @@ import controller.AreaViewportController;
 import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
-import model.customExceptions.BlockNotPlayedException;
-import model.customExceptions.NoIrrigationLeftException;
-import model.customExceptions.NotEnoughAPException;
+import model.customExceptions.*;
 import view.keypressed.KeyPressed;
 
 import java.awt.*;
@@ -99,7 +97,7 @@ public class GameFacade {
         sharedResourcesController.returnIrrigationTile();
     }
 
-    public int placeIrrigationTile()
+    public int placeIrrigationTile() throws Exception
     {
         //place the irrigation tile on the board
         //give the player the appropriate points (if applicable) and return the points to the command
@@ -133,7 +131,7 @@ public class GameFacade {
         }
 	}*/
 
-    public int placeVillageTile()
+    public int placeVillageTile() throws Exception
     {
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -156,7 +154,7 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-    public int placeRiceTile()
+    public int placeRiceTile() throws Exception
     {
         //place the village tile on the board
         //give the player the appropriate points and return them
@@ -178,7 +176,7 @@ public class GameFacade {
 		// remove the rice tile from the location it was placed
 		turnController.decrementFamePoints(i);
 	}
-
+/*
 	public void placeDoubleLandTile() {
 		try {
 			turnController.placeTwoBlock();
@@ -192,14 +190,37 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
+
+    public int placeTwoBlock() throws Exception
+    {
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void pullTwoBlock() throws Exception
+    {
+        turnController.placeTwoBlock();
+    }
+
+    public void returnTwoBlock()
+    {
+        turnController.returnTwoBlock();
+    }
+
+    public void undoTwoBlock(int i) {
+        turnController.returnTwoBlock();
+        // remove the two block from the location it was placed
+        turnController.decrementFamePoints(i);
+    }
 
 	public void undoDoubleLandTile() {
 		turnController.returnTwoBlock();
 		// remove the two block from the location it was placed
 		// remove fame points if applicable
 	}
-
+/*
 	public void placeTripleLandTile() {
 		try {
 			sharedResourcesController.placeThreeBlock();
@@ -220,21 +241,43 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
 
-	public void undoTripleLandTile() {
-		sharedResourcesController.returnThreeBlock();
-		turnController.returnOtherBlock();
-		// remove three tile block from location it was placed
-		// remove fame points if applicable
-	}
+    public void pullThreeBlock() throws NoThreeBlockLeftException
+    {
+        sharedResourcesController.placeThreeBlock();
+    }
+
+    public void returnThreeBlock()
+    {
+        sharedResourcesController.returnThreeBlock();
+    }
+
+    public int placeThreeBlock() throws Exception
+    {
+        //place the three block on the board
+        //give the player the appropriate points (if applicable) and return the points to the command
+        return 0;
+    }
+
+    public void removeThreeBlock(int i)
+    {
+        //take the three block off of the board
+        turnController.decrementFamePoints(i);
+    }
+
+    public void undoThreeBlock(int i) {
+        sharedResourcesController.returnIrrigationTile();
+        turnController.returnOtherBlock();
+        removeIrrigationTile(i);
+    }
 
 	public void initiatePalaceFestival() {
 		String[] colors = {};
 		// Get valid colors from the board to turn in to festivals
 		turnController.startFestival(colors);
 	}
-
+/*
 	public void placePalaceTile(HexSpace s, int level) {
 		try {
 			sharedResourcesController.placePalace(level);
@@ -255,13 +298,32 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}
+	}*/
 
-	public void undoPalaceTile(Location l, int level) {
-		sharedResourcesController.returnPalace(level);
-		// remove palace tile from the specified location
-		// remove fame points if applicable
-	}
+    public void pullPalaceTile(int level) throws NoPalaceTilesLeft
+    {
+        sharedResourcesController.placePalace(level);
+    }
+
+    public void returnPalaceTile(int level)
+    {
+        sharedResourcesController.returnPalace(level);
+    }
+
+    public int placePalaceTile(int level) throws Exception
+    {
+        //place the palace tile
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void undoPalaceTile(int level, int points)
+    {
+        sharedResourcesController.returnPalace(level);
+        turnController.returnOtherBlock();
+        //remove palace tile from board
+        turnController.decrementFamePoints(points);
+    }
 
 	public void changeTurn() throws BlockNotPlayedException {
 		turnController.nextTurn();

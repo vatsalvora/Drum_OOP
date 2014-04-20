@@ -52,7 +52,7 @@ public class PlaceIrrigationTile implements Command {
 	}
 
 	public String toString() {
-		return this.getClass().getName() + points;
+		return this.getClass().getName() + " " + points;
 	}
 
 }
