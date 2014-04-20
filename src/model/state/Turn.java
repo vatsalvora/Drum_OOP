@@ -160,4 +160,6 @@ public class Turn extends State {
 
     public void keyPressedK() { commandCreator.placeDeveloper();}
 
+    public void keyPressedD() { commandCreator.selectDeveloper();}
+
 }

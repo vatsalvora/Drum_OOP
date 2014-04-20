@@ -317,30 +317,13 @@ public class GameFacade {
 	}
 
 	public int placePalaceTile(int level) {
-		try {
-			sharedResourcesController.placePalace(level);
-			try {
-				turnController.placeOtherBlock();
-				try {
-					// place the palace at the proper spot
-					// give fame points to proper player
-					Tile t = new PalaceTile(level);
-                    HexSpace current = boardController.getCurrentSpace();
-					boardController.placeTile(t);
-                    setMovementColor(cornflower_blue);
-
-				} catch (Exception e) {
-					sharedResourcesController.returnPalace(level);
-					// tell user about error
-				}
-			} catch (NotEnoughAPException e) {
-				// tell user not enough ap to perform action
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-		return 0;
-	}
+        Tile t = new PalaceTile(level);
+        HexSpace current = boardController.getCurrentSpace();
+        boardController.placeTile(t);
+        setMovementColor(cornflower_blue);
+        //return fame points gained by palace placement
+        return 0;
+    }
 
 	public void pullPalaceTile(int level) throws NoPalaceTilesLeft {
 		sharedResourcesController.placePalace(level);
@@ -463,21 +446,45 @@ public class GameFacade {
         boardController.placeDeveloper(d);
     }
 
-	public void moveDeveloper(Location start, Location end) {
-		try {
-			// move the developer from start to end
-			int APUsed = 0;
-			// get the AP used by the move
-			try {
-				turnController.performAction(APUsed);
-			} catch (Exception e) {
-				// tell the user why they cannot move the developer
-				forceDeveloperMove(end, start); // force the developer to move
-												// back
-			}
-		} catch (Exception e) {
-			// tell user why they cannot move developer
-		}
+    public void selectDeveloper() throws Exception
+    {
+        boardController.selectDeveloper(turnController.getPlayerColor());
+    }
+
+    public void deselectDeveloper()
+    {
+        boardController.deselectDeveloper();
+    }
+
+    public void createPath() throws Exception
+    {
+        printPath(boardController.shortestPath());
+        //areaViewportController.renderPath(boardController.shortestPath());
+    }
+
+    public void printPath(ArrayList<Space> spaces)
+    {
+        for(Space s : spaces)
+        {
+            System.out.println(s.getLocation().toString());
+        }
+    }
+
+    public int useDevMoveAP() throws Exception
+    {
+        turnController.performAction(boardController.shortestPathCost());
+        return boardController.shortestPathCost();
+    }
+
+    public void unuseDevMoveAP()
+    {
+        turnController.undoAction(boardController.shortestPathCost());
+    }
+
+	public void moveDeveloper() throws Exception {
+        boardController.moveDeveloper();
+		//move the developer from its current location to its new location
+        //use appropriate amount of AP
 	}
 
 	private void forceDeveloperMove(Location start, Location end) {

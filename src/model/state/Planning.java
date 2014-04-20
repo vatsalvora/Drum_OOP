@@ -120,5 +120,7 @@ public class Planning extends State {
 
     public void keyPressedK() { commandCreator.placeDeveloper();}
 
+    public void keyPressedD() { commandCreator.selectDeveloper();}
+
 
 }
