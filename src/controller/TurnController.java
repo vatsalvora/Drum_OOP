@@ -116,9 +116,25 @@ public class TurnController {
         actionPoints += i;
     }
 
-    public void removeDeveloper(int i) {
-        actionPoints -= i;
-        currentPlayer.removeDeveloper();
+    public void removeDeveloper(int i) throws Exception {
+        if (actionPoints > i){
+            actionPoints -= i;
+            currentPlayer.removeDeveloper();
+        }
+        else if(actionPoints == i)
+        {
+            if(playedBlock())
+            {
+                actionPoints -= i;
+                currentPlayer.removeDeveloper();
+            }
+            else
+                throw new BlockNotPlayedException();
+        }
+        else
+        {
+            throw new NoAPLeftException();
+        }
     }
 
     public void useActionToken() throws ActionTokenUsedException, NoActionTokensException{

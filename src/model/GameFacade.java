@@ -439,7 +439,7 @@ public class GameFacade {
         removeDeveloper();
     }
 
-    public void pushDeveloper(int i)
+    public void pushDeveloper(int i) throws Exception
     {
         turnController.removeDeveloper(i);
     }

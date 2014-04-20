@@ -66,8 +66,22 @@ public class HexSpace implements Space {
     }
 
     public boolean onBorder() {
-        return (numberOfNeighbors() != 6);
+        return(numberOfNeighbors() < 6);
+    }
 
+    public boolean onEdge()
+    {
+        boolean ret = false;
+        for(Space s : neighbors)
+        {
+            if(s != null) {
+                HexSpace h = (HexSpace) s;
+                if (h.numberOfNeighbors() != 6) {
+                    ret = true;
+                }
+            }
+        }
+        return ret;
     }
 
     public int numberOfNeighbors() {
