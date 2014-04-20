@@ -38,7 +38,7 @@ public class IrrigationTile extends Tile {
     }
 
     private boolean hasNeighborAt(int index){
-        return (neighbors[index] != null)? true: false;
+        return (neighbors[index] != null);
     }
 
     public Tile getNeighborAt(int index){
