@@ -335,6 +335,7 @@ public class GameFacade {
                     HexSpace current = boardController.getCurrentSpace();
 					boardController.placeTile(t);
                     setMovementColor(cornflower_blue);
+                    setDevColor(cornflower_blue);
 
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);

@@ -107,10 +107,10 @@ public class Turn extends State {
         commandCreator.drawFestivalCard();
     }
 
-    @Override
-    public void keyPressedU() {
-        incorrectKeyPressed();
-    }
+	@Override
+	public void keyPressedU() {
+		commandCreator.undoAll();
+	}
 
     @Override
     public void keyPressedW() {
