@@ -506,6 +506,7 @@ public class GameFacade {
 
 			System.out.println("LOC: " + neighbor.getLocation());
 			boardController.setCurrentSpace(neighbor);
+            //areaViewportController.scroll(); Test Could possibly do this if there is time
 		}
         else
         {

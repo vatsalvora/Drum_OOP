@@ -30,6 +30,6 @@ public class AreaViewportController {
     public void setMovementColor(Color color){
         areaViewport.setMovement(color);
     }
-
+    //public void scroll(){areaViewport.scrolldown++;};
 
 }

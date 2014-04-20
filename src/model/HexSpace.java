@@ -37,6 +37,10 @@ public class HexSpace implements Space {
         developer = null;
     }
 
+    public boolean hasDeveloper() {
+        return (developer != null);
+    }
+
     public int getHeight() {
         return tilesOnSpace.size();
     }

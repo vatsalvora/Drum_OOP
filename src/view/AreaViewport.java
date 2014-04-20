@@ -35,12 +35,14 @@ public class AreaViewport {
     private  int h = 0; // height. Distance between centres of two
     // adjacent hexes. Distance between two opposite
     // sides in a hex.
-    public  Color movement;
+    public int scrolldown;
+    private  Color movement;
     private State state;
     private DrawingPanel panel;
 
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
+        scrolldown = 0;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
@@ -147,7 +149,7 @@ public class AreaViewport {
         panel.setFocusable(true);
         content.add(panel);
 
-        frame.setSize((int) (SCREEN_Width / 1.23), (int)(SCREEN_LEN*1.05));
+        frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -208,7 +210,10 @@ public class AreaViewport {
             }
             // fill in hexes
             for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0; j < board.getLength(i); j++) {
+                int len = board.getLength(i);
+                //if(len>5 && 5+scrolldown<len) len = 5+scrolldown;
+                //0+scrolldown
+                for (int j = 0; j <len; j++) {
 
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
@@ -219,8 +224,16 @@ public class AreaViewport {
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
                     }
-                    fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                            color, g2);
+                    if(curr.hasDeveloper()) {
+                        Developer dev = curr.getDeveloper();
+                        Color devColor = dev.getViewColor();
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color, g2);
+                    }
+                    else {
+                        fillHex(loc.getXLocation(), loc.getYLocation(), status,
+                                color, g2);
+                    }
                 }
             }
 
