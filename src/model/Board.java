@@ -9,9 +9,11 @@ public class Board {
     private HexSpace current;
     private int width;
     private int size;
+    private int[] rotations;
 
     public Board() {
 
+        rotations = new int[0];
         board = new LinkedList<List<Space>>();
         size = 0;
         initBoard();
@@ -19,6 +21,13 @@ public class Board {
         this.current = (HexSpace)getSpace(new Location(0, 0));
     }
 
+    public void setRotations(int[] rotations){
+        this.rotations = rotations;
+    }
+
+    public int[] getRotations(){
+        return rotations;
+    }
     private void initBoard() {
 
         int[] height = {4, 5, 8, 10, 10, 10, 10, 9, 9, 9, 9, 11, 11, 10, 9, 9, 7, 6, 4};
@@ -92,11 +101,14 @@ public class Board {
     }
 
 
-    public void place(Location l, Tile tile) {
-        HexSpace s = (HexSpace) getSpace(l);
-        s.place(tile);
+    public void place(Tile tile) {
+        current.place(tile);
     }
 
+    public void rotateClockwise(){
+        for(int i = 0; i < rotations.length; i++)
+            rotations[i] = (rotations[i] + 1)%6;
+    }
 
 
 }

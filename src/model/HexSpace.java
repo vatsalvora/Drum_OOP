@@ -41,11 +41,6 @@ public class HexSpace implements Space {
         developer = null;
 	}
 	
-
-	public void removeTile(){
-        tilesOnSpace.pop();
-	}
-	
 	public int getHeight() {
 		return tilesOnSpace.size();
 	}

@@ -74,45 +74,53 @@ public class GameFacade {
 		return turnController.getCurrentCards();
 	}
 
-	public void sendErrorMessage(String s) {
-		// send the error message to the view
-	}
+    public void sendErrorMessage(String s)
+    {
+        //send the error message to the view
+    }
 
-	public void placeOtherBlock() throws NotEnoughAPException {
-		turnController.placeOtherBlock();
-	}
+    public void placeOtherBlock() throws NotEnoughAPException
+    {
+        turnController.placeOtherBlock();
+    }
 
-	public void returnOtherBlock() {
-		turnController.returnOtherBlock();
-	}
+    public void returnOtherBlock()
+    {
+        turnController.returnOtherBlock();
+    }
 
-	public void pullIrrigationTile() throws NoIrrigationLeftException {
-		sharedResourcesController.placeIrrigationTile();
-	}
+    public void pullIrrigationTile() throws NoIrrigationLeftException
+    {
+        sharedResourcesController.placeIrrigationTile();
+    }
 
-	public void returnIrrigationTile() {
-		sharedResourcesController.returnIrrigationTile();
-	}
+    public void returnIrrigationTile()
+    {
+        sharedResourcesController.returnIrrigationTile();
+    }
 
-	public int placeIrrigationTile() throws Exception {
-		try {
-			// place the village at the proper spot
-			// give player the proper points (if applicable)
-			HexSpace current = boardController.getCurrentSpace();
-			Tile t = new IrrigationTile(0);
-			current.place(t);
-			setMovementColor(cornflower_blue);
-			render();
-		} catch (Exception e) {
-			// tell user about error
-		}
-		return 0;
-	}
+    public int placeIrrigationTile() throws Exception
+    {
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new IrrigationTile(0);
+            boardController.placeTile(t);
+            setMovementColor(cornflower_blue);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
+        return 0;
+    }
 
-	public void removeIrrigationTile(int i) {
-		// take the irrigation tile off of the board
-		turnController.decrementFamePoints(i);
-	}
+    public void removeIrrigationTile(int i)
+    {
+        //take the irrigation tile off of the board
+        turnController.decrementFamePoints(i);
+    }
+
 
 	public void undoIrrigationTile(int i) {
 		sharedResourcesController.returnIrrigationTile();
@@ -122,18 +130,19 @@ public class GameFacade {
 
 	public int placeVillageTile() {
 
-		try {
-			// place the village at the proper spot
-			// give player the proper points (if applicable)
-			HexSpace current = boardController.getCurrentSpace();
-			Tile t = new VillageTile(0);
-			current.place(t);
-			setMovementColor(cornflower_blue);
-			render();
-		} catch (Exception e) {
-			// tell user about error
-		}
-		return 0;
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new VillageTile(0);
+            boardController.placeTile(t);
+            setMovementColor(cornflower_blue);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
+        return 0;
+
 	}
 
 	public void pullVillageTile() throws Exception {
@@ -150,28 +159,33 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-	public int placeRiceTile() throws Exception {
-		try {
-			// place the village at the proper spot
-			// give player the proper points (if applicable)
-			HexSpace current = boardController.getCurrentSpace();
-			Tile t = new RiceTile(0);
-			current.place(t);
-			setMovementColor(cornflower_blue);
-			render();
-		} catch (Exception e) {
-			// tell user about error
-		}
-		return 0;
-	}
 
-	public void pullRiceTile() throws Exception {
-		turnController.placeRiceBlock();
-	}
+    public int placeRiceTile() throws Exception
+    {
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new RiceTile(0);
+            boardController.placeTile(t);
+            setMovementColor(cornflower_blue);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
+        return 0;
+    }
 
-	public void returnRiceTile() {
-		turnController.returnRiceBlock();
-	}
+    public void pullRiceTile() throws Exception
+    {
+        turnController.placeRiceBlock();
+    }
+
+    public void returnRiceTile()
+    {
+        turnController.returnRiceBlock();
+    }
+
 
 	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
@@ -179,33 +193,60 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-	/*
-	 * public void placeDoubleLandTile() { try { turnController.placeTwoBlock();
-	 * try { // place the two block at the proper spot // give player the proper
-	 * points (if applicable) } catch (Exception e) {
-	 * turnController.returnTwoBlock(); // tell user about error } } catch
-	 * (Exception e) { // do something with exception } }
-	 */
+/*
+	public void placeDoubleLandTile() {
+		try {
+			turnController.placeTwoBlock();
+			try {
+				// place the two block at the proper spot
+				// give player the proper points (if applicable)
+			} catch (Exception e) {
+				turnController.returnTwoBlock();
+				// tell user about error
+			}
+		} catch (Exception e) {
+			// do something with exception
+		}
+	}*/
 
-	public int placeTwoBlock() throws Exception {
-		// place the village tile on the board
-		// give the player the appropriate points and return them
-		return 0;
-	}
+    public int placeTwoBlock() throws Exception
+    {
+        HexSpace current = boardController.getCurrentSpace();
+        int[] rotations = boardController.getRotations();
+        VillageTile village = new VillageTile(1);
 
-	public void pullTwoBlock() throws Exception {
-		turnController.placeTwoBlock();
-	}
+        RiceTile rice = new RiceTile(1);
+        village.createReff(rice,rotations[0]);
+        rice.createReff(village,5-rotations[0]);
 
-	public void returnTwoBlock() {
-		turnController.returnTwoBlock();
-	}
+        boardController.placeTile(village);
 
-	public void undoTwoBlock(int i) {
-		turnController.returnTwoBlock();
-		// remove the two block from the location it was placed
-		turnController.decrementFamePoints(i);
-	}
+        /* here i will create the refferences
+        Tile t = new VillageTile(0);
+        boardController.placeTile(t);*/
+        setMovementColor(cornflower_blue);
+        render();
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
+
+    public void pullTwoBlock() throws Exception
+    {
+        turnController.placeTwoBlock();
+    }
+
+    public void returnTwoBlock()
+    {
+        turnController.returnTwoBlock();
+    }
+
+    public void undoTwoBlock(int i) {
+        turnController.returnTwoBlock();
+        // remove the two block from the location it was placed
+        turnController.decrementFamePoints(i);
+    }
+
 
 	public void undoDoubleLandTile() {
 		turnController.returnTwoBlock();
@@ -266,9 +307,10 @@ public class GameFacade {
 					// place the palace at the proper spot
 					// give fame points to proper player
 					Tile t = new PalaceTile(level);
-					HexSpace current = boardController.getCurrentSpace();
-					current.place(t);
-					setMovementColor(cornflower_blue);
+                    HexSpace current = boardController.getCurrentSpace();
+					boardController.placeTile(t);
+                    setMovementColor(cornflower_blue);
+
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);
 					// tell user about error
