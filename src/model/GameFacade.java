@@ -115,8 +115,8 @@ public class GameFacade {
 		turnController.returnOtherBlock();
 		removeIrrigationTile(i);
 	}
-/*
-	public void placeVillageTile() {
+
+	public int placeVillageTile() {
 
         try {
             // place the village at the proper spot
@@ -129,14 +129,10 @@ public class GameFacade {
         } catch (Exception e) {
             // tell user about error
         }
-	}*/
-
-    public int placeVillageTile() throws Exception
-    {
-        //place the village tile on the board
-        //give the player the appropriate points and return them
         return 0;
-    }
+	}
+
+
 
     public void pullVillageTile() throws Exception
     {
