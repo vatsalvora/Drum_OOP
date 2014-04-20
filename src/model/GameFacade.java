@@ -196,22 +196,6 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-/*
-	public void placeDoubleLandTile() {
-		try {
-			turnController.placeTwoBlock();
-			try {
-				// place the two block at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnTwoBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}*/
-
     public int placeTwoBlock() throws Exception
     {
         HexSpace current = boardController.getCurrentSpace();
@@ -224,7 +208,7 @@ public class GameFacade {
 
         boardController.placeTile(village);
 
-        /* here i will create the refferences
+        /* here i will create the references
         Tile t = new VillageTile(0);
         boardController.placeTile(t);*/
         setRotation(new int[0]);
@@ -258,18 +242,6 @@ public class GameFacade {
 		// remove fame points if applicable
 	}
 
-	/*
-	 * public void placeTripleLandTile() { try {
-	 * sharedResourcesController.placeThreeBlock(); try {
-	 * turnController.placeOtherBlock(); try { // place the rice at the proper
-	 * spot // give player the proper points (if applicable) } catch (Exception
-	 * e) { sharedResourcesController.returnThreeBlock();
-	 * turnController.returnOtherBlock(); // tell user about error } } catch
-	 * (NotEnoughAPException e) { // tell user not enough AP remained to play
-	 * block sharedResourcesController.returnThreeBlock(); } } catch (Exception
-	 * e) { // do something with exception } }
-	 */
-
 	public void pullThreeBlock() throws NoThreeBlockLeftException {
 		sharedResourcesController.placeThreeBlock();
 	}
@@ -296,7 +268,7 @@ public class GameFacade {
 
         boardController.placeTile(village);
 
-        /* here i will create the refferences
+        /* here i will create the references
         Tile t = new VillageTile(0);
         boardController.placeTile(t);*/
         setRotation(new int[0]);

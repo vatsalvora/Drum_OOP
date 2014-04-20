@@ -113,8 +113,12 @@ public class CommandCreator {
 	}
 
 	public void changeTurn() {
-		current = new ChangeTurn(gameFacade);
-
+		Command c = new ChangeTurn(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
 	}
 
 	public void undoLastCommand() {

@@ -1,7 +1,6 @@
 package model.state;
 
 import model.GameFacade;
-import model.Location;
 
 public class Turn extends State {
 
@@ -94,7 +93,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedX() {
-		commandCreator.changeTurn();
+        commandCreator.changeTurn();
 	}
 
 	@Override
