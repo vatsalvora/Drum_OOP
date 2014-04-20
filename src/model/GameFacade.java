@@ -330,7 +330,7 @@ public class GameFacade {
 				try {
 					// place the palace at the proper spot
 					// give fame points to proper player
-					Tile t = new PalaceTile(level);
+					Tile t = new PalaceTile(0);
                     HexSpace current = boardController.getCurrentSpace();
 					boardController.placeTile(t);
                     setMovementColor(cornflower_blue);
