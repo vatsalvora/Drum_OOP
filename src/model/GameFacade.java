@@ -7,12 +7,8 @@ import controller.TurnController;
 import model.customExceptions.BlockNotPlayedException;
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NotEnoughAPException;
-import model.state.State;
-import model.state.Turn;
-import view.AreaViewport;
-import view.keypressed.*;
+import view.keypressed.KeyPressed;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +74,21 @@ public class GameFacade {
 		return turnController.getCurrentCards();
 	}
 
+    public void sendErrorMessage(String s)
+    {
+        //send the error message to the view
+    }
+
+    public void placeOtherBlock() throws NotEnoughAPException
+    {
+        turnController.placeOtherBlock();
+    }
+
+    public void returnOtherBlock()
+    {
+        turnController.returnOtherBlock();
+    }
+/*
 	public void placeIrrigationTile() {
 		try {
 			sharedResourcesController.placeIrrigationTile();
@@ -98,13 +109,35 @@ public class GameFacade {
 		} catch (NoIrrigationLeftException e) {
 			// print error to user
 		}
-	}
+	}*/
 
-	public void undoIrrigationTile() {
+    public void pullIrrigationTile() throws NoIrrigationLeftException
+    {
+        sharedResourcesController.placeIrrigationTile();
+    }
+
+    public void returnIrrigationTile()
+    {
+        sharedResourcesController.returnIrrigationTile();
+    }
+
+    public int placeIrrigationTile()
+    {
+        //place the irrigation tile on the board
+        //give the player the appropriate points (if applicable) and return the points to the command
+        return 0;
+    }
+
+    public void removeIrrigationTile(int i)
+    {
+        //take the irrigation tile off of the board
+        turnController.decrementFamePoints(i);
+    }
+
+	public void undoIrrigationTile(int i) {
 		sharedResourcesController.returnIrrigationTile();
 		turnController.returnOtherBlock();
-		// remove the irrigation tile from the location it was placed
-		// remove fame points if applicable
+		removeIrrigationTile(i);
 	}
 
 	public void placeVillageTile() {
