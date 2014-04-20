@@ -1,5 +1,10 @@
 model.commands.Move3
 model.commands.Move3
-model.commands.Move9
-model.commands.Move9
+model.commands.Move8
+model.commands.PlaceTripleLandTile 0
+model.commands.DrawCard
+model.commands.DrawPalaceCard
+model.commands.UseActionToken
 model.commands.Move3
+model.commands.Move3
+model.commands.PlaceTripleLandTile 0

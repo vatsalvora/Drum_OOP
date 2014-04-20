@@ -98,7 +98,7 @@ public class Replay extends State {
 
 	@Override
 	public void keyPressedF() {
-		incorrectKeyPressed();
+		commandCreator.drawFestivalCard();
 	}
 
 	@Override
@@ -126,4 +126,6 @@ public class Replay extends State {
     }
 
     public void keyPressedT() { incorrectKeyPressed();}
+
+    public void keyPressedC() { incorrectKeyPressed();}
 }

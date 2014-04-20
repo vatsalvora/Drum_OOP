@@ -119,7 +119,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedF() {
-		incorrectKeyPressed();
+		commandCreator.drawFestivalCard();
 	}
 
 	@Override
@@ -151,5 +151,7 @@ public class Turn extends State {
     {
         commandCreator.useActionToken();
     }
+
+    public void keyPressedC() { commandCreator.drawCard();}
 
 }

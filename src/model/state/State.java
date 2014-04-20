@@ -70,6 +70,8 @@ public abstract class State {
 
     public abstract void keyPressedT();
 
+    public abstract void keyPressedC();
+
 	public StateType getCurrentState() {
 		return stateType;
 	}

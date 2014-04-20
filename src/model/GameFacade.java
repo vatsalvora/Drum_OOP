@@ -353,24 +353,16 @@ public class GameFacade {
 		return turnController.getVictors();
 	}
 
-	public void drawCard() {
-		try {
-			turnController.drawCard(sharedResourcesController.drawCard());
-		} catch (Exception e) {
-			// tell user why card could not be drawn
-		}
+	public void drawCard() throws Exception {
+		turnController.drawCard(sharedResourcesController.drawCard());
 	}
 
 	public void undoDrawCard() {
 		sharedResourcesController.returnPalaceCard(turnController.returnCard());
 	}
 
-	public void drawFestivalCard() {
-		try {
-			turnController.drawFestivalCard(sharedResourcesController.drawCard());
-		} catch (Exception e) {
-			// tell user why card could not be drawn
-		}
+	public void drawFestivalCard() throws Exception {
+		turnController.drawFestivalCard(sharedResourcesController.drawCard());
 	}
 
 	public void returnFestivalCard() {

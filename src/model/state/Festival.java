@@ -126,4 +126,6 @@ public class Festival extends State {
     }
 
     public void keyPressedT() { incorrectKeyPressed();}
+
+    public void keyPressedC() { incorrectKeyPressed();}
 }

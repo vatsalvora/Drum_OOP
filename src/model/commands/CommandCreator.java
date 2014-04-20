@@ -155,6 +155,26 @@ public class CommandCreator {
         }
     }
 
+    public void drawCard()
+    {
+        Command c = new DrawCard(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
+
+    public void drawFestivalCard()
+    {
+        Command c = new DrawPalaceCard(gameFacade);
+        c.execute();
+        if(c.save())
+        {
+            commands.push(c);
+        }
+    }
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
