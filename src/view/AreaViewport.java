@@ -35,12 +35,14 @@ public class AreaViewport {
     private  int h = 0; // height. Distance between centres of two
     // adjacent hexes. Distance between two opposite
     // sides in a hex.
-    public  Color movement;
+    public int scrolldown;
+    private  Color movement;
     private State state;
     private DrawingPanel panel;
 
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
+        scrolldown = 0;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
@@ -200,7 +202,7 @@ public class AreaViewport {
             super.paintComponent(g2);
             // draw grid
             for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0; j < board.getLength(i); j++) {
+                for (int j = 0+scrolldown; j < board.getLength(i); j++) {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
                     drawHex(loc.getXLocation(), loc.getYLocation(), g2);
@@ -208,7 +210,10 @@ public class AreaViewport {
             }
             // fill in hexes
             for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0; j < board.getLength(i); j++) {
+                int len = board.getLength(i);
+                //if(len>5 && 5+scrolldown<len) len = 5+scrolldown;
+                //0+scrolldown
+                for (int j = 0; j <len; j++) {
 
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
