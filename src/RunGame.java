@@ -3,7 +3,7 @@ import model.Location;
 import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
-
+import view.SharedResourcesView;
 import java.util.ArrayList;
 import java.util.List;
 

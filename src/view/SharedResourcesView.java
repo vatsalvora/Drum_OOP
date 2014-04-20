@@ -1,10 +1,12 @@
 package view;
 
 import controller.SharedResourcesController;
+import controller.TurnController;
 import model.Board;
 import model.GameFacade;
 import model.HexSpace;
 import model.Location;
+import model.SharedResources;
 import model.state.State;
 import model.state.Turn;
 import view.keypressed.KeyPressed;
@@ -33,35 +35,31 @@ public class SharedResourcesView extends JFrame
 		private JLabel numSixPalaceTiles;
 		private JLabel numEightPalaceTiles;
 		private JLabel numTenPalaceTiles;
+		
+		private JLabel player1;
+		private JLabel player2;
+		private JLabel player3;
+		private JLabel player4;
 
 		// Interactive fields
-		private JButton palaceCards;
-		private JButton festivalCards;
-		private JButton planningMode;
-		private JButton replayMode;
+		private JLabel palaceCards;
+		private JLabel festivalCards;
+	
+		private JFrame frame;
 
 
-		public SharedResourcesView(SharedResourcesController src)
-		{	
-/*				this.numThreeBlocks = src.getThreeBlocksLeft();
-				this.numIrrigationTiles = src.getIrrigationTilesLeft();
-				this.numTwoPalaceTiles = src.getNumTwoPalaceTiles();
-				this.numFourPalaceTiles = src.getNumFourPalaceTiles();
-				this.numSixPalaceTiles = src.getNumSixPalaceTiles();
-				this.numEightPalaceTiles = src.getNumEightPalaceTiles();
-				this.numTenPalaceTiles = src.getNumTenPalaceTiles();
-*/				//super(new FlowLayout());	
-				
-				go(src);
+		public SharedResourcesView()
+		{					
+				createView();
 		}
 
 
-		private void go(SharedResourcesController src)
+		private void createView()
 		{
 				// Create the frame 
-				JFrame frame = new JFrame("Shared Resources ");
-				frame.setSize(400, 800);
-			    frame.setResizable(false);
+				frame = new JFrame("Shared Resources ");
+				frame.setSize(400, 750);
+			    frame.setResizable(true);
 			    frame.setLocation(0,0);;
 			    frame.setVisible(true);
 				
@@ -70,78 +68,44 @@ public class SharedResourcesView extends JFrame
 			    content.setBackground(Color.WHITE);
 			    
 			    // Create our panels
-			    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			    JPanel mainPanel = new JPanel();
+			    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS)); 
+			    
 				JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+				infoPanel.setMinimumSize(new Dimension(400,400));
+				JPanel playerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+				infoPanel.setMinimumSize(new Dimension(400,400));
 				
 				// Empty border template
 				Border emptyBorder = BorderFactory.createEmptyBorder();
-				buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-
-				// Planning mode button
-				planningMode = new JButton("Planning Mode");
-				/* TODO */
-				planningMode.setPreferredSize(new Dimension(350,50));
-				planningMode.setMinimumSize(planningMode.getPreferredSize());
-				planningMode.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				infoPanel.add(planningMode);
 	
-				// Replay mode button
-				replayMode= new JButton("Replay Mode");
-				/* TODO */
-				replayMode.setHorizontalTextPosition(SwingConstants.CENTER);
-				replayMode.setPreferredSize(new Dimension(350,50));
-				replayMode.setMinimumSize(replayMode.getPreferredSize());
-				try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/replay.png"));
-				    Image newimg = img.getScaledInstance( 75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				   // replayMode.setIcon(new ImageIcon(newimg));
-				   // replayMode.setBorder(emptyBorder);
-				    
-				} 
-				catch(IOException x) {}
-				replayMode.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				infoPanel.add(replayMode);
+	
 				
 				// Shared resources information
 				// Palace Cards
-				palaceCards = new JButton("Palace Cards");
+				palaceCards = new JLabel("Player Palace Cards");
 				/* TODO */
 				palaceCards.setHorizontalTextPosition(SwingConstants.CENTER);
 				palaceCards.setVerticalTextPosition(SwingConstants.BOTTOM);
 				palaceCards.setVerticalAlignment(SwingConstants.BOTTOM);
-				try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/cards.jpg"));
-				    Image newimg = img.getScaledInstance( 75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				   // palaceCards.setIcon(new ImageIcon(newimg));
-				    palaceCards.setBorder(emptyBorder);
-				} 
-				catch (IOException ex) {}
+				palaceCards.setBorder(emptyBorder);
 				palaceCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				palaceCards.setPreferredSize(new Dimension(350,50));
+				palaceCards.setPreferredSize(new Dimension(200,25));
 				palaceCards.setMinimumSize(palaceCards.getPreferredSize());
 				infoPanel.add(palaceCards);
 
-				festivalCards = new JButton("Festival Cards");
-		/*		festivalCards.setHorizontalTextPosition(SwingConstants.CENTER);
-				festivalCards.setVerticalTextPosition(SwingConstants.BOTTOM);
-				festivalCards.setVerticalAlignment(SwingConstants.BOTTOM);
-			*/	try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/festivalcards.jpg"));
-				    Image newimg = img.getScaledInstance(75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				    //festivalCards.setIcon(new ImageIcon(newimg));
-				    festivalCards.setBorder(emptyBorder);
-				} 
-				catch (IOException ex) {}
-				festivalCards.setPreferredSize(new Dimension(350,50));
+				festivalCards = new JLabel("Festival Cards");
+	
+				festivalCards.setBorder(emptyBorder);
+			
+				festivalCards.setPreferredSize(new Dimension(250,25));
 				festivalCards.setMinimumSize(festivalCards.getPreferredSize());
 				festivalCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(festivalCards);
 
-				numThreeBlocks = newJLabel("Three Blocks: ");
-				numThreeBlocks.setPreferredSize(new Dimension(350,50));
+				numThreeBlocks = customJLabel("Three Blocks:    ");
+				numThreeBlocks.setText("");
+				numThreeBlocks.setPreferredSize(new Dimension(200,25));
 				numThreeBlocks.setHorizontalTextPosition(SwingConstants.CENTER);
 				numThreeBlocks.setVerticalTextPosition(SwingConstants.BOTTOM);
 				numThreeBlocks.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -149,47 +113,81 @@ public class SharedResourcesView extends JFrame
 				numThreeBlocks.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numThreeBlocks);
 				
-				numIrrigationTiles = newJLabel("Irrigation Tiles");
-				numIrrigationTiles.setPreferredSize(new Dimension(350,50));
+				numIrrigationTiles = customJLabel("Irrigation Tiles");
+				numIrrigationTiles.setPreferredSize(new Dimension(200,25));
 				numIrrigationTiles.setMinimumSize(numIrrigationTiles.getPreferredSize());
 				numIrrigationTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numIrrigationTiles);
 				
-				numTwoPalaceTiles = newJLabel("Two Palace Tiles: ");
-				numTwoPalaceTiles.setPreferredSize(new Dimension(350,50));
+				numTwoPalaceTiles = customJLabel("Two Palace Tiles: ");
+				numTwoPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numTwoPalaceTiles.setMinimumSize(numTwoPalaceTiles.getPreferredSize());
 				numTwoPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numTwoPalaceTiles);
 				
-				numFourPalaceTiles = newJLabel("Four Palace Tiles: ");
-				numFourPalaceTiles.setPreferredSize(new Dimension(350,50));
+				numFourPalaceTiles = customJLabel("Four Palace Tiles: ");
+				numFourPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numFourPalaceTiles.setMinimumSize(numFourPalaceTiles.getPreferredSize());
 				numFourPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numFourPalaceTiles);
 				
-				numSixPalaceTiles = newJLabel("Six Palace Tiles: ");
-				numSixPalaceTiles.setPreferredSize(new Dimension(350,50));
+				numSixPalaceTiles = customJLabel("Six Palace Tiles: ");
+				numSixPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numSixPalaceTiles.setMinimumSize(numSixPalaceTiles.getPreferredSize());
 				numSixPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numSixPalaceTiles);
 				
-				numEightPalaceTiles = newJLabel("Eight Palace Tiles: ");
-				numEightPalaceTiles.setPreferredSize(new Dimension(350,50));
+				numEightPalaceTiles = customJLabel("Eight Palace Tiles: ");
+				numEightPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numEightPalaceTiles.setMinimumSize(numEightPalaceTiles.getPreferredSize());
 				numEightPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numEightPalaceTiles);
 
-				numTenPalaceTiles = newJLabel("Ten Palace Tiles: ");
-				numTenPalaceTiles.setPreferredSize(new Dimension(350,50));
+				numTenPalaceTiles = customJLabel("Ten Palace Tiles: ");
+				numTenPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numTenPalaceTiles.setMinimumSize(numTenPalaceTiles.getPreferredSize());
 				numTenPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numTenPalaceTiles);
+				
+				player1 = customJLabel("Player 1");
+				player1.setMinimumSize(new Dimension(1000,1000));
+				player1.setFont(new Font("Charlemagne Std", Font.BOLD, 11));
+				playerPanel.add(player1);
+				
+				player2 = customJLabel("Player 2");
+				player2.setMinimumSize(new Dimension(400,400));
+				player2.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
+				playerPanel.add(player2);
+				
+				player3 = customJLabel("Player 3");
+				player3.setMinimumSize(new Dimension(400,400));
+				player3.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
+				playerPanel.add(player3);
+				
+				player4 = customJLabel("Player 4");
+				player4.setMinimumSize(new Dimension(100,100));
+				player4.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
+				playerPanel.add(player4);
 
-				// Add panels	
-				content.add(buttonPanel);
-				content.add(infoPanel);
-				System.out.println("Gone!");
-		}		
+				// Add panels			
+				mainPanel.add(infoPanel);
+				mainPanel.add(playerPanel);
+				content.add(mainPanel);
+		}
+		
+		public void updateFields(SharedResources sr)
+		{
+			System.out.println("Updating fields");
+			updateNumThreeBlocks(sr.getNumThreeBlockTiles());
+			updateNumTwoPalaceTiles(sr.getNumTwoPalaces());
+			updateNumIrrigationTiles(sr.getNumIrrigationTiles());
+			updateNumFourPalaceTiles(sr.getNumFourPalaces());
+			updateNumSixPalaceTiles(sr.getNumSixPalaces());
+			updateNumEightPalaceTiles(sr.getNumEightPalaces());
+			updateNumTenPalaceTiles(sr.getNumTenPalaces());
+			this.toBack();
+			
+		}
 				
 				public void updateNumThreeBlocks(int num)
 				{
@@ -273,11 +271,28 @@ public class SharedResourcesView extends JFrame
 						- Drawing
 						- Images
 				*/
-				private JLabel newJLabel(String value)
+				
+				public void updatePlayers(TurnController c)
+				{
+					System.out.println("Updating players...");
+					String festivalCard = c.getCurrentFestivalCard();
+					int cp = c.getCurrentPlayerIndex()+1;
+					highlightCurrentPlayer(cp);
+					String p1 = c.getPlayerInfo(1);
+					String p2 = c.getPlayerInfo(2);
+					String p3 = c.getPlayerInfo(3);
+					String p4 = c.getPlayerInfo(4);
+					
+					this.festivalCards.setText("Festival Card:\n"+festivalCard);
+					this.player1.setText(p1);
+					this.player2.setText(p2);
+					this.player3.setText(p3);
+					this.player4.setText(p4);
+				}
+				private JLabel customJLabel(String value)
 				{
 						JLabel label= new JLabel(value);
-					//	label.setIcon(new ImageIcon(src));
-						label.setFont(new Font("Lucida Grande", 0, 14));
+						label.setFont(new Font("Charlemagne Std", Font.BOLD, 11));
 						label.setPreferredSize(new Dimension(40, 90));
 						label.setHorizontalTextPosition(SwingConstants.CENTER);
 						label.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -285,5 +300,16 @@ public class SharedResourcesView extends JFrame
 						label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 						return label;
 				}
+				
+				private void highlightCurrentPlayer(int cp)
+				{
+					switch(cp)
+					{
+					// TODO
+						
+					}
+				}
+				
+				
 				
 } // End class
