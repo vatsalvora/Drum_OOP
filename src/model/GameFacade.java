@@ -157,25 +157,27 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
-	public void placeRiceTile() {
-		try {
-			turnController.placeRiceBlock();
-			try {
-				// place the rice at the proper spot
-				// give player the proper points (if applicable)
-			} catch (Exception e) {
-				turnController.returnRiceBlock();
-				// tell user about error
-			}
-		} catch (Exception e) {
-			// do something with exception
-		}
-	}
+    public int placeRiceTile()
+    {
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
+    }
 
-	public void undoRiceTile() {
+    public void pullRiceTile() throws Exception
+    {
+        turnController.placeRiceBlock();
+    }
+
+    public void returnRiceTile()
+    {
+        turnController.returnRiceBlock();
+    }
+
+	public void undoRiceTile(int i) {
 		turnController.returnRiceBlock();
 		// remove the rice tile from the location it was placed
-		// remove fame points if applicable
+		turnController.decrementFamePoints(i);
 	}
 
 	public void placeDoubleLandTile() {
