@@ -422,15 +422,33 @@ public class GameFacade {
         turnController.placeDeveloper(i);
     }
 
-    public void removeDeveloper()
+    public int removeDeveloper()
     {
         //remove the developer on the current space of the board
+        //return the AP spent to remove it
+        return 1;
     }
 
     public void undoDeveloperPlacement(int i)
     {
         turnController.undoDeveloperPlacement(i);
         removeDeveloper();
+    }
+
+    public void pushDeveloper(int i)
+    {
+        turnController.removeDeveloper(i);
+    }
+
+    public void undoDeveloperRemoval(int i)
+    {
+        //put developer back on the current space of the board
+        turnController.removeDeveloper(i);
+    }
+
+    public void replaceDeveloper()
+    {
+        //put developer on the current space of the board
     }
 
 	public void moveDeveloper(Location start, Location end) {
