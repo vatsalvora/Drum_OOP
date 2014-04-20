@@ -1,6 +1,8 @@
 package model;
 
 
+        import model.customExceptions.SameBlockException;
+
         import java.awt.*;
 
 /**
@@ -70,11 +72,30 @@ public class VillageTile extends Tile {
         return color;
     }
 
+    public void compareNeighbors(int[] indexes) throws SameBlockException {
+        boolean check = false;
+
+        for(int i : indexes)
+            if(hasNeighborAt(i))
+                check = true;
+            else
+                check = false;
+
+        if(check)
+            throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + "block on top of a" + (numberOfNeighbors+1));
+    }
+
     public boolean compareTo(Tile t) {
 
         return (t instanceof VillageTile);
     }
 
-
+    public String toString(){
+        String tile= "VillageTile with: ";
+        int[] neigh = getNeighborsIndex();
+            for(int i = 0; i < numberOfNeighbors; i++)
+                tile += neigh[i] + "\t";
+        return tile;
+    }
 
 }

@@ -204,6 +204,14 @@ public class GameFacade {
         int[] rotations = boardController.getRotations();
         VillageTile village = new VillageTile(1);
         int[] dir = {0,1,2,5,4,3};
+
+
+        for(int a : rotations)
+            System.out.println("asasaasa: " +a);
+
+
+
+
         RiceTile rice = new RiceTile(1);
         village.createReff(rice,dir[rotations[0]]);
         rice.createReff(village,5-dir[rotations[0]]);
@@ -255,6 +263,13 @@ public class GameFacade {
 	public int placeThreeBlock() throws Exception {
         HexSpace current = boardController.getCurrentSpace();
         int[] rotations = boardController.getRotations();
+
+  //////////////////////////////////////////
+
+        for(int a : rotations)
+            System.out.println("asasaasa: " +a);
+
+  /////////////////////////////////////////////
         VillageTile village = new VillageTile(2);
         RiceTile rice = new RiceTile(2);
         RiceTile rice2 = new RiceTile(2);
