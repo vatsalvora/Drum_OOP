@@ -19,7 +19,7 @@ public class RunGame {
     public static List<KeyPressed> createListeners(GameFacade b) {
         State state = new Turn(b);
         Location l = new Location(0, 0);
-        java.util.List<KeyPressed> keySet = new ArrayList<>();
+        List<KeyPressed> keySet = new ArrayList<KeyPressed>();
 
         keySet.add(new KeyPressed1(state));
         keySet.add(new KeyPressed2(state));
