@@ -93,7 +93,7 @@ public class HexSpace implements Space {
 
     public Color getColor(){
         if(getHeight()==0){
-            return Color.ORANGE;
+            return new Color(239, 221, 111);
         }
         else{
             Tile s = tilesOnSpace.peek();

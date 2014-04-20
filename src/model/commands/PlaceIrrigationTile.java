@@ -5,12 +5,16 @@ import model.GameFacade;
 import model.customExceptions.NoIrrigationLeftException;
 import model.customExceptions.NotEnoughAPException;
 
+import java.awt.*;
+
 public class PlaceIrrigationTile implements Command {
 	private GameFacade b;
     private int points;
 
 	public PlaceIrrigationTile(GameFacade b) {
 		this.b = b;
+        b.setMovementColor(Color.BLUE);
+        b.render();
         points = 0;
 	}
 
@@ -24,7 +28,6 @@ public class PlaceIrrigationTile implements Command {
         try {
             b.pullIrrigationTile();
             try{
-                b.placeOtherBlock();
                 try{
                     points = b.placeIrrigationTile();
                     //save self
@@ -35,7 +38,7 @@ public class PlaceIrrigationTile implements Command {
                     b.sendErrorMessage(e.toString());
                 }
             }
-            catch(NotEnoughAPException e)
+            catch(Exception e)
             {
                 b.returnIrrigationTile();
                 b.sendErrorMessage(e.toString());

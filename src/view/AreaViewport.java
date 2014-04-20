@@ -17,7 +17,7 @@ import java.util.List;
 public class AreaViewport {
     public Color COLOR_BACK = Color.WHITE;
 
-    public  Color COLOR_CELL = Color.ORANGE;
+    public  Color COLOR_CELL = new Color(239, 221, 111);
 
     public  Color COLOR_GRID = Color.BLACK;
     public  String EMPTY = "";
@@ -26,10 +26,7 @@ public class AreaViewport {
     public  int BORDERS = 15;
     public  int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     public  int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
-    public  boolean XYVertex = true;  // true: x,y are the coords of the first vertex.
-    // false: x,y are the coords of the top left rect. co-ord.
-
-    //private  int BORDERS = 50; // default number of pixels for the border.
+    public  boolean XYVertex = true;
 
     private  int s = 0; // length of one side
     private  int t = 0; // short side of 30o triangle outside of each hex
@@ -45,7 +42,7 @@ public class AreaViewport {
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         int maxLen = board.getMaxLen();
-        movement = Color.BLUE;
+        movement = new Color(100,149,237);
         SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
         SCREEN_LEN = HEX_SIZE * (maxLen + 1) + BORDERS * 3;
 

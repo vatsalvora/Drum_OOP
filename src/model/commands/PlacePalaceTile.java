@@ -5,6 +5,8 @@ import model.GameFacade;
 import model.customExceptions.NoPalaceTilesLeft;
 import model.customExceptions.NotEnoughAPException;
 
+import java.awt.*;
+
 public class PlacePalaceTile implements Command {
 	private GameFacade b;
     private int level;
@@ -13,6 +15,8 @@ public class PlacePalaceTile implements Command {
 	public PlacePalaceTile(GameFacade b, int level) {
 		this.b = b;
         this.level = level;
+        b.setMovementColor(Color.YELLOW);
+        b.render();
         points = 0;
 	}
 

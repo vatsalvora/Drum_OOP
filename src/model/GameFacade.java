@@ -16,7 +16,7 @@ public class GameFacade {
 	private TurnController turnController;
 	private SharedResourcesController sharedResourcesController;
 	private AreaViewportController areaViewportController;
-
+    private Color cornflower_blue = new Color(100,149,237);
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
@@ -99,8 +99,17 @@ public class GameFacade {
 
     public int placeIrrigationTile() throws Exception
     {
-        //place the irrigation tile on the board
-        //give the player the appropriate points (if applicable) and return the points to the command
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new IrrigationTile();
+            current.place(t);
+            setMovementColor(cornflower_blue);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
         return 0;
     }
 
@@ -124,7 +133,7 @@ public class GameFacade {
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new VillageTile();
             current.place(t);
-            setMovementColor(Color.BLUE);
+            setMovementColor(cornflower_blue);
             render();
         } catch (Exception e) {
             // tell user about error
@@ -152,8 +161,17 @@ public class GameFacade {
 
     public int placeRiceTile() throws Exception
     {
-        //place the village tile on the board
-        //give the player the appropriate points and return them
+        try {
+            // place the village at the proper spot
+            // give player the proper points (if applicable)
+            HexSpace current = boardController.getCurrentSpace();
+            Tile t = new RiceTile();
+            current.place(t);
+            setMovementColor(cornflower_blue);
+            render();
+        } catch (Exception e) {
+            // tell user about error
+        }
         return 0;
     }
 
@@ -273,8 +291,8 @@ public class GameFacade {
 		// Get valid colors from the board to turn in to festivals
 		turnController.startFestival(colors);
 	}
-/*
-	public void placePalaceTile(HexSpace s, int level) {
+
+	public int placePalaceTile(int level) {
 		try {
 			sharedResourcesController.placePalace(level);
 			try {
@@ -283,7 +301,9 @@ public class GameFacade {
 					// place the palace at the proper spot
 					// give fame points to proper player
 					Tile t = new PalaceTile(level);
-					s.place(t);
+                    HexSpace current = boardController.getCurrentSpace();
+					current.place(t);
+                    setMovementColor(cornflower_blue);
 				} catch (Exception e) {
 					sharedResourcesController.returnPalace(level);
 					// tell user about error
@@ -294,7 +314,8 @@ public class GameFacade {
 		} catch (Exception e) {
 			// do something with exception
 		}
-	}*/
+		return 0;
+	}
 
     public void pullPalaceTile(int level) throws NoPalaceTilesLeft
     {
@@ -306,12 +327,7 @@ public class GameFacade {
         sharedResourcesController.returnPalace(level);
     }
 
-    public int placePalaceTile(int level) throws Exception
-    {
-        //place the palace tile
-        //give the player the appropriate points and return them
-        return 0;
-    }
+
 
     public void undoPalaceTile(int level, int points)
     {

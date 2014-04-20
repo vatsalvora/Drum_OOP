@@ -3,12 +3,16 @@ package model.commands;
 import model.Command;
 import model.GameFacade;
 
+import java.awt.*;
+
 public class PlaceRiceTile implements Command {
 	private GameFacade b;
     private int points;
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
+        b.setMovementColor(Color.GREEN);
+        b.render();
         points = 0;
 	}
 
