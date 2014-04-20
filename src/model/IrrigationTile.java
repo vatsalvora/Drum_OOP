@@ -21,25 +21,25 @@ public class IrrigationTile extends Tile {
         assignNumberOfNeighbors(numberOfNeighbors);
     }
 
-    private void assignNumberOfNeighbors(int numberOfNeighbors){
+    public void assignNumberOfNeighbors(int numberOfNeighbors){
         this.numberOfNeighbors = numberOfNeighbors;
     }
 
-    private void initNeighbors(){
+    public void initNeighbors(){
 
         for(int i = 0; i < neighbors.length; i++)
             neighbors[i] = null;
     }
 
-    protected void createReff(Tile tile, int index){
+    public void createReff(Tile tile, int index){
         neighbors[index] = tile;
     }
 
-    protected void removeReff(int index){
+    public void removeReff(int index){
         neighbors[index] = null;
     }
 
-    private void assignColor(int a ,int b,int c){
+    public void assignColor(int a ,int b,int c){
         color = new Color(a,b,c);
     }
 

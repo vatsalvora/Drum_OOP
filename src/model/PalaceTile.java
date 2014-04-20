@@ -9,33 +9,47 @@ import java.awt.*;
 public class PalaceTile extends Tile {
 
 
-	private Color color;
-	private int position;
-	
+    private Color color;
+    private final Tile[] neighbors = new Tile[6];
+    private int numberOfNeighbors;
 
-    public PalaceTile(int position){
-    	this.position = position ;
-        this.color = new Color(218,165,32);
+
+    public PalaceTile(int numberOfNeighbors){
+
+        assignColor(218,165,32);
+        initNeighbors();
+        assignNumberOfNeighbors(numberOfNeighbors);
     }
 
+    public void assignNumberOfNeighbors(int numberOfNeighbors){
+        this.numberOfNeighbors = numberOfNeighbors;
+    }
+
+    public void initNeighbors(){
+
+        for(int i = 0; i < neighbors.length; i++)
+            neighbors[i] = null;
+    }
+
+    public void createReff(Tile tile, int index){
+        neighbors[index] = tile;
+    }
+
+    public void removeReff(int index){
+        neighbors[index] = null;
+    }
+
+    public void assignColor(int a ,int b,int c){
+        color = new Color(a,b,c);
+    }
 
     public Color getColor(){
         return color;
     }
 
-	public void assignPosition(int positon) {
-
-		this.position = positon;
-	}
-
-	public int getPosition(){
-		return position;
-	}
-	
-	
     public boolean compareTo(Tile t) {
 
-        return (t instanceof VillageTile);
+        return (t instanceof PalaceTile);
     }
     
 
