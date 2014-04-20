@@ -75,20 +75,7 @@ public class AreaViewport {
         // sqrt(3)) = r / sqrt(3)
     }
 
-    public  Polygon square(int x0, int y0) {
-        int y = y0 + BORDERS;
-        int x = x0 + BORDERS;
-        if (s == 0 || h == 0) {
-            System.out.println("ERROR: size of hex has not been set");
-            return new Polygon();
-        }
 
-        int[] cx, cy;
-
-        cx = new int[]{x, x + 1, x, x + 1}; // this is for the top left vertex being at x,y. Which
-        cy = new int[]{y, y, y + 1, y + 1};
-        return new Polygon(cx, cy, 4);
-    }
     public  Polygon hex(int x0, int y0) {
 
         int y = y0 + BORDERS;
@@ -147,11 +134,15 @@ public class AreaViewport {
         g2.setColor(color);
         g2.fillPolygon(poly);
         g2.setColor(Color.BLACK);
-        Polygon square = square(x,y);
-        g2.setColor(color);
-        g2.fillPolygon(poly);
-
         g2.drawPolygon(poly);
+
+
+
+        g2.setColor(devColor);
+        g2.fillRect(x+10+BORDERS,y+10+BORDERS,10,10);
+        g2.drawRect(x+10+BORDERS,y+10+BORDERS,10,10);
+
+        g2.setColor(Color.BLACK);
 
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
 
@@ -168,7 +159,16 @@ public class AreaViewport {
         Tile t1 = new IrrigationTile(0);
         Tile t2 = new IrrigationTile(0);
         Tile t3 = new IrrigationTile(0);
+        Tile t4 = new RiceTile(0);
         ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
+        ((HexSpace) board.getSpace(new Location(4, 4))).place(t4);
+        Developer d = new Developer("Green", Color.BLACK);
+        try {
+            ((HexSpace) board.getSpace(new Location(4, 4))).placeDeveloper(d);
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
         ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
         ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
     }
