@@ -4,10 +4,13 @@ import model.Location;
 import model.commands.CommandCreator;
 import model.state.State;
 import model.state.Turn;
-import view.AreaViewport;
+import view.*;
 import view.keypressed.*;
 
 import javax.swing.*;
+
+import controller.SharedResourcesController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +20,15 @@ public class RunGame {
 
         GameFacade b = new GameFacade(names);
         List<KeyPressed> keySet = createListeners(b);
-        b.addKeyListeners(keySet);
+		b.addKeyListeners(keySet);
 
+        final SharedResourcesController src = new SharedResourcesController();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+              //  new SharedResourcesView(src);
+		      // SRV testing purposes, ignore for now
+			}
+        });
     }
 
     public static List<KeyPressed> createListeners(GameFacade b){
