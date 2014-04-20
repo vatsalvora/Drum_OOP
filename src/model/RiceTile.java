@@ -14,10 +14,11 @@ public class RiceTile extends Tile{
     private Color color;
     private final Tile[] neighbors = new Tile[6];
     private int numberOfNeighbors;
+    private String testing;
 
 
-    public RiceTile(int numberOfNeighbors){
-
+    public RiceTile(int numberOfNeighbors, String testing){
+        this.testing = testing;
         assignColor(34,139,34);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
@@ -88,7 +89,7 @@ public class RiceTile extends Tile{
     }
 
     public String toString(){
-        String tile= "RiceTile with: ";
+        String tile= testing + "\t"+"RiceTile with: ";
         int[] neigh = getNeighborsIndex();
         for(int i = 0; i < numberOfNeighbors; i++)
             tile += neigh[i] + "\t";

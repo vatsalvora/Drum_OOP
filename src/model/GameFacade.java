@@ -177,7 +177,7 @@ public class GameFacade {
             // place the village at the proper spot
             // give player the proper points (if applicable)
             HexSpace current = boardController.getCurrentSpace();
-            Tile t = new RiceTile(0);
+            Tile t = new RiceTile(0, "blah");
             boardController.placeTile(t);
             setMovementColor(cornflower_blue);
             setDevColor(cornflower_blue);
@@ -214,13 +214,8 @@ public class GameFacade {
         int[] dir = {0,1,2,5,4,3};
 
 
-        for(int a : rotations)
-            System.out.println("asasaasa: " +a);
 
-
-
-
-        RiceTile rice = new RiceTile(1);
+        RiceTile rice = new RiceTile(1, "blah");
         village.createReff(rice,dir[rotations[0]]);
         rice.createReff(village,5-dir[rotations[0]]);
 
@@ -274,24 +269,23 @@ public class GameFacade {
         HexSpace current = boardController.getCurrentSpace();
         int[] rotations = boardController.getRotations();
 
-  //////////////////////////////////////////
 
-        for(int a : rotations)
-            System.out.println("asasaasa: " +a);
-
-  /////////////////////////////////////////////
         VillageTile village = new VillageTile(2);
-        RiceTile rice = new RiceTile(2);
-        RiceTile rice2 = new RiceTile(2);
+        RiceTile rice = new RiceTile(2, "rice1");
+        RiceTile rice2 = new RiceTile(2, "rice2");
         int[] dir = {0,1,2,5,4,3};
+        int[] r1Tor2 = {3,0,1,4,5,2};
+        int[] r2Tor1 = {1,2,5,0,3,4};
             village.createReff(rice, dir[rotations[0]]);
             village.createReff(rice2, dir[rotations[1]]);
 
             rice.createReff(village, 5 - dir[rotations[0]]);
-            rice.createReff(rice2, (5 -dir[rotations[1]]+6)%6);
+            rice.createReff(rice2,r1Tor2[5 - dir[rotations[0]]]);
 
             rice2.createReff(village, 5 - dir[rotations[1]]);
-            rice2.createReff(rice,  (5-dir[rotations[0]]+6)%6);
+            rice2.createReff(rice, r2Tor1[5 - dir[rotations[1]]]);
+
+
 
         boardController.placeTile(village);
 
