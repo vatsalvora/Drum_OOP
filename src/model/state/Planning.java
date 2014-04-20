@@ -113,4 +113,6 @@ public class Planning extends State {
     public void keyPressedT() { commandCreator.useActionToken();}
 
     public void keyPressedC() { commandCreator.drawCard();}
+
+    public void keyPressedM() { incorrectKeyPressed();}
 }

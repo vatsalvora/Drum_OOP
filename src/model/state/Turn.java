@@ -154,4 +154,6 @@ public class Turn extends State {
 
     public void keyPressedC() { commandCreator.drawCard();}
 
+    public void keyPressedM() { commandCreator.initiatePalaceFestival();}
+
 }

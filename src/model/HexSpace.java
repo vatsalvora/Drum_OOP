@@ -57,6 +57,10 @@ public class HexSpace implements Space {
         tilesOnSpace.push(tile);
     }
 
+    public boolean spaceEmpty(){
+        return tilesOnSpace.empty();
+    }
+
     public boolean onBoarder() {
         return (numberOfNeighbors() != 6);
 
@@ -100,9 +104,9 @@ public class HexSpace implements Space {
 
     public void place(Tile tile) {
 
-        /*try {
+    /*
 
-            /*increaseHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
+            *//*checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
 
             int[] neighLocations = tile.getNeighborsIndex();
 
@@ -117,11 +121,24 @@ public class HexSpace implements Space {
             removeTopTile();
             //tell user what went wrong with tile placement
         }*/
-        if(getHeight()==0) tilesOnSpace.add(tile);
+        try {
+        checkHeight(tile, ((HexSpace)getCurrentSpace()).getHeight());
+         int[] neighLocations = tile.getNeighborsIndex();
+            if(!spaceEmpty())
+                getTopTile().compareNeighbors(neighLocations);
 
+            tilesOnSpace.add(tile);
+
+            System.out.println(this);
+        } catch (Exception e) {
+
+            System.out.println(e);
+            //removeTopTile();
+            //tell user what went wrong with tile placement
+        }
     }
 
-    public void increaseHeight(Tile tile, int height) throws TileHeightWrongException {
+    public void checkHeight(Tile tile, int height) throws TileHeightWrongException {
         if (getHeight() != height)
             throw new TileHeightWrongException("Tile heights are inconsistent in the area the block is being placed.");
 
@@ -141,5 +158,12 @@ public class HexSpace implements Space {
 
     public Space[] getNeighbors() {
         return neighbors;
+    }
+
+    public String toString(){
+        String space = "Tile on Space: " + getTopTile() +" neighbors"+ "the heigh is: " + getHeight() +"\n";
+
+
+        return space;
     }
 }

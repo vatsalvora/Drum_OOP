@@ -1,0 +1,48 @@
+package model.commands;
+
+import model.Command;
+import model.GameFacade;
+
+public class RemoveDeveloper implements Command {
+    private GameFacade gameFacade;
+    private boolean save;
+    private int APForPlacement;
+
+    public RemoveDeveloper(GameFacade gameFacade) {
+        this.gameFacade = gameFacade;
+        save = true;
+        APForPlacement = 0;
+    }
+
+    public void execute() {
+        try {
+            APForPlacement = gameFacade.removeDeveloper();
+            try{
+                gameFacade.pushDeveloper(APForPlacement);
+            }
+            catch(Exception e)
+            {
+                gameFacade.replaceDeveloper();
+                save = false;
+                gameFacade.sendErrorMessage(e.toString());
+            }
+        } catch (Exception e) {
+            save = false;
+            gameFacade.sendErrorMessage(e.toString());
+        }
+    }
+
+    public void undo() {
+        gameFacade.undoDeveloperRemoval(APForPlacement);
+    }
+
+    public boolean save()
+    {
+        return save;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + APForPlacement;
+    }
+}

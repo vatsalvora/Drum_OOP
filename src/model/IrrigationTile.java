@@ -1,6 +1,8 @@
 package model;
 
 
+import model.customExceptions.SameBlockException;
+
 import java.awt.*;
 
 /**
@@ -38,7 +40,7 @@ public class IrrigationTile extends Tile {
     }
 
     private boolean hasNeighborAt(int index){
-        return (neighbors[index] != null)? true: false;
+        return (neighbors[index] != null);
     }
 
     public Tile getNeighborAt(int index){
@@ -79,7 +81,26 @@ public class IrrigationTile extends Tile {
             //throw exception here
     }
 
+    public void compareNeighbors(int[] indexes) throws SameBlockException {
+        boolean check = false;
+
+        for(int i : indexes)
+            if(hasNeighborAt(i))
+                check = true;
+            else
+                check = false;
+
+        if(check)
+            throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + "block on top of a" + (numberOfNeighbors+1));
+    }
 
 
+    public String toString(){
+        String tile= "IrrigationTile with: ";
+        int[] neigh = getNeighborsIndex();
+        for(int i = 0; i < numberOfNeighbors; i++)
+            tile += neigh[i] + "\t";
+        return tile;
+    }
 
 }

@@ -1,6 +1,8 @@
 package model;
 
 
+import model.customExceptions.SameBlockException;
+
 import java.awt.*;
 
 public abstract class Tile {
@@ -17,6 +19,7 @@ public abstract class Tile {
     public abstract void removeReff(int index);
     public abstract void assignColor(int a ,int b,int c);
     public abstract Tile getReferences(int i);
+    public abstract void compareNeighbors(int[] indexes) throws SameBlockException;
 
 
 }

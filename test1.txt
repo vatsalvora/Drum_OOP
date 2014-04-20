@@ -1,0 +1,16 @@
+3
+red
+blue
+green
+model.ChangeTurn@34a433d8
+model.commands.DrawCard
+model.commands.DrawPalaceCard
+model.commands.EndPalaceFestival
+model.commands.InitiatePalaceFestival
+model.commands.Move1
+model.commands.Move2
+model.commands.Move3
+model.commands.Move7
+model.commands.Move8
+model.commands.Move9
+model.commands.PlaceVillageTile 0

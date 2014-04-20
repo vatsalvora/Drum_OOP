@@ -5,6 +5,7 @@ import controller.BoardController;
 import controller.SharedResourcesController;
 import controller.TurnController;
 import model.customExceptions.*;
+import test.FestivalTest;
 import view.keypressed.KeyPressed;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class GameFacade {
 		boardController = new BoardController();
 		sharedResourcesController = new SharedResourcesController();
 		areaViewportController = new AreaViewportController(boardController.getBoard());
-
+        startGame();
 	}
 
 	public void addKeyListeners(List<KeyPressed> keySet) {
@@ -40,6 +41,7 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 			p.addCard(sharedResourcesController.drawCard());
 		}
+        turnController.putFestivalCard(sharedResourcesController.drawCard());
 	}
 
 	public void setMovementColor(Color color) {
@@ -202,6 +204,14 @@ public class GameFacade {
         int[] rotations = boardController.getRotations();
         VillageTile village = new VillageTile(1);
         int[] dir = {0,1,2,5,4,3};
+
+
+        for(int a : rotations)
+            System.out.println("asasaasa: " +a);
+
+
+
+
         RiceTile rice = new RiceTile(1);
         village.createReff(rice,dir[rotations[0]]);
         rice.createReff(village,5-dir[rotations[0]]);
@@ -253,6 +263,13 @@ public class GameFacade {
 	public int placeThreeBlock() throws Exception {
         HexSpace current = boardController.getCurrentSpace();
         int[] rotations = boardController.getRotations();
+
+  //////////////////////////////////////////
+
+        for(int a : rotations)
+            System.out.println("asasaasa: " +a);
+
+  /////////////////////////////////////////////
         VillageTile village = new VillageTile(2);
         RiceTile rice = new RiceTile(2);
         RiceTile rice2 = new RiceTile(2);
@@ -294,7 +311,9 @@ public class GameFacade {
 	public void initiatePalaceFestival() {
 		String[] colors = {};
 		// Get valid colors from the board to turn in to festivals
-		turnController.startFestival(colors);
+		//turnController.startFestival(colors);
+        FestivalTest festival = new FestivalTest();
+        festival.PerformFestival(turnController, sharedResourcesController.getDeck());
 	}
 
 	public int placePalaceTile(int level) {
@@ -391,42 +410,46 @@ public class GameFacade {
 		return turnController.festivalOver();
 	}
 
-	public void placeDeveloper() {
+	public int placeDeveloper() {
 		String color = turnController.getPlayerColor();
-
-		try {
-			int APForPlacement = 0;
-			// place a developer at location and get AP spent on action
-			try {
-				turnController.placeDeveloper(APForPlacement);
-			} catch (Exception e) {
-				// tell user developer cannot be placed due to certain
-				// restrictions
-				// take the developer off of the location it was placed
-			}
-		} catch (Exception e) {
-			// tell user why developer cannot be placed at that location
-		}
+		//place a developer at location and get AP spent on action
+        //then return said AP
+        return 1;
 	}
 
-	public void undoDeveloperPlacement() {
-		int APForPlacement = 0;
-		// undo the developer placement at that location and return the AP spent
-		// as a result
-		turnController.undoDeveloperPlacement(APForPlacement);
-	}
+    public void pullDeveloper(int i) throws Exception
+    {
+        turnController.placeDeveloper(i);
+    }
 
-	public void removeDeveloper() {
-		try {
-			// remove a developer of the current player's color from the
-			// specified location
-			int APForRemoval = 0;
-			// return the amount of AP spent removing the developer
-			turnController.removeDeveloper(APForRemoval);
-		} catch (Exception e) {
-			// tell user they do not own a developer at that location
-		}
-	}
+    public int removeDeveloper()
+    {
+        //remove the developer on the current space of the board
+        //return the AP spent to remove it
+        return 1;
+    }
+
+    public void undoDeveloperPlacement(int i)
+    {
+        turnController.undoDeveloperPlacement(i);
+        removeDeveloper();
+    }
+
+    public void pushDeveloper(int i)
+    {
+        turnController.removeDeveloper(i);
+    }
+
+    public void undoDeveloperRemoval(int i)
+    {
+        //put developer back on the current space of the board
+        turnController.removeDeveloper(i);
+    }
+
+    public void replaceDeveloper()
+    {
+        //put developer on the current space of the board
+    }
 
 	public void moveDeveloper(Location start, Location end) {
 		try {

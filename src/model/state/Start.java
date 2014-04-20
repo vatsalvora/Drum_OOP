@@ -2,6 +2,8 @@ package model.state;
 
 import model.GameFacade;
 
+import java.io.IOException;
+
 /**
  * Created by devan on 4/9/14.
  */
@@ -12,11 +14,11 @@ public class Start extends State {
     }
 
     @Override
-    public void keyPressed1() {
-		//TODO: Load a game
-		// Get file? 
-		commandCreator.load("somestring");
-	}
+    public void keyPressed1() throws IOException {
+        //TODO: Load a game
+        // Get file?
+        commandCreator.load("somestring");
+    }
 
     @Override
     public void keyPressed2() {
@@ -120,15 +122,24 @@ public class Start extends State {
 
     @Override
     public void keyPressedEnter() {
-		// TODO: Create new game
+        // TODO: Create new game
     }
+
     @Override
     public void keyPressedSpace() {
         incorrectKeyPressed();
     }
 
-    public void keyPressedT() { incorrectKeyPressed();}
+    public void keyPressedT() {
+        incorrectKeyPressed();
+    }
 
-    public void keyPressedC() { incorrectKeyPressed();}
+    public void keyPressedC() {
+        incorrectKeyPressed();
+    }
+
+    public void keyPressedM() {
+        incorrectKeyPressed();
+    }
 
 }
