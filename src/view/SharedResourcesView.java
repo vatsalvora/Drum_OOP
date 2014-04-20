@@ -5,6 +5,7 @@ import model.Board;
 import model.GameFacade;
 import model.HexSpace;
 import model.Location;
+import model.SharedResources;
 import model.state.State;
 import model.state.Turn;
 import view.keypressed.KeyPressed;
@@ -37,31 +38,22 @@ public class SharedResourcesView extends JFrame
 		// Interactive fields
 		private JButton palaceCards;
 		private JButton festivalCards;
-		private JButton planningMode;
-		private JButton replayMode;
+	
+		private JFrame frame;
 
 
-		public SharedResourcesView(SharedResourcesController src)
-		{	
-/*				this.numThreeBlocks = src.getThreeBlocksLeft();
-				this.numIrrigationTiles = src.getIrrigationTilesLeft();
-				this.numTwoPalaceTiles = src.getNumTwoPalaceTiles();
-				this.numFourPalaceTiles = src.getNumFourPalaceTiles();
-				this.numSixPalaceTiles = src.getNumSixPalaceTiles();
-				this.numEightPalaceTiles = src.getNumEightPalaceTiles();
-				this.numTenPalaceTiles = src.getNumTenPalaceTiles();
-*/				//super(new FlowLayout());	
-				
-				go(src);
+		public SharedResourcesView()
+		{					
+				createView();
 		}
 
 
-		private void go(SharedResourcesController src)
+		private void createView()
 		{
 				// Create the frame 
-				JFrame frame = new JFrame("Shared Resources ");
-				frame.setSize(400, 800);
-			    frame.setResizable(false);
+				frame = new JFrame("Shared Resources ");
+				frame.setSize(450, 850);
+			    frame.setResizable(true);
 			    frame.setLocation(0,0);;
 			    frame.setVisible(true);
 				
@@ -70,38 +62,12 @@ public class SharedResourcesView extends JFrame
 			    content.setBackground(Color.WHITE);
 			    
 			    // Create our panels
-			    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 				JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 				
 				// Empty border template
 				Border emptyBorder = BorderFactory.createEmptyBorder();
-				buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-
-				// Planning mode button
-				planningMode = new JButton("Planning Mode");
-				/* TODO */
-				planningMode.setPreferredSize(new Dimension(350,50));
-				planningMode.setMinimumSize(planningMode.getPreferredSize());
-				planningMode.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				infoPanel.add(planningMode);
 	
-				// Replay mode button
-				replayMode= new JButton("Replay Mode");
-				/* TODO */
-				replayMode.setHorizontalTextPosition(SwingConstants.CENTER);
-				replayMode.setPreferredSize(new Dimension(350,50));
-				replayMode.setMinimumSize(replayMode.getPreferredSize());
-				try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/replay.png"));
-				    Image newimg = img.getScaledInstance( 75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				   // replayMode.setIcon(new ImageIcon(newimg));
-				   // replayMode.setBorder(emptyBorder);
-				    
-				} 
-				catch(IOException x) {}
-				replayMode.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
-				infoPanel.add(replayMode);
+	
 				
 				// Shared resources information
 				// Palace Cards
@@ -110,37 +76,23 @@ public class SharedResourcesView extends JFrame
 				palaceCards.setHorizontalTextPosition(SwingConstants.CENTER);
 				palaceCards.setVerticalTextPosition(SwingConstants.BOTTOM);
 				palaceCards.setVerticalAlignment(SwingConstants.BOTTOM);
-				try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/cards.jpg"));
-				    Image newimg = img.getScaledInstance( 75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				   // palaceCards.setIcon(new ImageIcon(newimg));
-				    palaceCards.setBorder(emptyBorder);
-				} 
-				catch (IOException ex) {}
+				palaceCards.setBorder(emptyBorder);
 				palaceCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				palaceCards.setPreferredSize(new Dimension(350,50));
 				palaceCards.setMinimumSize(palaceCards.getPreferredSize());
 				infoPanel.add(palaceCards);
 
 				festivalCards = new JButton("Festival Cards");
-		/*		festivalCards.setHorizontalTextPosition(SwingConstants.CENTER);
-				festivalCards.setVerticalTextPosition(SwingConstants.BOTTOM);
-				festivalCards.setVerticalAlignment(SwingConstants.BOTTOM);
-			*/	try 
-				{
-				    Image img = ImageIO.read(getClass().getResource("resources/festivalcards.jpg"));
-				    Image newimg = img.getScaledInstance(75, 100,  java.awt.Image.SCALE_SMOOTH ) ;
-				    //festivalCards.setIcon(new ImageIcon(newimg));
-				    festivalCards.setBorder(emptyBorder);
-				} 
-				catch (IOException ex) {}
+	
+				festivalCards.setBorder(emptyBorder);
+			
 				festivalCards.setPreferredSize(new Dimension(350,50));
 				festivalCards.setMinimumSize(festivalCards.getPreferredSize());
 				festivalCards.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(festivalCards);
 
-				numThreeBlocks = newJLabel("Three Blocks: ");
+				numThreeBlocks = newJLabel("Three Blocks:    ");
+				numThreeBlocks.setText("");
 				numThreeBlocks.setPreferredSize(new Dimension(350,50));
 				numThreeBlocks.setHorizontalTextPosition(SwingConstants.CENTER);
 				numThreeBlocks.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -185,11 +137,24 @@ public class SharedResourcesView extends JFrame
 				numTenPalaceTiles.setFont(new Font("Charlemagne Std", Font.BOLD, 14));
 				infoPanel.add(numTenPalaceTiles);
 
-				// Add panels	
-				content.add(buttonPanel);
+				// Add panels			
 				content.add(infoPanel);
-				System.out.println("Gone!");
-		}		
+		}
+		
+		public void updateFields(SharedResources sr)
+		{
+			System.out.println("Updating!!!");
+			updateNumThreeBlocks(sr.getNumThreeBlockTiles());
+			updateNumTwoPalaceTiles(sr.getNumTwoPalaces());
+			updateNumIrrigationTiles(sr.getNumIrrigationTiles());
+			updateNumFourPalaceTiles(sr.getNumFourPalaces());
+			updateNumSixPalaceTiles(sr.getNumSixPalaces());
+			updateNumEightPalaceTiles(sr.getNumEightPalaces());
+			updateNumTenPalaceTiles(sr.getNumTenPalaces());
+			System.out.println(sr.getNumTenPalaces() + "ten palaces");
+			this.toBack();
+			
+		}
 				
 				public void updateNumThreeBlocks(int num)
 				{
@@ -276,8 +241,6 @@ public class SharedResourcesView extends JFrame
 				private JLabel newJLabel(String value)
 				{
 						JLabel label= new JLabel(value);
-					//	label.setIcon(new ImageIcon(src));
-						label.setFont(new Font("Lucida Grande", 0, 14));
 						label.setPreferredSize(new Dimension(40, 90));
 						label.setHorizontalTextPosition(SwingConstants.CENTER);
 						label.setVerticalTextPosition(SwingConstants.BOTTOM);

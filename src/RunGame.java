@@ -3,7 +3,7 @@ import model.Location;
 import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
-
+import view.SharedResourcesView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,6 @@ public class RunGame {
         GameFacade b = new GameFacade(names);
         List<KeyPressed> keySet = createListeners(b);
         b.addKeyListeners(keySet);
-
     }
 
     public static List<KeyPressed> createListeners(GameFacade b){
