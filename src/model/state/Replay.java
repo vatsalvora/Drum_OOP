@@ -121,4 +121,8 @@ public class Replay extends State {
 	public void keyPressedEnter() {
 		incorrectKeyPressed();
 	}
+    @Override
+    public void keyPressedSpace() {
+        incorrectKeyPressed();
+    }
 }

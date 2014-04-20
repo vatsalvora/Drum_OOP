@@ -24,7 +24,9 @@ public class RiceTile extends Tile{
     public void assignNumberOfNeighbors(int numberOfNeighbors){
         this.numberOfNeighbors = numberOfNeighbors;
     }
-
+    public Tile getReferences(int i){
+        return neighbors[i];
+    }
     public void initNeighbors(){
 
         for(int i = 0; i < neighbors.length; i++)

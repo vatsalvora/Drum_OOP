@@ -30,7 +30,9 @@ public class PalaceTile extends Tile {
         for(int i = 0; i < neighbors.length; i++)
             neighbors[i] = null;
     }
-
+    public Tile getReferences(int i){
+        return neighbors[i];
+    }
     public void createReff(Tile tile, int index){
         neighbors[index] = tile;
     }

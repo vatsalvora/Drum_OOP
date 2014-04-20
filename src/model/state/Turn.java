@@ -110,7 +110,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedA() {
-		incorrectKeyPressed();
+		commandCreator.placeDoubleLandTile();
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedW() {
-		incorrectKeyPressed();
+		commandCreator.placeTripleLandTile();
 	}
 
 	@Override
@@ -142,4 +142,11 @@ public class Turn extends State {
 	public void keyPressedEnter() {
 		commandCreator.execute();
 	}
+
+    @Override
+    public void keyPressedSpace() {
+       commandCreator.rotate();
+    }
+
+
 }

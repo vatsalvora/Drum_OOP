@@ -48,6 +48,7 @@ public class RunGame {
         keySet.add(new KeyPressed6(state));
         keySet.add(new KeyPressedS(state));
         keySet.add(new KeyPressedEnter(state));
+        keySet.add(new KeyPressedSpace(state));
         return keySet;
     }
 

@@ -46,6 +46,8 @@ public class GameFacade {
 		areaViewportController.setMovementColor(color);
 	}
 
+    public void setRotation(int[] rotation){boardController.setRotations(rotation);};
+
 	public Player[] getPlayers() {
 		return turnController.getPlayers();
 	}
@@ -214,16 +216,17 @@ public class GameFacade {
         HexSpace current = boardController.getCurrentSpace();
         int[] rotations = boardController.getRotations();
         VillageTile village = new VillageTile(1);
-
+        int[] dir = {0,1,2,5,4,3};
         RiceTile rice = new RiceTile(1);
-        village.createReff(rice,rotations[0]);
-        rice.createReff(village,5-rotations[0]);
+        village.createReff(rice,dir[rotations[0]]);
+        rice.createReff(village,5-dir[rotations[0]]);
 
         boardController.placeTile(village);
 
         /* here i will create the refferences
         Tile t = new VillageTile(0);
         boardController.placeTile(t);*/
+        setRotation(new int[0]);
         setMovementColor(cornflower_blue);
         render();
         //place the village tile on the board
@@ -275,10 +278,32 @@ public class GameFacade {
 	}
 
 	public int placeThreeBlock() throws Exception {
-		// place the three block on the board
-		// give the player the appropriate points (if applicable) and return the
-		// points to the command
-		return 0;
+        HexSpace current = boardController.getCurrentSpace();
+        int[] rotations = boardController.getRotations();
+        VillageTile village = new VillageTile(2);
+        RiceTile rice = new RiceTile(2);
+        RiceTile rice2 = new RiceTile(2);
+        int[] dir = {0,1,2,5,4,3};
+            village.createReff(rice, dir[rotations[0]]);
+            village.createReff(rice2, dir[rotations[1]]);
+
+            rice.createReff(village, 5 - dir[rotations[0]]);
+            rice.createReff(rice2, (5 -dir[rotations[1]]+6)%6);
+
+            rice2.createReff(village, 5 - dir[rotations[1]]);
+            rice2.createReff(rice,  (5-dir[rotations[0]]+6)%6);
+
+        boardController.placeTile(village);
+
+        /* here i will create the refferences
+        Tile t = new VillageTile(0);
+        boardController.placeTile(t);*/
+        setRotation(new int[0]);
+        setMovementColor(cornflower_blue);
+        render();
+        //place the village tile on the board
+        //give the player the appropriate points and return them
+        return 0;
 	}
 
 	public void removeThreeBlock(int i) {
@@ -542,7 +567,8 @@ public class GameFacade {
 	}
 
 	public void rotate() {
-		//boardController.rotate();
+		boardController.rotate();
+        render();
 	}
 
 }

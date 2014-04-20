@@ -66,6 +66,8 @@ public abstract class State {
 
 	public abstract void keyPressedEnter();
 
+    public abstract void keyPressedSpace();
+
 	public StateType getCurrentState() {
 		return stateType;
 	}

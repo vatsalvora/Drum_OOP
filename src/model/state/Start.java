@@ -123,4 +123,9 @@ public class Start extends State {
     public void keyPressedEnter() {
 		// TODO: Create new game
     }
+    @Override
+    public void keyPressedSpace() {
+        incorrectKeyPressed();
+    }
+
 }

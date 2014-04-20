@@ -103,11 +103,22 @@ public class Board {
 
     public void place(Tile tile) {
         current.place(tile);
+
+        for(int i=0; i<6; i++){
+            Tile t = tile.getReferences(i);
+            if(t!=null) {
+                HexSpace s = (HexSpace) (current.getNeighbor(i));
+                s.place(t);
+            }
+        }
     }
 
     public void rotateClockwise(){
-        for(int i = 0; i < rotations.length; i++)
-            rotations[i] = (rotations[i] + 1)%6;
+
+        for(int i = 0; i < rotations.length; i++) {
+            rotations[i] = ((rotations[i] - 1)+6) % 6;
+        }
+
     }
 
 

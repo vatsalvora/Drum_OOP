@@ -3,12 +3,18 @@ package model.commands;
 import model.Command;
 import model.GameFacade;
 
+import java.awt.*;
+
 public class PlaceDoubleLandTile implements Command {
     private GameFacade b;
     private int points;
 
     public PlaceDoubleLandTile(GameFacade b) {
         this.b = b;
+        int[] rotation = {2};
+        b.setRotation(rotation);
+        b.setMovementColor(Color.GREEN);
+        b.render();
         points = 0;
 
     }

@@ -31,6 +31,10 @@ public class VillageTile extends Tile {
                 neighbors[i] = null;
     }
 
+    public Tile getReferences(int i){
+        return neighbors[i];
+    }
+
     public void createReff(Tile tile, int index){
         neighbors[index] = tile;
     }

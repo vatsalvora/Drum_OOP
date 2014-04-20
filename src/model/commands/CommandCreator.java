@@ -136,4 +136,9 @@ public class CommandCreator {
 	public void load(String filename) {
 
 	}
+
+    public void rotate(){
+        Command c = new Rotate(gameFacade);
+        c.execute();
+    }
 }

@@ -5,12 +5,18 @@ import model.GameFacade;
 import model.customExceptions.NoThreeBlockLeftException;
 import model.customExceptions.NotEnoughAPException;
 
+import java.awt.*;
+
 public class PlaceTripleLandTile implements Command {
     private GameFacade b;
     private int points;
 
     public PlaceTripleLandTile(GameFacade b) {
         this.b = b;
+        int[] rotation = {2,3};
+        b.setRotation(rotation);
+        b.setMovementColor(Color.MAGENTA);
+        b.render();
         points = 0;
     }
 
@@ -26,7 +32,7 @@ public class PlaceTripleLandTile implements Command {
             try{
                 b.placeOtherBlock();
                 try{
-                    points = b.placeIrrigationTile();
+                    points = b.placeThreeBlock();
                     //save self
                 }
                 catch(Exception e)
