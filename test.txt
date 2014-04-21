@@ -7,4 +7,5 @@ model.commands.Move3
 model.commands.Move3
 model.commands.Move3
 model.commands.Move3
-model.commands.PlaceTripleLandTile 0
+model.commands.Move3
+model.commands.PlaceVillageTile 0

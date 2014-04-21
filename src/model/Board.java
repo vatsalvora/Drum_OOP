@@ -149,4 +149,7 @@ public class Board {
     }
 
 
+    public void undoDeveloperPlacement() {
+        current.removeDeveloper();
+    }
 }

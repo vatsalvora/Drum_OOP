@@ -182,4 +182,7 @@ public class BoardController {
         board.rotateClockwise();
     }
 
+    public void undoDeveloperPlacement() {
+        board.undoDeveloperPlacement();
+    }
 }

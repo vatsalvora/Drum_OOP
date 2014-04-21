@@ -40,7 +40,6 @@ public class CommandCreator {
         gameFacade.setPalaceLvl(0);
         gameFacade.setRotation(new int[0]);
         gameFacade.render();
-        System.out.println(this);
     }
 
     public void move1() {

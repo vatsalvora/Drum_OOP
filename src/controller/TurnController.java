@@ -56,6 +56,7 @@ public class TurnController {
                 currentPlayerIndex = 0;
             }
             currentPlayer = players[currentPlayerIndex];
+            System.out.println(currentPlayer.getName());
             actionTokenUsed = false;
             blockPlayed = 0;
             actionPoints = 6;
@@ -72,6 +73,9 @@ public class TurnController {
             currentPlayerIndex = numPlayers - 1;
         }
         currentPlayer = players[currentPlayerIndex];
+        System.out.println(currentPlayer.getName());
+        blockPlayed = 6;
+        actionPoints = 0;
     }
 
     public Color getPlayerViewColor(){return currentPlayer.getViewColor();}
@@ -180,6 +184,8 @@ public class TurnController {
     }
 
     public void returnVillageBlock() {
+        System.out.println(currentPlayer);
+        System.out.println(blockPlayed);
         currentPlayer.returnVillageBlock();
         actionPoints++;
         blockPlayed--;
@@ -337,7 +343,7 @@ public class TurnController {
         return actionPoints;
     }
 
-    private boolean playedBlock() {
+    public boolean playedBlock() {
         return (blockPlayed > 0);
     }
 

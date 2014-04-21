@@ -145,6 +145,7 @@ public class GameFacade {
             HexSpace current = boardController.getCurrentSpace();
             Tile t = new VillageTile(0);
             boardController.placeTile(t);
+
             setMovementColor(cornflower_blue);
             setDevColor(cornflower_blue);
             render();
@@ -384,11 +385,13 @@ public class GameFacade {
 	}
 
 	public void changeTurn() throws BlockNotPlayedException {
+
 		turnController.nextTurn();
+        System.out.println(turnController.getCurrentPlayer());
 	}
 
 	public void undoChangeTurn() {
-		turnController.previousTurn();
+        turnController.previousTurn();
 	}
 
 	public void endPalaceFestival() {
@@ -474,6 +477,7 @@ public class GameFacade {
     public void undoDeveloperPlacement(int i) throws Exception
     {
         turnController.undoDeveloperPlacement(i);
+        boardController.undoDeveloperPlacement();
         removeDeveloper();
     }
 
