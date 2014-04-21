@@ -22,9 +22,15 @@ public class CommandCreator {
     }
 
     public void placeDoubleLandTile() {
-        Command c = new SetRotationDouble(gameFacade);
+        Command c = new SetRotation(gameFacade, new int[]{2});
         c.execute();
         commands.push(c);
+        Command m = new ChangeMovementColor(gameFacade,Color.GREEN,Color.GREEN);
+        m.execute();
+        commands.push(m);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceDoubleLandTile(gameFacade);
     }
 
@@ -151,42 +157,95 @@ public class CommandCreator {
     }
 
     public void placeTripleLandTile() {
-        Command c = new SetRotationTriple(gameFacade);
+        Command c = new SetRotation(gameFacade, new int[]{2,3});
         c.execute();
         commands.push(c);
+        Command m = new ChangeMovementColor(gameFacade,Color.MAGENTA,Color.MAGENTA);
+        m.execute();
+        commands.push(m);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceTripleLandTile(gameFacade);
 
     }
 
     public void placeIrrigationTile() {
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command m = new ChangeMovementColor(gameFacade,Color.BLUE,Color.BLUE);
+        m.execute();
+        commands.push(m);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceIrrigationTile(gameFacade);
 
     }
 
     public void placeRiceTile() {
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command m = new ChangeMovementColor(gameFacade,Color.GREEN,Color.GREEN);
+        m.execute();
+        commands.push(m);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceRiceTile(gameFacade);
 
     }
 
     public void placeVillageTile() {
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command m = new ChangeMovementColor(gameFacade,Color.RED,Color.RED);
+        m.execute();
+        commands.push(m);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceVillageTile(gameFacade);
 
     }
 
     public void placePalaceTile() {
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command m = new ChangeMovementColor(gameFacade,Color.YELLOW,Color.YELLOW);
+        m.execute();
+        commands.push(m);
+
         int lvl = gameFacade.getPalaceLvl();
-        if(lvl<8) lvl+=2;
-        gameFacade.setPalaceLvl(lvl);
+        if(lvl<=8) lvl+=2;
+
+        Command p = new ChangeLvlDisplay(gameFacade,lvl);
+        p.execute();
+        commands.push(p);
+
         current = new PlacePalaceTile(gameFacade, lvl);
 
     }
 
     public void upgradePalaceTile() {
-        PalaceTile p = (PalaceTile)gameFacade.getCurrentSpace().getTopTile();
-        if(p != null){
-            if(p.getLvl() > gameFacade.getPalaceLvl() && p.getLvl()<8) gameFacade.setPalaceLvl(p.getLvl()+2);
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command m = new ChangeMovementColor(gameFacade,Color.YELLOW,Color.YELLOW);
+        m.execute();
+        commands.push(m);
+        PalaceTile pt = (PalaceTile)gameFacade.getCurrentSpace().getTopTile();
+        if(pt != null){
             int lvl = gameFacade.getPalaceLvl();
-            if(lvl <8) gameFacade.setPalaceLvl(lvl+2);
+            if(pt.getLvl() > lvl) lvl = pt.getLvl();
+            if(lvl <=8) lvl += 2;
+            Command p = new ChangeLvlDisplay(gameFacade,lvl);
+            p.execute();
+            commands.push(p);
             current = new PlacePalaceTile(gameFacade, lvl);
 
         }
@@ -209,6 +268,15 @@ public class CommandCreator {
 
     public void placeDeveloper()
     {
+        Command m = new ChangeMovementColor(gameFacade,gameFacade.getCurrentPlayerColor(),cornflower_blue);
+        m.execute();
+        commands.push(m);
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
+        commands.push(p);
         current = new PlaceDeveloper(gameFacade);
     }
 

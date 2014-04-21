@@ -13,11 +13,6 @@ public class PlaceRiceTile implements Command {
 
 	public PlaceRiceTile(GameFacade b) {
 		this.b = b;
-        b.setMovementColor(Color.GREEN);
-        b.setDevColor(Color.GREEN);
-        int[] rotation = new int[0];
-        b.setRotation(rotation);
-        b.render();
         points = 0;
         save = true;
 	}
@@ -40,18 +35,14 @@ public class PlaceRiceTile implements Command {
                 save = false;
                 b.returnRiceTile();
                 b.sendErrorMessage(e.toString());
-                b.setDevColor(cornflower_blue);
-                b.setMovementColor(new Color(100, 149, 237));
-                b.render();
+                b.resetView();
             }
         }
         catch(Exception e)
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setDevColor(cornflower_blue);
-            b.setMovementColor(new Color(100, 149, 237));
-            b.render();
+            b.resetView();
         }
 
 

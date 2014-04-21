@@ -17,11 +17,6 @@ public class PlacePalaceTile implements Command {
     public PlacePalaceTile(GameFacade b, int level) {
         this.b = b;
         this.level = level;
-        b.setMovementColor(Color.YELLOW);
-        b.setDevColor(Color.YELLOW);
-        int[] rotation = new int[0];
-        b.setRotation(rotation);
-        b.render();
         points = 0;
         save = true;
     }
@@ -44,33 +39,18 @@ public class PlacePalaceTile implements Command {
                     save = false;
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
-                    b.setMovementColor(cornflower_blue);
-                    b.setDevColor(cornflower_blue);
-                    int[] rotation = new int[0];
-                    b.setRotation(rotation);
-                    b.setPalaceLvl(0);
-                    b.render();
+                    b.resetView();
                 }
             } catch (NotEnoughAPException e) {
                 save = false;
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
-                b.setMovementColor(cornflower_blue);
-                b.setDevColor(cornflower_blue);
-                int[] rotation = new int[0];
-                b.setRotation(rotation);
-                b.setPalaceLvl(0);
-                b.render();
+                b.resetView();
             }
         } catch (NoPalaceTilesLeft e) {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setMovementColor(cornflower_blue);
-            b.setDevColor(cornflower_blue);
-            int[] rotation = new int[0];
-            b.setRotation(rotation);
-            b.setPalaceLvl(0);
-            b.render();
+            b.resetView();
         }
     }
 

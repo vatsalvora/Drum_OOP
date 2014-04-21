@@ -43,10 +43,6 @@ public class PlaceTripleLandTile implements Command {
                     save = false;
                     b.returnThreeBlock();
                     b.sendErrorMessage(e.toString());
-                    int[] rotation = new int[0];
-                    b.setRotation(rotation);
-                    b.setDevColor(cornflower_blue);
-                    b.setMovementColor(new Color(100, 149, 237));
                     b.render();
                 }
             }
@@ -55,22 +51,14 @@ public class PlaceTripleLandTile implements Command {
                 save = false;
                 b.returnThreeBlock();
                 b.sendErrorMessage(e.toString());
-                int[] rotation = new int[0];
-                b.setRotation(rotation);
-                b.setDevColor(cornflower_blue);
-                b.setMovementColor(new Color(100, 149, 237));
-                b.render();
+                b.resetView();
             }
         }
         catch(NoThreeBlockLeftException e)
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            int[] rotation = new int[0];
-            b.setRotation(rotation);
-            b.setDevColor(cornflower_blue);
-            b.setMovementColor(new Color(100, 149, 237));
-            b.render();
+            b.resetView();
         }
     }
 

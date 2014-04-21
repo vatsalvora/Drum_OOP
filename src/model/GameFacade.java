@@ -195,6 +195,13 @@ public class GameFacade {
         return 0;
     }
 
+    public void resetView(){
+        setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
+        setPalaceLvl(0);
+        setRotation(new int[0]);
+        render();
+    }
     public void pullRiceTile() throws Exception
     {
         turnController.placeRiceBlock();

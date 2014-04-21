@@ -1,24 +1,21 @@
 package model.commands;
 
-/**
- * Created by Vatsal on 4/20/2014.
- */
-
 import model.Command;
 import model.GameFacade;
 
-
 /**
  * Created by Vatsal on 4/20/2014.
  */
-public class SetRotationTriple implements Command {
+public class SetRotation implements Command {
     private GameFacade b;
-    public SetRotationTriple(GameFacade b){
+    private int[] rotation;
+    public SetRotation(GameFacade b, int[] rotation){
         this.b = b;
+        this.rotation = rotation;
     }
     @Override
     public void execute() {
-        b.setRotation(new int[]{2,3});
+        b.setRotation(rotation);
     }
 
     @Override
@@ -31,4 +28,3 @@ public class SetRotationTriple implements Command {
         return true;
     }
 }
-

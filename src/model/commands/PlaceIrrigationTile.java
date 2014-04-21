@@ -15,11 +15,6 @@ public class PlaceIrrigationTile implements Command {
 	public PlaceIrrigationTile(GameFacade b) {
         save = true;
 		this.b = b;
-        b.setMovementColor(Color.BLUE);
-        int[] rotation = new int[0];
-        b.setRotation(rotation);
-        b.setDevColor(Color.BLUE);
-        b.render();
         points = 0;
 	}
 
@@ -43,8 +38,7 @@ public class PlaceIrrigationTile implements Command {
                     save = false;
                     b.returnIrrigationTile();
                     b.sendErrorMessage(e.toString());
-                    b.setMovementColor(new Color(100, 149, 237));
-                    b.render();
+                    b.resetView();
                 }
             }
             catch(Exception e)
@@ -52,16 +46,14 @@ public class PlaceIrrigationTile implements Command {
                 save = false;
                 b.returnIrrigationTile();
                 b.sendErrorMessage(e.toString());
-                b.setMovementColor(new Color(100, 149, 237));
-                b.render();
+                b.resetView();
             }
         }
         catch(NoIrrigationLeftException e)
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setMovementColor(new Color(100, 149, 237));
-            b.render();
+            b.resetView();
         }
 	}
 

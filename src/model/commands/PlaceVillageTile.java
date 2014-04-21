@@ -13,11 +13,6 @@ public class PlaceVillageTile implements Command {
 
 	public PlaceVillageTile(GameFacade b) {
 		this.b = b;
-        b.setMovementColor(Color.RED);
-        int[] rotation = new int[0];
-        b.setRotation(rotation);
-        b.setDevColor(Color.RED);
-        b.render();
         points = 0;
         save = true;
 	}
@@ -41,22 +36,14 @@ public class PlaceVillageTile implements Command {
                 save = false;
                 b.returnVillageTile();
                 b.sendErrorMessage(e.toString());
-                b.setMovementColor(cornflower_blue);
-                int[] rotation = new int[0];
-                b.setRotation(rotation);
-                b.setDevColor(cornflower_blue);
-                b.render();
+                b.resetView();
             }
         }
         catch(Exception e)
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setMovementColor(cornflower_blue);
-            int[] rotation = new int[0];
-            b.setRotation(rotation);
-            b.setDevColor(cornflower_blue);
-            b.render();
+            b.resetView();
         }
     }
 

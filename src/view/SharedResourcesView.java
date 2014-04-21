@@ -76,7 +76,7 @@ public class SharedResourcesView extends JFrame
                 JPanel playerPanel = new JPanel();
                 playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.LINE_AXIS));
                 playerPanel.setMinimumSize(new Dimension(400,400));
-            // Empty border template
+                // Empty border template
 				Border emptyBorder = BorderFactory.createEmptyBorder();
 	
 	
