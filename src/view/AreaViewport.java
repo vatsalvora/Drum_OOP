@@ -294,8 +294,15 @@ public class AreaViewport {
 
             for(Space s: path){
                 Location loc = s.getLocation();
-                fillHex(loc.getXLocation(), loc.getYLocation(), "",
-                        Color.RED,g2);
+                if(s.equals(board.getCurrentSpace()))
+                {
+                    fillHex(loc.getXLocation(), loc.getYLocation(), "",
+                            movement,devColor,g2);
+                }
+                else {
+                    fillHex(loc.getXLocation(), loc.getYLocation(), "",
+                            Color.RED,g2);
+                }
             }
             path = new ArrayList<Space>(0);
         }
