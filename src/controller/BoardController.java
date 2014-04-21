@@ -9,7 +9,7 @@ public class BoardController {
 	private Board board;
 	private DeveloperPathFinding pathFinding;
 	private Developer currentDeveloper;
-	private Location currentDevLocation;
+	private Space currentDevLocation;
 
 	public BoardController() {
 		board = new Board();
@@ -23,7 +23,7 @@ public class BoardController {
 	}
 
 	public void moveDeveloper() throws Exception {
-		HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
+		HexSpace s = (HexSpace) currentDevLocation;
 		if (!board.getCurrentSpace().hasDeveloper()) {
 			board.getCurrentSpace().placeDeveloper(s.getDeveloper());
             s.removeDeveloper();
@@ -34,7 +34,7 @@ public class BoardController {
 
     public void unMoveDeveloper()
     {
-        HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
+        HexSpace s = (HexSpace) currentDevLocation;
         try{
             s.placeDeveloper(board.getCurrentSpace().getDeveloper());
         }
@@ -145,7 +145,8 @@ public class BoardController {
 		if (board.getCurrentSpace().hasDeveloper()) {
 			if (board.getCurrentSpace().getDeveloper().getColor() == color) {
 				currentDeveloper = board.getCurrentSpace().getDeveloper();
-				currentDevLocation = board.getCurrentSpace().getLocation();
+				currentDevLocation = board.getCurrentSpace();
+                System.out.println("Developer selected at location: " + board.getCurrentSpace().getLocation().toString());
 			} else {
 				throw new WrongDeveloperColorException();
 			}
@@ -160,7 +161,8 @@ public class BoardController {
 	}
 
 	public ArrayList<Space> shortestPath() throws Exception {
-		return pathFinding.getShortestPath(board.getSpace(currentDevLocation),
+        HexSpace start = (HexSpace) currentDevLocation;
+		return pathFinding.getShortestPath(currentDevLocation,
 				board.getCurrentSpace());
 	}
 

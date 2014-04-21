@@ -1,5 +1,7 @@
 package model;
 
+import model.customExceptions.NoConnectingPathException;
+
 import java.util.ArrayList;
 
 public class DeveloperPathFinding implements PathFinding
@@ -31,7 +33,7 @@ public class DeveloperPathFinding implements PathFinding
         System.out.println("AP used for move would be: " + APUsed);
         if(shortestPath.size() == 1 || APUsed == 99)
         {
-            //throw new NoConnectingPathException();
+            throw new NoConnectingPathException();
         }
         return shortestPath;
 	}
@@ -59,44 +61,30 @@ public class DeveloperPathFinding implements PathFinding
         }
         else
         {
-            System.out.println("Let's check the neighbors.");
-            for(int i = 0; i < 6; i++)
-            {
-                HexSpace dummy = (HexSpace) c.getNeighbor(i);
-                System.out.println("The location of c's #" + i + " neighbor is "  +dummy.getLocation().toString());
-            }
             for(int i = 0; i < 6; i++)
             {
                 if(c.getNeighbor(i) != null) {
                     HexSpace s = (HexSpace) c.getNeighbor(i);
-                    if (s != null) {
-                        System.out.println("The location of this neighbor is: " + s.getLocation().toString());
-                        if (s.getTopTile() != null) {
-                            System.out.println("Checking a non-null space.");
-                            int newAP = 0 + currAP;
-                            System.out.println("Made new AP.");
-                            if (!s.getTopTile().compareTo(c.getTopTile())) {
-                                newAP++;
-                            }
-                            System.out.println("Checked to see if the tiles are different.");
-                            if (spaceHolder.contains(s)) {
-                                System.out.println("Space is already in list.");
-                                if (spaceAP.get(spaceHolder.indexOf(s)) > newAP) {
-                                    spaceAP.set(spaceHolder.indexOf(s), newAP);
-                                    ArrayList<Space> newList = new ArrayList<Space>();
-                                    newList.addAll(list);
-                                    newList.add(s);
-                                    traverse(s, e, newList, newAP);
-                                }
-                            } else {
-                                System.out.println("Space is not in the list yet.");
-                                spaceHolder.add(s);
-                                spaceAP.add(newAP);
+                    if (!s.spaceEmpty()) {
+                        int newAP = 0 + currAP;
+                        if (!s.getTopTile().compareTo(c.getTopTile())) {
+                            newAP++;
+                        }
+                        if (spaceHolder.contains(s)) {
+                            if (spaceAP.get(spaceHolder.indexOf(s)) > newAP) {
+                                spaceAP.set(spaceHolder.indexOf(s), newAP);
                                 ArrayList<Space> newList = new ArrayList<Space>();
                                 newList.addAll(list);
                                 newList.add(s);
                                 traverse(s, e, newList, newAP);
                             }
+                        } else {
+                            spaceHolder.add(s);
+                            spaceAP.add(newAP);
+                            ArrayList<Space> newList = new ArrayList<Space>();
+                            newList.addAll(list);
+                            newList.add(s);
+                            traverse(s, e, newList, newAP);
                         }
                     }
                 }
