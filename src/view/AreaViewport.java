@@ -111,39 +111,27 @@ public class AreaViewport {
     }
 
 
-    public  void fillHex(int i, int j, String n, Color color, Graphics2D g2) {
+
+    public  void fillHex(int i, int j, String n,  Graphics2D g2, Color... color) {
         char c;
         int x = i * (s + t);
         int y = j * h + (i % 2) * h / 2;
         Polygon poly = hex(x, y);
-        g2.setColor(color);
+        g2.setColor(color[0]);
         g2.fillPolygon(poly);
-        g2.setColor(Color.BLACK);
-
-        g2.drawPolygon(poly);
-
-        g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
-
-    }
-
-    public  void fillHex(int i, int j, String n, Color color, Color devColor, Graphics2D g2) {
-        char c;
-        int x = i * (s + t);
-        int y = j * h + (i % 2) * h / 2;
-        Polygon poly = hex(x, y);
-        g2.setColor(color);
-        g2.fillPolygon(poly);
-        g2.setColor(Color.BLACK);
+        if(color.length>2){
+            g2.setColor(color[2]);
+        }
+        else g2.setColor(Color.BLACK);
         g2.drawPolygon(poly);
 
 
-
-        g2.setColor(devColor);
-        g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
-        g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
-
+        if(color.length>1) {
+            g2.setColor(color[1]);
+            g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+            g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        }
         g2.setColor(Color.BLACK);
-
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
 
     }
@@ -274,17 +262,17 @@ public class AreaViewport {
                         color = movement;
                         if(palaceLvl>0) status = palaceLvl+"";
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                                color,devColor,g2);
+                                g2,color,devColor);
                     }
                     else if(curr.hasDeveloper()) {
                         Developer dev = curr.getDeveloper();
                         Color developerColor = dev.getViewColor();
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                                color,developerColor,g2);
+                                g2,color,developerColor);
                     }
                     else {
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                                color, g2);
+                                g2, color);
                     }
                 }
             }
@@ -293,15 +281,17 @@ public class AreaViewport {
             // g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 
             for(Space s: path){
-                Location loc = s.getLocation();
-                if(s.equals(board.getCurrentSpace()))
+                HexSpace h = (HexSpace)s;
+                Location loc = h.getLocation();
+                Color color = (h.onBorder() && h.getLocation().getXLocation()>3) ? GREEN : h.getColor();
+                if(h.equals(board.getCurrentSpace()))
                 {
                     fillHex(loc.getXLocation(), loc.getYLocation(), "",
-                            movement,devColor,g2);
+                            g2,movement,devColor,Color.RED);
                 }
                 else {
                     fillHex(loc.getXLocation(), loc.getYLocation(), "",
-                            Color.RED,g2);
+                            g2,color,color,Color.RED);
                 }
             }
             path = new ArrayList<Space>(0);
