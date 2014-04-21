@@ -22,7 +22,8 @@ public class start {
 
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					UIManager.setLookAndFeel(UIManager
+							.getSystemLookAndFeelClassName());
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -97,7 +98,8 @@ public class start {
 				int y = (getHeight() - totalHeight) / 2;
 
 				for (String text : menuItems) {
-					menuBounds.put(text, new Rectangle(x, y, width + 10, height + 10));
+					menuBounds.put(text, new Rectangle(x, y, width + 10,
+							height + 10));
 					y += height + 10 + 5;
 				}
 
@@ -141,8 +143,8 @@ public class start {
 
 	public interface MenuItemPainter {
 
-		public void paint(Graphics2D g2d, String text, Rectangle bounds, boolean isSelected,
-				boolean isFocused);
+		public void paint(Graphics2D g2d, String text, Rectangle bounds,
+				boolean isSelected, boolean isFocused);
 
 		public Dimension getPreferredSize(Graphics2D g2d, String text);
 
@@ -151,20 +153,22 @@ public class start {
 	public class MenuPainter implements MenuItemPainter {
 
 		public Dimension getPreferredSize(Graphics2D g2d, String text) {
-			return g2d.getFontMetrics().getStringBounds(text, g2d).getBounds().getSize();
+			return g2d.getFontMetrics().getStringBounds(text, g2d).getBounds()
+					.getSize();
 		}
 
-		public void paint(Graphics2D g2d, String text, Rectangle bounds, boolean isSelected,
-				boolean isFocused) {
+		public void paint(Graphics2D g2d, String text, Rectangle bounds,
+				boolean isSelected, boolean isFocused) {
 			FontMetrics fm = g2d.getFontMetrics();
 			int x = bounds.x + ((bounds.width - fm.stringWidth(text)) / 2);
-			int y = bounds.y + ((bounds.height - fm.getHeight()) / 2) + fm.getAscent();
+			int y = bounds.y + ((bounds.height - fm.getHeight()) / 2)
+					+ fm.getAscent();
 			g2d.setColor(isSelected ? Color.WHITE : Color.LIGHT_GRAY);
 			g2d.drawString(text, x, y);
 		}
 
-		protected void paintBackground(Graphics2D g2d, Rectangle bounds, Color background,
-				Color foreground) {
+		protected void paintBackground(Graphics2D g2d, Rectangle bounds,
+				Color background, Color foreground) {
 			g2d.setColor(background);
 			g2d.fill(bounds);
 			g2d.setColor(foreground);

@@ -1,23 +1,18 @@
 package view.keypressed;
 
-import model.Location;
 import model.state.State;
 
 import java.awt.event.KeyEvent;
 
-/**
- * Created by devan on 4/ESC4/ESC4.
- */
 public class KeyPressedESC extends KeyPressed {
 
-    public KeyPressedESC(State state) {
-        super(state);
-    }
+	public KeyPressedESC(State state) {
+		super(state);
+	}
 
-    @Override
-    public void keyTyped(KeyEvent ke) {
-        if(ke.getKeyCode() == KeyEvent.VK_ESCAPE){
-            state.keyPressedESC();
-        }
-    }
+	public void keyTyped(KeyEvent ke) {
+		if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			state.keyPressedESC();
+		}
+	}
 }

@@ -11,7 +11,9 @@ public class Replay extends State {
 	public Replay(GameFacade gameFacade) {
 		super(gameFacade);
 	}
-    public Replay(){}
+
+	public Replay() {
+	}
 
 	@Override
 	public void keyPressed4() {
@@ -122,24 +124,34 @@ public class Replay extends State {
 	public void keyPressedEnter() {
 		incorrectKeyPressed();
 	}
-    @Override
-    public void keyPressedSpace() {
-        incorrectKeyPressed();
-    }
 
-    public void keyPressedT() {
-        State t = new Turn();
-        KeyPressed.setState(t);
-    }
+	@Override
+	public void keyPressedSpace() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedC() { incorrectKeyPressed();}
+	public void keyPressedT() {
+		State t = new Turn();
+		KeyPressed.setState(t);
+	}
 
-    public void keyPressedM() { incorrectKeyPressed();}
+	public void keyPressedC() {
+		incorrectKeyPressed();
+	}
 
-    public void keyPressedJ() {commandCreator.redoLastCommand(); }
+	public void keyPressedM() {
+		incorrectKeyPressed();
+	}
 
+	public void keyPressedJ() {
+		commandCreator.redoLastCommand();
+	}
 
-    public void keyPressedK() { commandCreator.undoLastCommand();}
+	public void keyPressedK() {
+		commandCreator.undoLastCommand();
+	}
 
-    public void keyPressedD() { incorrectKeyPressed();}
+	public void keyPressedD() {
+		incorrectKeyPressed();
+	}
 }
