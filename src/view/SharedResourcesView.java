@@ -18,6 +18,7 @@ public class SharedResourcesView extends JFrame
 		private JLabel numSixPalaceTiles;
 		private JLabel numEightPalaceTiles;
 		private JLabel numTenPalaceTiles;
+        private JLabel APLeft;
 		
 		private JTextArea player1;
 		private JTextArea player2;
@@ -268,6 +269,40 @@ public class SharedResourcesView extends JFrame
 					
 					this.palaceCards.setText("Player " + cp + "'s cards: " + tc.getPlayerCardInfo());
 					this.festivalCards.setText("Festival Card:\n"+festivalCard);
+
+                    if(tc.getCurrentPlayerIndex() == 0)
+                    {
+                        player1.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+                    }
+                    else
+                    {
+                        player1.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    }
+                    if(tc.getCurrentPlayerIndex() == 1)
+                    {
+                        player2.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+                    }
+                    else
+                    {
+                        player2.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    }
+                    if(tc.getCurrentPlayerIndex() == 2)
+                    {
+                        player3.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+                    }
+                    else
+                    {
+                        player3.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    }
+                    if(tc.getCurrentPlayerIndex() == 3)
+                    {
+                        player4.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+                    }
+                    else
+                    {
+                        player4.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                    }
+
 					this.player1.setText(p1);
 					this.player2.setText(p2);
 					this.player3.setText(p3);
