@@ -36,10 +36,10 @@ public class SharedResourcesView extends JFrame
 		private JLabel numEightPalaceTiles;
 		private JLabel numTenPalaceTiles;
 		
-		private JLabel player1;
-		private JLabel player2;
-		private JLabel player3;
-		private JLabel player4;
+		private JTextArea player1;
+		private JTextArea player2;
+		private JTextArea player3;
+		private JTextArea player4;
 
 		// Interactive fields
 		private JLabel palaceCards;
@@ -69,14 +69,14 @@ public class SharedResourcesView extends JFrame
 			    
 			    // Create our panels
 			    JPanel mainPanel = new JPanel();
-			    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS)); 
+			    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 			    
 				JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 				infoPanel.setMinimumSize(new Dimension(400,400));
-				JPanel playerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
-				infoPanel.setMinimumSize(new Dimension(400,400));
-				
-				// Empty border template
+                JPanel playerPanel = new JPanel();
+                playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.LINE_AXIS));
+                playerPanel.setMinimumSize(new Dimension(400,400));
+            // Empty border template
 				Border emptyBorder = BorderFactory.createEmptyBorder();
 	
 	
@@ -141,20 +141,28 @@ public class SharedResourcesView extends JFrame
 				numTenPalaceTiles.setMinimumSize(numTenPalaceTiles.getPreferredSize());
 				infoPanel.add(numTenPalaceTiles);
 				
-				player1 = customJLabel("Player 1");
-				player1.setMinimumSize(new Dimension(1000,1000));
+				player1 = new JTextArea(50,50);
+				player1.setMinimumSize(new Dimension(100,100));
+                player1.setPreferredSize(new Dimension(100,100));
+                player1.setMaximumSize(new Dimension(100,100));
 				playerPanel.add(player1);
 				
-				player2 = customJLabel("Player 2");
-				player2.setMinimumSize(new Dimension(400,400));
+				player2 = new JTextArea(50,50);
+				player2.setMinimumSize(new Dimension(100,100));
+                player2.setPreferredSize(new Dimension(100,100));
+                player2.setMaximumSize(new Dimension(100,100));
 				playerPanel.add(player2);
 				
-				player3 = customJLabel("Player 3");
-				player3.setMinimumSize(new Dimension(400,400));
+				player3 = new JTextArea(50,50);
+				player3.setMinimumSize(new Dimension(100,100));
+                player3.setPreferredSize(new Dimension(100,100));
+                player3.setMaximumSize(new Dimension(100,100));
 				playerPanel.add(player3);
 				
-				player4 = customJLabel("Player 4");
+				player4 = new JTextArea(50,50);
 				player4.setMinimumSize(new Dimension(100,100));
+                player4.setPreferredSize(new Dimension(100, 100));
+                player4.setMaximumSize(new Dimension(100,100));
 				playerPanel.add(player4);
 
 				// Add panels			
