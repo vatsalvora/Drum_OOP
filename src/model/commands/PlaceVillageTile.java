@@ -41,7 +41,10 @@ public class PlaceVillageTile implements Command {
                 save = false;
                 b.returnVillageTile();
                 b.sendErrorMessage(e.toString());
-                b.setMovementColor(new Color(100, 149, 237));
+                b.setMovementColor(cornflower_blue);
+                int[] rotation = new int[0];
+                b.setRotation(rotation);
+                b.setDevColor(cornflower_blue);
                 b.render();
             }
         }
@@ -49,7 +52,10 @@ public class PlaceVillageTile implements Command {
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setMovementColor(new Color(100, 149, 237));
+            b.setMovementColor(cornflower_blue);
+            int[] rotation = new int[0];
+            b.setRotation(rotation);
+            b.setDevColor(cornflower_blue);
             b.render();
         }
     }

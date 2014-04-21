@@ -103,7 +103,7 @@ public class Replay extends State {
 
 	@Override
 	public void keyPressedU() {
-		incorrectKeyPressed();
+		commandCreator.undoAll();
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class Replay extends State {
 
     public void keyPressedM() { incorrectKeyPressed();}
 
-    public void keyPressedJ() { incorrectKeyPressed();}
+    public void keyPressedJ() {commandCreator.redoLastCommand(); }
 
-    public void keyPressedK() { incorrectKeyPressed();}
+    public void keyPressedK() { commandCreator.undoLastCommand();}
 }

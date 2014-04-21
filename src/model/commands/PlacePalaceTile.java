@@ -44,21 +44,29 @@ public class PlacePalaceTile implements Command {
                     save = false;
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
-                    b.sendErrorMessage(e.toString());
-                    b.setMovementColor(new Color(100, 149, 237));
+                    b.setMovementColor(cornflower_blue);
+                    b.setDevColor(cornflower_blue);
+                    int[] rotation = new int[0];
+                    b.setRotation(rotation);
                     b.render();
                 }
             } catch (NotEnoughAPException e) {
                 save = false;
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
-                b.setMovementColor(new Color(100, 149, 237));
+                b.setMovementColor(cornflower_blue);
+                b.setDevColor(cornflower_blue);
+                int[] rotation = new int[0];
+                b.setRotation(rotation);
                 b.render();
             }
         } catch (NoPalaceTilesLeft e) {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.setMovementColor(new Color(100, 149, 237));
+            b.setMovementColor(cornflower_blue);
+            b.setDevColor(cornflower_blue);
+            int[] rotation = new int[0];
+            b.setRotation(rotation);
             b.render();
         }
     }

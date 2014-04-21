@@ -27,6 +27,7 @@ public class CommandCreator {
         if (current.save()) {
             commands.push(current);
         }
+        current = null;
     }
 
     public void move1() {
