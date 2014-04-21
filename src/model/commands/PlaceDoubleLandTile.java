@@ -10,10 +10,9 @@ public class PlaceDoubleLandTile implements Command {
     private int points;
     private boolean save;
     private Color cornflower_blue = new Color(100, 149, 237);
+    private int[] rotation;
     public PlaceDoubleLandTile(GameFacade b) {
         this.b = b;
-        int[] rotation = {2};
-        b.setRotation(rotation);
         b.setMovementColor(Color.GREEN);
         b.setDevColor(Color.GREEN);
         b.render();
@@ -39,7 +38,7 @@ public class PlaceDoubleLandTile implements Command {
                 save = false;
                 b.returnTwoBlock();
                 b.sendErrorMessage(e.toString());
-                int[] rotation = new int[0];
+                rotation = new int[0];
                 b.setRotation(rotation);
                 b.setDevColor(cornflower_blue);
                 b.setMovementColor(new Color(100, 149, 237));
@@ -50,7 +49,7 @@ public class PlaceDoubleLandTile implements Command {
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            int[] rotation = new int[0];
+            rotation = new int[0];
             b.setRotation(rotation);
             b.setDevColor(cornflower_blue);
             b.setMovementColor(new Color(100, 149, 237));
@@ -62,7 +61,7 @@ public class PlaceDoubleLandTile implements Command {
     }
 
     public void undo() {
-        b.undoRiceTile(points);
+        b.undoTwoBlock(0);
     }
 
     public boolean save()

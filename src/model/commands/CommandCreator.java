@@ -22,6 +22,9 @@ public class CommandCreator {
     }
 
     public void placeDoubleLandTile() {
+        Command c = new SetRotationDouble(gameFacade);
+        c.execute();
+        commands.push(c);
         current = new PlaceDoubleLandTile(gameFacade);
     }
 
@@ -37,6 +40,7 @@ public class CommandCreator {
         gameFacade.setPalaceLvl(0);
         gameFacade.setRotation(new int[0]);
         gameFacade.render();
+        System.out.println(this);
     }
 
     public void move1() {
@@ -148,6 +152,9 @@ public class CommandCreator {
     }
 
     public void placeTripleLandTile() {
+        Command c = new SetRotationTriple(gameFacade);
+        c.execute();
+        commands.push(c);
         current = new PlaceTripleLandTile(gameFacade);
 
     }
@@ -300,6 +307,8 @@ public class CommandCreator {
     public void rotate() {
         Command c = new Rotate(gameFacade);
         c.execute();
-        commands.push(c);
+        if (c.save()) {
+            commands.push(c);
+        }
     }
 }

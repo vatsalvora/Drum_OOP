@@ -15,8 +15,6 @@ public class PlaceTripleLandTile implements Command {
 
     public PlaceTripleLandTile(GameFacade b) {
         this.b = b;
-        int[] rotation = {2,3};
-        b.setRotation(rotation);
         b.setMovementColor(Color.MAGENTA);
         b.setDevColor(Color.MAGENTA);
         b.render();
