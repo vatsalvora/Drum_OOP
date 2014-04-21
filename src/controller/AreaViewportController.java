@@ -29,6 +29,8 @@ public class AreaViewportController {
     public void setDevColor(Color color){
         areaViewport.setDevColor(color);
     }
+    public int getPalaceLvl(){return areaViewport.getPalaceLvl();}
+    public void setPalaceLvl(int lvl) {areaViewport.setPalaceLvl(lvl);}
     public void setMovementColor(Color color){
         areaViewport.setMovement(color);
     }

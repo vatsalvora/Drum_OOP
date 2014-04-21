@@ -170,6 +170,12 @@ public class GameFacade {
 		turnController.decrementFamePoints(i);
 	}
 
+    public void setPalaceLvl(int lvl){
+        areaViewportController.setPalaceLvl(lvl);
+    }
+    public int getPalaceLvl(){
+        return areaViewportController.getPalaceLvl();
+    }
 
     public int placeRiceTile() throws Exception
     {
@@ -329,6 +335,8 @@ public class GameFacade {
         HexSpace current = boardController.getCurrentSpace();
         boardController.placeTile(t);
         setMovementColor(cornflower_blue);
+        setDevColor(cornflower_blue);
+        setPalaceLvl(0);
         //return fame points gained by palace placement
         return 0;
     }

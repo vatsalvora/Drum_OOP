@@ -48,6 +48,7 @@ public class PlacePalaceTile implements Command {
                     b.setDevColor(cornflower_blue);
                     int[] rotation = new int[0];
                     b.setRotation(rotation);
+                    b.setPalaceLvl(0);
                     b.render();
                 }
             } catch (NotEnoughAPException e) {
@@ -58,6 +59,7 @@ public class PlacePalaceTile implements Command {
                 b.setDevColor(cornflower_blue);
                 int[] rotation = new int[0];
                 b.setRotation(rotation);
+                b.setPalaceLvl(0);
                 b.render();
             }
         } catch (NoPalaceTilesLeft e) {
@@ -67,6 +69,7 @@ public class PlacePalaceTile implements Command {
             b.setDevColor(cornflower_blue);
             int[] rotation = new int[0];
             b.setRotation(rotation);
+            b.setPalaceLvl(0);
             b.render();
         }
     }

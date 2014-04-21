@@ -23,6 +23,7 @@ public class AreaViewport {
     public  int SCREEN_Width = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3; // screen
     public  int SCREEN_LEN = HEX_SIZE * (BOARD_SIZE + 1) + BORDERS * 3;
     public  boolean XYVertex = true;
+    private int palaceLvl;
 
     private  int s = 0; // length of one side
     private  int t = 0; // short side of 30o triangle outside of each hex
@@ -39,6 +40,7 @@ public class AreaViewport {
     public AreaViewport(Board board) {
         BOARD_SIZE = board.getWidth();
         scrolldown = 0;
+        palaceLvl = 0;
         devColor = cornflower_blue;
         int maxLen = board.getMaxLen();
         movement = new Color(100,149,237);
@@ -188,7 +190,10 @@ public class AreaViewport {
     public void addKeyListeners(List<KeyPressed> keySet){
         panel.addListeners(keySet);
     }
-
+    public void setPalaceLvl(int lvl){
+        palaceLvl = lvl;
+    }
+    public int getPalaceLvl(){return palaceLvl;}
     class DrawingPanel extends JPanel {
 
         private Board board;
@@ -239,7 +244,13 @@ public class AreaViewport {
 
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
-                    String status = (curr.getHeight()>0) ? curr.getHeight()+"" : "";
+                    String status = "";
+                    if(curr.getHeight()>0){
+                        if(curr.getCurrentSpace().getTopTile().getColor().equals(Color.YELLOW)){
+                            status = ((PalaceTile)curr.getTopTile()).getLvl()+"";
+                        }
+                        else status = curr.getHeight()+"";
+                    }
                     int[] dir = {0,1,2,5,4,3};
 
                     Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
@@ -250,6 +261,7 @@ public class AreaViewport {
                     if(curr.equals(board.getCurrentSpace()))
                     {
                         color = movement;
+                        if(palaceLvl>0) status = palaceLvl+"";
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
                                 color,devColor,g2);
                     }

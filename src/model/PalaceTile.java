@@ -8,73 +8,77 @@ import java.awt.*;
  * Created by Vatsal on 4/13/2014.
  * edited by jose
  */
-public class PalaceTile extends Tile {
+public class PalaceTile extends Tile{
 
 
     private Color color;
-    private final Tile[] neighbors = new Tile[6];
-    private int numberOfNeighbors;
+    private int lvl;
 
 
-    public PalaceTile(int numberOfNeighbors) {
-
+    public PalaceTile(int lvl) {
+        this.lvl = lvl;
         assignColor(218, 165, 32);
-        initNeighbors();
-        assignNumberOfNeighbors(numberOfNeighbors);
-    }
-
-    public void assignNumberOfNeighbors(int numberOfNeighbors) {
-        this.numberOfNeighbors = numberOfNeighbors;
-    }
-
-    public void initNeighbors() {
-
-        for (int i = 0; i < neighbors.length; i++)
-            neighbors[i] = null;
-    }
-
-    public Tile getReferences(int i) {
-        return neighbors[i];
     }
 
 
-    public int[] getNeighborsIndex() {
-        int[] temp = new int[numberOfNeighbors];
 
-        for (int i = 0, j = 0; i < neighbors.length; i++)
-            if (hasNeighborAt(i))
-                temp[j++] = i;
 
-        return temp;
-    }
-
-    private boolean hasNeighborAt(int index) {
-        return (neighbors[index] != null);
-    }
-
-    public Tile getNeighborAt(int index) {
-        return neighbors[index];
-    }
-
-    public void createReff(Tile tile, int index) {
-        neighbors[index] = tile;
-    }
-
-    public void removeReff(int index) {
-        neighbors[index] = null;
-    }
 
     public void assignColor(int a, int b, int c) {
-        color = new Color(a, b, c);
+        color = Color.YELLOW;
+    }
+
+    @Override
+    public Tile getReferences(int i) {
+        return null;
+    }
+
+    @Override
+    public boolean compareTo(Tile t) {
+        return false;
+    }
+
+    public int getLvl(){
+        return lvl;
     }
 
     public Color getColor() {
         return color;
     }
 
-    public boolean compareTo(Tile t) {
+    @Override
+    public void assignNumberOfNeighbors(int numberOfNeighbors) {
 
-        return (t instanceof PalaceTile);
+    }
+
+    @Override
+    public void initNeighbors() {
+
+    }
+
+    @Override
+    public int[] getNeighborsIndex() {
+        return new int[0];
+    }
+
+    @Override
+    public void createReff(Tile tile, int index) {
+
+    }
+
+    @Override
+    public Tile getNeighborAt(int index) {
+        return null;
+    }
+
+    @Override
+    public void removeReff(int index) {
+
+    }
+
+    public boolean compareTo(Object o) {
+
+        return (o instanceof PalaceTile);
     }
 
 
@@ -87,15 +91,10 @@ public class PalaceTile extends Tile {
         }
 
 
-        if (check)
-            throw new SameBlockException("Cannot place " + (numberOfNeighbors + 1) + "block on top of a" + (numberOfNeighbors + 1));
-    }
+     }
 
     public String toString() {
-        String tile = "PalaceTile with: ";
-        int[] neigh = getNeighborsIndex();
-        for (int i = 0; i < numberOfNeighbors; i++)
-            tile += neigh[i] + "\t";
+        String tile = "PalaceTile with lvl: "+ lvl;
         return tile;
     }
 

@@ -4,7 +4,9 @@ import controller.FileController;
 import model.ChangeTurn;
 import model.Command;
 import model.GameFacade;
+import model.PalaceTile;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Stack;
 
@@ -13,6 +15,7 @@ public class CommandCreator {
     private Command current;
     private Stack<Command> commands = new Stack<Command>();
     private Stack<Command> secondCommands = new Stack<Command>();
+    private Color cornflower_blue = new Color(100, 149, 237);
 
     public CommandCreator(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
@@ -28,6 +31,12 @@ public class CommandCreator {
             commands.push(current);
         }
         current = null;
+
+        gameFacade.setDevColor(cornflower_blue);
+        gameFacade.setMovementColor(cornflower_blue);
+        gameFacade.setPalaceLvl(0);
+        gameFacade.setRotation(new int[0]);
+        gameFacade.render();
     }
 
     public void move1() {
@@ -158,13 +167,23 @@ public class CommandCreator {
 
     }
 
-    public void placePalaceTile(int level) {
-        current = new PlacePalaceTile(gameFacade, level);
+    public void placePalaceTile() {
+        int lvl = gameFacade.getPalaceLvl();
+        if(lvl<8) lvl+=2;
+        gameFacade.setPalaceLvl(lvl);
+        current = new PlacePalaceTile(gameFacade, lvl);
 
     }
 
-    public void upgradePalaceTile(int level) {
-        current = new PlacePalaceTile(gameFacade, level);
+    public void upgradePalaceTile() {
+        PalaceTile p = (PalaceTile)gameFacade.getCurrentSpace().getTopTile();
+        if(p != null){
+            if(p.getLvl() > gameFacade.getPalaceLvl() && p.getLvl()<8) gameFacade.setPalaceLvl(p.getLvl()+2);
+            int lvl = gameFacade.getPalaceLvl();
+            if(lvl <8) gameFacade.setPalaceLvl(lvl+2);
+            current = new PlacePalaceTile(gameFacade, lvl);
+
+        }
     }
 
 

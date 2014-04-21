@@ -61,7 +61,7 @@ public class Turn extends State {
     public void keyPressedP() {
         // defaulting level of palace to 2
         // TODO change level of palace somehow
-        commandCreator.placePalaceTile(2);
+        commandCreator.placePalaceTile();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class Turn extends State {
     @Override
     public void keyPressedE() {
         //TODO change level of palace somehow
-        commandCreator.upgradePalaceTile(4);
+        commandCreator.upgradePalaceTile();
     }
 
     @Override
