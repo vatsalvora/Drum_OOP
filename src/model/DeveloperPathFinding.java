@@ -2,7 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-public class DeveloperPathFinding implements PathFinding {
+public class DeveloperPathFinding implements PathFinding
+{
 
     ArrayList<Space> shortestPath;
     int APUsed;
@@ -17,9 +18,15 @@ public class DeveloperPathFinding implements PathFinding {
     }
 
     public ArrayList<Space> getShortestPath(Space start, Space end) throws Exception {
+        shortestPath = new ArrayList<Space>();
+        spaceHolder = new ArrayList<Space>();
+        spaceAP = new ArrayList<Integer>();
+        APUsed = 99;
         shortestPath.add(start);
         ArrayList<Space> newSpace = new ArrayList<Space>();
         newSpace.addAll(shortestPath);
+        spaceHolder.add(start);
+        spaceAP.add(0);
         traverse(start, end, newSpace, 0);
         System.out.println("AP used for move would be: " + APUsed);
         if(shortestPath.size() == 1 || APUsed == 99)
@@ -29,59 +36,68 @@ public class DeveloperPathFinding implements PathFinding {
         return shortestPath;
 	}
 
-    private void traverse(Space c, Space e, ArrayList<Space> list, int currAP)
+    private void traverse(Space current, Space end, ArrayList<Space> list, int currAP)
     {
-        HexSpace currSpace = (HexSpace) c;
-        HexSpace end = (HexSpace) e;
-        System.out.println("Traversal is working.");
-        if(currSpace == end)
+        HexSpace c = (HexSpace) current;
+        HexSpace e = (HexSpace) end;
+        if(c.getLocation().getYLocation() == e.getLocation().getYLocation() && c.getLocation().getXLocation() == e.getLocation().getXLocation())
         {
-            System.out.println("reached the end");
             if(currAP < APUsed)
             {
-                shortestPath = list;
                 APUsed = currAP;
+                shortestPath = new ArrayList<Space>();
+                shortestPath.addAll(list);
             }
             else if(currAP == APUsed)
             {
-                if(list.size() < shortestPath.size())
+                if(shortestPath.size() > list.size())
                 {
-                    shortestPath = list;
+                    shortestPath = new ArrayList<Space>();
+                    shortestPath.addAll(list);
                 }
             }
         }
         else
         {
-            System.out.println("Haven't reached end.");
-            Space[] neighbors = currSpace.getNeighbors();
-            int newAP = 0 + currAP;
-            for(Space n : neighbors)
+            System.out.println("Let's check the neighbors.");
+            for(int i = 0; i < 6; i++)
             {
-                System.out.println("Checking a neighbor.");
-                HexSpace nextSpace = (HexSpace) n;
-                if(nextSpace != null) {
-                    System.out.println("Checking a non-null neighbor.");
-                    if (!nextSpace.getTopTile().compareTo(currSpace.getTopTile())) {
-                        newAP++;
-                    }
-                    System.out.println("Still working.");
-                    if (spaceHolder.contains(nextSpace)) {
-                        System.out.println("Space has been visited");
-                        if (spaceAP.get(spaceHolder.indexOf(nextSpace)) > newAP) {
-                            spaceAP.set(spaceHolder.indexOf(nextSpace), newAP);
-                            ArrayList<Space> newList = new ArrayList<Space>();
-                            newList.addAll(list);
-                            newList.add(nextSpace);
-                            traverse(nextSpace, end, newList, newAP);
+                HexSpace dummy = (HexSpace) c.getNeighbor(i);
+                System.out.println("The location of c's #" + i + " neighbor is "  +dummy.getLocation().toString());
+            }
+            for(int i = 0; i < 6; i++)
+            {
+                if(c.getNeighbor(i) != null) {
+                    HexSpace s = (HexSpace) c.getNeighbor(i);
+                    if (s != null) {
+                        System.out.println("The location of this neighbor is: " + s.getLocation().toString());
+                        if (s.getTopTile() != null) {
+                            System.out.println("Checking a non-null space.");
+                            int newAP = 0 + currAP;
+                            System.out.println("Made new AP.");
+                            if (!s.getTopTile().compareTo(c.getTopTile())) {
+                                newAP++;
+                            }
+                            System.out.println("Checked to see if the tiles are different.");
+                            if (spaceHolder.contains(s)) {
+                                System.out.println("Space is already in list.");
+                                if (spaceAP.get(spaceHolder.indexOf(s)) > newAP) {
+                                    spaceAP.set(spaceHolder.indexOf(s), newAP);
+                                    ArrayList<Space> newList = new ArrayList<Space>();
+                                    newList.addAll(list);
+                                    newList.add(s);
+                                    traverse(s, e, newList, newAP);
+                                }
+                            } else {
+                                System.out.println("Space is not in the list yet.");
+                                spaceHolder.add(s);
+                                spaceAP.add(newAP);
+                                ArrayList<Space> newList = new ArrayList<Space>();
+                                newList.addAll(list);
+                                newList.add(s);
+                                traverse(s, e, newList, newAP);
+                            }
                         }
-                    } else {
-                        System.out.println("Space has not been visited.");
-                        spaceHolder.add(nextSpace);
-                        spaceAP.add(newAP);
-                        ArrayList<Space> newList = new ArrayList<Space>();
-                        newList.addAll(list);
-                        list.add(nextSpace);
-                        traverse(nextSpace, end, newList, newAP);
                     }
                 }
             }

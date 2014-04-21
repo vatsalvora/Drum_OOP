@@ -26,10 +26,24 @@ public class BoardController {
 		HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
 		if (!board.getCurrentSpace().hasDeveloper()) {
 			board.getCurrentSpace().placeDeveloper(s.getDeveloper());
+            s.removeDeveloper();
 		} else {
 			throw new DevOnSpaceException();
 		}
 	}
+
+    public void unMoveDeveloper()
+    {
+        HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
+        try{
+            s.placeDeveloper(board.getCurrentSpace().getDeveloper());
+        }
+        catch(Exception e)
+        {
+            //should never happen
+        }
+        board.getCurrentSpace().removeDeveloper();
+    }
 
 	public HexSpace getCurrentSpace() {
 		return board.getCurrentSpace();

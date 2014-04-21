@@ -16,13 +16,13 @@ public class MoveDeveloper implements Command {
 
     public void execute() {
         try {
-            APUsed = b.useDevMoveAP();
+            b.moveDeveloper();
             try {
-                b.moveDeveloper();
+                APUsed = b.useDevMoveAP();
             }
             catch(Exception e)
             {
-                b.unuseDevMoveAP();
+                b.unMoveDeveloper();
                 save = false;
                 b.sendErrorMessage(e.toString());
                 b.render();
@@ -37,7 +37,8 @@ public class MoveDeveloper implements Command {
     }
 
     public void undo() {
-        b.deselectDeveloper();
+        b.unuseDevMoveAP();
+        b.unMoveDeveloper();
     }
 
     public boolean save()
