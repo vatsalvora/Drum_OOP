@@ -109,9 +109,8 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedU() {
-		commandCreator.undoAll();
+		incorrectKeyPressed();
 	}
-
     @Override
     public void keyPressedW() {
         commandCreator.placeTripleLandTile();

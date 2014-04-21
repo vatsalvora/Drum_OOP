@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import view.keypressed.KeyPressed;
 
 /**
  * Created by devan on 4/9/14.
@@ -126,7 +127,10 @@ public class Replay extends State {
         incorrectKeyPressed();
     }
 
-    public void keyPressedT() { incorrectKeyPressed();}
+    public void keyPressedT() {
+        State t = new Turn();
+        KeyPressed.setState(t);
+    }
 
     public void keyPressedC() { incorrectKeyPressed();}
 
