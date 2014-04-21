@@ -9,13 +9,13 @@ public class BoardController {
 	private Board board;
 	private DeveloperPathFinding pathFinding;
 	private Developer currentDeveloper;
-	private Space currentDevLocation;
+	private Space currentDevSpace;
 
 	public BoardController() {
 		board = new Board();
 		pathFinding = new DeveloperPathFinding();
 		currentDeveloper = null;
-		currentDevLocation = null;
+		currentDevSpace = null;
 	}
 
 	public Board getBoard() {
@@ -23,7 +23,7 @@ public class BoardController {
 	}
 
 	public void moveDeveloper() throws Exception {
-		HexSpace s = (HexSpace) currentDevLocation;
+		HexSpace s = (HexSpace) currentDevSpace;
 		if (!board.getCurrentSpace().hasDeveloper()) {
 			board.getCurrentSpace().placeDeveloper(s.getDeveloper());
             s.removeDeveloper();
@@ -34,7 +34,7 @@ public class BoardController {
 
     public void unMoveDeveloper()
     {
-        HexSpace s = (HexSpace) currentDevLocation;
+        HexSpace s = (HexSpace) currentDevSpace;
         try{
             s.placeDeveloper(board.getCurrentSpace().getDeveloper());
         }
@@ -145,7 +145,7 @@ public class BoardController {
 		if (board.getCurrentSpace().hasDeveloper()) {
 			if (board.getCurrentSpace().getDeveloper().getColor() == color) {
 				currentDeveloper = board.getCurrentSpace().getDeveloper();
-				currentDevLocation = board.getCurrentSpace();
+				currentDevSpace = board.getCurrentSpace();
                 System.out.println("Developer selected at location: " + board.getCurrentSpace().getLocation().toString());
 			} else {
 				throw new WrongDeveloperColorException();
@@ -157,12 +157,12 @@ public class BoardController {
 
 	public void deselectDeveloper() {
 		currentDeveloper = null;
-		currentDevLocation = null;
+		currentDevSpace = null;
 	}
 
 	public ArrayList<Space> shortestPath() throws Exception {
-        HexSpace start = (HexSpace) currentDevLocation;
-		return pathFinding.getShortestPath(currentDevLocation,
+        HexSpace start = (HexSpace) currentDevSpace;
+		return pathFinding.getShortestPath(currentDevSpace,
 				board.getCurrentSpace());
 	}
 
