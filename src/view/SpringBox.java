@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JComponent;
@@ -15,23 +16,44 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
-public class SpringBox {
+public class SpringBox extends JFrame {
 	int numberOfPlayers;
+	String names[];
 
 	SpringBox() {
-		JFrame f = new JFrame("Login Required");
-		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.getContentPane().setLayout(new GridLayout(8, 8));
 
-		f.setSize(400, 300);
-		f.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		showLogin(f);
+		this.setSize(400, 300);
+		this.setResizable(false);
 
-		for (int i = 0; i < numberOfPlayers; i++) {
-			f.add(new JTextField(i));
-			f.setVisible(true);
+		showLogin(this);
 
+		JTextField field2 = new JTextField(10);
+
+		// create JTextField with specified number of columns
+		JTextField field3 = new JTextField(10);
+
+		// create JTextField with default text and columns
+		JTextField field4 = new JTextField("Java Code Geeks", 10);
+		for (int i = 1; i <= numberOfPlayers; i++) {
+			add(new JLabel("Player " + i));
+
+			add(new JTextField(10));
 		}
+	}
+
+	private static void createAndShowGUI() {
+
+		JFrame frame = new SpringBox();
+
+		frame.pack();
+
+		frame.setVisible(true);
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
 	private void showLogin(JFrame frame) {
@@ -59,12 +81,7 @@ public class SpringBox {
 	 *            none
 	 */
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new SpringBox();
-			}
-		});
+		createAndShowGUI();
 	}
 
 }
