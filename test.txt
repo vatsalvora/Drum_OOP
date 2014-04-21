@@ -2,9 +2,9 @@
 red
 blue
 green
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.PlaceTripleLandTile 0
+model.commands.DrawPalaceCard
+model.commands.DrawPalaceCard
+model.commands.DrawPalaceCard
+model.commands.DrawPalaceCard
+model.commands.DrawPalaceCard
+model.commands.SetRotationDouble@1358d955

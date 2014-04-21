@@ -1,23 +1,19 @@
 package view.keypressed;
 
-import model.Location;
 import model.state.State;
 
 import java.awt.event.KeyEvent;
 
-/**
- * Created by devan on 4/I4/I4.
- */
 public class KeyPressedI extends KeyPressed {
 
-    public KeyPressedI(State state) {
-        super(state);
-    }
+	public KeyPressedI(State state) {
+		super(state);
+	}
 
-    @Override
-    public void keyTyped(KeyEvent ke) {
-        if(ke.getKeyChar() == 'i'){
-            state.keyPressedI();
-        }
-    }
+	@Override
+	public void keyTyped(KeyEvent ke) {
+		if (ke.getKeyChar() == 'i') {
+			state.keyPressedI();
+		}
+	}
 }
