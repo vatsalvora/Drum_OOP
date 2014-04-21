@@ -194,7 +194,9 @@ public class GameFacade {
         }
         return 0;
     }
-
+    public void renderPath(List<Space> path){
+        areaViewportController.render(getBoard(),path);
+    }
     public void resetView(){
         setMovementColor(cornflower_blue);
         setDevColor(cornflower_blue);

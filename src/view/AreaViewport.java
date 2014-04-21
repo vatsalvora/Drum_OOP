@@ -5,6 +5,7 @@ import view.keypressed.KeyPressed;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -187,6 +188,11 @@ public class AreaViewport {
         panel.repaint();
     }
 
+    public void render(Board board, List<Space> Path) {
+        panel.setPath(Path);
+        panel.repaint();
+    }
+
     public void addKeyListeners(List<KeyPressed> keySet){
         panel.addListeners(keySet);
     }
@@ -198,9 +204,11 @@ public class AreaViewport {
 
         private Board board;
         private  final long serialVersionUID = 1L;
+        private List<Space> path;
 
         public DrawingPanel(Board board) {
             this.board = board;
+            this.path = new ArrayList<Space>(0);
             setBackground(COLOR_BACK);
 
         }
@@ -228,6 +236,9 @@ public class AreaViewport {
             g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             super.paintComponent(g2);
             // draw grid
+
+
+
             for (int i = 0; i < BOARD_SIZE; i++) {
                 for (int j = 0; j < board.getLength(i); j++) {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
@@ -280,8 +291,22 @@ public class AreaViewport {
 
             // g.setColor(Color.RED);
             // g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
+
+            for(Space s: path){
+                Location loc = s.getLocation();
+                fillHex(loc.getXLocation(), loc.getYLocation(), "",
+                        Color.RED,g2);
+            }
+            path = new ArrayList<Space>(0);
         }
 
+        public void setPath(List<Space> path) {
+            this.path = path;
+        }
+
+        public List<Space> getPath() {
+            return path;
+        }
     } // end of DrawingPanel class
 
 

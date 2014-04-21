@@ -1,6 +1,7 @@
 package controller;
 
 import model.Board;
+import model.Space;
 import view.AreaViewport;
 import view.keypressed.KeyPressed;
 
@@ -18,6 +19,9 @@ public class AreaViewportController {
 	public void render(Board board) {
 		areaViewport.render(board);
 	}
+    public void render(Board board,List<Space> path) {
+        areaViewport.render(board,path);
+    }
 
 	public void addListeners(List<KeyPressed> keySet) {
 		areaViewport.addKeyListeners(keySet);
