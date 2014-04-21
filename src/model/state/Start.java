@@ -12,6 +12,7 @@ public class Start extends State {
     public Start(GameFacade gameFacade) {
         super(gameFacade);
     }
+    public Start(){}
 
     @Override
     public void keyPressed1() throws IOException {

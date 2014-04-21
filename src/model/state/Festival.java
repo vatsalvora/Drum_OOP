@@ -10,6 +10,7 @@ public class Festival extends State {
 	public Festival(GameFacade gameFacade) {
 		super(gameFacade);
 	}
+    public Festival(){}
 
 	@Override
 	public void keyPressed1() {

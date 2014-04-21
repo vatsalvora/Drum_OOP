@@ -10,6 +10,7 @@ public class Planning extends State {
     public Planning(GameFacade gameFacade) {
         super(gameFacade);
     }
+    public Planning(){}
 
     public void keyPressed1() {
         // TODO: Move to SW position

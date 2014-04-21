@@ -10,6 +10,7 @@ public class Replay extends State {
 	public Replay(GameFacade gameFacade) {
 		super(gameFacade);
 	}
+    public Replay(){}
 
 	@Override
 	public void keyPressed4() {

@@ -1,6 +1,7 @@
 package model.state;
 
 import model.GameFacade;
+import view.keypressed.KeyPressed;
 
 public class Turn extends State {
 
@@ -8,11 +9,8 @@ public class Turn extends State {
         super(gameFacade);
         super.setCurrentState(StateType.TURN);
     }
+    public Turn(){}
 
-    @Override
-    public StateType getCurrentState() {
-        return null;
-    }
 
     @Override
     public void keyPressedS() {
@@ -84,13 +82,14 @@ public class Turn extends State {
     @Override
     public void keyPressed4() {
         // TODO: Go back
-        commandCreator.redoLastCommand();
+
     }
 
     @Override
     public void keyPressed6() {
         // TODO: Go forward
-
+        State state = new Replay();
+        KeyPressed.setState(state);
     }
 
     @Override

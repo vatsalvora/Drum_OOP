@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
  * Created by devan on 4/14/14.
  */
 public abstract class KeyPressed extends KeyAdapter {
-    protected State state;
+    protected static State state;
 
     protected KeyPressed(State state) {
         this.state = state;
@@ -18,7 +18,9 @@ public abstract class KeyPressed extends KeyAdapter {
 
     public abstract void keyTyped(KeyEvent ke);
 
-
+    public static void setState(State st){
+        state = st;
+    }
     public void keyPressed(KeyEvent ke) {
 
     }
