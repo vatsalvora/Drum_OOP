@@ -1,28 +1,11 @@
 package view;
 
-import controller.SharedResourcesController;
 import controller.TurnController;
-import model.Board;
-import model.GameFacade;
-import model.HexSpace;
-import model.Location;
 import model.SharedResources;
-import model.state.State;
-import model.state.Turn;
-import view.keypressed.KeyPressed;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 @SuppressWarnings("serial")
 public class SharedResourcesView extends JFrame
@@ -47,9 +30,13 @@ public class SharedResourcesView extends JFrame
 	
 		private JFrame frame;
 
+    private TurnController tc;
+    private SharedResources sr;
 
-		public SharedResourcesView()
-		{					
+		public SharedResourcesView(TurnController t, SharedResources s)
+		{
+            tc = t;
+            sr = s;
 				createView();
 		}
 
@@ -171,7 +158,7 @@ public class SharedResourcesView extends JFrame
 				content.add(mainPanel);
 		}
 		
-		public void updateFields(SharedResources sr)
+		public void updateFields()
 		{
 			System.out.println("Updating fields");
 			updateNumThreeBlocks(sr.getNumThreeBlockTiles());
@@ -268,18 +255,18 @@ public class SharedResourcesView extends JFrame
 						- Images
 				*/
 				
-				public void updatePlayers(TurnController c)
+				public void updatePlayers()
 				{
 					System.out.println("Updating players...");
-					String festivalCard = c.getCurrentFestivalCard();
-					int cp = c.getCurrentPlayerIndex()+1;
+					String festivalCard = tc.getCurrentFestivalCard();
+					int cp = tc.getCurrentPlayerIndex()+1;
 					highlightCurrentPlayer(cp);
-					String p1 = c.getPlayerInfo(1);
-					String p2 = c.getPlayerInfo(2);
-					String p3 = c.getPlayerInfo(3);
-					String p4 = c.getPlayerInfo(4);
+					String p1 = tc.getPlayerInfo(1);
+					String p2 = tc.getPlayerInfo(2);
+					String p3 = tc.getPlayerInfo(3);
+					String p4 = tc.getPlayerInfo(4);
 					
-					this.palaceCards.setText("Player "+cp+"'s cards: "+c.getPlayerCardInfo());
+					this.palaceCards.setText("Player " + cp + "'s cards: " + tc.getPlayerCardInfo());
 					this.festivalCards.setText("Festival Card:\n"+festivalCard);
 					this.player1.setText(p1);
 					this.player2.setText(p2);
