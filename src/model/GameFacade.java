@@ -22,7 +22,7 @@ public class GameFacade {
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
-		sharedResourcesController = new SharedResourcesController();
+		sharedResourcesController = new SharedResourcesController(turnController);
 		areaViewportController = new AreaViewportController(boardController.getBoard());
         startGame();
 	}
@@ -33,6 +33,7 @@ public class GameFacade {
 
 	public void render() {
 		areaViewportController.render(boardController.getBoard());
+        sharedResourcesController.render();
 	}
 
 	public void startGame() {
@@ -42,7 +43,7 @@ public class GameFacade {
 			p.addCard(sharedResourcesController.drawCard());
 		}
         turnController.putFestivalCard(sharedResourcesController.drawCard());
-        sharedResourcesController.updatePlayers(turnController);
+        sharedResourcesController.render();
 	}
 	
 
@@ -394,9 +395,8 @@ public class GameFacade {
 	}
 
 	public void changeTurn() throws BlockNotPlayedException {
-
 		turnController.nextTurn();
-        System.out.println(turnController.getCurrentPlayer());
+        render();
 	}
 
 	public void undoChangeTurn() {
@@ -526,16 +526,7 @@ public class GameFacade {
 
     public void createPath() throws Exception
     {
-        printPath(boardController.shortestPath());
-        //areaViewportController.renderPath(boardController.shortestPath());
-    }
-
-    public void printPath(ArrayList<Space> spaces)
-    {
-        for(Space s : spaces)
-        {
-            System.out.println(s.getLocation().toString());
-        }
+        renderPath(boardController.shortestPath());
     }
 
     public int useDevMoveAP() throws Exception
