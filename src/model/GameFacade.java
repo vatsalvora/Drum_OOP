@@ -553,6 +553,11 @@ public class GameFacade {
         //use appropriate amount of AP
 	}
 
+    public void unMoveDeveloper()
+    {
+        boardController.unMoveDeveloper();
+    }
+
 	private void forceDeveloperMove(Location start, Location end) {
 		// force any developer on start location to move to end location, if
 		// possible

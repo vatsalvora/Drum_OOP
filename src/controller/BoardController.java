@@ -9,13 +9,13 @@ public class BoardController {
 	private Board board;
 	private DeveloperPathFinding pathFinding;
 	private Developer currentDeveloper;
-	private Location currentDevLocation;
+	private Space currentDevSpace;
 
 	public BoardController() {
 		board = new Board();
 		pathFinding = new DeveloperPathFinding();
 		currentDeveloper = null;
-		currentDevLocation = null;
+		currentDevSpace = null;
 	}
 
 	public Board getBoard() {
@@ -23,13 +23,27 @@ public class BoardController {
 	}
 
 	public void moveDeveloper() throws Exception {
-		HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
+		HexSpace s = (HexSpace) currentDevSpace;
 		if (!board.getCurrentSpace().hasDeveloper()) {
 			board.getCurrentSpace().placeDeveloper(s.getDeveloper());
+            s.removeDeveloper();
 		} else {
 			throw new DevOnSpaceException();
 		}
 	}
+
+    public void unMoveDeveloper()
+    {
+        HexSpace s = (HexSpace) currentDevSpace;
+        try{
+            s.placeDeveloper(board.getCurrentSpace().getDeveloper());
+        }
+        catch(Exception e)
+        {
+            //should never happen
+        }
+        board.getCurrentSpace().removeDeveloper();
+    }
 
 	public HexSpace getCurrentSpace() {
 		return board.getCurrentSpace();
@@ -131,7 +145,8 @@ public class BoardController {
 		if (board.getCurrentSpace().hasDeveloper()) {
 			if (board.getCurrentSpace().getDeveloper().getColor() == color) {
 				currentDeveloper = board.getCurrentSpace().getDeveloper();
-				currentDevLocation = board.getCurrentSpace().getLocation();
+				currentDevSpace = board.getCurrentSpace();
+                System.out.println("Developer selected at location: " + board.getCurrentSpace().getLocation().toString());
 			} else {
 				throw new WrongDeveloperColorException();
 			}
@@ -142,11 +157,12 @@ public class BoardController {
 
 	public void deselectDeveloper() {
 		currentDeveloper = null;
-		currentDevLocation = null;
+		currentDevSpace = null;
 	}
 
 	public ArrayList<Space> shortestPath() throws Exception {
-		return pathFinding.getShortestPath(board.getSpace(currentDevLocation),
+        HexSpace start = (HexSpace) currentDevSpace;
+		return pathFinding.getShortestPath(currentDevSpace,
 				board.getCurrentSpace());
 	}
 
