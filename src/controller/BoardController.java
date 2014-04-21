@@ -1,28 +1,37 @@
 package controller;
 
 import model.*;
-import model.customExceptions.NoDeveloperOnSpaceException;
-import model.customExceptions.SpaceIsEmptyException;
-import model.customExceptions.SpaceNotOnEdgeException;
-import model.customExceptions.WrongDeveloperColorException;
+import model.customExceptions.*;
 
 import java.util.ArrayList;
 
 public class BoardController {
 	private Board board;
     private DeveloperPathFinding pathFinding;
+    private Developer currentDeveloper;
+    private Location currentDevLocation;
 
     public BoardController() {
         board = new Board();
         pathFinding = new DeveloperPathFinding();
+        currentDeveloper = null;
+        currentDevLocation = null;
     }
 
     public Board getBoard() {
 		return board;
 	}
 
-	public void moveDeveloper(Location initial, Location fin) {
-
+	public void moveDeveloper() throws Exception{
+        HexSpace s = (HexSpace) board.getSpace(currentDevLocation);
+        if(!board.getCurrentSpace().hasDeveloper())
+        {
+            board.getCurrentSpace().placeDeveloper(s.getDeveloper());
+        }
+        else
+        {
+            throw new DevOnSpaceException();
+        }
 	}
 
     public HexSpace getCurrentSpace(){
@@ -135,9 +144,34 @@ public class BoardController {
 
 	}
 
+    public void selectDeveloper(String color) throws Exception
+    {
+        if(board.getCurrentSpace().hasDeveloper())
+        {
+            if(board.getCurrentSpace().getDeveloper().getColor() == color) {
+                currentDeveloper = board.getCurrentSpace().getDeveloper();
+                currentDevLocation = board.getCurrentSpace().getLocation();
+            }
+            else
+            {
+                throw new WrongDeveloperColorException();
+            }
+        }
+        else
+        {
+            throw new NoDeveloperOnSpaceException();
+        }
+    }
 
-	public ArrayList<Space> shortestPath(Location initial, Location fin) throws Exception {
-        return pathFinding.getShortestPath(board.getSpace(initial), board.getSpace(fin));
+    public void deselectDeveloper()
+    {
+        currentDeveloper = null;
+        currentDevLocation = null;
+    }
+
+
+	public ArrayList<Space> shortestPath() throws Exception {
+        return pathFinding.getShortestPath(board.getSpace(currentDevLocation), board.getCurrentSpace());
 	}
 	public int shortestPathCost() {
 		return pathFinding.getAPUsed();

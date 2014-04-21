@@ -1,0 +1,51 @@
+package model.commands;
+
+import model.Command;
+import model.GameFacade;
+
+public class MoveDeveloper implements Command {
+    private GameFacade b;
+    private boolean save;
+    private int APUsed;
+
+    public MoveDeveloper(GameFacade b) {
+        this.b = b;
+        save = true;
+        APUsed = 0;
+    }
+
+    public void execute() {
+        try {
+            APUsed = b.useDevMoveAP();
+            try {
+                b.moveDeveloper();
+            }
+            catch(Exception e)
+            {
+                b.unuseDevMoveAP();
+                save = false;
+                b.sendErrorMessage(e.toString());
+                b.render();
+            }
+        }
+        catch(Exception e)
+        {
+            save = false;
+            b.sendErrorMessage(e.toString());
+            b.render();
+        }
+    }
+
+    public void undo() {
+        b.deselectDeveloper();
+    }
+
+    public boolean save()
+    {
+        return save;
+    }
+
+    public String toString() {
+        return this.getClass().getName() + " " + APUsed;
+    }
+}

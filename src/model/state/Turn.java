@@ -154,4 +154,6 @@ public class Turn extends State {
         commandCreator.placeDeveloper();
     }
 
+    public void keyPressedD() { commandCreator.selectDeveloper();}
+
 }

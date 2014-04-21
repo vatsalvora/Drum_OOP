@@ -81,7 +81,8 @@ public class IrrigationTile extends Tile {
             //throw exception here
     }
 
-    public void compareNeighbors(int[] indexes) throws SameBlockException {
+    public void compareNeighbors(Tile tile) throws SameBlockException {
+        int[] indexes = tile.getNeighborsIndex();
         boolean check = false;
 
         for(int i : indexes)

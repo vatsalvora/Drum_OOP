@@ -132,5 +132,7 @@ public class Planning extends State {
         commandCreator.placeDeveloper();
     }
 
+    public void keyPressedD() { commandCreator.selectDeveloper();}
+
 
 }

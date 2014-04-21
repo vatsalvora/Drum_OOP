@@ -49,6 +49,7 @@ public class RunGame {
         keySet.add(new KeyPressedM(state));
         keySet.add(new KeyPressedJ(state));
         keySet.add(new KeyPressedK(state));
+        keySet.add(new KeyPressedD(state));
         return keySet;
     }
 

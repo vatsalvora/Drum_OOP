@@ -36,6 +36,16 @@ public class CommandCreator {
         if (c.save()) {
             commands.push(c);
         }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
+        }
     }
 
     public void move2() {
@@ -43,6 +53,16 @@ public class CommandCreator {
         c.execute();
         if (c.save()) {
             commands.push(c);
+        }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
         }
     }
 
@@ -52,6 +72,16 @@ public class CommandCreator {
         if (c.save()) {
             commands.push(c);
         }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
+        }
     }
 
     public void move7() {
@@ -59,6 +89,16 @@ public class CommandCreator {
         c.execute();
         if (c.save()) {
             commands.push(c);
+        }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
         }
     }
 
@@ -68,6 +108,16 @@ public class CommandCreator {
         if (c.save()) {
             commands.push(c);
         }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
+        }
     }
 
     public void move9() {
@@ -75,6 +125,16 @@ public class CommandCreator {
         c.execute();
         if (c.save()) {
             commands.push(c);
+        }
+        if(current instanceof MoveDeveloper)
+        {
+            try {
+                gameFacade.createPath();
+            }
+            catch(Exception e)
+            {
+                //do nothing with exception
+            }
         }
     }
 
@@ -130,6 +190,18 @@ public class CommandCreator {
     public void removeDeveloper()
     {
         current = new RemoveDeveloper(gameFacade);
+    }
+
+
+    public void selectDeveloper() {
+        Command c = new SelectDeveloper(gameFacade);
+        c.execute();
+        if (c.save()) {
+            commands.push(c);
+            current = new MoveDeveloper(gameFacade);
+        } else {
+            current = null;
+        }
     }
 
     public void undoAll(){
