@@ -29,6 +29,7 @@ public class SpringBox extends JFrame {
 	static int numberOfPlayers;
 	static String[] names;
     private static JTextField[] fields;
+    public static JFrame frame;
 	SpringBox() {
 		this.getContentPane().setLayout(new GridLayout(8, 8));
 
@@ -54,7 +55,7 @@ public class SpringBox extends JFrame {
 
 	public static void createAndShowGUI() {
 
-		JFrame frame = new SpringBox();
+		frame = new SpringBox();
 
 		frame.pack();
 
@@ -96,9 +97,7 @@ public class SpringBox extends JFrame {
 	 * @param args
 	 *            none
 	 */
-	public static void main(String[] args) {
 
-	}
 
 }
 class EnterListener extends KeyAdapter {
@@ -123,6 +122,7 @@ class EnterListener extends KeyAdapter {
                 System.out.println(names[i-1]);
             }
             if(ready){
+                SpringBox.frame.dispose();
                 GameFacade b = new GameFacade(names);
                 List<KeyPressed> keySet = createListeners(b);
                 b.addKeyListeners(keySet);

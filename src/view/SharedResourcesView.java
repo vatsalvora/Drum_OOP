@@ -50,7 +50,6 @@ public class SharedResourcesView extends JFrame {
         frame.setSize(400, 750);
         frame.setResizable(true);
         frame.setLocation(0, 0);
-        ;
         frame.setVisible(true);
 
         // Set the content
@@ -65,7 +64,7 @@ public class SharedResourcesView extends JFrame {
         infoPanel.setMinimumSize(new Dimension(400, 400));
         JPanel playerPanel = new JPanel();
         playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.LINE_AXIS));
-        playerPanel.setMinimumSize(new Dimension(400, 400));
+        playerPanel.setMinimumSize(new Dimension(600, 500));
         // Empty border template
         Border emptyBorder = BorderFactory.createEmptyBorder();
 
@@ -146,27 +145,27 @@ public class SharedResourcesView extends JFrame {
         infoPanel.add(errorInfo);
 
         player1 = new JTextArea(50, 50);
-        player1.setMinimumSize(new Dimension(100, 100));
-        player1.setPreferredSize(new Dimension(100, 100));
-        player1.setMaximumSize(new Dimension(100, 100));
+        player1.setMinimumSize(new Dimension(170, 100));
+        player1.setPreferredSize(new Dimension(170, 100));
+        player1.setMaximumSize(new Dimension(170, 100));
         playerPanel.add(player1);
 
         player2 = new JTextArea(50, 50);
-        player2.setMinimumSize(new Dimension(100, 100));
-        player2.setPreferredSize(new Dimension(100, 100));
-        player2.setMaximumSize(new Dimension(100, 100));
+        player2.setMinimumSize(new Dimension(170, 100));
+        player2.setPreferredSize(new Dimension(170, 100));
+        player2.setMaximumSize(new Dimension(170, 100));
         playerPanel.add(player2);
 
         player3 = new JTextArea(50, 50);
-        player3.setMinimumSize(new Dimension(100, 100));
-        player3.setPreferredSize(new Dimension(100, 100));
-        player3.setMaximumSize(new Dimension(100, 100));
+        player3.setMinimumSize(new Dimension(170, 100));
+        player3.setPreferredSize(new Dimension(170, 100));
+        player3.setMaximumSize(new Dimension(170, 100));
         playerPanel.add(player3);
 
         player4 = new JTextArea(50, 50);
-        player4.setMinimumSize(new Dimension(100, 100));
-        player4.setPreferredSize(new Dimension(100, 100));
-        player4.setMaximumSize(new Dimension(100, 100));
+        player4.setMinimumSize(new Dimension(170, 100));
+        player4.setPreferredSize(new Dimension(170, 100));
+        player4.setMaximumSize(new Dimension(170, 100));
         playerPanel.add(player4);
 
         // Add panels

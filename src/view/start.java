@@ -41,18 +41,7 @@ public class start {
 			}
 		});
 	}
-    class EnterListener extends KeyAdapter {
-        public EnterListener() {
 
-        }
-
-        public void keyTyped(KeyEvent ke) {
-
-            if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
-                SpringBox.createAndShowGUI();
-            }
-        }
-    }
 	public class TestPane extends JPanel {
 
 		private static final long serialVersionUID = 1L;
@@ -137,8 +126,11 @@ public class start {
             }
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                SpringBox.createAndShowGUI();
+                int index = menuItems.indexOf(selectMenuItem);
+                if(index == 0 ) {
+                    frame.dispose();
+                    SpringBox.createAndShowGUI();
+                }
             }
         }
 		public class MenuAction extends AbstractAction {
