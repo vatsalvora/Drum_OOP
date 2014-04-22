@@ -314,7 +314,7 @@ public class TurnController {
         return festival;
     }
 
-    public void startFestival(String[] colors) {
+    public void startFestival(ArrayList<String> colors) {
         ArrayList<Player> inFestival = new ArrayList<Player>();
         for (String color : colors) {
             for (int j = 0; j < numPlayers; j++) {

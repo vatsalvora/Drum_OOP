@@ -189,4 +189,11 @@ public class BoardController {
     public ArrayList<String> getIrrigationColors() {
         return board.getIrrigationColors();
     }
+
+    public ArrayList<String>getColorsAroundPalace(CheckPalaceArea c) {
+        ArrayList<String> colors = new ArrayList<String>();
+
+
+        return colors;
+    }
 }

@@ -13,10 +13,12 @@ public class CheckPalaceArea {
     private Tile check;
     private List<Space> area;
     private Space start;
+    private ArrayList<String> develsInCity;
     public CheckPalaceArea(Space start){
         check = new VillageTile(0, Color.BLACK);
         area = new ArrayList<Space>();
         this.start = start;
+        develsInCity = new ArrayList<String>();
     }
     public List<Space> getArea(){
         return area;
@@ -52,5 +54,31 @@ public class CheckPalaceArea {
             }
 
         }
+    }
+    public ArrayList<String> getColors()
+    {
+        develsInCity = new ArrayList<String>();
+        for(Space space : area)
+        {
+            HexSpace s = (HexSpace) space;
+            if(s.hasDeveloper())
+            {
+                String color = s.getDeveloper().getColor();
+                boolean check = true;
+                for(String c : develsInCity)
+                {
+                    if(c.compareTo(color) == 0)
+                    {
+                        check = false;
+                        break;
+                    }
+                }
+                if(check)
+                {
+                    develsInCity.add(color);
+                }
+            }
+        }
+        return develsInCity;
     }
 }
