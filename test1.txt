@@ -2,7 +2,7 @@
 red
 blue
 green
-model.ChangeTurn@222b00
+model.ChangeTurn@5852765b
 model.commands.DrawCard
 model.commands.DrawPalaceCard
 model.commands.EndPalaceFestival
