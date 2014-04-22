@@ -14,7 +14,7 @@ public class ChangeMovementColor implements Command {
     private GameFacade b;
     private Color cornflower_blue = new Color(100, 149, 237);
 
-    public ChangeMovementColor(GameFacade b, Color devColor, Color movment){
+    public ChangeMovementColor(GameFacade b, Color devColor, Color movment) {
         this.devColor = devColor;
         this.movment = movment;
         this.b = b;
@@ -39,5 +39,10 @@ public class ChangeMovementColor implements Command {
     @Override
     public boolean save() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().toString() + " " + devColor.toString() + " " + movment.toString();
     }
 }

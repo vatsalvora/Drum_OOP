@@ -9,6 +9,7 @@ import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,8 +97,6 @@ public class FileController {
             while (br.readLine() != null) {
                 String[] lineIn = br.readLine().split(" ");
                 Command command = determineCommand(lineIn, gameFacade);
-                Command a = command;
-                System.out.println(command.toString());
                 command.execute();
             }
         } catch (IOException e) {
@@ -167,6 +166,13 @@ public class FileController {
             return new SelectDeveloper(gameFacade);
         } else if (command.equalsIgnoreCase(modelCommand + "tabdeveloper")) {
             return new TabDeveloper(gameFacade);
+        } else if (command.contains(modelCommand + "ChangeLevelDisplay")) {
+            int points = Integer.parseInt(lineIn[1]);
+            return new ChangeLevelDisplay(gameFacade, points);
+        } else if (command.contains(modelCommand + "ChangeMovementColor")) {
+            Color devColor = Color.decode(lineIn[1]);
+            Color movementColor = Color.decode(lineIn[2]);
+            return new ChangeMovementColor(gameFacade, devColor, movementColor);
         } else if (command.contains(modelCommand + "SetRotation")) {
             int[] loc = new int[2];
             loc[0] = Integer.parseInt(lineIn[1]);
