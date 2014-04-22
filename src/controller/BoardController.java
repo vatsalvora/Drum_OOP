@@ -3,6 +3,7 @@ package controller;
 import model.*;
 import model.customExceptions.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class BoardController {
@@ -22,6 +23,9 @@ public class BoardController {
 		return board;
 	}
 
+    public void addDeveloperLoc(Space s){board.addDeveloperLoc(s);}
+    public void removeDeveloperLoc(Space s){board.removeDeveloperLoc(s);}
+    public void getNextDeveloper(Color color) throws NoDevsOnBoardException {board.getNextDeveloper(color);}
 	public void moveDeveloper() throws Exception {
 		HexSpace s = (HexSpace) currentDevSpace;
 		if (!board.getCurrentSpace().hasDeveloper()) {
