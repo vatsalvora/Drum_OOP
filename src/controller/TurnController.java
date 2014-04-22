@@ -432,4 +432,15 @@ public class TurnController {
     {
         festival.endFestival();
     }
+
+    public void scorePlayer(String s, int i) {
+        for(Player p : players)
+        {
+            if(p.getColor().compareTo(s) == 0)
+            {
+                p.incrementFamePoints(i);
+                break;
+            }
+        }
+    }
 }

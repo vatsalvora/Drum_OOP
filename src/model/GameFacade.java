@@ -669,4 +669,19 @@ public class GameFacade {
     {
         sharedResourcesController.removeErrorMessage();
     }
+
+    public void scoreSurrounding()
+    {
+        String[] colors = {};
+        //get the colors of the highest positioned developers around a newly placed irrigation tile
+        for(String s : colors)
+        {
+            turnController.scorePlayer(s, 3);
+        }
+    }
+
+    public void scorePlayer(String color, int i)
+    {
+        turnController.scorePlayer(color, i);
+    }
 }
