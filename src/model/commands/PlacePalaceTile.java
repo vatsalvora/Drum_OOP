@@ -37,6 +37,7 @@ public class PlacePalaceTile implements Command {
                     points = b.placePalaceTile(level);
                 } catch (Exception e) {
                     save = false;
+                    b.sendErrorMessage(e.toString());
                     b.returnPalaceTile(level);
                     b.returnOtherBlock();
                     b.resetView();
