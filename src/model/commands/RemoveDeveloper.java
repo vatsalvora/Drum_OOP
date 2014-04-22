@@ -14,6 +14,11 @@ public class RemoveDeveloper implements Command {
         APForPlacement = 0;
     }
 
+    public RemoveDeveloper(GameFacade gameFacade, int APForPlacement) {
+        this.gameFacade = gameFacade;
+        this.APForPlacement = APForPlacement;
+    }
+
     public void execute() {
         try {
             APForPlacement = gameFacade.removeDeveloper();
