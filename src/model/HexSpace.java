@@ -128,9 +128,30 @@ public class HexSpace implements Space {
                 getTopTile().compareNeighbors(tile);
 
 
-            onEdge();
+            //onEdge();
+            checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
             System.out.println(this);
+    }
+
+    public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
+
+        boolean checking = true;
+
+        for(int a : tile.getNeighborsIndex()) {
+            checking = ((HexSpace) getNeighbor(a)).onEdge();
+            System.out.println("The tile isaaaaaaaaaa: " + ((HexSpace) getNeighbor(a)));
+            System.out.println("checking: " + checking);
+
+            if(!checking)
+                break;
+        }
+
+        checking = getCurrentSpace().onBorder();
+        System.out.println("checking: " + checking);
+
+        if(checking )
+        throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
     }
 
     public void checkHeights(Tile tile) throws TileHeightWrongException {
@@ -168,6 +189,19 @@ public class HexSpace implements Space {
 
     public Space[] getNeighbors() {
         return neighbors;
+    }
+
+    public int checkPalaceNeighbor(HexSpace palace){
+
+          int count = 0;
+
+        for(int i = 0; i < getNeighbors().length; i++) {
+            HexSpace space = ((HexSpace)palace.getNeighbor(i));
+            if (space != null && space.getTopTile().compareTo(new VillageTile(0))) ;
+                count++;
+        }
+
+        return count;
     }
 
     public String toString(){
