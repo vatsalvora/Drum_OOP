@@ -454,6 +454,7 @@ public class TurnController {
             {
                 palacePlayed = true;
                 actionPoints--;
+                blockPlayed++;
             }
             else
             {
@@ -469,5 +470,6 @@ public class TurnController {
     public void returnPalace() {
         palacePlayed = false;
         actionPoints++;
+        blockPlayed--;
     }
 }
