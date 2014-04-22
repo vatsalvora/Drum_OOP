@@ -14,7 +14,13 @@ public class InitiatePalaceFestival implements Command {
 
 	@Override
 	public void execute() {
-		b.initiatePalaceFestival();
+		try {
+            b.initiatePalaceFestival();
+        }
+        catch(Exception e)
+        {
+            b.sendErrorMessage(e.toString());
+        }
 	}
 
 	@Override

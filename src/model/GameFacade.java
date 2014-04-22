@@ -18,6 +18,7 @@ public class GameFacade {
 	private SharedResourcesController sharedResourcesController;
 	private AreaViewportController areaViewportController;
 	private Color cornflower_blue = new Color(100, 149, 237);
+    private CheckPalaceArea cpa;
 
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
@@ -25,6 +26,7 @@ public class GameFacade {
 		sharedResourcesController = new SharedResourcesController(turnController);
 		areaViewportController = new AreaViewportController(boardController.getBoard());
 		startGame();
+        cpa = new CheckPalaceArea(new HexSpace(new Location(0, 0)));
 	}
 
 	public void addKeyListeners(List<KeyPressed> keySet) {
@@ -88,7 +90,7 @@ public class GameFacade {
     }
 
     public int checkPalaceArea(Space s){
-        CheckPalaceArea cpa = new CheckPalaceArea(s);
+        cpa = new CheckPalaceArea(s);
         if(cpa.calcArea()) {
             List<Space> city = cpa.getArea();
             if (checkHighestRankingDeveloper(city)) return (1+city.size());
@@ -171,10 +173,8 @@ public class GameFacade {
     }
     public void resetCurrent(){boardController.resetCurrent();}
 
-	public int placeVillageTile() {
+	public int placeVillageTile() throws Exception {
         int points = 0;
-		try {
-
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -202,11 +202,6 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-            System.out.println("Came HEre");
-		}
 		return points;
 
 
@@ -441,11 +436,60 @@ public class GameFacade {
 	}
 
 	public void initiatePalaceFestival() {
-		String[] colors = {};
+		ArrayList<String> colors = new ArrayList<String>();
+        colors = boardController.getColorsAroundPalace(cpa);
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
-		FestivalTest festival = new FestivalTest();
+		FestivalTest festival = new FestivalTest(colors);
 		festival.PerformFestival(turnController, sharedResourcesController.getDeck());
+        ArrayList<Player> victors = turnController.getVictors();
+        if(victors.size() == 1)
+        {
+            PalaceTile p;
+            HexSpace s = (HexSpace) boardController.getCurrentSpace();
+            try{
+                p = (PalaceTile) s.getTopTile();
+                victors.get(0).incrementFamePoints(p.getLvl()/2);
+            }
+            catch(Exception e)
+            {
+                //should never happen
+            }
+        }
+        else
+        {
+            PalaceTile p;
+            HexSpace s = (HexSpace) boardController.getCurrentSpace();
+            try{
+                p = (PalaceTile) s.getTopTile();
+                for(Player player : victors)
+                {
+                    switch(p.getLvl())
+                    {
+                        case 2:
+                            break;
+                        case 4:
+                            player.incrementFamePoints(1);
+                            break;
+                        case 6:
+                            player.incrementFamePoints(2);
+                            break;
+                        case 8:
+                            player.incrementFamePoints(2);
+                            break;
+                        case 10:
+                            player.incrementFamePoints(3);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                //should never happen
+            }
+        }
 	}
 
 	public int placePalaceTile(int level) throws Exception {

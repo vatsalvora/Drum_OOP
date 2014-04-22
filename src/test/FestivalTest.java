@@ -7,7 +7,10 @@ import java.util.*;
 
 public class FestivalTest {
 
-	public FestivalTest() {
+    ArrayList<String> colors;
+
+	public FestivalTest(ArrayList<String> c) {
+        colors = c;
 	}
 
 	public void PerformFestival(TurnController tc, Deck d) {
@@ -24,9 +27,8 @@ public class FestivalTest {
 		System.out.println("Palace Festival Card: "
 				+ turnController.getFestivalCard());
 		System.out.println();
-		String[] eligible = { "red", "blue", "green", "yellow" };
 
-		turnController.startFestival(eligible);
+		turnController.startFestival(colors);
 
 		ArrayList<Player> festivalPlayers = turnController.getFestivalPlayers();
 
