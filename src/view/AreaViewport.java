@@ -126,6 +126,7 @@ public class AreaViewport {
 
         g2.setColor(color[1]);
         g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        if(color.length == 4) g2.setColor(Color.BLACK);
         g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
         g2.setColor(Color.BLACK);
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
@@ -271,13 +272,6 @@ public class AreaViewport {
                             color[1] = movement;
                         }
                     }
-                    if(curr.hasDeveloper()) {
-                        Developer dev = curr.getDeveloper();
-                        Color developerColor = dev.getViewColor();
-                        color[1] = developerColor;
-                        color[2] = Color.BLACK;
-                    }
-
 
                     if(curr.equals(board.getCurrentSpace()))
                     {

@@ -1,7 +1,10 @@
 package model;
 
 import model.customExceptions.DevOnSpaceException;
+import model.customExceptions.NoDevsOnBoardException;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,9 +15,10 @@ public class Board {
     private int width;
     private int size;
     private int[] rotations;
+    private List<Space> developerLocs;
 
     public Board() {
-
+        developerLocs = new ArrayList<>();
         rotations = new int[0];
         board = new LinkedList<List<Space>>();
         size = 0;
@@ -26,7 +30,52 @@ public class Board {
     public void setRotations(int[] rotations){
         this.rotations = rotations;
     }
+    public void addDeveloperLoc(Space s){developerLocs.add(s);}
+    public void removeDeveloperLoc(Space s){developerLocs.remove(s);}
+    public void getNextDeveloper(Color color) throws NoDevsOnBoardException {
+        int i = 0;
+        boolean found = false;
+        if(current.getColor()[1].equals(color)) {
+            for (int s = 0; s < developerLocs.size(); s++) {
+                if (developerLocs.get(s).equals(current)){
+                    i = s;
+                    found = true;
+                }
+            }
+            boolean foundNext = false;
+            if(found){
+                for(int q = i; q<developerLocs.size(); q++){
+                    if(((HexSpace)developerLocs.get(q)).getDeveloper().getViewColor().equals(color)){
+                        foundNext = true;
+                        current = (HexSpace)developerLocs.get(q);
+                    }
+                }
+                if(!foundNext){
+                    for(int z=0; z<i; z++){
+                        if(((HexSpace)developerLocs.get(z)).getDeveloper().getViewColor().equals(color)){
+                            foundNext = true;
+                            current = (HexSpace)developerLocs.get(z);
+                        }
+                    }
+                    if(!foundNext){
+                        throw new NoDevsOnBoardException();
+                    }
+                }
+            }
 
+        }
+        else{
+            for(Space s : developerLocs){
+                if(((HexSpace)s).getDeveloper().getViewColor().equals(color)){
+                    found = true;
+                    current = (HexSpace)s;
+                }
+            }
+            if(!found){
+                throw new NoDevsOnBoardException();
+            }
+        }
+    }
     public void undoTilePlacement() {
         Tile t = current.removeTopTile();
         for (int i = 0; i < 6; i++) {
