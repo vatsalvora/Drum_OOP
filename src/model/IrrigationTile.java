@@ -11,14 +11,13 @@ import java.awt.*;
  */
 public class IrrigationTile extends Tile {
 
-    private Color color;
     private final Tile[] neighbors = new Tile[6];
     private int numberOfNeighbors;
 
 
     public IrrigationTile(int numberOfNeighbors){
 
-        assignColor(35,62,235);
+        assignColor(Color.BLACK);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }
@@ -37,6 +36,15 @@ public class IrrigationTile extends Tile {
                 temp[j++] = i;
 
         return temp;
+    }
+
+    public void assignColor(Color c){
+
+        color = new Color[]{Color.BLUE, Color.BLUE, c};
+    }
+
+    public Color[] getColor(){
+        return color;
     }
 
     private boolean hasNeighborAt(int index){
@@ -61,13 +69,7 @@ public class IrrigationTile extends Tile {
         neighbors[index] = null;
     }
 
-    public void assignColor(int a ,int b,int c){
-        color = new Color(a,b,c);
-    }
 
-    public Color getColor(){
-        return color;
-    }
 
     public boolean compareTo(Tile t) {
 

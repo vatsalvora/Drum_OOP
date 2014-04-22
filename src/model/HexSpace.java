@@ -110,14 +110,18 @@ public class HexSpace implements Space {
 		return null;
 	}
 
-	public Color getColor() {
-		if (onBorder()) {
-			return BROWN;
-		} else if (getHeight() == 0) {
-			return new Color(239, 221, 111);
-		} else {
+	public Color[] getColor() {
+		if (getHeight() > 0) {
 			Tile s = tilesOnSpace.peek();
+			if (s instanceof VillageTile) {
+				Color[] c = s.getColor();
+				System.out.println(c[0] + " " + c[1] + " " + c[2]);
+			}
 			return s.getColor();
+		} else if (onBorder()) {
+			return new Color[] { BROWN, BROWN, Color.BLACK };
+		} else {
+			return new Color[] { new Color(239, 221, 111), new Color(239, 221, 111), Color.BLACK };
 		}
 	}
 
@@ -188,10 +192,9 @@ public class HexSpace implements Space {
 	}
 
 	public int checkPalaceNeighbor(HexSpace palace) {
-
 		int count = 0;
 		System.out.println(getNeighbors().length);
-		VillageTile v = new VillageTile(0);
+		VillageTile v = new VillageTile(0, BROWN);
 		for (int i = 0; i < getNeighbors().length; i++) {
 
 			HexSpace space = ((HexSpace) palace.getNeighbor(i));

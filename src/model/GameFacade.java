@@ -139,7 +139,7 @@ public class GameFacade {
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
-			Tile t = new VillageTile(0);
+			Tile t = new VillageTile(0, Color.BLACK);
 			boardController.placeTile(t);
 
 			setMovementColor(cornflower_blue);
@@ -181,7 +181,7 @@ public class GameFacade {
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
-			Tile t = new RiceTile(0, "blah");
+			Tile t = new RiceTile(0, Color.BLACK, "blah");
 			boardController.placeTile(t);
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
@@ -223,10 +223,13 @@ public class GameFacade {
 	public int placeTwoBlock() throws Exception {
 		HexSpace current = boardController.getCurrentSpace();
 		int[] rotations = boardController.getRotations();
-		VillageTile village = new VillageTile(1);
+		int colorNum1 = (int) Math.floor(250 * Math.random());
+		int colorNum2 = (int) Math.floor(250 * Math.random());
+		int colorNum3 = (int) Math.floor(250 * Math.random());
+		VillageTile village = new VillageTile(1, new Color(colorNum1, colorNum2, colorNum3).brighter());
 		int[] dir = { 0, 1, 2, 5, 4, 3 };
 
-		RiceTile rice = new RiceTile(1, "blah");
+		RiceTile rice = new RiceTile(1, new Color(colorNum1, colorNum2, colorNum3).brighter(),"blah");
 		village.createReff(rice, dir[rotations[0]]);
 		rice.createReff(village, 5 - dir[rotations[0]]);
 
@@ -277,10 +280,13 @@ public class GameFacade {
 	public int placeThreeBlock() throws Exception {
 		HexSpace current = boardController.getCurrentSpace();
 		int[] rotations = boardController.getRotations();
+		int colorNum1 = (int) Math.floor(250 * Math.random());
+		int colorNum2 = (int) Math.floor(250 * Math.random());
+		int colorNum3 = (int) Math.floor(250 * Math.random());
 
-		VillageTile village = new VillageTile(2);
-		RiceTile rice = new RiceTile(2, "rice1");
-		RiceTile rice2 = new RiceTile(2, "rice2");
+		VillageTile village = new VillageTile(2, new Color(colorNum1, colorNum2, colorNum3).brighter());
+		RiceTile rice = new RiceTile(2, new Color(colorNum1, colorNum2, colorNum3).brighter(),"rice1");
+		RiceTile rice2 = new RiceTile(2, new Color(colorNum1, colorNum2, colorNum3).brighter(),"rice2");
 		int[] dir = { 0, 1, 2, 5, 4, 3 };
 		int[] r1Tor2 = { 3, 0, 1, 4, 5, 2 };
 		int[] r2Tor1 = { 1, 2, 5, 0, 3, 4 };
