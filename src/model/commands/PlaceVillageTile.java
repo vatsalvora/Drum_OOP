@@ -43,7 +43,6 @@ public class PlaceVillageTile implements Command {
         {
             save = false;
             b.sendErrorMessage(e.toString());
-            b.returnVillageTile();
             b.resetView();
         }
     }
