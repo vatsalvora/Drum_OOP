@@ -6,6 +6,7 @@ import model.Player;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author devan
@@ -161,12 +162,21 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     }
 
     public void addNamesAndItemsToChoiceAndLabel() {
+        playerToChoices = new HashMap<>();
         choices = new ArrayList<>();
         choices.add(player1Choice);
+        playerToChoices.put(players[0], player1Choice);
         choices.add(player2Choice);
+        playerToChoices.put(players[1], player1Choice);
         choices.add(player3Choice);
-        choices.add(player4Choice);
 
+        if (players[2] != null) {
+            playerToChoices.put(players[2], player1Choice);
+        }
+        choices.add(player4Choice);
+        if (players[3] != null) {
+            playerToChoices.put(players[3], player1Choice);
+        }
 
         names = new ArrayList<>();
         names.add(player1Label);
@@ -179,7 +189,9 @@ public class PalaceFestivalView extends javax.swing.JPanel {
             if (players[i] != null) {
                 ArrayList<PalaceCard> palaceCards = players[i].getCards();
                 for (PalaceCard palaceCard : palaceCards) {
-                    choices.get(i).addItem(palaceCard.toString());
+                    if (palaceCard.compare(palaceFestival.getFestivalCard()) > 0) {
+                        choices.get(i).addItem(palaceCard.toString());
+                    }
                 }
                 names.get(i).setText(players[i].getName());
             }
@@ -195,6 +207,7 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     private PalaceFestival palaceFestival;
     private ArrayList<java.awt.Label> names;
     private ArrayList<java.awt.Choice> choices;
+    private HashMap<Player, java.awt.Choice> playerToChoices;
 
     private javax.swing.JLayeredPane jLayeredPane1;
     private java.awt.Label mainPalaceFestival;
