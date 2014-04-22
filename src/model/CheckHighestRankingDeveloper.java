@@ -26,14 +26,18 @@ public class CheckHighestRankingDeveloper {
                     max = h.getDeveloper();
                     tie = false;
                 }
-                if(h.getHeight() == maxHeight){
+                else if(h.getHeight() == maxHeight){
                     tie = true;
                 }
             }
         }
+        System.out.println(tie);
         if(tie) return false;
         if(max == null) return false;
-        if(!max.getViewColor().equals(playerColor)) return false;
+        if(!max.getViewColor().equals(playerColor)){
+            System.out.println(max.getViewColor());
+            return false;
+        }
         return true;
     }
 }

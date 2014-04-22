@@ -24,12 +24,13 @@ public class CheckPalaceArea {
     public void calcArea(){
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
-        bfs.add(start);
+        bfs.offer(start);
+        System.out.println("BFS Size:" + bfs.size());
         while(!bfs.isEmpty()){
             Space curr = bfs.poll();
-            visited.add(curr);
-            area.add(curr);
             if(!visited.contains(curr)){
+                visited.add(curr);
+                area.add(curr);
                 if(((HexSpace)curr).getHeight()>0)
                 {
                     Tile t = curr.getTopTile();
@@ -43,6 +44,7 @@ public class CheckPalaceArea {
                     }
                 }
             }
+
         }
     }
 }

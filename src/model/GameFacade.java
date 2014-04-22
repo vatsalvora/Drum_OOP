@@ -86,10 +86,13 @@ public class GameFacade {
             return chrd.higestRanking();
     }
 
-    public boolean checkPalaceArea(Space s){
+    public int checkPalaceArea(Space s){
         CheckPalaceArea cpa = new CheckPalaceArea(s);
+        cpa.calcArea();
         List<Space> city = cpa.getArea();
-        return checkHighestRankingDeveloper(city);
+        System.out.println("Size:" + city.size());
+        if(checkHighestRankingDeveloper(city))return city.size();
+        return 0;
     }
 
 	public int getAPLeft() {
@@ -364,15 +367,17 @@ public class GameFacade {
 
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
+        int maxLevel = checkPalaceArea(current);
+
 		System.out.println("YO!");
-		if (current.checkPalaceNeighbor(current) < level)
+		if (maxLevel < level)
 			throw new IncorrectPalaceHeight();
 		boardController.placeTile(t);
 		setMovementColor(cornflower_blue);
 		setDevColor(cornflower_blue);
 		setPalaceLvl(0);
 		// return fame points gained by palace placement
-		return 0;
+		return (maxLevel/2);
 	}
 
 	/*
