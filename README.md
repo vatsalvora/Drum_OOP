@@ -1,12 +1,14 @@
-COP 4331: Object Oriented Programming
+Java: The Board Game
 ========
+This is a COP 4331: Object Oriented Programming project implementing the "Java" the board game.
+
+
 ![Java: The Board Game][1]
 
 
 ----------
 
 
-Implementation of the "Java" board game.
 [Information about the game is listed here][2]
 
 
