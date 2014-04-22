@@ -10,7 +10,6 @@ public class Planning extends State {
 
 
     public Planning(){
-        super();
         commandCreator.setPlanning(true);
         gameFacade.sendErrorMessage("Planning Mode");
         gameFacade.render();
@@ -79,7 +78,7 @@ public class Planning extends State {
     public void keyPressedX() {
         // TODO: End planning mode
         commandCreator.setPlanning(false);
-        State s = new Turn(gameFacade);
+        State s = new Turn();
         KeyPressed.setState(s);
         commandCreator.tossPlan();
     }

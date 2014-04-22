@@ -811,4 +811,8 @@ public class GameFacade {
     {
         turnController.returnPalace();
     }
+
+    public int[] getRotation() {
+        return boardController.getRotations();
+    }
 }

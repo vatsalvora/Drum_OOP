@@ -27,4 +27,8 @@ public class SetRotation implements Command {
     public boolean save() {
         return true;
     }
+
+    public String toString() {
+        return this.getClass().getName();
+    }
 }

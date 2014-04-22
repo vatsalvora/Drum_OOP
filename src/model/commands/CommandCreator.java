@@ -35,17 +35,15 @@ public class CommandCreator {
 	}
 
 	public void usePlan() {
+        StringBuilder sb = new StringBuilder();
 		for (Command c : planningCommands) {
-			commands.push(c);
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		for (Command command : commands) {
-            String className = command.getClass().toString();
+            String className = c.getClass().toString();
             String [] name = className.split("\\.");
             sb.append(name[name.length-1]).append("\n");
+			c.execute();
+            commands.push(c);
 		}
+
 		gameFacade.sendErrorMessage(sb.toString());
         gameFacade.render();
 		System.out.println(sb.toString());
@@ -54,6 +52,7 @@ public class CommandCreator {
 
 	public void tossPlan() {
 		for (Command c : planningCommands) {
+            System.out.println(c);
 			c.undo();
 		}
 		planningCommands.removeAllElements();
@@ -89,6 +88,7 @@ public class CommandCreator {
 		if (planning) {
 			current.execute();
 			if (current.save()) {
+                System.out.println("Pushed");
 				planningCommands.push(current);
 			}
 		} else {

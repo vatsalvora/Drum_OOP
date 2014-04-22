@@ -130,7 +130,8 @@ public class Replay extends State {
 	}
 
 	public void keyPressedT() {
-		State t = new Turn(gameFacade);
+        commandCreator.restart();
+		State t = new Turn();
 		KeyPressed.setState(t);
 	}
 
