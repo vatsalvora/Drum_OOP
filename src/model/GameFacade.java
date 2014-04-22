@@ -449,7 +449,6 @@ public class GameFacade {
         }
         System.out.println("Starting the festival.");
         turnController.startFestival(colors);
-
         palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
         palaceFestival.render();
 

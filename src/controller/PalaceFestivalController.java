@@ -19,8 +19,9 @@ public class PalaceFestivalController {
 
     public PalaceFestivalController(PalaceFestival palaceFestival, Player[] players) {
         this.palaceFestival = palaceFestival;
-        this.palaceFestivalView = new PalaceFestivalView();
+        this.palaceFestivalView = new PalaceFestivalView(players,palaceFestival);
         this.players = players;
+        System.out.println("Got Here!");
     }
 
     public void render() {
@@ -35,7 +36,11 @@ public class PalaceFestivalController {
                 playerArrayList.add(player);
             }
         }
-        players = (Player[]) playerArrayList.toArray();
+        players = new Player[playerArrayList.size()];
+        for(int i=0 ; i<playerArrayList.size(); i++){
+            players[i] = playerArrayList.get(i);
+        }
+
     }
 
 

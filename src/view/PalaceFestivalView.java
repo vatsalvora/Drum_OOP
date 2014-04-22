@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class PalaceFestivalView extends javax.swing.JPanel {
 
-    public PalaceFestivalView() {
+    public PalaceFestivalView(Player [] players, PalaceFestival palaceFestival) {
         initComponents(players, palaceFestival);
     }
 
@@ -158,10 +158,11 @@ public class PalaceFestivalView extends javax.swing.JPanel {
         setMainPalaceFestivalCard();
         JFrame frame = new JFrame("Testing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(jLayeredPane1);
+        frame.getContentPane().add(jLayeredPane1);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     public void setMainPalaceFestivalCard() {
@@ -177,11 +178,11 @@ public class PalaceFestivalView extends javax.swing.JPanel {
         playerToChoices.put(players[1], player1Choice);
         choices.add(player3Choice);
 
-        if (players[2] != null) {
+        if (players.length>2) {
             playerToChoices.put(players[2], player1Choice);
         }
         choices.add(player4Choice);
-        if (players[3] != null) {
+        if (players.length>3) {
             playerToChoices.put(players[3], player1Choice);
         }
 
@@ -207,7 +208,11 @@ public class PalaceFestivalView extends javax.swing.JPanel {
 
 
     public void render(Player[] players, PalaceFestival palaceFestival) {
-        initComponents(players, palaceFestival);
+        this.players = players;
+        this.palaceFestival = palaceFestival;
+        mainPalaceFestival.setText(palaceFestival.getFestivalCard().toString());
+        addNamesAndItemsToChoiceAndLabel();
+        setMainPalaceFestivalCard();
     }
 
     private Player[] players;
