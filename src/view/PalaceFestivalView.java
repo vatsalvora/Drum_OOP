@@ -4,6 +4,7 @@ import model.PalaceCard;
 import model.PalaceFestival;
 import model.Player;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -12,11 +13,14 @@ import java.util.ArrayList;
 public class PalaceFestivalView extends javax.swing.JPanel {
 
     public PalaceFestivalView() {
-        initComponents();
+        initComponents(players, palaceFestival);
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents(Player[] players, PalaceFestival palaceFesitval) {
+        this.players = players;
+        this.palaceFestival = palaceFesitval;
+
 
         player2Choice = new java.awt.Choice();
         player1Label = new java.awt.Label();
@@ -28,6 +32,8 @@ public class PalaceFestivalView extends javax.swing.JPanel {
         player1Choice = new java.awt.Choice();
         player4Label = new java.awt.Label();
         player2Label = new java.awt.Label();
+        passButton = new java.awt.Button();
+        splitButton = new java.awt.Button();
 
         player1Label.setText("label1");
 
@@ -60,21 +66,34 @@ public class PalaceFestivalView extends javax.swing.JPanel {
 
         player2Label.setText("label1");
 
+        passButton.setLabel("Pass");
+        passButton.setName(""); // NOI18N
+        passButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passButtonActionPerformed(evt);
+            }
+        });
+
+        splitButton.setLabel("Ask players to split?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(20, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(splitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                                         .addComponent(player1Choice, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(player2Choice, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(player2Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(player1Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(246, 246, 246))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(163, 163, 163)
+                                                .addComponent(passButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(player4Choice, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -89,8 +108,8 @@ public class PalaceFestivalView extends javax.swing.JPanel {
                                                                 .addComponent(player3Choice, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGap(55, 55, 55)
-                                                                .addComponent(player3Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(17, 17, 17))))
+                                                                .addComponent(player3Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,13 +132,21 @@ public class PalaceFestivalView extends javax.swing.JPanel {
                                                 .addGap(40, 40, 40)
                                                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(player2Choice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(player2Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(player2Choice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(player2Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(passButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(splitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         initializeComponents(players, palaceFestival);
-    }// </editor-fold>                        
+    }// </editor-fold>
+
+    private void passButtonActionPerformed(ActionEvent evt) {
+
+    }
 
     public void initializeComponents(Player[] players, PalaceFestival palaceFestival) {
         this.players = players;
@@ -179,4 +206,7 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     private java.awt.Label player3Label;
     private java.awt.Choice player4Choice;
     private java.awt.Label player4Label;
+    private java.awt.Button splitButton;
+    private java.awt.Button passButton;
+
 }
