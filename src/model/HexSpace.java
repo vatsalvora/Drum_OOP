@@ -1,6 +1,7 @@
 package model;
 
 import model.customExceptions.DevOnSpaceException;
+import model.customExceptions.OnIrrigationTile;
 import model.customExceptions.SpaceNotOnEdgeException;
 import model.customExceptions.TileHeightWrongException;
 
@@ -127,8 +128,12 @@ public class HexSpace implements Space {
 	}
 
 	public void place(Tile tile) throws Exception {
-		if (!spaceEmpty())
-			getTopTile().compareNeighbors(tile);
+		if (!spaceEmpty()) {
+            getTopTile().compareNeighbors(tile);
+            Tile irrigation = new IrrigationTile(0);
+            if(getTopTile().compareTo(irrigation))
+                throw new OnIrrigationTile();
+        }
 
 
 		//onEdge();

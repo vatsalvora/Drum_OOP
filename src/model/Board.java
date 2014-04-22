@@ -171,15 +171,33 @@ public class Board {
     public void place(Tile tile) throws Exception {
         if(tile.getNumberOfRefs()>0)current.checkHeights(tile);
 
-        current.place(tile);
-
-        for(int i=0; i<6; i++){
-            Tile t = tile.getReferences(i);
-            if(t!=null) {
-                HexSpace s = (HexSpace) (current.getNeighbor(i));
-                s.place(t);
+            current.place(tile);
+            try {
+            for (int i = 0; i < 6; i++) {
+                Tile t = tile.getReferences(i);
+                if (t != null) {
+                    HexSpace s = (HexSpace) (current.getNeighbor(i));
+                    s.place(t);
+                }
             }
         }
+            catch(Exception e)
+            {
+                current.removeTopTile();
+                for(int i = 0; i < 6; i++)
+                {
+                    Tile t = tile.getReferences(i);
+                    if(t != null)
+                    {
+                        HexSpace s = (HexSpace) (current.getNeighbor(i));
+                        if(t == s.getTopTile())
+                        {
+                            s.removeTopTile();
+                        }
+                    }
+                }
+                throw e;
+            }
 
     }
 
@@ -198,5 +216,36 @@ public class Board {
 
     public void undoDeveloperPlacement() {
         current.removeDeveloper();
+    }
+
+    public ArrayList<String> getIrrigationColors() {
+        ArrayList<String> colors = new ArrayList<String>();
+        int maxHeight = 0;
+        for (Space space : getCurrentSpace().getNeighbors())
+        {
+            HexSpace s = (HexSpace) space;
+            if(s.hasDeveloper())
+            {
+                if(s.getHeight() > maxHeight)
+                {
+                    maxHeight = s.getHeight();
+                }
+            }
+        }
+        for(Space space : getCurrentSpace().getNeighbors())
+        {
+            HexSpace s = (HexSpace) space;
+            if(s.hasDeveloper())
+            {
+                if(s.getHeight() == maxHeight)
+                {
+                    if(!colors.contains(s.getDeveloper().getColor()))
+                    {
+                        colors.add(s.getDeveloper().getColor());
+                    }
+                }
+            }
+        }
+        return colors;
     }
 }

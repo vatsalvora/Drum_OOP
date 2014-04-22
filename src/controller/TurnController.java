@@ -24,7 +24,7 @@ public class TurnController {
     private int blockPlayed;
     private PalaceFestival festival;
     private int cardsDrawn;
-
+    private boolean palacePlayed;
 
     public TurnController(String[] name) {
         String[] color = {"red", "blue", "green", "yellow"};
@@ -48,6 +48,7 @@ public class TurnController {
         currentPlayer = players[currentPlayerIndex];
         actionPoints = 6;
         cardsDrawn = 0;
+        palacePlayed = false;
     }
 
     // Turn control methods
@@ -63,6 +64,7 @@ public class TurnController {
             blockPlayed = 0;
             actionPoints = 6;
             cardsDrawn = 0;
+            palacePlayed = false;
         }
         else
         {
@@ -442,5 +444,32 @@ public class TurnController {
                 break;
             }
         }
+    }
+
+    public void placePalace() throws Exception
+    {
+        if(actionPoints > 0)
+        {
+            if(!palacePlayed)
+            {
+                palacePlayed = true;
+                actionPoints--;
+                blockPlayed++;
+            }
+            else
+            {
+                throw new PalacePlayedException();
+            }
+        }
+        else
+        {
+            throw new NoAPLeftException();
+        }
+    }
+
+    public void returnPalace() {
+        palacePlayed = false;
+        actionPoints++;
+        blockPlayed--;
     }
 }
