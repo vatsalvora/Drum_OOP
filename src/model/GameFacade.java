@@ -163,23 +163,23 @@ public class GameFacade {
     }
     public void resetCurrent(){boardController.resetCurrent();}
 	public int placeVillageTile() {
-
+        int points = 0;
 		try {
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
+            Tile t = new VillageTile(0, Color.BLACK);
+			boardController.placeTile(t);
             Space[] neighbors = current.getNeighbors();
             Tile check  = new IrrigationTile(0);
             for(Space s: neighbors){
                 HexSpace h = (HexSpace) s;
                 if(h.getHeight()>0) {
                     if (h.getTopTile().compareTo(check)){
-                        System.out.println("Irrigation Fame points: " + checkIrrigationArea(h));
+                        points = checkIrrigationArea(h);
                     }
                 }
             }
-			Tile t = new VillageTile(0, Color.BLACK);
-			boardController.placeTile(t);
 
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
@@ -187,8 +187,9 @@ public class GameFacade {
 		} catch (Exception e) {
 			// tell user about error
 			System.out.println(e);
+            System.out.println("Came HEre");
 		}
-		return 0;
+		return points;
 
 	}
 
@@ -216,12 +217,23 @@ public class GameFacade {
 	}
 
 	public int placeRiceTile() throws Exception {
+        int points = 0;
 		try {
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
 			Tile t = new RiceTile(0, Color.BLACK, "blah");
 			boardController.placeTile(t);
+            Space[] neighbors = current.getNeighbors();
+            Tile check  = new IrrigationTile(0);
+            for(Space s: neighbors){
+                HexSpace h = (HexSpace) s;
+                if(h.getHeight()>0) {
+                    if (h.getTopTile().compareTo(check)){
+                        points = checkIrrigationArea(h);
+                    }
+                }
+            }
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
@@ -229,7 +241,7 @@ public class GameFacade {
 			// tell user about error
 			System.out.println(e);
 		}
-		return 0;
+		return points;
 	}
 
 	public void renderPath(List<Space> path) {
@@ -260,6 +272,7 @@ public class GameFacade {
 	}
 
 	public int placeTwoBlock() throws Exception {
+        int points = 0;
 		HexSpace current = boardController.getCurrentSpace();
 		int[] rotations = boardController.getRotations();
 		int colorNum1 = (int) Math.floor(250 * Math.random());
@@ -274,6 +287,16 @@ public class GameFacade {
 
 		boardController.placeTile(village);
 
+        Space[] neighbors = current.getNeighbors();
+        Tile check  = new IrrigationTile(0);
+        for(Space s: neighbors){
+            HexSpace h = (HexSpace) s;
+            if(h.getHeight()>0) {
+                if (h.getTopTile().compareTo(check)){
+                    points = checkIrrigationArea(h);
+                }
+            }
+        }
 		/*
 		 * here i will create the references Tile t = new VillageTile(0);
 		 * boardController.placeTile(t);
@@ -284,7 +307,7 @@ public class GameFacade {
 		render();
 		// place the village tile on the board
 		// give the player the appropriate points and return them
-		return 0;
+		return points;
 	}
 
 	public void pullTwoBlock() throws Exception {
@@ -317,6 +340,7 @@ public class GameFacade {
 	}
 
 	public int placeThreeBlock() throws Exception {
+        int points = 0;
 		HexSpace current = boardController.getCurrentSpace();
 		int[] rotations = boardController.getRotations();
 		int colorNum1 = (int) Math.floor(250 * Math.random());
@@ -339,6 +363,16 @@ public class GameFacade {
 		rice2.createReff(rice, r2Tor1[5 - dir[rotations[1]]]);
 
 		boardController.placeTile(village);
+        Space[] neighbors = current.getNeighbors();
+        Tile check  = new IrrigationTile(0);
+        for(Space s: neighbors){
+            HexSpace h = (HexSpace) s;
+            if(h.getHeight()>0) {
+                if (h.getTopTile().compareTo(check)){
+                    points = checkIrrigationArea(h);
+                }
+            }
+        }
 
 		/*
 		 * here i will create the references Tile t = new VillageTile(0);
@@ -350,7 +384,7 @@ public class GameFacade {
 		render();
 		// place the village tile on the board
 		// give the player the appropriate points and return them
-		return 0;
+		return points;
 
 	}
 
@@ -379,7 +413,7 @@ public class GameFacade {
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
         int maxLevel = checkPalaceArea(current);
-
+        System.out.println(maxLevel);
 		System.out.println("YO!");
 		if (maxLevel < level)
 			throw new IncorrectPalaceHeight();

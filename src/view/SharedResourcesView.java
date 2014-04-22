@@ -289,24 +289,24 @@ public class SharedResourcesView extends JFrame {
         this.festivalCards.setText("Festival Card: " + festivalCard);
 
         if (tc.getCurrentPlayerIndex() == 0) {
-            player1.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+            player1.setForeground(tc.getPlayerViewColor());
         } else {
-            player1.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            player1.setForeground(Color.BLACK);
         }
         if (tc.getCurrentPlayerIndex() == 1) {
-            player2.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+            player2.setForeground(tc.getPlayerViewColor());
         } else {
-            player2.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            player2.setForeground(Color.BLACK);
         }
         if (tc.getCurrentPlayerIndex() == 2) {
-            player3.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+            player3.setForeground(tc.getPlayerViewColor());
         } else {
-            player3.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            player3.setForeground(Color.BLACK);
         }
         if (tc.getCurrentPlayerIndex() == 3) {
-            player4.setBorder(BorderFactory.createLineBorder(tc.getPlayerViewColor()));
+            player4.setForeground(tc.getPlayerViewColor());
         } else {
-            player4.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            player4.setForeground(Color.BLACK);
         }
 
         this.player1.setText(p1);

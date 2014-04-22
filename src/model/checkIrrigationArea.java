@@ -34,9 +34,11 @@ public class CheckIrrigationArea {
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
         Space[] neighbors = start.getNeighbors();
+
         for (Space s : neighbors) {
-            System.out.println(s.getTopTile() instanceof VillageTile);
-            bfs.add(s);
+            HexSpace h = (HexSpace)s;
+            if(((HexSpace) s).getHeight()>0)System.out.println(s.getTopTile() instanceof VillageTile);
+            bfs.offer(s);
         }
 
         while(!bfs.isEmpty()){

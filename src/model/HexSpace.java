@@ -130,9 +130,9 @@ public class HexSpace implements Space {
 		if (!spaceEmpty())
 			getTopTile().compareNeighbors(tile);
 
-		// onEdge();
+		onEdge();
 		checkingOutSideJava(tile);
-		tilesOnSpace.add(tile);
+		tilesOnSpace.push(tile);
 		System.out.println(this);
 	}
 
@@ -192,23 +192,7 @@ public class HexSpace implements Space {
 		return neighbors;
 	}
 
-	public int checkPalaceNeighbor(HexSpace palace) {
-		int count = 0;
-		System.out.println(getNeighbors().length);
-		VillageTile v = new VillageTile(0, BROWN);
-		for (int i = 0; i < getNeighbors().length; i++) {
 
-			HexSpace space = ((HexSpace) palace.getNeighbor(i));
-
-			if (!space.spaceEmpty()) {
-				if (space.getTopTile().compareTo(v))
-					count++;
-
-			}
-		}
-		System.out.println("COUNT IS" + count);
-		return count;
-	}
 
 	public String toString() {
 		String space = "";

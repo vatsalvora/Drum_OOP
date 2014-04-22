@@ -25,6 +25,12 @@ public class CheckPalaceArea {
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
         bfs.offer(start);
+        visited.add(start);
+        Space [] n = start.getNeighbors();
+        for (Space s : n) {
+            HexSpace h = (HexSpace)s;
+            bfs.offer(s);
+        }
         System.out.println("BFS Size:" + bfs.size());
         while(!bfs.isEmpty()){
             Space curr = bfs.poll();
