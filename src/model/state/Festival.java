@@ -7,8 +7,8 @@ import model.GameFacade;
  */
 public class Festival extends State {
 
-	public Festival(GameFacade gameFacade) {
-		super(gameFacade);
+	public Festival() {
+        super();
         gameFacade.sendErrorMessage("Palace Festival");
         gameFacade.render();
 	}

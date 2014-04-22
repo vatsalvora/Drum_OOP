@@ -10,7 +10,9 @@ public class Turn extends State {
         gameFacade.sendErrorMessage("Turn Mode");
         gameFacade.render();
     }
-
+    public Turn(){
+        super();
+    }
 
 
     @Override
@@ -84,7 +86,7 @@ public class Turn extends State {
     @Override
     public void keyPressed4() {
         // TODO: Go back
-        State state = new Planning(gameFacade);
+        State state = new Planning();
         KeyPressed.setState(state);
 
     }
@@ -92,7 +94,7 @@ public class Turn extends State {
     @Override
     public void keyPressed6() {
         // TODO: Go forward
-        State state = new Replay(gameFacade);
+        State state = new Replay();
         KeyPressed.setState(state);
     }
 

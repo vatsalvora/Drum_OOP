@@ -8,8 +8,8 @@ import view.keypressed.KeyPressed;
  */
 public class Replay extends State {
 
-	public Replay(GameFacade gameFacade) {
-        super(gameFacade);
+	public Replay() {
+        super();
         gameFacade.sendErrorMessage("Replay Mode");
         gameFacade.render();
 	}
