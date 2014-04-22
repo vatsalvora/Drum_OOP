@@ -1,9 +1,9 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /*
- * PalaceFestival holds information for and does calculations
+ * PalaceFestivalView holds information for and does calculations
  * of palace festivals.
  */
 
@@ -81,8 +81,7 @@ public class PalaceFestival {
         return old;
     }
 
-    public ArrayList<Player> getPlayers()
-    {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
@@ -109,25 +108,19 @@ public class PalaceFestival {
         }
     }
 
-    private void reEvaluateValidPlayers()
-    {
+    private void reEvaluateValidPlayers() {
         boolean dummy = true;
-        for(int i = 0; i < players.size(); i++)
-        {
-            if(!playerFrozen[i])
-            {
-                if(!playable(players.get(i)))
-                {
+        for (int i = 0; i < players.size(); i++) {
+            if (!playerFrozen[i]) {
+                if (!playable(players.get(i))) {
                     playerFrozen[i] = true;
                 }
             }
-            if(!playerFrozen[i])
-            {
+            if (!playerFrozen[i]) {
                 dummy = false;
             }
         }
-        if (dummy)
-        {
+        if (dummy) {
             inProgress = false;
         }
     }
@@ -136,7 +129,7 @@ public class PalaceFestival {
     public void playCard(PalaceCard c) {
         if (inProgress) {
             playerScores[currentPlayerIndex] += festivalCard.compare(c);
-			currentPlayer.removeCard(c);
+            currentPlayer.removeCard(c);
             nextPlayer();
         }
     }
@@ -181,8 +174,7 @@ public class PalaceFestival {
         return !inProgress;
     }
 
-    public void endFestival()
-    {
+    public void endFestival() {
         inProgress = false;
     }
 }

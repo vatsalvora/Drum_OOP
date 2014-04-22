@@ -35,3 +35,7 @@ model.commands.ChangeLvlDisplay@39d1196a
 model.commands.SetRotation@7d931e00
 model.commands.ChangeMovementColor@7d9d43e5
 model.commands.ChangeLvlDisplay@8e5db90
+model.commands.SetRotation@23049065
+model.commands.ChangeMovementColor@a3e8d9
+model.commands.ChangeLvlDisplay@90bfee3
+model.commands.PlaceDoubleLandTile 0

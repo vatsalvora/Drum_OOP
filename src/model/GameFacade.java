@@ -70,6 +70,32 @@ public class GameFacade {
 		return boardController.getCurrentSpace();
 	}
 
+    public int checkIrrigationArea(Space s){
+        CheckIrrigationArea check = new CheckIrrigationArea(s);
+        int points = 0;
+        if(check.calcArea()){
+            System.out.println("Area was enclosed!");
+            if(checkHighestRankingDeveloper(check.getArea())){
+                points += check.famePoints();
+            }
+        }
+        return points;
+    }
+
+    public boolean checkHighestRankingDeveloper(List<Space> area){
+            CheckHighestRankingDeveloper chrd = new CheckHighestRankingDeveloper(area,getCurrentPlayerColor());
+            return chrd.higestRanking();
+    }
+
+    public int checkPalaceArea(Space s){
+        CheckPalaceArea cpa = new CheckPalaceArea(s);
+        cpa.calcArea();
+        List<Space> city = cpa.getArea();
+        System.out.println("Size:" + city.size());
+        if(checkHighestRankingDeveloper(city))return city.size();
+        return 0;
+    }
+
 	public int getAPLeft() {
 		return turnController.APLeft();
 	}
@@ -105,7 +131,7 @@ public class GameFacade {
 	}
 
 	public int placeIrrigationTile() throws Exception {
-		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -114,10 +140,7 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-		}
+
 		return 0;
 	}
 
@@ -133,22 +156,33 @@ public class GameFacade {
 		boardController.undoTilePlacement();
 	}
 
-	public int placeVillageTile() {
+    public void tabDeveloper() throws NoDevsOnBoardException {
+        boardController.getNextDeveloper(turnController.getPlayerViewColor());
+    }
+    public void resetCurrent(){boardController.resetCurrent();}
+	public int placeVillageTile() throws Exception {
 
-		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
+            Space[] neighbors = current.getNeighbors();
+            Tile check  = new IrrigationTile(0);
+            for(Space s: neighbors){
+                HexSpace h = (HexSpace) s;
+                if(h.getHeight()>0) {
+                    if (h.getTopTile().compareTo(check)){
+                        System.out.println("Irrigation Fame points: " + checkIrrigationArea(h));
+                    }
+                }
+            }
 			Tile t = new VillageTile(0, Color.BLACK);
 			boardController.placeTile(t);
 
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-		}
+
 		return 0;
 
 	}
@@ -177,7 +211,7 @@ public class GameFacade {
 	}
 
 	public int placeRiceTile() throws Exception {
-		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -186,10 +220,7 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-		}
+
 		return 0;
 	}
 
@@ -339,15 +370,17 @@ public class GameFacade {
 
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
+        int maxLevel = checkPalaceArea(current);
+
 		System.out.println("YO!");
-		if (current.checkPalaceNeighbor(current) < level)
+		if (maxLevel < level)
 			throw new IncorrectPalaceHeight();
 		boardController.placeTile(t);
 		setMovementColor(cornflower_blue);
 		setDevColor(cornflower_blue);
 		setPalaceLvl(0);
 		// return fame points gained by palace placement
-		return 0;
+		return (maxLevel/2);
 	}
 
 	/*
@@ -440,6 +473,7 @@ public class GameFacade {
 		// place a developer at location and get AP spent on action
 		Developer d = new Developer(color, viewColor);
 		int APUsed = boardController.placeDeveloper(d);
+        boardController.addDeveloperLoc(boardController.getCurrentSpace());
 		areaViewportController.setMovementColor(cornflower_blue);
 		areaViewportController.setDevColor(cornflower_blue);
 		render();

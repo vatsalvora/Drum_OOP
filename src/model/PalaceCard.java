@@ -15,35 +15,50 @@ public class PalaceCard {
 
     public PalaceCard(String t1) {
         secondType = Type.NONE;
-        if (t1.equals("MASK")) {
-            firstType = Type.MASK;
-        } else if (t1.equals("DRUM")) {
-            firstType = Type.DRUM;
-        } else if (t1.equals("PUPPET")) {
-            firstType = Type.PUPPET;
-        } else {
-            firstType = Type.NONE;
+        switch (t1) {
+            case "MASK":
+                firstType = Type.MASK;
+                break;
+            case "DRUM":
+                firstType = Type.DRUM;
+                break;
+            case "PUPPET":
+                firstType = Type.PUPPET;
+                break;
+            default:
+                firstType = Type.NONE;
+                break;
         }
     }
 
     public PalaceCard(String t1, String t2) {
-        if (t1.equals("MASK")) {
-            firstType = Type.MASK;
-        } else if (t1.equals("DRUM")) {
-            firstType = Type.DRUM;
-        } else if (t1.equals("PUPPET")) {
-            firstType = Type.PUPPET;
-        } else {
-            firstType = Type.NONE;
+        switch (t1) {
+            case "MASK":
+                firstType = Type.MASK;
+                break;
+            case "DRUM":
+                firstType = Type.DRUM;
+                break;
+            case "PUPPET":
+                firstType = Type.PUPPET;
+                break;
+            default:
+                firstType = Type.NONE;
+                break;
         }
-        if (t2.equals("MASK")) {
-            secondType = Type.MASK;
-        } else if (t2.equals("DRUM")) {
-            secondType = Type.DRUM;
-        } else if (t2.equals("PUPPET")) {
-            secondType = Type.PUPPET;
-        } else {
-            secondType = Type.NONE;
+        switch (t2) {
+            case "MASK":
+                secondType = Type.MASK;
+                break;
+            case "DRUM":
+                secondType = Type.DRUM;
+                break;
+            case "PUPPET":
+                secondType = Type.PUPPET;
+                break;
+            default:
+                secondType = Type.NONE;
+                break;
         }
     }
 

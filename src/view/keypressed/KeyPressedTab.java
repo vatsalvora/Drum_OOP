@@ -16,4 +16,10 @@ public class KeyPressedTab extends KeyPressed {
 			state.keyPressedTab();
 		}
 	}
+
+    public void keyPressed(KeyEvent ke){
+        if (ke.getKeyCode() == KeyEvent.VK_TAB) {
+            state.keyPressedTab();
+        }
+    }
 }

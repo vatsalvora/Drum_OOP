@@ -22,8 +22,10 @@ public class PalaceTile extends Tile{
         assignColor(Color.BLACK);
     }
 
-
-
+    @Override
+    public int getNumberOfRefs() {
+        return 0;
+    }
 
     @Override
     public Tile getReferences(int i) {

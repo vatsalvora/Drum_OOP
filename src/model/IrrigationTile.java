@@ -13,14 +13,17 @@ public class IrrigationTile extends Tile {
 
     private final Tile[] neighbors = new Tile[6];
     private int numberOfNeighbors;
+    private boolean scored;
 
 
     public IrrigationTile(int numberOfNeighbors){
-
+        scored = false;
         assignColor(Color.BLACK);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
     }
+    public boolean getScored(){return scored;}
+    public void setScored(boolean b){scored = b;};
     public Tile getReferences(int i){
         return neighbors[i];
     }
@@ -97,6 +100,10 @@ public class IrrigationTile extends Tile {
             throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + "block on top of a" + (numberOfNeighbors+1));
     }
 
+    @Override
+    public int getNumberOfRefs() {
+        return 0;
+    }
 
     public String toString(){
         String tile= "IrrigationTile with: ";
