@@ -447,9 +447,14 @@ public class GameFacade {
         {
             System.out.println(s);
         }
+        System.out.println("Starting the festival.");
         turnController.startFestival(colors);
+
         palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
         palaceFestival.render();
+
+
+
 
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
@@ -505,7 +510,7 @@ public class GameFacade {
 		// remove palace tile from board
 		boardController.undoTilePlacement();
 		turnController.decrementFamePoints(points);
-        turnController.decrementFamePoints(level/2);
+        turnController.decrementFamePoints(level / 2);
 	}
 
 	public void changeTurn() throws BlockNotPlayedException {
