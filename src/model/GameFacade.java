@@ -131,7 +131,7 @@ public class GameFacade {
 	}
 
 	public int placeIrrigationTile() throws Exception {
-		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -140,10 +140,7 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-		}
+
 		return 0;
 	}
 
@@ -158,13 +155,16 @@ public class GameFacade {
 		removeIrrigationTile(i);
 		boardController.undoTilePlacement();
 	}
+
     public void tabDeveloper() throws NoDevsOnBoardException {
         boardController.getNextDeveloper(turnController.getPlayerViewColor());
     }
     public void resetCurrent(){boardController.resetCurrent();}
+
 	public int placeVillageTile() {
         int points = 0;
 		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -190,6 +190,7 @@ public class GameFacade {
             System.out.println("Came HEre");
 		}
 		return points;
+
 
 	}
 
@@ -217,8 +218,10 @@ public class GameFacade {
 	}
 
 	public int placeRiceTile() throws Exception {
+
         int points = 0;
 		try {
+
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -237,11 +240,13 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
+
 		} catch (Exception e) {
 			// tell user about error
 			System.out.println(e);
 		}
 		return points;
+
 	}
 
 	public void renderPath(List<Space> path) {

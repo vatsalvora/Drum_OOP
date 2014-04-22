@@ -130,13 +130,50 @@ public class HexSpace implements Space {
 		if (!spaceEmpty())
 			getTopTile().compareNeighbors(tile);
 
-		onEdge();
+
+		//onEdge();
 		checkingOutSideJava(tile);
 		tilesOnSpace.push(tile);
+
+
 		System.out.println(this);
 	}
 
-	public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
+
+
+    private void checkIrrigationSurrounding(Space space){
+
+        int count = 0;
+
+        for(Space s : space.getNeighbors())
+            if(((HexSpace)s).getHeight() != 0)
+                count++;
+
+        if(count == 6)
+            findHighestDev(space);
+
+    }
+
+    private void findHighestDev(Space space){
+
+        int highestDev = 0;
+        int highestHeight = 0;
+
+        for(Space s : space.getNeighbors())
+            if(((HexSpace)s).hasDeveloper()) {
+               int height = ((HexSpace) s).getHeight();
+               if(highestHeight < height)
+                   highestHeight = height;
+
+            }
+
+
+
+        System.out.println("kkmsdfkmkmfkmmkfdmaskfmsakmfaasdmfkamkfmasdkmfksamfkdsaklf" + highestHeight);
+
+    }
+
+	private void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
 
 		boolean checkingOne = true;
 		boolean checkingCurrent = true;
@@ -153,7 +190,7 @@ public class HexSpace implements Space {
 			throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
 	}
 
-	public void checkHeights(Tile tile) throws TileHeightWrongException {
+	protected void checkHeights(Tile tile) throws TileHeightWrongException {
 
 		Set<Integer> heights = new HashSet<Integer>();
 

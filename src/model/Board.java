@@ -18,7 +18,7 @@ public class Board {
     private List<Space> developerLocs;
 
     public Board() {
-        developerLocs = new ArrayList<>();
+        developerLocs = new ArrayList<Space>();
         rotations = new int[0];
         board = new LinkedList<List<Space>>();
         size = 0;

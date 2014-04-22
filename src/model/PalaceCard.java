@@ -15,50 +15,36 @@ public class PalaceCard {
 
     public PalaceCard(String t1) {
         secondType = Type.NONE;
-        switch (t1) {
-            case "MASK":
-                firstType = Type.MASK;
-                break;
-            case "DRUM":
-                firstType = Type.DRUM;
-                break;
-            case "PUPPET":
-                firstType = Type.PUPPET;
-                break;
-            default:
-                firstType = Type.NONE;
-                break;
+        if (t1.equals("MASK")) {
+            firstType = Type.MASK;
+        } else if (t1.equals("DRUM")) {
+            firstType = Type.DRUM;
+        } else if (t1.equals("PUPPET")) {
+            firstType = Type.PUPPET;
+        } else {
+            firstType = Type.NONE;
         }
     }
 
     public PalaceCard(String t1, String t2) {
-        switch (t1) {
-            case "MASK":
-                firstType = Type.MASK;
-                break;
-            case "DRUM":
-                firstType = Type.DRUM;
-                break;
-            case "PUPPET":
-                firstType = Type.PUPPET;
-                break;
-            default:
-                firstType = Type.NONE;
-                break;
-        }
-        switch (t2) {
-            case "MASK":
+        if (t1.equals("MASK")) {
+            firstType = Type.MASK;
+        } else if (t1.equals("DRUM")) {
+            firstType = Type.DRUM;
+        } else if (t1.equals("PUPPET")) {
+            firstType = Type.PUPPET;
+        } else {
+            firstType = Type.NONE;
+
+            if (t2.equals("MASK")) {
                 secondType = Type.MASK;
-                break;
-            case "DRUM":
+            } else if (t2.equals("DRUM")) {
                 secondType = Type.DRUM;
-                break;
-            case "PUPPET":
+            } else if (t2.equals("PUPPET")) {
                 secondType = Type.PUPPET;
-                break;
-            default:
+            } else {
                 secondType = Type.NONE;
-                break;
+            }
         }
     }
 
