@@ -29,7 +29,7 @@ public class PalaceFestivalController {
     }
 
     private void setPlayersAllowedToPlayPalaceFestival() {
-        ArrayList<Player> playerArrayList = new ArrayList<>();
+        ArrayList<Player> playerArrayList = new ArrayList<Player>();
         for (Player player : players) {
             if (player.getCards().size() != 0) {
                 playerArrayList.add(player);
