@@ -436,16 +436,18 @@ public class GameFacade {
 	}
 
 	public void initiatePalaceFestival() {
-        CheckPalaceArea cpa = new CheckPalaceArea(getCurrentSpace());
-        cpa.calcArea();
-        ArrayList<String> colors = cpa.getColors();
-        System.out.println(colors);
-        turnController.startFestival(colors);
-        palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
-        palaceFestival.render();
 
-        //<editor-fold desc="Description">
-        colors = boardController.getColorsAroundPalace(cpa);
+
+        CheckPalaceArea newCPA = new CheckPalaceArea(boardController.getCurrentSpace());
+        newCPA.calcArea();
+		ArrayList<String> colors = new ArrayList<String>();
+        colors = boardController.getColorsAroundPalace(newCPA);
+
+        for(String s : colors)
+        {
+            System.out.println(s);
+        }
+
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
 
@@ -697,7 +699,7 @@ public class GameFacade {
 	}
 
 	private void forceDeveloperMove(Location start, Location end) {
-		// force any developer on start location to move to end location, if
+		// force any developer on Start location to move to end location, if
 		// possible
 	}
 

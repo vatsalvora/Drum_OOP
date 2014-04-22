@@ -61,7 +61,7 @@ public class CommandCreator {
 	public void placeDoubleLandTile() {
 		Command c = new SetRotation(gameFacade, new int[] { 2 });
 		Command m = new ChangeMovementColor(gameFacade, Color.GREEN, Color.GREEN);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			c.execute();
 			planningCommands.push(c);
@@ -247,7 +247,7 @@ public class CommandCreator {
 	public void placeTripleLandTile() {
 		Command c = new SetRotation(gameFacade, new int[] { 2, 3 });
 		Command m = new ChangeMovementColor(gameFacade, Color.MAGENTA, Color.MAGENTA);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			c.execute();
 			planningCommands.push(c);
@@ -275,7 +275,7 @@ public class CommandCreator {
 	public void placeIrrigationTile() {
 		Command r = new SetRotation(gameFacade, new int[0]);
 		Command m = new ChangeMovementColor(gameFacade, Color.BLUE, Color.BLUE);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			r.execute();
 			planningCommands.push(r);
@@ -303,7 +303,7 @@ public class CommandCreator {
 	public void placeRiceTile() {
 		Command r = new SetRotation(gameFacade, new int[0]);
 		Command m = new ChangeMovementColor(gameFacade, Color.GREEN, Color.GREEN);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			r.execute();
 			planningCommands.push(r);
@@ -331,7 +331,7 @@ public class CommandCreator {
 	public void placeVillageTile() {
 		Command r = new SetRotation(gameFacade, new int[0]);
 		Command m = new ChangeMovementColor(gameFacade, Color.RED, Color.RED);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			r.execute();
 			planningCommands.push(r);
@@ -363,7 +363,7 @@ public class CommandCreator {
 		if (lvl <= 8)
 			lvl += 2;
 
-		Command p = new ChangeLvlDisplay(gameFacade, lvl);
+		Command p = new ChangeLevelDisplay(gameFacade, lvl);
 
 		if (planning) {
 			r.execute();
@@ -399,7 +399,7 @@ public class CommandCreator {
 				lvl = pt.getLvl();
 			if (lvl <= 8)
 				lvl += 2;
-			Command p = new ChangeLvlDisplay(gameFacade, lvl);
+			Command p = new ChangeLevelDisplay(gameFacade, lvl);
 			if (planning) {
 				r.execute();
 				planningCommands.push(r);
@@ -453,7 +453,7 @@ public class CommandCreator {
 		Command m = new ChangeMovementColor(gameFacade, gameFacade.getCurrentPlayerColor(),
 				cornflower_blue);
 		Command r = new SetRotation(gameFacade, new int[0]);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		if (planning) {
 			m.execute();
 			planningCommands.push(m);
@@ -484,7 +484,7 @@ public class CommandCreator {
 		Command m = new ChangeMovementColor(gameFacade, gameFacade.getCurrentPlayerColor(),
 				cornflower_blue);
 		Command r = new SetRotation(gameFacade, new int[0]);
-		Command p = new ChangeLvlDisplay(gameFacade, 0);
+		Command p = new ChangeLevelDisplay(gameFacade, 0);
 		Command c = new SelectDeveloper(gameFacade);
 		if (planning) {
 			m.execute();

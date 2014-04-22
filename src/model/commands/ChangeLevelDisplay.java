@@ -6,11 +6,11 @@ import model.GameFacade;
 /**
  * Created by Vatsal on 4/21/2014.
  */
-public class ChangeLvlDisplay implements Command {
+public class ChangeLevelDisplay implements Command {
     private GameFacade gameFacade;
     private int lvl;
 
-    public ChangeLvlDisplay(GameFacade gameFacade, int lvl){
+    public ChangeLevelDisplay(GameFacade gameFacade, int lvl){
         this.gameFacade = gameFacade;
         this.lvl = lvl;
     }

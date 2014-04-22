@@ -16,7 +16,7 @@ public class CheckIrrigationArea {
     public CheckIrrigationArea(Space start){
         points = 3;
         check = new IrrigationTile(0);
-        area = new ArrayList<Space>();
+        area = new ArrayList<>();
         this.start = start;
     }
     public List<Space> getArea(){
@@ -28,14 +28,13 @@ public class CheckIrrigationArea {
     public boolean calcArea(){
         if(!start.getTopTile().compareTo(check)) return false;
         if(((IrrigationTile)start.getTopTile()).getScored()) return false;
-        List<Tile> irrigationPool = new LinkedList<Tile>();
+        List<Tile> irrigationPool = new LinkedList<>();
         irrigationPool.add(start.getTopTile());
-        List<Space> visited = new LinkedList<Space>();
-        Queue<Space> bfs = new LinkedList<Space>();
+        List<Space> visited = new LinkedList<>();
+        Queue<Space> bfs = new LinkedList<>();
         Space[] neighbors = start.getNeighbors();
 
         for (Space s : neighbors) {
-            HexSpace h = (HexSpace)s;
             if(((HexSpace) s).getHeight()>0)System.out.println(s.getTopTile() instanceof VillageTile);
             bfs.offer(s);
         }

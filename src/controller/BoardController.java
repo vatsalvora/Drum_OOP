@@ -192,7 +192,7 @@ public class BoardController {
 
     public ArrayList<String>getColorsAroundPalace(CheckPalaceArea c) {
         ArrayList<String> colors = new ArrayList<String>();
-
+        colors = c.getColors();
 
         return colors;
     }

@@ -18,9 +18,9 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents(Player[] players, PalaceFestival palaceFesitval) {
+    private void initComponents(Player[] players, PalaceFestival palaceFestival) {
         this.players = players;
-        this.palaceFestival = palaceFesitval;
+        this.palaceFestival = palaceFestival;
 
 
         player2Choice = new java.awt.Choice();

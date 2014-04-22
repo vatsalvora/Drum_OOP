@@ -209,8 +209,8 @@ public class HexSpace implements Space {
 	public String toString() {
 		String space = "";
 		if (getHeight() > 0)
-			space += "Tile on Space: " + getTopTile() + " neighbors" + "the heigh is: "
-					+ getHeight() + "\n";
+            space += "Tile on Space: " + getTopTile() + " neighbors" + " the height is: "
+                    + getHeight() + "\n";
 		else
 			space += "The height is 0.";
 

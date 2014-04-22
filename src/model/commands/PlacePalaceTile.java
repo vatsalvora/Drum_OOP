@@ -3,7 +3,6 @@ package model.commands;
 import model.Command;
 import model.GameFacade;
 import model.customExceptions.NoPalaceTilesLeft;
-import model.customExceptions.NotEnoughAPException;
 
 import java.awt.*;
 
@@ -39,11 +38,12 @@ public class PlacePalaceTile implements Command {
                     save = false;
                     b.sendErrorMessage(e.toString());
                     b.returnPalaceTile(level);
-                    b.returnOtherBlock();
+                    b.returnPalace();
                     b.resetView();
                 }
             } catch (Exception e) {
                 save = false;
+                b.returnPalace();
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());
                 b.resetView();
