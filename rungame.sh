@@ -1,3 +1,3 @@
-javac $(find ./* | grep .java)
-
-java RunGame
+#!/bin/sh
+javac src/*.java
+java src/RunGame
