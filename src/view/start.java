@@ -1,27 +1,18 @@
 package view;
 
-import model.GameFacade;
-import view.keypressed.KeyPressed;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class start {
+public class Start {
      private JFrame frame;
-	// TODO why is there the main in here?!
-	//public static void main(String[] args) {
-		//new start();
-	//}
 
-	public start() {
+	public Start() {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
@@ -55,7 +46,7 @@ public class start {
 		public TestPane() {
 			setBackground(Color.BLACK);
 			painter = new MenuPainter();
-			menuItems = new ArrayList<String>();
+			menuItems = new ArrayList<>();
 			menuItems.add("Start Game");
 			menuItems.add("Load Game");
 			menuItems.add("Exit");
@@ -87,7 +78,7 @@ public class start {
 			super.paintComponent(g);
 			Graphics2D g2d = (Graphics2D) g.create();
 			if (menuBounds == null) {
-				menuBounds = new HashMap<String, Rectangle>(menuItems.size());
+				menuBounds = new HashMap<>(menuItems.size());
 				int width = 0;
 				int height = 0;
 				for (String text : menuItems) {

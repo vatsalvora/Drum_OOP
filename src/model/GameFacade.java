@@ -696,7 +696,7 @@ public class GameFacade {
 	}
 
 	private void forceDeveloperMove(Location start, Location end) {
-		// force any developer on start location to move to end location, if
+		// force any developer on Start location to move to end location, if
 		// possible
 	}
 

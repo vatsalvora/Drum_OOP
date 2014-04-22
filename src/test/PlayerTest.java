@@ -52,7 +52,7 @@ public class PlayerTest {
 
         in.nextLine();
 
-        System.out.println("New game start!");
+        System.out.println("New game Start!");
 
         boolean playing = true;
 
