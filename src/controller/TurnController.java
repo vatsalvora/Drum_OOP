@@ -51,7 +51,7 @@ public class TurnController {
         palacePlayed = false;
     }
 
-    // Turn control methods
+    // Turn control methodsw
     public void nextTurn() throws BlockNotPlayedException {
         if(blockPlayed > 0) {
             currentPlayerIndex++;
