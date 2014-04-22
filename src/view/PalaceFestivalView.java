@@ -162,8 +162,8 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     }
 
     public void addNamesAndItemsToChoiceAndLabel() {
-        playerToChoices = new HashMap<Player, java.awt.Choice>();
-        choices = new ArrayList<java.awt.Choice>();
+        playerToChoices = new HashMap<>();
+        choices = new ArrayList<>();
         choices.add(player1Choice);
         playerToChoices.put(players[0], player1Choice);
         choices.add(player2Choice);
@@ -199,8 +199,8 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     }
 
 
-    public void render() {
-        repaint();
+    public void render(Player[] players, PalaceFestival palaceFestival) {
+        initComponents(players, palaceFestival);
     }
 
     private Player[] players;
