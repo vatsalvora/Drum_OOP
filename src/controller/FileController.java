@@ -53,6 +53,7 @@ public class FileController {
             while (br.readLine() != null) {
                 String[] lineIn = br.readLine().split(" ");
                 Command command = determineCommand(lineIn, gameFacade);
+                System.out.println(command.toString());
                 command.execute();
             }
         } catch (IOException e) {
@@ -122,6 +123,11 @@ public class FileController {
             return new SelectDeveloper(gameFacade);
         } else if (command.equalsIgnoreCase(modelCommand + "tabdeveloper")) {
             return new TabDeveloper(gameFacade);
+        } else if (command.contains(modelCommand + "setrotation")) {
+            int[] loc = new int[2];
+            loc[0] = Integer.parseInt(lineIn[1]);
+            loc[1] = Integer.parseInt(lineIn[2]);
+            return new SetRotation(gameFacade, loc);
         } else {
             return null;
         }
