@@ -90,7 +90,11 @@ public class PalaceTile extends Tile{
 
         for (int i : indexes) {
             check = compareTo(tile.getNeighborAt(i));
+            if(!check)
+                throw new SameBlockException ("cannot place anything on top of a palace");
         }
+
+
 
 
      }

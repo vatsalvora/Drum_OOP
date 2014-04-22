@@ -1,0 +1,60 @@
+Turn:
+
+"1: Move southwest.\n
+2: Move south.\n
+3: Move southeast.\n
+7: Move northwest.\n
+8: Move north.\n
+9: Move northeast.\n
+W: Select a three tile block.\n
+A: Select a two tile block.\n
+R: Select a rice tile.\n
+V: Select a village tile.\n
+P: Select a palace tile.\n
+P(after selection): Change palace level.\n
+Space(after selection): Rotate tile.\n
+Enter(after selection): Place selected tile.\n
+K: Grab developer (to place).\n
+J: Grab developer (to remove).\n
+D: Select developer (to move).\n
+Enter(with developer): Perform developer action.\n
+C: Draw a palace card from the deck.\n
+F: Draw the festival card.\n
+//Go to planning mode\n
+//Go to replay mode\n
+M: Perform palace festival.\n
+X: End your turn.\n
+S: Save the current game."
+
+
+
+Planning:
+
+"1: Move southwest.\n
+2: Move south.\n
+3: Move southeast.\n
+7: Move northwest.\n
+8: Move north.\n
+9: Move northeast.\n
+W: Select a three tile block.\n
+A: Select a two tile block.\n
+R: Select a rice tile.\n
+V: Select a village tile.\n
+P: Select a palace tile.\n
+P(after selection): Change palace level.\n
+Space(after selection): Rotate tile.\n
+Enter(after selection): Place selected tile.\n
+K: Grab developer (to place).\n
+J: Grab developer (to remove).\n
+D: Select developer (to move).\n
+Enter(with developer): Perform developer action.\n
+C: Draw a palace card from the deck.\n
+F: Draw the festival card.\n
+//Accept changes\n
+//Decline changes\n"
+
+Replay
+
+"//Go back one move.\n
+//Advance one move.\n
+//Return to current game.\n"

@@ -85,7 +85,8 @@ public class VillageTile extends Tile {
             else
                 check = false;
 
-        if(check)
+
+        if(check && getNeighborsIndex().length == indexes.length)
             throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + " block on top of another " + (numberOfNeighbors+1) + " block.");
     }
 
