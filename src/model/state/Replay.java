@@ -8,10 +8,6 @@ import view.keypressed.KeyPressed;
  */
 public class Replay extends State {
 
-	public Replay(GameFacade gameFacade) {
-		super(gameFacade);
-	}
-
 	public Replay() {
 	}
 
