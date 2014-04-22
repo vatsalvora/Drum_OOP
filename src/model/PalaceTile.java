@@ -11,22 +11,19 @@ import java.awt.*;
 public class PalaceTile extends Tile{
 
 
-    private Color color;
+    private Color palace;
     private int lvl;
+
 
 
     public PalaceTile(int lvl) {
         this.lvl = lvl;
-        assignColor(218, 165, 32);
+        palace = Color.YELLOW;
+        assignColor(Color.BLACK);
     }
 
 
 
-
-
-    public void assignColor(int a, int b, int c) {
-        color = Color.YELLOW;
-    }
 
     @Override
     public Tile getReferences(int i) {
@@ -42,9 +39,6 @@ public class PalaceTile extends Tile{
         return lvl;
     }
 
-    public Color getColor() {
-        return color;
-    }
 
     @Override
     public void assignNumberOfNeighbors(int numberOfNeighbors) {
@@ -64,6 +58,14 @@ public class PalaceTile extends Tile{
     @Override
     public void createReff(Tile tile, int index) {
 
+    }
+    public void assignColor(Color c){
+
+        color = new Color[]{palace, palace, c};
+    }
+
+    public Color[] getColor(){
+        return color;
     }
 
     @Override

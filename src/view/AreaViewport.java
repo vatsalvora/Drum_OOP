@@ -14,6 +14,7 @@ public class AreaViewport {
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
     public Color GREEN = new Color(34,139,34);
+    public Color PURPLE = new Color(203, 0, 245);
     private Color cornflower_blue = new Color(100, 149, 237);
     public  Color COLOR_GRID = Color.BLACK;
 
@@ -119,18 +120,13 @@ public class AreaViewport {
         Polygon poly = hex(x, y);
         g2.setColor(color[0]);
         g2.fillPolygon(poly);
-        if(color.length>2){
-            g2.setColor(color[2]);
-        }
-        else g2.setColor(Color.BLACK);
+        g2.setColor(color[2]);
         g2.drawPolygon(poly);
 
 
-        if(color.length>1) {
-            g2.setColor(color[1]);
-            g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
-            g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
-        }
+        g2.setColor(color[1]);
+        g2.fillRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
+        g2.drawRect(x + 10 + BORDERS, y + 10 + BORDERS, 10, 10);
         g2.setColor(Color.BLACK);
         g2.drawString("" + n, x + r + BORDERS, y + r + BORDERS + 4);
 
@@ -244,7 +240,7 @@ public class AreaViewport {
                     HexSpace curr = (HexSpace) board.getSpace(new Location(j, i));
                     Location loc = curr.getLocation();
                     String status = "";
-                    ArrayList<Color> colors = new ArrayList<Color>();
+
                     if(curr.getHeight()>0){
                         try{
                             status = ((PalaceTile)curr.getTopTile()).getLvl()+"";
@@ -254,47 +250,37 @@ public class AreaViewport {
                         }
                     }
                     int[] dir = {0,1,2,5,4,3};
-
-                    Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
+                    Color[] tileColor = curr.getColor();
+                    Color[] color = new Color[]{tileColor[0],tileColor[1],tileColor[2]};
+                    if(curr.getHeight() == 0 && curr.onBorder() && j>5){
+                        color[0] = PURPLE;
+                        color[1] = PURPLE;
+                    }
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
-                        color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;
+                        if(curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))){
+                            color[0] = movement;
+                            color[1] = movement;
+                        }
                     }
-                    colors.add(color);
                     if(curr.hasDeveloper()) {
                         Developer dev = curr.getDeveloper();
                         Color developerColor = dev.getViewColor();
-                        colors.add(developerColor);
+                        color[1] = developerColor;
+                        color[2] = Color.BLACK;
                     }
-                    else
-                    {
-                        colors.add(color);
-                    }
-                    if(curr.getHeight()>0){
-                        Tile t = curr.getTopTile();
-                        int[] refs = t.getNeighborsIndex();
-                        if(refs.length>1){
-                            colors.add(Color.GREEN);
-                        }
-                        else if(refs.length==1){
-                            colors.add(Color.YELLOW);
-                        }
-                        else{
-                            colors.add(Color.BLACK);
-                        }
-                    }
-                    else{
-                        colors.add(Color.BLACK);
-                    }
+
+
                     if(curr.equals(board.getCurrentSpace()))
                     {
-                        colors.set(0, movement);
-                        colors.set(1,movement);
-                        colors.set(2,Color.BLACK);
+                        color[0] = movement;
+                        color[1] = devColor;
+                        color[2] = Color.BLACK;
                         if(palaceLvl>0) status = palaceLvl+"";
                     }
+
                         fillHex(loc.getXLocation(), loc.getYLocation(), status,
-                                g2, colors.get(0),colors.get(1),colors.get(2));
+                                g2, color[0], color[1], color[2]);
                 }
             }
 
@@ -304,7 +290,11 @@ public class AreaViewport {
             for(Space s: path){
                 HexSpace h = (HexSpace)s;
                 Location loc = h.getLocation();
-                Color color = (h.onBorder() && h.getLocation().getXLocation()>3) ? GREEN : h.getColor();
+                Color[] color = h.getColor();
+                if(h.onBorder() && h.getLocation().getXLocation()>3){
+                    color[0] = GREEN;
+                    color[1] = GREEN;
+                }
                 if(h.equals(board.getCurrentSpace()))
                 {
                     fillHex(loc.getXLocation(), loc.getYLocation(), "",
@@ -312,7 +302,7 @@ public class AreaViewport {
                 }
                 else {
                     fillHex(loc.getXLocation(), loc.getYLocation(), "",
-                            g2,color,color,Color.RED);
+                            g2,color[0],color[1],Color.RED);
                 }
             }
             path = new ArrayList<Space>(0);

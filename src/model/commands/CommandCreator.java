@@ -287,6 +287,14 @@ public class CommandCreator {
 
 
     public void selectDeveloper() {
+        Command m = new ChangeMovementColor(gameFacade,gameFacade.getCurrentPlayerColor(),cornflower_blue);
+        m.execute();
+        commands.push(m);
+        Command r = new SetRotation(gameFacade, new int[0]);
+        r.execute();
+        commands.push(r);
+        Command p = new ChangeLvlDisplay(gameFacade,0);
+        p.execute();
         Command c = new SelectDeveloper(gameFacade);
         c.execute();
         if (c.save()) {
