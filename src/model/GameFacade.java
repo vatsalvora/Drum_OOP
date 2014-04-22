@@ -86,6 +86,12 @@ public class GameFacade {
             return chrd.higestRanking();
     }
 
+    public boolean checkPalaceArea(Space s){
+        CheckPalaceArea cpa = new CheckPalaceArea(s);
+        List<Space> city = cpa.getArea();
+        return checkHighestRankingDeveloper(city);
+    }
+
 	public int getAPLeft() {
 		return turnController.APLeft();
 	}

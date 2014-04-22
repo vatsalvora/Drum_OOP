@@ -9,24 +9,19 @@ import java.util.Queue;
 /**
  * Created by Vatsal on 4/22/2014.
  */
-public class CheckIrrigationArea {
+public class CheckPalaceArea {
     private Tile check;
     private List<Space> area;
     private Space start;
-    private int points;
-    public CheckIrrigationArea(Space start){
-        points = 3;
-        check = new IrrigationTile(0);
+    public CheckPalaceArea(Space start){
+        check = new VillageTile(0, Color.BLACK);
         area = new ArrayList<Space>();
         this.start = start;
     }
     public List<Space> getArea(){
         return area;
     }
-    public int famePoints(){
-        return points;
-    }
-    public boolean calcArea(){
+    public void calcArea(){
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
         bfs.add(start);
@@ -35,19 +30,19 @@ public class CheckIrrigationArea {
             visited.add(curr);
             area.add(curr);
             if(!visited.contains(curr)){
-                if(((HexSpace)curr).getHeight()<=0) return false;
-                else {
+                if(((HexSpace)curr).getHeight()>0)
+                {
                     Tile t = curr.getTopTile();
                     if (t.compareTo(check)) {
-                        points +=3;
                         Space[] neighbors = curr.getNeighbors();
                         for (Space s : neighbors) {
-                            if (!s.equals(curr) && !visited.contains(s)) bfs.add(s);
+                            if (!s.equals(curr) && !visited.contains(s) && ((HexSpace)s).getHeight()>0){
+                                if(s.getTopTile().compareTo(check))bfs.add(s);
+                            }
                         }
                     }
                 }
             }
         }
-        return true;
     }
 }
