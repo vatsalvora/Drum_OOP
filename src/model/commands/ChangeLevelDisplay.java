@@ -29,4 +29,9 @@ public class ChangeLevelDisplay implements Command {
     public boolean save() {
         return false;
     }
+
+    public String toString()
+    {
+        return this.getClass().getName() + " " + lvl;
+    }
 }
