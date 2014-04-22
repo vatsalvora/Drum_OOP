@@ -11,17 +11,21 @@ package model;
  */
 public class VillageTile extends Tile {
 
-    private Color color;
     private final Tile[] neighbors = new Tile[6];
     private int numberOfNeighbors;
+    private Color village;
 
 
-    public VillageTile(int numberOfNeighbors){
+    public VillageTile(int numberOfNeighbors, Color outline){
 
-
-        assignColor(214,166,81);
+        village = new Color(214,166,81);
+        assignColor(outline);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
+    }
+
+    public Color[] getColor(){
+        return color;
     }
 
     public void assignNumberOfNeighbors(int numberOfNeighbors){
@@ -64,17 +68,16 @@ public class VillageTile extends Tile {
         neighbors[index] = null;
     }
 
-    public void assignColor(int a ,int b,int c){
-        color = new Color(a,b,c);
+    public void assignColor(Color c){
+
+        color = new Color[]{village, village, c};
     }
 
-    public Color getColor(){
-        return color;
-    }
+
 
     public void compareNeighbors(Tile tile) throws SameBlockException {
         int[] indexes = tile.getNeighborsIndex();
-        boolean check = false;
+        boolean check = true;
 
         for(int i : indexes)
             if(hasNeighborAt(i))

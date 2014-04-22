@@ -11,17 +11,26 @@ import java.awt.*;
  */
 public class RiceTile extends Tile{
 
-    private Color color;
     private final Tile[] neighbors = new Tile[6];
     private int numberOfNeighbors;
     private String testing;
+    private Color rice;
 
-
-    public RiceTile(int numberOfNeighbors, String testing){
+    public RiceTile(int numberOfNeighbors, Color outline, String testing){
         this.testing = testing;
-        assignColor(34,139,34);
+        rice = new Color(34,139,34);
+        assignColor(outline);
         initNeighbors();
         assignNumberOfNeighbors(numberOfNeighbors);
+    }
+
+    public void assignColor(Color c){
+
+        color = new Color[]{rice,rice, c};
+    }
+
+    public Color[] getColor(){
+        return color;
     }
 
     public void assignNumberOfNeighbors(int numberOfNeighbors){
@@ -46,6 +55,8 @@ public class RiceTile extends Tile{
         return temp;
     }
 
+
+
     private boolean hasNeighborAt(int index){
         return (neighbors[index] != null)? true: false;
     }
@@ -62,13 +73,8 @@ public class RiceTile extends Tile{
         neighbors[index] = null;
     }
 
-    public void assignColor(int a ,int b,int c){
-        color = new Color(a,b,c);
-    }
 
-    public Color getColor(){
-        return color;
-    }
+
 
     public boolean compareTo(Tile t) {
 
@@ -77,14 +83,13 @@ public class RiceTile extends Tile{
 
     public void compareNeighbors(Tile tile) throws SameBlockException {
         int[] indexes = tile.getNeighborsIndex();
-        boolean check = false;
+        boolean check = true;
 
         for(int i : indexes)
             if(hasNeighborAt(i))
                 check = true;
             else
                 check = false;
-
 
         if(check && getNeighborsIndex().length == indexes.length)
             throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + " block on top of another " + (numberOfNeighbors+1) + " block.");
