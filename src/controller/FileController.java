@@ -26,7 +26,7 @@ public class FileController {
             Player[] names = gameFacade.getPlayers();
             writer.println(names.length);
             for (Player player : names) {
-                writer.println(player.getColor());
+                writer.println(player.getName());
             }
             for (Command comm : commands) {
                 writer.println(comm);

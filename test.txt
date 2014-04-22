@@ -1,115 +1,40 @@
 2
-red
-blue
+a
+b
 model.commands.Move3
 model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@4f434495
-model.commands.ChangeLevelDisplay@16a1a6a4
+model.commands.ChangeMovementColor@4212c960
+model.commands.ChangeLevelDisplay@50593205
 model.commands.PlaceTripleLandTile 0
 model.commands.Move3
 model.commands.Move3
 model.commands.Move3
 model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@26b12aa8
-model.commands.ChangeLevelDisplay@7eea356f
-model.commands.PlaceTripleLandTile 0
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.Move7
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@2bd8a1cb
-model.commands.ChangeLevelDisplay@30d7a692
-model.commands.PlaceTripleLandTile 0
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@1f9c2e4a
-model.commands.ChangeLevelDisplay@3072319b
+model.commands.ChangeMovementColor@2cae278d
+model.commands.ChangeLevelDisplay@5e8bbdc
 model.commands.PlaceTripleLandTile 0
 model.commands.Move3
 model.commands.Move3
 model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@5eca18a7
-model.commands.ChangeLevelDisplay@53a4c6da
+model.commands.ChangeMovementColor@51e52bc8
+model.commands.ChangeLevelDisplay@4835f2eb
+model.commands.PlaceTripleLandTile 0
+model.commands.Move3
+model.commands.Move3
+model.commands.Move3
+model.commands.SetRotation 2 3
+model.commands.ChangeMovementColor@157a262f
+model.commands.ChangeLevelDisplay@550c5907
 model.commands.PlaceTripleLandTile 0
 model.commands.Move3
 model.commands.Move3
 model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@2d344c9a
-model.commands.ChangeLevelDisplay@c6b4e4e
+model.commands.ChangeMovementColor@2dcf9305
+model.commands.ChangeLevelDisplay@4a8a8efd
 model.commands.PlaceTripleLandTile 0
-model.ChangeTurn@26a6044
-model.commands.Move8
-model.commands.Move8
-model.commands.Move8
-model.commands.Move8
-model.commands.Move8
-model.commands.Move8
-model.commands.Move1
-model.commands.Move2
-model.commands.Move1
-model.commands.Move2
-model.commands.Move1
-model.commands.Move2
-model.commands.Move1
-model.commands.Move2
-model.commands.Move1
-model.commands.Move2
-model.commands.Move8
-model.commands.Move7
-model.commands.Move7
-model.commands.Move7
-model.commands.Move7
-model.commands.Move1
-model.commands.Move2
-model.commands.SetRotation 2
-model.commands.ChangeMovementColor@770de4c5
-model.commands.ChangeLevelDisplay@78523622
+model.commands.Move3
+model.commands.Move3
 model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@2e1d0e58
-model.commands.ChangeLevelDisplay@7f24339f
-model.commands.PlaceTripleLandTile 0
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@6797cb72
-model.commands.ChangeLevelDisplay@e1d0284
-model.commands.PlaceTripleLandTile 0
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@4834a2d1
-model.commands.ChangeLevelDisplay@1652d883
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@4f475d60
-model.commands.ChangeLevelDisplay@29a87f2e
-model.commands.PlaceTripleLandTile 0
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@446762e0
-model.commands.ChangeLevelDisplay@44f13c2f
-model.commands.PlaceTripleLandTile 0
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@3128c58c
-model.commands.ChangeLevelDisplay@5b939d88
-model.commands.Move9
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@249c9478
-model.commands.ChangeLevelDisplay@6941d480
-model.commands.PlaceTripleLandTile 0
-model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.Move1
-model.commands.SetRotation 2 3
-model.commands.ChangeMovementColor@1e327881
-model.commands.ChangeLevelDisplay@590ad912
+model.commands.ChangeMovementColor@e8592dd
+model.commands.ChangeLevelDisplay@39f6366b
 model.commands.PlaceTripleLandTile 0
