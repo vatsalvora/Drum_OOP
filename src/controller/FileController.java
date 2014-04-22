@@ -48,7 +48,7 @@ public class FileController {
         }
     }
 
-    private void loadCommands(BufferedReader br, GameFacade gameFacade) {
+    public void loadCommands(BufferedReader br, GameFacade gameFacade) {
         try {
             while (br.readLine() != null) {
                 String[] lineIn = br.readLine().split(" ");
@@ -60,7 +60,7 @@ public class FileController {
         }
     }
 
-    private Command determineCommand(String[] lineIn, GameFacade gameFacade) {
+    public Command determineCommand(String[] lineIn, GameFacade gameFacade) {
         String command = lineIn[0];
         String modelCommand = "model.commands.";
         if (command.contains("model.ChangeTurn")) {
@@ -107,27 +107,27 @@ public class FileController {
             return new Rotate(gameFacade);
         } else if (command.equalsIgnoreCase(modelCommand + "useactiontoken")) {
             return new UseActionToken(gameFacade);
-        } else if (command.equalsIgnoreCase(modelCommand + "move developer")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "movedeveloper")) {
             int points = Integer.parseInt(lineIn[1]);
             return new MoveDeveloper(gameFacade, points);
-        } else if (command.equalsIgnoreCase(modelCommand + "        place developer")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "placedeveloper")) {
             int points = Integer.parseInt(lineIn[1]);
             return new PlaceDeveloper(gameFacade, points);
-        } else if (command.equalsIgnoreCase(modelCommand + "        remove developer")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "removedeveloper")) {
             int points = Integer.parseInt(lineIn[1]);
             return new RemoveDeveloper(gameFacade, points);
-        } else if (command.equalsIgnoreCase(modelCommand + "        rotate")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "rotate")) {
             return new Rotate(gameFacade);
-        } else if (command.equalsIgnoreCase(modelCommand + "        select developer")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "selectdeveloper")) {
             return new SelectDeveloper(gameFacade);
-        } else if (command.equalsIgnoreCase(modelCommand + "        tab through developer")) {
+        } else if (command.equalsIgnoreCase(modelCommand + "tabdeveloper")) {
             return new TabDeveloper(gameFacade);
         } else {
             return null;
         }
     }
 
-    private String[] loadColors(BufferedReader br) {
+    public String[] loadColors(BufferedReader br) {
         String[] colors = new String[0];
         try {
             int numPlayers = Integer.parseInt(br.readLine());

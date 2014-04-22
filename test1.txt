@@ -2,7 +2,7 @@
 red
 blue
 green
-model.ChangeTurn@34a433d8
+model.ChangeTurn@222b00
 model.commands.DrawCard
 model.commands.DrawPalaceCard
 model.commands.EndPalaceFestival
@@ -14,3 +14,8 @@ model.commands.Move7
 model.commands.Move8
 model.commands.Move9
 model.commands.PlaceVillageTile 0
+model.commands.MoveDeveloper 10
+model.commands.PlaceDeveloper 10
+model.commands.RemoveDeveloper 10
+model.commands.Rotate
+model.commands.TabDeveloper
