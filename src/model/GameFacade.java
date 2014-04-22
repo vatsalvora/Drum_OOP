@@ -121,6 +121,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
     }
@@ -153,6 +154,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
 
@@ -193,6 +195,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
     }

@@ -136,22 +136,19 @@ public class HexSpace implements Space {
 
     public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
 
-        boolean checking = true;
+        boolean checkingOne = true;
+        boolean checkingCurrent = true;
 
-        for(int a : tile.getNeighborsIndex()) {
-            checking = ((HexSpace) getNeighbor(a)).onEdge();
-            System.out.println("The tile isaaaaaaaaaa: " + ((HexSpace) getNeighbor(a)));
-            System.out.println("checking: " + checking);
-
-            if(!checking)
-                break;
+        for(int i = 0 ; i < tile.getNeighborsIndex().length; i++){
+            Space a = getNeighbor(tile.getNeighborsIndex()[i]);
+            if(a != null && !a.onBorder())
+                checkingOne = false;
         }
 
-        checking = getCurrentSpace().onBorder();
-        System.out.println("checking: " + checking);
+        checkingCurrent = getCurrentSpace().onBorder();
 
-        if(checking )
-        throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
+        if(checkingOne && checkingCurrent )
+            throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
     }
 
     public void checkHeights(Tile tile) throws TileHeightWrongException {
