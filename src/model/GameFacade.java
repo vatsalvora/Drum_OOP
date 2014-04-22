@@ -70,6 +70,22 @@ public class GameFacade {
 		return boardController.getCurrentSpace();
 	}
 
+    public int checkIrrigationArea(Space s){
+        CheckIrrigationArea check = new CheckIrrigationArea(s);
+        int points = 0;
+        if(check.calcArea()){
+            if(checkHighestRankingDeveloper(check.getArea())){
+                points += check.famePoints();
+            }
+        }
+        return points;
+    }
+
+    public boolean checkHighestRankingDeveloper(List<Space> area){
+            CheckHighestRankingDeveloper chrd = new CheckHighestRankingDeveloper(area,getCurrentPlayerColor());
+            return chrd.higestRanking();
+    }
+
 	public int getAPLeft() {
 		return turnController.APLeft();
 	}

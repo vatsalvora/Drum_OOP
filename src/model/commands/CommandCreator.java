@@ -26,7 +26,12 @@ public class CommandCreator {
 	}
 
 	public void setPlanning(boolean plan) {
-		planning = plan;
+
+        planning = plan;
+        if(planning){
+            gameFacade.sendErrorMessage("Planning Mode");
+            gameFacade.render();
+        }
 	}
 
 	public void usePlan() {
@@ -37,9 +42,12 @@ public class CommandCreator {
 		StringBuilder sb = new StringBuilder();
 
 		for (Command command : commands) {
-			sb.append(command.getClass()).append("\n");
+            String className = command.getClass().toString();
+            String [] name = className.split("\\.");
+            sb.append(name[name.length-1]).append("\n");
 		}
 		gameFacade.sendErrorMessage(sb.toString());
+        gameFacade.render();
 		System.out.println(sb.toString());
 		planningCommands.removeAllElements();
 	}

@@ -9,7 +9,10 @@ public class Turn extends State {
         super(gameFacade);
         super.setCurrentState(StateType.TURN);
     }
-    public Turn(){}
+    public Turn(){
+        gameFacade.sendErrorMessage("Turn Mode");
+        gameFacade.render();
+    }
 
 
     @Override

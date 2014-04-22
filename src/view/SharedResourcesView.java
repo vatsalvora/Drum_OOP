@@ -19,16 +19,21 @@ public class SharedResourcesView extends JFrame {
     private JLabel numTenPalaceTiles;
     private JLabel APLeft;
     private JTextArea errorInfo;
+    private JScrollPane errorPane;
 
     private JTextArea player1;
     private JTextArea player2;
     private JTextArea player3;
     private JTextArea player4;
 
+    private JScrollPane player1Pane;
+    private JScrollPane player2Pane;
+    private JScrollPane player3Pane;
+    private JScrollPane player4Pane;
     // Interactive fields
     private JLabel palaceCards;
     private JLabel festivalCards;
-
+    private int numPlayers;
     private JFrame frame;
 
     String errorMessage;
@@ -40,6 +45,7 @@ public class SharedResourcesView extends JFrame {
         tc = t;
         sr = s;
         createView();
+        numPlayers = t.getNumPlayers();
         errorMessage = " ";
     }
 
@@ -61,10 +67,10 @@ public class SharedResourcesView extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        infoPanel.setMinimumSize(new Dimension(400, 400));
+        infoPanel.setMinimumSize(new Dimension(600, 400));
         JPanel playerPanel = new JPanel();
         playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.LINE_AXIS));
-        playerPanel.setMinimumSize(new Dimension(600, 500));
+        playerPanel.setMaximumSize(new Dimension(400, 400));
         // Empty border template
         Border emptyBorder = BorderFactory.createEmptyBorder();
 
@@ -136,37 +142,43 @@ public class SharedResourcesView extends JFrame {
         infoPanel.add(APLeft);
 
         //need to move to the right to make it fully visible
-        errorInfo = new JTextArea(50, 50);
-        errorInfo.setPreferredSize(new Dimension(50, 50));
-        errorInfo.setMinimumSize(APLeft.getPreferredSize());
-        errorInfo.setMaximumSize(new Dimension(50, 50));
-        errorInfo.setOpaque(false);
-        errorInfo.setForeground(Color.RED);
-        infoPanel.add(errorInfo);
+        errorInfo = new JTextArea(300, 100);
+        errorPane = new JScrollPane(errorInfo);
+        errorPane.setPreferredSize(new Dimension(350, 150));
+        errorPane.setMinimumSize(APLeft.getPreferredSize());
+        errorPane.setMaximumSize(new Dimension(350, 150));
+        errorPane.setForeground(Color.RED);
+        errorPane.setOpaque(true);
+        errorPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        infoPanel.add(errorPane);
 
         player1 = new JTextArea(50, 50);
-        player1.setMinimumSize(new Dimension(170, 100));
-        player1.setPreferredSize(new Dimension(170, 100));
-        player1.setMaximumSize(new Dimension(170, 100));
-        playerPanel.add(player1);
+        player1Pane = new JScrollPane(player1);
+        player1Pane.setMaximumSize(new Dimension(100, 150));
+        player1Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        //playerPanel.add(player1Pane);
 
         player2 = new JTextArea(50, 50);
-        player2.setMinimumSize(new Dimension(170, 100));
-        player2.setPreferredSize(new Dimension(170, 100));
-        player2.setMaximumSize(new Dimension(170, 100));
-        playerPanel.add(player2);
+        player2Pane = new JScrollPane(player2);
+        player2Pane.setMaximumSize(new Dimension(100,150));
+        player2Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        //playerPanel.add(player2Pane);
 
-        player3 = new JTextArea(50, 50);
-        player3.setMinimumSize(new Dimension(170, 100));
-        player3.setPreferredSize(new Dimension(170, 100));
-        player3.setMaximumSize(new Dimension(170, 100));
-        playerPanel.add(player3);
+            player3 = new JTextArea(50, 50);
+            player3Pane = new JScrollPane(player3);
+            player3Pane.setMaximumSize(new Dimension(150, 150));
+            player3Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        if(numPlayers >2) {
+            playerPanel.add(player3Pane);
+        }
 
-        player4 = new JTextArea(50, 50);
-        player4.setMinimumSize(new Dimension(170, 100));
-        player4.setPreferredSize(new Dimension(170, 100));
-        player4.setMaximumSize(new Dimension(170, 100));
-        playerPanel.add(player4);
+            player4 = new JTextArea(50, 50);
+            player4Pane = new JScrollPane(player4);
+            player4Pane.setMaximumSize(new Dimension(150, 150));
+            player4Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        if(numPlayers>3) {
+            playerPanel.add(player4Pane);
+        }
 
         // Add panels
         mainPanel.add(infoPanel);
@@ -222,7 +234,7 @@ public class SharedResourcesView extends JFrame {
     }
 
     public void updateErrorMessage() {
-        errorInfo.setText("                              " + errorMessage);
+        errorInfo.setText(errorMessage);
     }
 
     public void updateNumPalaceCards(int num) {
