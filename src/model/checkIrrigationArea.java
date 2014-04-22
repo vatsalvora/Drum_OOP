@@ -8,26 +8,30 @@ import java.util.Queue;
 /**
  * Created by Vatsal on 4/22/2014.
  */
-class CheckIrrigationArea {
+public class CheckIrrigationArea {
     private Tile check;
     private List<Space> area;
     private Space start;
     private int points;
-    public CheckIrrigationArea(Space start){
+
+    public CheckIrrigationArea(Space start) {
         points = 3;
         check = new IrrigationTile(0);
         area = new ArrayList<>();
         this.start = start;
     }
-    public List<Space> getArea(){
+
+    public List<Space> getArea() {
         return area;
     }
-    public int famePoints(){
+
+    public int famePoints() {
         return points;
     }
-    public boolean calcArea(){
-        if(!start.getTopTile().compareTo(check)) return false;
-        if(((IrrigationTile)start.getTopTile()).getScored()) return false;
+
+    public boolean calcArea() {
+        if (!start.getTopTile().compareTo(check)) return false;
+        if (((IrrigationTile) start.getTopTile()).getScored()) return false;
         List<Tile> irrigationPool = new LinkedList<>();
         irrigationPool.add(start.getTopTile());
         List<Space> visited = new LinkedList<>();
@@ -35,23 +39,23 @@ class CheckIrrigationArea {
         Space[] neighbors = start.getNeighbors();
 
         for (Space s : neighbors) {
-            if(((HexSpace) s).getHeight()>0)System.out.println(s.getTopTile() instanceof VillageTile);
+            if (((HexSpace) s).getHeight() > 0) System.out.println(s.getTopTile() instanceof VillageTile);
             bfs.offer(s);
         }
 
-        while(!bfs.isEmpty()){
+        while (!bfs.isEmpty()) {
             Space curr = bfs.poll();
 
-            if(!visited.contains(curr)){
+            if (!visited.contains(curr)) {
                 visited.add(curr);
                 area.add(curr);
-                System.out.println("Height: " + ((HexSpace)curr).getHeight());
-                if(((HexSpace)curr).getHeight()<=0) return false;
+                System.out.println("Height: " + ((HexSpace) curr).getHeight());
+                if (((HexSpace) curr).getHeight() <= 0) return false;
                 else {
                     Tile t = curr.getTopTile();
                     if (t.compareTo(check)) {
                         irrigationPool.add(t);
-                        points +=3;
+                        points += 3;
                         Space[] adjacent = curr.getNeighbors();
                         for (Space s : adjacent) {
                             if (!s.equals(curr) && !visited.contains(s)) bfs.add(s);
@@ -61,8 +65,8 @@ class CheckIrrigationArea {
             }
 
         }
-        for(Tile t: irrigationPool){
-            IrrigationTile i = (IrrigationTile)t;
+        for (Tile t : irrigationPool) {
+            IrrigationTile i = (IrrigationTile) t;
             i.setScored(true);
         }
         return true;
