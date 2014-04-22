@@ -5,8 +5,13 @@ import model.Command;
 import model.GameFacade;
 import model.Player;
 import model.commands.*;
+import model.state.State;
+import model.state.Turn;
+import view.keypressed.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -27,7 +32,7 @@ public class FileController {
                 writer.println(comm);
             }
             writer.close();
-            System.out.println("File saved");
+            System.out.println("File saved + at: " + fileName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,6 +44,8 @@ public class FileController {
             br = new BufferedReader(new FileReader(fileName));
             String[] colors = loadColors(br);
             GameFacade gameFacade = new GameFacade(colors);
+            List<KeyPressed> keySet = createListeners(gameFacade);
+            gameFacade.addKeyListeners(keySet);
             loadCommands(br, gameFacade);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -46,6 +53,42 @@ public class FileController {
             assert br != null;
             br.close();
         }
+    }
+
+    public static List<KeyPressed> createListeners(GameFacade b) {
+        State state = new Turn(b);
+        List<KeyPressed> keySet = new ArrayList<>();
+
+        keySet.add(new KeyPressed1(state));
+        keySet.add(new KeyPressed2(state));
+        keySet.add(new KeyPressed3(state));
+        keySet.add(new KeyPressed7(state));
+        keySet.add(new KeyPressed8(state));
+        keySet.add(new KeyPressed9(state));
+        keySet.add(new KeyPressedTab(state));
+        keySet.add(new KeyPressedR(state));
+        keySet.add(new KeyPressedP(state));
+        keySet.add(new KeyPressedV(state));
+        keySet.add(new KeyPressedI(state));
+        keySet.add(new KeyPressedX(state));
+        keySet.add(new KeyPressedA(state));
+        keySet.add(new KeyPressedESC(state));
+        keySet.add(new KeyPressedF(state));
+        keySet.add(new KeyPressedU(state));
+        keySet.add(new KeyPressedW(state));
+        keySet.add(new KeyPressedE(state));
+        keySet.add(new KeyPressed4(state));
+        keySet.add(new KeyPressed6(state));
+        keySet.add(new KeyPressedS(state));
+        keySet.add(new KeyPressedEnter(state));
+        keySet.add(new KeyPressedSpace(state));
+        keySet.add(new KeyPressedT(state));
+        keySet.add(new KeyPressedC(state));
+        keySet.add(new KeyPressedM(state));
+        keySet.add(new KeyPressedJ(state));
+        keySet.add(new KeyPressedK(state));
+        keySet.add(new KeyPressedD(state));
+        return keySet;
     }
 
     public void loadCommands(BufferedReader br, GameFacade gameFacade) {
