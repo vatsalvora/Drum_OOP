@@ -65,7 +65,7 @@ public class BoardController {
 		board.setCurrentSpace(space);
 	}
 
-	public void placeTile(Tile tile) {
+	public void placeTile(Tile tile) throws Exception {
 		board.place(tile);
 	}
 

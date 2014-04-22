@@ -114,15 +114,8 @@ public class Board {
     }
 
 
-    public void place(Tile tile) {
-
-        try {
-
+    public void place(Tile tile) throws Exception {
             current.checkHeights(tile);
-        }catch(Exception e){
-            System.out.println(e);
-            return;
-        }
 
         current.place(tile);
 

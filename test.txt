@@ -3,45 +3,23 @@ red
 blue
 green
 model.commands.Move3
-model.commands.SetRotation@6e6c0485
-model.commands.ChangeMovementColor@7ef091e6
-model.commands.ChangeLvlDisplay@66315b33
-model.commands.PlaceRiceTile 0
-model.commands.Move3
-model.commands.SetRotation@2dde51dc
-model.commands.ChangeMovementColor@239830ce
-model.commands.ChangeLvlDisplay@591deafa
-model.commands.PlaceVillageTile 0
-model.commands.Move3
-model.commands.Move3
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation@3519da29
-model.commands.ChangeMovementColor@6a963de7
-model.commands.ChangeLvlDisplay@86a7e3b
+model.commands.SetRotation@1cdd77cc
+model.commands.ChangeMovementColor@4beb6e2b
+model.commands.ChangeLvlDisplay@3c677c81
 model.commands.PlaceTripleLandTile 0
-model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.SetRotation@3e160ff6
-model.commands.ChangeMovementColor@4525528f
-model.commands.ChangeLvlDisplay@1e0736c9
-model.commands.PlaceIrrigationTile 0
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation@45c71894
-model.commands.ChangeMovementColor@4b20d665
-model.commands.ChangeLvlDisplay@247e44a4
-model.commands.PlaceIrrigationTile 0
-model.commands.Move8
-model.ChangeTurn@3689f9c
-model.commands.Move3
-model.commands.Move1
-model.commands.Move1
-model.commands.Move2
+model.commands.SetRotation@38f86dde
+model.commands.ChangeMovementColor@4f6c0e1a
+model.commands.ChangeLvlDisplay@5fe6abea
+model.commands.SetRotation@58e257e3
+model.commands.ChangeMovementColor@230f47bc
+model.commands.ChangeLvlDisplay@c3c9119
+model.commands.SetRotation@66efc28f
+model.commands.ChangeMovementColor@2c78ccfe
+model.commands.ChangeLvlDisplay@75935c6a
+model.commands.SetRotation@1d4faf98
+model.commands.ChangeMovementColor@52cfd04
+model.commands.ChangeLvlDisplay@6fd9de63
+model.commands.SetRotation@c6bffe
+model.commands.ChangeMovementColor@6015f311
+model.commands.ChangeLvlDisplay@2b3e6ca
 model.commands.Move2

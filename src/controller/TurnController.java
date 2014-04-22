@@ -262,6 +262,7 @@ public class TurnController {
     }
 
     public void returnOtherBlock() {
+        System.out.println("Increasing action points.");
         actionPoints++;
         blockPlayed--;
     }

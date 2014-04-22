@@ -123,10 +123,7 @@ public class HexSpace implements Space {
         }
     }
 
-    public void place(Tile tile) {
-
-
-        try {
+    public void place(Tile tile) throws Exception {
             if(!spaceEmpty())
                 getTopTile().compareNeighbors(tile);
 
@@ -135,12 +132,6 @@ public class HexSpace implements Space {
             checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
             System.out.println(this);
-        } catch (Exception e) {
-
-            System.out.println(e);
-            //removeTopTile();
-            //tell user what went wrong with tile placement
-        }
     }
 
     public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
@@ -183,7 +174,7 @@ public class HexSpace implements Space {
 
     }
 
-    public void updateNeighbor(Space s, Tile t){
+    public void updateNeighbor(Space s, Tile t) throws Exception {
         ((HexSpace)s).place(t);
     }
 

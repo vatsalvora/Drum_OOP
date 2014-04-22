@@ -84,6 +84,7 @@ public class GameFacade {
     public void sendErrorMessage(String s)
     {
         //send the error message to the view
+        sharedResourcesController.sendErrorMessage(s);
         System.out.println(s);
     }
 
@@ -339,7 +340,7 @@ public class GameFacade {
         festival.PerformFestival(turnController, sharedResourcesController.getDeck());
 	}
 
-	public int placePalaceTile(int level) {
+	public int placePalaceTile(int level) throws Exception {
 
 
         Tile t = new PalaceTile(level);
@@ -664,4 +665,8 @@ public class GameFacade {
         render();
 	}
 
+    public void removeErrorMessage()
+    {
+        sharedResourcesController.removeErrorMessage();
+    }
 }

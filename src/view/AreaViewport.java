@@ -147,9 +147,15 @@ public class AreaViewport {
         Tile t1 = new IrrigationTile(0);
         Tile t2 = new IrrigationTile(0);
         Tile t3 = new IrrigationTile(0);
-        ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
-        ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
-        ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
+        try {
+            ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
+            ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
+            ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
+        }
+        catch(Exception e)
+        {
+            //should never happen
+        }
     }
 
     private void createAndShowGUI(Board board) {

@@ -64,6 +64,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void move2() {
@@ -82,6 +83,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void move3() {
@@ -100,6 +102,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void move7() {
@@ -118,6 +121,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void move8() {
@@ -136,6 +140,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void move9() {
@@ -154,6 +159,7 @@ public class CommandCreator {
                 //do nothing with exception
             }
         }
+        gameFacade.removeErrorMessage();
     }
 
     public void placeTripleLandTile() {

@@ -1,8 +1,10 @@
 package model.customExceptions;
 
-/**
- * Created by Jose on 4/20/2014.
+/*
+ * Custom exceptions created to maintain flow, readability, and reduce
+ * possible TDA violations
  */
+
 public class SameBlockException extends Exception {
 
     String error;

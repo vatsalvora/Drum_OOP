@@ -19,6 +19,7 @@ public class SharedResourcesView extends JFrame
 		private JLabel numEightPalaceTiles;
 		private JLabel numTenPalaceTiles;
         private JLabel APLeft;
+        private JTextArea errorInfo;
 		
 		private JTextArea player1;
 		private JTextArea player2;
@@ -31,6 +32,8 @@ public class SharedResourcesView extends JFrame
 	
 		private JFrame frame;
 
+        String errorMessage;
+
     private TurnController tc;
     private SharedResources sr;
 
@@ -39,6 +42,7 @@ public class SharedResourcesView extends JFrame
             tc = t;
             sr = s;
 				createView();
+            errorMessage = " ";
 		}
 
 
@@ -128,6 +132,21 @@ public class SharedResourcesView extends JFrame
 				numTenPalaceTiles.setPreferredSize(new Dimension(200,25));
 				numTenPalaceTiles.setMinimumSize(numTenPalaceTiles.getPreferredSize());
 				infoPanel.add(numTenPalaceTiles);
+
+                APLeft = customJLabel("AP left: ");
+                APLeft.setPreferredSize(new Dimension(300, 100));
+                APLeft.setMinimumSize(APLeft.getPreferredSize());
+                APLeft.setFont(new Font("Serif", Font.BOLD, 22));
+                infoPanel.add(APLeft);
+
+                //need to move to the right to make it fully visible
+                errorInfo = new JTextArea(50, 50);
+                errorInfo.setPreferredSize(new Dimension(50, 50));
+                errorInfo.setMinimumSize(APLeft.getPreferredSize());
+                errorInfo.setMaximumSize(new Dimension(50, 50));
+                errorInfo.setOpaque(false);
+                errorInfo.setForeground(Color.RED);
+                infoPanel.add(errorInfo);
 				
 				player1 = new JTextArea(50,50);
 				player1.setMinimumSize(new Dimension(100,100));
@@ -169,6 +188,8 @@ public class SharedResourcesView extends JFrame
 			updateNumSixPalaceTiles(sr.getNumSixPalaces());
 			updateNumEightPalaceTiles(sr.getNumEightPalaces());
 			updateNumTenPalaceTiles(sr.getNumTenPalaces());
+            updateAPLeft(tc.APLeft());
+            updateErrorMessage();
 			this.toBack();
 			
 		}
@@ -207,6 +228,16 @@ public class SharedResourcesView extends JFrame
 				{
 						this.numTenPalaceTiles.setText("Ten Palace Tiles: "+num);
 				}
+
+                public void updateAPLeft(int num)
+                {
+                    this.APLeft.setText("AP left: " + num);
+                }
+
+                public void updateErrorMessage()
+                {
+                    errorInfo.setText(errorMessage);
+                }
 
 				public void updateNumPalaceCards(int num)
 				{
@@ -261,14 +292,13 @@ public class SharedResourcesView extends JFrame
 					System.out.println("Updating players...");
 					String festivalCard = tc.getCurrentFestivalCard();
 					int cp = tc.getCurrentPlayerIndex()+1;
-					highlightCurrentPlayer(cp);
 					String p1 = tc.getPlayerInfo(1);
 					String p2 = tc.getPlayerInfo(2);
 					String p3 = tc.getPlayerInfo(3);
 					String p4 = tc.getPlayerInfo(4);
 					
-					this.palaceCards.setText("Player " + cp + "'s cards: " + tc.getPlayerCardInfo());
-					this.festivalCards.setText("Festival Card:\n"+festivalCard);
+					this.palaceCards.setText(tc.getPlayerName() + "'s cards: " + tc.getPlayerCardInfo());
+					this.festivalCards.setText("Festival Card: "+festivalCard);
 
                     if(tc.getCurrentPlayerIndex() == 0)
                     {
@@ -319,16 +349,13 @@ public class SharedResourcesView extends JFrame
 						label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 						return label;
 				}
-				
-				private void highlightCurrentPlayer(int cp)
-				{
-					switch(cp)
-					{
-					// TODO
-						
-					}
-				}
-				
-				
-				
+
+    public void setErrorMessage(String s) {
+        errorMessage = s;
+    }
+
+    public void removeErrorMessage()
+    {
+        errorMessage = " ";
+    }
 } // End class

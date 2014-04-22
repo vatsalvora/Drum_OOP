@@ -77,4 +77,13 @@ public class SharedResourcesController {
         srv.updateFields();
         srv.updatePlayers();
     }
+
+    public void sendErrorMessage(String s) {
+        srv.setErrorMessage(s);
+    }
+
+    public void removeErrorMessage()
+    {
+        srv.removeErrorMessage();
+    }
 }
