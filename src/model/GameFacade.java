@@ -436,6 +436,7 @@ public class GameFacade {
 	}
 
 	public void initiatePalaceFestival() {
+        checkPalaceArea(boardController.getCurrentSpace());
 		ArrayList<String> colors = new ArrayList<String>();
         colors = boardController.getColorsAroundPalace(cpa);
 		// Get valid colors from the board to turn in to festivals
