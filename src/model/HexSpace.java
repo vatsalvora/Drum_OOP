@@ -113,12 +113,7 @@ public class HexSpace implements Space {
 
     public Color[] getColor() {
         if(getHeight()>0){
-            Tile s = tilesOnSpace.peek();
-            if(s instanceof VillageTile){
-                Color[] c = s.getColor();
-                System.out.println(c[0] + " " + c[1] + " " + c[2]);
-            }
-            return s.getColor();
+            return getTopTile().getColor();
         }
         else if(onBorder()){
             return new Color[]{BROWN,BROWN,Color.BLACK};

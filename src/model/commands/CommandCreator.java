@@ -15,29 +15,77 @@ public class CommandCreator {
     private Command current;
     private Stack<Command> commands = new Stack<Command>();
     private Stack<Command> secondCommands = new Stack<Command>();
-    private Color cornflower_blue = new Color(100, 149, 237);
+    private Stack<Command> planningCommands = new Stack<Command>();
 
+    private Color cornflower_blue = new Color(100, 149, 237);
+    private boolean planning;
     public CommandCreator(GameFacade gameFacade) {
         this.gameFacade = gameFacade;
+        planning = false;
     }
+    public void setPlanning(boolean plan){
+        planning = plan;
+    }
+    public void usePlan(){
+        for(Command c: planningCommands){
+            commands.push(c);
+        }
 
+        StringBuilder sb = new StringBuilder();
+
+        for (Command command : commands) {
+            sb.append(command.getClass()).append("\n");
+        }
+        gameFacade.sendErrorMessage(sb.toString());
+        System.out.println(sb.toString());
+        planningCommands.removeAllElements();
+    }
+    public void tossPlan(){
+        System.out.println("Came Here!");
+        for(Command c: planningCommands){
+            c.undo();
+        }
+        planningCommands.removeAllElements();
+    }
     public void placeDoubleLandTile() {
         Command c = new SetRotation(gameFacade, new int[]{2});
-        c.execute();
-        commands.push(c);
         Command m = new ChangeMovementColor(gameFacade,Color.GREEN,Color.GREEN);
-        m.execute();
-        commands.push(m);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning) {
+            c.execute();
+            planningCommands.push(c);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            c.execute();
+            commands.push(c);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
         current = new PlaceDoubleLandTile(gameFacade);
     }
 
     public void execute() {
-        current.execute();
-        if (current.save()) {
-            commands.push(current);
+        if(planning){
+            current.execute();
+            if (current.save()) {
+                planningCommands.push(current);
+            }
+        }
+        else {
+            current.execute();
+            if (current.save()) {
+                commands.push(current);
+            }
         }
         current = null;
 
@@ -50,9 +98,18 @@ public class CommandCreator {
 
     public void move1() {
         Command c = new Move1(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -69,9 +126,18 @@ public class CommandCreator {
 
     public void move2() {
         Command c = new Move2(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -88,9 +154,18 @@ public class CommandCreator {
 
     public void move3() {
         Command c = new Move3(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -107,9 +182,18 @@ public class CommandCreator {
 
     public void move7() {
         Command c = new Move7(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -126,9 +210,18 @@ public class CommandCreator {
 
     public void move8() {
         Command c = new Move8(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -145,9 +238,18 @@ public class CommandCreator {
 
     public void move9() {
         Command c = new Move9(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if (planning) {
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
+        }
+        else
+        {
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
         }
         if(current instanceof MoveDeveloper)
         {
@@ -164,74 +266,154 @@ public class CommandCreator {
 
     public void placeTripleLandTile() {
         Command c = new SetRotation(gameFacade, new int[]{2,3});
-        c.execute();
-        commands.push(c);
         Command m = new ChangeMovementColor(gameFacade,Color.MAGENTA,Color.MAGENTA);
-        m.execute();
-        commands.push(m);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning){
+            c.execute();
+            planningCommands.push(c);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            c.execute();
+            commands.push(c);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
+
+
         current = new PlaceTripleLandTile(gameFacade);
 
     }
 
     public void placeIrrigationTile() {
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command m = new ChangeMovementColor(gameFacade,Color.BLUE,Color.BLUE);
-        m.execute();
-        commands.push(m);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning){
+            r.execute();
+            planningCommands.push(r);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            r.execute();
+            commands.push(r);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
+
         current = new PlaceIrrigationTile(gameFacade);
 
     }
 
     public void placeRiceTile() {
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command m = new ChangeMovementColor(gameFacade,Color.GREEN,Color.GREEN);
-        m.execute();
-        commands.push(m);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning){
+            r.execute();
+            planningCommands.push(r);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            r.execute();
+            commands.push(r);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
+
+
         current = new PlaceRiceTile(gameFacade);
 
     }
 
     public void placeVillageTile() {
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command m = new ChangeMovementColor(gameFacade,Color.RED,Color.RED);
-        m.execute();
-        commands.push(m);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning){
+            r.execute();
+            planningCommands.push(r);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            r.execute();
+            commands.push(r);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
+
+
         current = new PlaceVillageTile(gameFacade);
 
     }
 
     public void placePalaceTile() {
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command m = new ChangeMovementColor(gameFacade,Color.YELLOW,Color.YELLOW);
-        m.execute();
-        commands.push(m);
-
         int lvl = gameFacade.getPalaceLvl();
         if(lvl<=8) lvl+=2;
 
         Command p = new ChangeLvlDisplay(gameFacade,lvl);
-        p.execute();
-        commands.push(p);
+
+        if(planning){
+            r.execute();
+            planningCommands.push(r);
+
+            m.execute();
+            planningCommands.push(m);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else{
+            r.execute();
+            commands.push(r);
+
+            m.execute();
+            commands.push(m);
+
+            p.execute();
+            commands.push(p);
+        }
+
+
+
 
         current = new PlacePalaceTile(gameFacade, lvl);
 
@@ -239,50 +421,92 @@ public class CommandCreator {
 
     public void upgradePalaceTile() {
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command m = new ChangeMovementColor(gameFacade,Color.YELLOW,Color.YELLOW);
-        m.execute();
-        commands.push(m);
         PalaceTile pt = (PalaceTile)gameFacade.getCurrentSpace().getTopTile();
         if(pt != null){
             int lvl = gameFacade.getPalaceLvl();
             if(pt.getLvl() > lvl) lvl = pt.getLvl();
             if(lvl <=8) lvl += 2;
             Command p = new ChangeLvlDisplay(gameFacade,lvl);
-            p.execute();
-            commands.push(p);
+            if(planning){
+                r.execute();
+                planningCommands.push(r);
+
+                m.execute();
+                planningCommands.push(m);
+
+                p.execute();
+                planningCommands.push(p);
+            }
+            else {
+                r.execute();
+                commands.push(r);
+
+                m.execute();
+                commands.push(m);
+
+                p.execute();
+                commands.push(p);
+            }
             current = new PlacePalaceTile(gameFacade, lvl);
 
         }
+
+
     }
 
 
     public void initiatePalaceFestival() {
         //current = new InitiatePalaceFestival(gameFacade);
-        Command c = new InitiatePalaceFestival(gameFacade);
-        c.execute();
+        if(!planning) {
+            Command c = new InitiatePalaceFestival(gameFacade);
+            c.execute();
+        }
     }
 
     public void changeTurn() {
         Command c = new ChangeTurn(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if(planning){
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
         }
+        else{
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
+        }
+
+
     }
 
     public void placeDeveloper()
     {
         Command m = new ChangeMovementColor(gameFacade,gameFacade.getCurrentPlayerColor(),cornflower_blue);
-        m.execute();
-        commands.push(m);
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
-        commands.push(p);
+        if(planning){
+            m.execute();
+            planningCommands.push(m);
+
+            r.execute();
+            planningCommands.push(r);
+
+            p.execute();
+            planningCommands.push(p);
+        }
+        else {
+            m.execute();
+            commands.push(m);
+
+            r.execute();
+            commands.push(r);
+
+            p.execute();
+            commands.push(p);
+        }
         current = new PlaceDeveloper(gameFacade);
     }
 
@@ -294,21 +518,46 @@ public class CommandCreator {
 
     public void selectDeveloper() {
         Command m = new ChangeMovementColor(gameFacade,gameFacade.getCurrentPlayerColor(),cornflower_blue);
-        m.execute();
-        commands.push(m);
         Command r = new SetRotation(gameFacade, new int[0]);
-        r.execute();
-        commands.push(r);
         Command p = new ChangeLvlDisplay(gameFacade,0);
-        p.execute();
         Command c = new SelectDeveloper(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
-            current = new MoveDeveloper(gameFacade);
-        } else {
-            current = null;
+        if(planning)
+        {
+            m.execute();
+            planningCommands.push(m);
+
+            r.execute();
+            planningCommands.push(r);
+
+            p.execute();
+
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+                current = new MoveDeveloper(gameFacade);
+            } else {
+                current = null;
+            }
         }
+        else{
+            m.execute();
+            commands.push(m);
+
+            r.execute();
+            commands.push(r);
+
+            p.execute();
+
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+                current = new MoveDeveloper(gameFacade);
+            } else {
+                current = null;
+            }
+        }
+
+
     }
 
     public void undoAll(){
@@ -343,26 +592,56 @@ public class CommandCreator {
 
     public void useActionToken() {
         Command c = new UseActionToken(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if(planning){
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
         }
+        else{
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
+        }
+
+
     }
 
     public void drawCard() {
         Command c = new DrawCard(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if(planning){
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
         }
+        else{
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
+        }
+
+
     }
 
     public void drawFestivalCard() {
         Command c = new DrawPalaceCard(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if(planning){
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
         }
+        else{
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
+        }
+
+
     }
 
     @Override
@@ -387,9 +666,19 @@ public class CommandCreator {
 
     public void rotate() {
         Command c = new Rotate(gameFacade);
-        c.execute();
-        if (c.save()) {
-            commands.push(c);
+        if(planning){
+            c.execute();
+            if (c.save()) {
+                planningCommands.push(c);
+            }
         }
+        else{
+            c.execute();
+            if (c.save()) {
+                commands.push(c);
+            }
+        }
+
+
     }
 }

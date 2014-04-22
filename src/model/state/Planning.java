@@ -1,41 +1,47 @@
 package model.state;
 
 import model.GameFacade;
+import view.keypressed.KeyPressed;
 
 /**
  * Created by devan on 4/9/14.
  */
 public class Planning extends State {
 
-    public Planning(GameFacade gameFacade) {
-        super(gameFacade);
-    }
-    public Planning(){}
 
+    public Planning(){
+         commandCreator.setPlanning(true);
+    }
+
+    @Override
     public void keyPressed1() {
-        // TODO: Move to SW position
+        commandCreator.move1();
     }
 
+    @Override
     public void keyPressed2() {
-        // TODO: Move to S position
+        commandCreator.move2();
     }
 
+    @Override
     public void keyPressed3() {
-        // TODO: Move to SE position
+        commandCreator.move3();
     }
 
+    @Override
     public void keyPressed7() {
-        // TODO: Move to NE position
+        commandCreator.move7();
     }
 
+    @Override
     public void keyPressed8() {
-        // TODO: Move to N position
+        commandCreator.move8();
     }
 
+    @Override
     public void keyPressed9() {
-        // TODO: Move to NW position
+        commandCreator.move9();
     }
-
     public void keyPressedTab() {
         // TODO: Tab through developers
     }
@@ -62,7 +68,7 @@ public class Planning extends State {
     }
 
     public void keyPressedU() {
-        commandCreator.undoLastCommand();
+
     }
 
     public void keyPressedX() {
@@ -82,7 +88,10 @@ public class Planning extends State {
     }
 
     public void keyPressedW() {
-        incorrectKeyPressed();
+        commandCreator.setPlanning(false);
+        State s = new Turn();
+        KeyPressed.setState(s);
+        commandCreator.tossPlan();
     }
 
     public void keyPressedE() {
@@ -91,7 +100,7 @@ public class Planning extends State {
     }
 
     public void keyPressed4() {
-        incorrectKeyPressed();
+
     }
 
     public void keyPressed6() {
@@ -105,12 +114,12 @@ public class Planning extends State {
 
     @Override
     public void keyPressedEnter() {
-        incorrectKeyPressed();
+        commandCreator.execute();
     }
 
     @Override
     public void keyPressedSpace() {
-        incorrectKeyPressed();
+        commandCreator.rotate();
     }
 
     public void keyPressedT() {
@@ -122,7 +131,11 @@ public class Planning extends State {
     }
 
     public void keyPressedM() {
-        incorrectKeyPressed();
+
+        commandCreator.setPlanning(false);
+        State s = new Turn();
+        KeyPressed.setState(s);
+        commandCreator.usePlan();
     }
 
     public void keyPressedJ() {
