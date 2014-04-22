@@ -45,6 +45,11 @@ public class RiceTile extends Tile{
             neighbors[i] = null;
     }
 
+    @Override
+    public int getNumberOfRefs() {
+        return numberOfNeighbors;
+    }
+
     public int[] getNeighborsIndex(){
         int[] temp = new int[numberOfNeighbors];
 

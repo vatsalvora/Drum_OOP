@@ -3,7 +3,7 @@ package model;
 import model.customExceptions.*;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -66,7 +66,9 @@ public class Player {
         return color;
     }
 
-    public Color getViewColor(){return viewColor;}
+    public Color getViewColor() {
+        return viewColor;
+    }
 
     public int getFamePoints() {
         return famePoints;
@@ -95,15 +97,14 @@ public class Player {
     public ArrayList<PalaceCard> getCards() {
         return cards;
     }
-    
-    public String palaceCardsToString()
-    {
-    	String ret = "";
-    	ArrayList<PalaceCard> cards = getCards();
-    	for(PalaceCard card : cards)
-    		ret += card.toString() + " | ";
-    	return ret;
-    		
+
+    public String palaceCardsToString() {
+        String ret = "";
+        ArrayList<PalaceCard> cards = getCards();
+        for (PalaceCard card : cards)
+            ret += card.toString() + " | ";
+        return ret;
+
 
     }
 
@@ -112,7 +113,7 @@ public class Player {
         famePoints += i;
     }
 
-    public void decrementFamePoints(int i){
+    public void decrementFamePoints(int i) {
         famePoints -= i;
     }
 
@@ -208,19 +209,16 @@ public class Player {
 
     public boolean hasCard(PalaceCard p) throws CardNotInHandException {
         boolean ret = false;
-        for(PalaceCard c : cards)
-        {
-            if(p.sameCardAs(c))
-            {
+        for (PalaceCard c : cards) {
+            if (p.sameCardAs(c)) {
                 ret = true;
                 break;
             }
         }
-        if (!ret)
-        {
+        if (!ret) {
             throw new CardNotInHandException();
         }
-        return ret;
+        return true;
     }
 
     // toString for output purposes
@@ -241,6 +239,6 @@ public class Player {
     }
 
     public PalaceCard returnCard() {
-        return cards.remove(cards.size()-1);
+        return cards.remove(cards.size() - 1);
     }
 }

@@ -10,7 +10,10 @@ public class Festival extends State {
 	public Festival(GameFacade gameFacade) {
 		super(gameFacade);
 	}
-    public Festival(){}
+    public Festival(){
+        gameFacade.sendErrorMessage("Palace Festival");
+        gameFacade.render();
+    }
 
 	@Override
 	public void keyPressed1() {
