@@ -1,9 +1,6 @@
 package model;
 
-import controller.AreaViewportController;
-import controller.BoardController;
-import controller.SharedResourcesController;
-import controller.TurnController;
+import controller.*;
 import model.customExceptions.*;
 import test.FestivalTest;
 import view.keypressed.KeyPressed;
@@ -19,11 +16,14 @@ public class GameFacade {
 	private AreaViewportController areaViewportController;
 	private Color cornflower_blue = new Color(100, 149, 237);
     private CheckPalaceArea cpa;
+    private PalaceFestivalController palaceFestival;
 
 	public GameFacade(String[] player) {
 		turnController = new TurnController(player);
 		boardController = new BoardController();
+
 		sharedResourcesController = new SharedResourcesController(turnController);
+
 		areaViewportController = new AreaViewportController(boardController.getBoard());
 		startGame();
         cpa = new CheckPalaceArea(new HexSpace(new Location(0, 0)));
@@ -436,11 +436,18 @@ public class GameFacade {
 	}
 
 	public void initiatePalaceFestival() {
-        checkPalaceArea(boardController.getCurrentSpace());
-		ArrayList<String> colors = new ArrayList<String>();
+        CheckPalaceArea cpa = new CheckPalaceArea(getCurrentSpace());
+        cpa.getArea();
+        ArrayList<String> colors = cpa.getColors();
+        turnController.startFestival(colors);
+        palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
+        palaceFestival.render();
+
+        //<editor-fold desc="Description">
         colors = boardController.getColorsAroundPalace(cpa);
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
+
 		FestivalTest festival = new FestivalTest(colors);
 		festival.PerformFestival(turnController, sharedResourcesController.getDeck());
         ArrayList<Player> victors = turnController.getVictors();
@@ -491,6 +498,7 @@ public class GameFacade {
                 //should never happen
             }
         }
+        //</editor-fold>
 	}
 
 	public int placePalaceTile(int level) throws Exception {

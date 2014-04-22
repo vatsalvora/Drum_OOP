@@ -20,6 +20,7 @@ public class CheckPalaceArea {
         this.start = start;
         develsInCity = new ArrayList<String>();
     }
+
     public List<Space> getArea(){
         return area;
     }

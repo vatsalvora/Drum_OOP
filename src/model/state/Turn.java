@@ -115,7 +115,9 @@ public class Turn extends State {
 
 	@Override
 	public void keyPressedU() {
-		incorrectKeyPressed();
+
+        State state = new Festival();
+        KeyPressed.setState(state);
 	}
     @Override
     public void keyPressedW() {

@@ -16,7 +16,7 @@ public class Festival extends State {
 
 	@Override
 	public void keyPressed1() {
-		incorrectKeyPressed();
+
 	}
 
 	@Override
@@ -66,17 +66,17 @@ public class Festival extends State {
 
 	@Override
 	public void keyPressedI() {
-		incorrectKeyPressed();
+		commandCreator.initiatePalaceFestival();
 	}
 
 	@Override
 	public void keyPressedX() {
-		incorrectKeyPressed();
+
 	}
 
 	@Override
 	public void keyPressedA() {
-		incorrectKeyPressed();
+
 	}
 
 	@Override
