@@ -447,6 +447,8 @@ public class GameFacade {
         {
             System.out.println(s);
         }
+        turnController.startFestival(colors);
+        palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
 
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
