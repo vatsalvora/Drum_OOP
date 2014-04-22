@@ -220,8 +220,6 @@ public class GameFacade {
 	public int placeRiceTile() throws Exception {
 
         int points = 0;
-		try {
-
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
@@ -240,11 +238,6 @@ public class GameFacade {
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
-
-		} catch (Exception e) {
-			// tell user about error
-			System.out.println(e);
-		}
 		return points;
 
 	}
