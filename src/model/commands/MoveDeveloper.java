@@ -14,6 +14,11 @@ public class MoveDeveloper implements Command {
         APUsed = 0;
     }
 
+    public MoveDeveloper(GameFacade b, int APUsed) {
+        this.b = b;
+        this.APUsed = APUsed;
+    }
+
     public void execute() {
         try {
             b.moveDeveloper();
