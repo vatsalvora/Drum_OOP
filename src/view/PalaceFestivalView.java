@@ -118,13 +118,15 @@ public class PalaceFestivalView extends javax.swing.JPanel {
                                 .addComponent(player2Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        initializeComponents(players, palaceFestival);
     }// </editor-fold>                        
 
-    public void inititializeComponents(Player[] players, PalaceFestival palaceFestival) {
+    public void initializeComponents(Player[] players, PalaceFestival palaceFestival) {
         this.players = players;
         this.palaceFestival = palaceFestival;
         mainPalaceFestival.setText(palaceFestival.getFestivalCard().toString());
         addNamesAndItemsToChoiceAndLabel();
+        setMainPalaceFestivalCard();
     }
 
     public void setMainPalaceFestivalCard() {
@@ -132,14 +134,14 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     }
 
     public void addNamesAndItemsToChoiceAndLabel() {
-        ArrayList<java.awt.Choice> choices = new ArrayList<>();
+        choices = new ArrayList<>();
         choices.add(player1Choice);
         choices.add(player2Choice);
         choices.add(player3Choice);
         choices.add(player4Choice);
 
 
-        ArrayList<java.awt.Label> names = new ArrayList<java.awt.Label>();
+        names = new ArrayList<>();
         names.add(player1Label);
         names.add(player2Label);
         names.add(player3Label);
@@ -155,7 +157,6 @@ public class PalaceFestivalView extends javax.swing.JPanel {
                 names.get(i).setText(players[i].getName());
             }
         }
-
     }
 
 
@@ -165,6 +166,8 @@ public class PalaceFestivalView extends javax.swing.JPanel {
 
     private Player[] players;
     private PalaceFestival palaceFestival;
+    private ArrayList<java.awt.Label> names;
+    private ArrayList<java.awt.Choice> choices;
 
     private javax.swing.JLayeredPane jLayeredPane1;
     private java.awt.Label mainPalaceFestival;
@@ -176,5 +179,4 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     private java.awt.Label player3Label;
     private java.awt.Choice player4Choice;
     private java.awt.Label player4Label;
-    // End of variables declaration                   
 }
