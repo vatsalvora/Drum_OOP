@@ -1,7 +1,10 @@
 package view;
 
+import model.PalaceCard;
 import model.PalaceFestival;
 import model.Player;
+
+import java.util.ArrayList;
 
 /**
  * @author devan
@@ -120,9 +123,41 @@ public class PalaceFestivalView extends javax.swing.JPanel {
     public void inititializeComponents(Player[] players, PalaceFestival palaceFestival) {
         this.players = players;
         this.palaceFestival = palaceFestival;
+        mainPalaceFestival.setText(palaceFestival.getFestivalCard().toString());
+        addNamesAndItemsToChoiceAndLabel();
+    }
 
+    public void setMainPalaceFestivalCard() {
         mainPalaceFestival.setText(palaceFestival.getFestivalCard().toString());
     }
+
+    public void addNamesAndItemsToChoiceAndLabel() {
+        ArrayList<java.awt.Choice> choices = new ArrayList<>();
+        choices.add(player1Choice);
+        choices.add(player2Choice);
+        choices.add(player3Choice);
+        choices.add(player4Choice);
+
+
+        ArrayList<java.awt.Label> names = new ArrayList<java.awt.Label>();
+        names.add(player1Label);
+        names.add(player2Label);
+        names.add(player3Label);
+        names.add(player4Label);
+
+
+        for (int i = 0; i < players.length; i++) {
+            if (players[i] != null) {
+                ArrayList<PalaceCard> palaceCards = players[i].getCards();
+                for (PalaceCard palaceCard : palaceCards) {
+                    choices.get(i).addItem(palaceCard.toString());
+                }
+                names.get(i).setText(players[i].getName());
+            }
+        }
+
+    }
+
 
     public void render() {
         repaint();
