@@ -21,10 +21,10 @@ public class CheckPalaceArea {
     public List<Space> getArea(){
         return area;
     }
-    public void calcArea(){
+    public boolean calcArea(){
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
-        bfs.offer(start);
+
         visited.add(start);
         Space [] n = start.getNeighbors();
         for (Space s : n) {
@@ -40,6 +40,10 @@ public class CheckPalaceArea {
                 if(((HexSpace)curr).getHeight()>0)
                 {
                     Tile t = curr.getTopTile();
+                    if(t.compareTo(new PalaceTile(0))){
+                        area.clear();
+                        return false;
+                    }
                     if (t.compareTo(check)) {
                         Space[] neighbors = curr.getNeighbors();
                         for (Space s : neighbors) {
@@ -52,5 +56,6 @@ public class CheckPalaceArea {
             }
 
         }
+        return true;
     }
 }

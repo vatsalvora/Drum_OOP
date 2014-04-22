@@ -89,10 +89,11 @@ public class GameFacade {
 
     public int checkPalaceArea(Space s){
         CheckPalaceArea cpa = new CheckPalaceArea(s);
-        cpa.calcArea();
-        List<Space> city = cpa.getArea();
-        System.out.println("Size:" + city.size());
-        if(checkHighestRankingDeveloper(city))return city.size();
+        if(cpa.calcArea()) {
+            List<Space> city = cpa.getArea();
+            System.out.println("Size:" + city.size()+1);
+            if (checkHighestRankingDeveloper(city)) return (1+city.size());
+        }
         return 0;
     }
 

@@ -136,13 +136,14 @@ public class SharedResourcesView extends JFrame {
         infoPanel.add(numTenPalaceTiles);
 
         APLeft = customJLabel("AP left: ");
-        APLeft.setPreferredSize(new Dimension(300, 100));
+        APLeft.setPreferredSize(new Dimension(100, 100));
         APLeft.setMinimumSize(APLeft.getPreferredSize());
         APLeft.setFont(new Font("Serif", Font.BOLD, 22));
         infoPanel.add(APLeft);
 
         //need to move to the right to make it fully visible
-        errorInfo = new JTextArea(300, 100);
+        errorInfo = new JTextArea(200, 100);
+        errorInfo.setOpaque(false);
         errorPane = new JScrollPane(errorInfo);
         errorPane.setPreferredSize(new Dimension(350, 150));
         errorPane.setMinimumSize(APLeft.getPreferredSize());
@@ -150,26 +151,26 @@ public class SharedResourcesView extends JFrame {
         errorPane.setForeground(Color.RED);
         errorPane.setOpaque(true);
         errorPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        infoPanel.add(errorPane);
+        infoPanel.add(errorInfo);
 
         player1 = new JTextArea(50, 50);
         player1Pane = new JScrollPane(player1);
         player1Pane.setMaximumSize(new Dimension(100, 150));
         player1Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        playerPanel.add(player1Pane);
+        playerPanel.add(player1);
 
         player2 = new JTextArea(50, 50);
         player2Pane = new JScrollPane(player2);
         player2Pane.setMaximumSize(new Dimension(100,150));
         player2Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        playerPanel.add(player2Pane);
+        playerPanel.add(player2);
 
             player3 = new JTextArea(50, 50);
             player3Pane = new JScrollPane(player3);
             player3Pane.setMaximumSize(new Dimension(150, 150));
             player3Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         if(numPlayers >2) {
-            playerPanel.add(player3Pane);
+            playerPanel.add(player3);
         }
 
             player4 = new JTextArea(50, 50);
@@ -177,7 +178,7 @@ public class SharedResourcesView extends JFrame {
             player4Pane.setMaximumSize(new Dimension(150, 150));
             player4Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         if(numPlayers>3) {
-            playerPanel.add(player4Pane);
+            playerPanel.add(player4);
         }
 
         // Add panels

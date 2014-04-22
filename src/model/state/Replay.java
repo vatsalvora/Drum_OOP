@@ -8,7 +8,8 @@ import view.keypressed.KeyPressed;
  */
 public class Replay extends State {
 
-	public Replay() {
+	public Replay(GameFacade gameFacade) {
+        super(gameFacade);
         gameFacade.sendErrorMessage("Replay Mode");
         gameFacade.render();
 	}
@@ -129,7 +130,7 @@ public class Replay extends State {
 	}
 
 	public void keyPressedT() {
-		State t = new Turn();
+		State t = new Turn(gameFacade);
 		KeyPressed.setState(t);
 	}
 

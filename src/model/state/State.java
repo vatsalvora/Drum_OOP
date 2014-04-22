@@ -13,17 +13,15 @@ import java.util.logging.Logger;
 public abstract class State {
 
     public static CommandCreator commandCreator;
-    public static StateType stateType;
     protected GameFacade gameFacade;
     private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
     public State(GameFacade gameFacade) {
         commandCreator = new CommandCreator(gameFacade);
         this.gameFacade = gameFacade;
+        System.out.println("gameFacade created");
     }
-    public State(){
 
-    }
 
     public void incorrectKeyPressed() {
         java.awt.Toolkit.getDefaultToolkit().beep();
@@ -77,14 +75,6 @@ public abstract class State {
     public abstract void keyPressedT();
 
     public abstract void keyPressedC();
-
-    public StateType getCurrentState() {
-        return stateType;
-    }
-
-    public void setCurrentState(StateType current) {
-        stateType = current;
-    }
 
     public abstract void keyPressedS();
 
