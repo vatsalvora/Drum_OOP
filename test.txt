@@ -3,23 +3,24 @@ red
 blue
 green
 model.commands.Move3
-model.commands.SetRotation@68f226e
-model.commands.ChangeMovementColor@1443e2a2
-model.commands.ChangeLvlDisplay@1933386a
+model.commands.Move2
+model.commands.SetRotation@6a4993d4
+model.commands.ChangeMovementColor@48879d0
+model.commands.ChangeLvlDisplay@1bf54903
+model.commands.SetRotation@48c724c
+model.commands.ChangeMovementColor@20a3dde9
+model.commands.SetRotation@663dfcbc
+model.commands.ChangeMovementColor@6f9bcf14
+model.commands.Move2
+model.commands.SetRotation@5e38634a
+model.commands.ChangeMovementColor@47febf99
+model.commands.ChangeLvlDisplay@25d4fabc
 model.commands.PlaceTripleLandTile 0
 model.commands.Move2
 model.commands.Move2
-model.commands.Move9
-model.commands.Move9
-model.commands.Move8
-model.commands.SetRotation@34976026
-model.commands.ChangeMovementColor@4b74a888
-model.commands.ChangeLvlDisplay@40a905b6
-model.commands.PlaceDoubleLandTile 0
-model.commands.Move3
-model.commands.Move3
-model.commands.Move3
-model.commands.SetRotation@405985a1
-model.commands.ChangeMovementColor@4f405bdc
-model.commands.ChangeLvlDisplay@219e8a54
-model.commands.PlaceRiceTile 0
+model.commands.SetRotation@4199600b
+model.commands.ChangeMovementColor@3c7093d2
+model.commands.ChangeLvlDisplay@2f8defe
+model.commands.SetRotation@20f7f738
+model.commands.ChangeMovementColor@77878e70
+model.commands.ChangeLvlDisplay@6498985e

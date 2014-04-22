@@ -64,7 +64,7 @@ public class SpringBox extends JFrame {
 		p.add(labels, BorderLayout.WEST);
 
 		JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
-		JTextField username = new JTextField("1");
+		JTextField username = new JTextField("2");
 		controls.add(username);
 		p.add(controls, BorderLayout.CENTER);
 
@@ -73,7 +73,14 @@ public class SpringBox extends JFrame {
 		JOptionPane.showMessageDialog(frame, p, "Log In",
 				JOptionPane.QUESTION_MESSAGE);
 		numberOfPlayers = Integer.parseInt(username.getText());
+		while (numberOfPlayers > 4 || numberOfPlayers < 2)
+		{
+			JOptionPane.showMessageDialog(frame, "Please choose a number between 2 and 4");
 
+			JOptionPane.showMessageDialog(frame, p, "hehehe",
+					JOptionPane.QUESTION_MESSAGE);
+			numberOfPlayers = Integer.parseInt(username.getText());
+		}
 	}
 
 	/**

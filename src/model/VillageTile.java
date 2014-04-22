@@ -77,7 +77,7 @@ public class VillageTile extends Tile {
 
     public void compareNeighbors(Tile tile) throws SameBlockException {
         int[] indexes = tile.getNeighborsIndex();
-        boolean check = false;
+        boolean check = true;
 
         for(int i : indexes)
             if(hasNeighborAt(i))
