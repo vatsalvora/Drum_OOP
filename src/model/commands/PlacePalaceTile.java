@@ -32,7 +32,7 @@ public class PlacePalaceTile implements Command {
         try {
             b.pullPalaceTile(level);
             try {
-                b.placeOtherBlock();
+                b.playPalace();
                 try {
                     points = b.placePalaceTile(level);
                 } catch (Exception e) {
@@ -41,7 +41,7 @@ public class PlacePalaceTile implements Command {
                     b.returnOtherBlock();
                     b.resetView();
                 }
-            } catch (NotEnoughAPException e) {
+            } catch (Exception e) {
                 save = false;
                 b.returnPalaceTile(level);
                 b.sendErrorMessage(e.toString());

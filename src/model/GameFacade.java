@@ -450,7 +450,7 @@ public class GameFacade {
 
 	public int placePalaceTile(int level) throws Exception {
         int points = 0;
-        
+
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
         int maxLevel = checkPalaceArea(current);
@@ -481,7 +481,8 @@ public class GameFacade {
 		setDevColor(cornflower_blue);
 		setPalaceLvl(0);
 		// return fame points gained by palace placement
-		return (maxLevel/2);
+        turnController.incrementFamePoints(level/2);
+		return points;
 	}
 
 	/*
@@ -508,10 +509,11 @@ public class GameFacade {
 
 	public void undoPalaceTile(int level, int points) {
 		sharedResourcesController.returnPalace(level);
-		turnController.returnOtherBlock();
+		turnController.returnPalace();
 		// remove palace tile from board
 		boardController.undoTilePlacement();
 		turnController.decrementFamePoints(points);
+        turnController.decrementFamePoints(level/2);
 	}
 
 	public void changeTurn() throws BlockNotPlayedException {
@@ -772,4 +774,14 @@ public class GameFacade {
 	public void scorePlayer(String color, int i) {
 		turnController.scorePlayer(color, i);
 	}
+
+    public void playPalace() throws Exception
+    {
+        turnController.placePalace();
+    }
+
+    public void returnPalace()
+    {
+        turnController.returnPalace();
+    }
 }
