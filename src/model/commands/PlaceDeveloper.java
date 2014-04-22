@@ -24,6 +24,11 @@ public class PlaceDeveloper implements Command {
         APForPlacement = 0;
     }
 
+    public PlaceDeveloper(GameFacade gameFacade, int APForPlacement) {
+        this.gameFacade = gameFacade;
+        this.APForPlacement = APForPlacement;
+    }
+
     public void execute() {
         try {
             APForPlacement = gameFacade.placeDeveloper();

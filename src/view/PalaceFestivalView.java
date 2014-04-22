@@ -143,7 +143,7 @@ public class PalaceFestivalView extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         initializeComponents(players, palaceFestival);
-    }// </editor-fold>
+    }
 
     private void passButtonActionPerformed(ActionEvent evt) {
 
@@ -178,7 +178,7 @@ public class PalaceFestivalView extends javax.swing.JPanel {
             playerToChoices.put(players[3], player1Choice);
         }
 
-        names = new ArrayList<java.awt.Label>();
+        names = new ArrayList<>();
         names.add(player1Label);
         names.add(player2Label);
         names.add(player3Label);
