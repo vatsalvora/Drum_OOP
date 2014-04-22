@@ -5,25 +5,14 @@ import model.state.State;
 import model.state.Turn;
 import view.keypressed.*;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 public class SpringBox extends JFrame {
 	static int numberOfPlayers;
@@ -118,7 +107,7 @@ class EnterListener extends KeyAdapter {
             for (int i = 1; i <= numberOfPlayers; i++) {
 
                 names[i-1] = names[i-1] = fields[i-1].getText();
-                if(names[i-1] == "") ready = false;
+                if (names[i - 1].equals("")) ready = false;
                 System.out.println(names[i-1]);
             }
             if(ready){
@@ -131,7 +120,7 @@ class EnterListener extends KeyAdapter {
     }
     public static List<KeyPressed> createListeners(GameFacade b) {
         State state = new Turn(b);
-        List<KeyPressed> keySet = new ArrayList<KeyPressed>();
+        List<KeyPressed> keySet = new ArrayList<>();
 
         keySet.add(new KeyPressed1(state));
         keySet.add(new KeyPressed2(state));
