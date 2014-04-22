@@ -83,14 +83,13 @@ public class RiceTile extends Tile{
 
     public void compareNeighbors(Tile tile) throws SameBlockException {
         int[] indexes = tile.getNeighborsIndex();
-        boolean check = false;
+        boolean check = true;
 
         for(int i : indexes)
             if(hasNeighborAt(i))
                 check = true;
             else
                 check = false;
-
 
         if(check && getNeighborsIndex().length == indexes.length)
             throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + " block on top of another " + (numberOfNeighbors+1) + " block.");
