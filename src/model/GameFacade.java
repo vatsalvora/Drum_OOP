@@ -333,6 +333,9 @@ public class GameFacade {
 
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
+		System.out.println("YO!");
+		if (current.checkPalaceNeighbor(current) < level)
+			throw new IncorrectPalaceHeight();
 		boardController.placeTile(t);
 		setMovementColor(cornflower_blue);
 		setDevColor(cornflower_blue);
