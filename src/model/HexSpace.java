@@ -200,7 +200,9 @@ public class HexSpace implements Space {
     }
 
     public String toString(){
-        String space = "Tile on Space: " + getTopTile() +" neighbors"+ "the heigh is: " + getHeight() +"\n";
+        String space = "";
+        if(getHeight()>0) space += "Tile on Space: " + getTopTile() +" neighbors"+ "the heigh is: " + getHeight() +"\n";
+        else space += "The height is 0.";
 
 
         return space;
