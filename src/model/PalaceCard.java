@@ -35,16 +35,15 @@ public class PalaceCard {
             firstType = Type.PUPPET;
         } else {
             firstType = Type.NONE;
-
-            if (t2.equals("MASK")) {
-                secondType = Type.MASK;
-            } else if (t2.equals("DRUM")) {
-                secondType = Type.DRUM;
-            } else if (t2.equals("PUPPET")) {
-                secondType = Type.PUPPET;
-            } else {
-                secondType = Type.NONE;
-            }
+        }
+        if (t2.equals("MASK")) {
+            secondType = Type.MASK;
+        } else if (t2.equals("DRUM")) {
+            secondType = Type.DRUM;
+        } else if (t2.equals("PUPPET")) {
+            secondType = Type.PUPPET;
+        } else {
+            secondType = Type.NONE;
         }
     }
 

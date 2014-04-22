@@ -31,7 +31,6 @@ public class PlaceIrrigationTile implements Command {
             try{
                 try{
                     points = b.placeIrrigationTile();
-                    //save self
                 }
                 catch(Exception e)
                 {
