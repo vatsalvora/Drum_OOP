@@ -23,6 +23,7 @@ public class TurnController {
     private boolean actionTokenUsed;
     private int blockPlayed;
     private PalaceFestival festival;
+    private int cardsDrawn;
 
 
     public TurnController(String[] name) {
@@ -46,6 +47,7 @@ public class TurnController {
         currentPlayerIndex = 0;
         currentPlayer = players[currentPlayerIndex];
         actionPoints = 6;
+        cardsDrawn = 0;
     }
 
     // Turn control methods
@@ -60,6 +62,7 @@ public class TurnController {
             actionTokenUsed = false;
             blockPlayed = 0;
             actionPoints = 6;
+            cardsDrawn = 0;
         }
         else
         {
@@ -76,6 +79,7 @@ public class TurnController {
         System.out.println(currentPlayer.getName());
         blockPlayed = 6;
         actionPoints = 0;
+        cardsDrawn = 2;
     }
 
     public Color getPlayerViewColor(){return currentPlayer.getViewColor();}
@@ -213,13 +217,20 @@ public class TurnController {
         }
     }
 
-    public void drawCard(PalaceCard c) throws NoAPLeftException, BlockNotPlayedException {
+    public void drawCard(PalaceCard c) throws NoAPLeftException, BlockNotPlayedException, TooManyCardsException {
         if (actionPoints > 0) {
             if (actionPoints == 1 && blockPlayed == 0) {
                 throw new BlockNotPlayedException();
             } else {
-                actionPoints--;
-                currentPlayer.addCard(c);
+                if(cardsDrawn < 2) {
+                    actionPoints--;
+                    currentPlayer.addCard(c);
+                    cardsDrawn++;
+                }
+                else
+                {
+                    throw new TooManyCardsException();
+                }
             }
         } else {
             throw new NoAPLeftException();
@@ -228,17 +239,25 @@ public class TurnController {
 
     public PalaceCard returnCard()
     {
+        cardsDrawn--;
         return currentPlayer.returnCard();
     }
 
-    public void drawFestivalCard(PalaceCard c) throws BlockNotPlayedException, NotEnoughAPException {
+    public void drawFestivalCard(PalaceCard c) throws BlockNotPlayedException, NotEnoughAPException, TooManyCardsException {
         if (c != null) {
             if (actionPoints > 0) {
                 if (actionPoints == 1 && blockPlayed == 0) {
                     throw new BlockNotPlayedException();
                 } else {
-                    actionPoints--;
-                    currentPlayer.addCard(festival.changeFestivalCard(c));
+                    if(cardsDrawn < 2) {
+                        cardsDrawn++;
+                        actionPoints--;
+                        currentPlayer.addCard(festival.changeFestivalCard(c));
+                    }
+                    else
+                    {
+                        throw new TooManyCardsException();
+                    }
                 }
             } else {
                 throw new NotEnoughAPException();
@@ -248,6 +267,7 @@ public class TurnController {
 
     public PalaceCard returnFestivalCard()
     {
+        cardsDrawn--;
         return festival.changeFestivalCard(currentPlayer.returnCard());
     }
 
@@ -262,6 +282,7 @@ public class TurnController {
     }
 
     public void returnOtherBlock() {
+        System.out.println("Increasing action points.");
         actionPoints++;
         blockPlayed--;
     }
@@ -410,5 +431,16 @@ public class TurnController {
     public void endFestival()
     {
         festival.endFestival();
+    }
+
+    public void scorePlayer(String s, int i) {
+        for(Player p : players)
+        {
+            if(p.getColor().compareTo(s) == 0)
+            {
+                p.incrementFamePoints(i);
+                break;
+            }
+        }
     }
 }

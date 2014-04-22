@@ -128,43 +128,32 @@ public class HexSpace implements Space {
         }
     }
 
-    public void place(Tile tile) {
-
-
-        try {
+    public void place(Tile tile) throws Exception {
             if(!spaceEmpty())
                 getTopTile().compareNeighbors(tile);
 
 
-
+            //onEdge();
             checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
             System.out.println(this);
-        } catch (Exception e) {
-
-            System.out.println(e);
-            //removeTopTile();
-            //tell user what went wrong with tile placement
-        }
     }
 
     public void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
 
-        boolean checking = true;
+        boolean checkingOne = true;
+        boolean checkingCurrent = true;
 
-        for(int a : tile.getNeighborsIndex()) {
-            checking = ((HexSpace) getNeighbor(a)).onEdge();
-
-            System.out.println("checking: " + checking);
-
-            if(!checking)
-                break;
+        for(int i = 0 ; i < tile.getNeighborsIndex().length; i++){
+            Space a = getNeighbor(tile.getNeighborsIndex()[i]);
+            if(a != null && !a.onBorder())
+                checkingOne = false;
         }
 
-        checking = getCurrentSpace().onBorder();
+        checkingCurrent = getCurrentSpace().onBorder();
 
-        if(checking )
-        throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
+        if(checkingOne && checkingCurrent )
+            throw new SpaceNotOnEdgeException("Cannot place all tiles outside java!");
     }
 
     public void checkHeights(Tile tile) throws TileHeightWrongException {
@@ -188,7 +177,7 @@ public class HexSpace implements Space {
 
     }
 
-    public void updateNeighbor(Space s, Tile t){
+    public void updateNeighbor(Space s, Tile t) throws Exception {
         ((HexSpace)s).place(t);
     }
 
@@ -202,6 +191,19 @@ public class HexSpace implements Space {
 
     public Space[] getNeighbors() {
         return neighbors;
+    }
+
+    public int checkPalaceNeighbor(HexSpace palace){
+
+          int count = 0;
+
+        for(int i = 0; i < getNeighbors().length; i++) {
+            HexSpace space = ((HexSpace)palace.getNeighbor(i));
+            if (space != null && space.getTopTile().compareTo(new VillageTile(0,Color.BLACK))) ;
+                count++;
+        }
+
+        return count;
     }
 
     public String toString(){

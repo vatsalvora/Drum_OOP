@@ -86,7 +86,7 @@ public class VillageTile extends Tile {
                 check = false;
 
         if(check)
-            throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + "block on top of a" + (numberOfNeighbors+1));
+            throw new SameBlockException("Cannot place " + (numberOfNeighbors+1) + " block on top of another " + (numberOfNeighbors+1) + " block.");
     }
 
     public boolean compareTo(Tile t) {

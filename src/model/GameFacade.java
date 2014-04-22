@@ -84,6 +84,7 @@ public class GameFacade {
     public void sendErrorMessage(String s)
     {
         //send the error message to the view
+        sharedResourcesController.sendErrorMessage(s);
         System.out.println(s);
     }
 
@@ -120,6 +121,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
     }
@@ -152,6 +154,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
 
@@ -192,6 +195,7 @@ public class GameFacade {
             render();
         } catch (Exception e) {
             // tell user about error
+            System.out.println(e);
         }
         return 0;
     }
@@ -344,7 +348,7 @@ public class GameFacade {
         festival.PerformFestival(turnController, sharedResourcesController.getDeck());
 	}
 
-	public int placePalaceTile(int level) {
+	public int placePalaceTile(int level) throws Exception {
 
 
         Tile t = new PalaceTile(level);
@@ -669,4 +673,23 @@ public class GameFacade {
         render();
 	}
 
+    public void removeErrorMessage()
+    {
+        sharedResourcesController.removeErrorMessage();
+    }
+
+    public void scoreSurrounding()
+    {
+        String[] colors = {};
+        //get the colors of the highest positioned developers around a newly placed irrigation tile
+        for(String s : colors)
+        {
+            turnController.scorePlayer(s, 3);
+        }
+    }
+
+    public void scorePlayer(String color, int i)
+    {
+        turnController.scorePlayer(color, i);
+    }
 }

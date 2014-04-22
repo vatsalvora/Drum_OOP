@@ -42,6 +42,7 @@ public class PlaceTripleLandTile implements Command {
                 {
                     save = false;
                     b.returnThreeBlock();
+                    b.returnOtherBlock();
                     b.sendErrorMessage(e.toString());
                     b.render();
                 }

@@ -3,45 +3,23 @@ red
 blue
 green
 model.commands.Move3
-model.commands.SetRotation@6e6c0485
-model.commands.ChangeMovementColor@7ef091e6
-model.commands.ChangeLvlDisplay@66315b33
-model.commands.PlaceRiceTile 0
-model.commands.Move3
-model.commands.SetRotation@2dde51dc
-model.commands.ChangeMovementColor@239830ce
-model.commands.ChangeLvlDisplay@591deafa
-model.commands.PlaceVillageTile 0
-model.commands.Move3
-model.commands.Move3
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation@3519da29
-model.commands.ChangeMovementColor@6a963de7
-model.commands.ChangeLvlDisplay@86a7e3b
+model.commands.SetRotation@68f226e
+model.commands.ChangeMovementColor@1443e2a2
+model.commands.ChangeLvlDisplay@1933386a
 model.commands.PlaceTripleLandTile 0
 model.commands.Move2
 model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.Move2
-model.commands.SetRotation@3e160ff6
-model.commands.ChangeMovementColor@4525528f
-model.commands.ChangeLvlDisplay@1e0736c9
-model.commands.PlaceIrrigationTile 0
 model.commands.Move9
 model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.Move9
-model.commands.SetRotation@45c71894
-model.commands.ChangeMovementColor@4b20d665
-model.commands.ChangeLvlDisplay@247e44a4
-model.commands.PlaceIrrigationTile 0
 model.commands.Move8
-model.ChangeTurn@3689f9c
+model.commands.SetRotation@34976026
+model.commands.ChangeMovementColor@4b74a888
+model.commands.ChangeLvlDisplay@40a905b6
+model.commands.PlaceDoubleLandTile 0
 model.commands.Move3
-model.commands.Move1
-model.commands.Move1
-model.commands.Move2
-model.commands.Move2
+model.commands.Move3
+model.commands.Move3
+model.commands.SetRotation@405985a1
+model.commands.ChangeMovementColor@4f405bdc
+model.commands.ChangeLvlDisplay@219e8a54
+model.commands.PlaceRiceTile 0

@@ -143,9 +143,15 @@ public class AreaViewport {
         Tile t1 = new IrrigationTile(0);
         Tile t2 = new IrrigationTile(0);
         Tile t3 = new IrrigationTile(0);
-        ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
-        ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
-        ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
+        try {
+            ((HexSpace) board.getSpace(new Location(3, 3))).place(t1);
+            ((HexSpace) board.getSpace(new Location(5, 8))).place(t2);
+            ((HexSpace) board.getSpace(new Location(3, 15))).place(t3);
+        }
+        catch(Exception e)
+        {
+            //should never happen
+        }
     }
 
     private void createAndShowGUI(Board board) {
@@ -250,12 +256,14 @@ public class AreaViewport {
                         }
                     }
                     int[] dir = {0,1,2,5,4,3};
+
                     Color[] tileColor = curr.getColor();
                     Color[] color = new Color[]{tileColor[0],tileColor[1],tileColor[2]};
                     if(curr.getHeight() == 0 && curr.onBorder() && j>5){
                         color[0] = PURPLE;
                         color[1] = PURPLE;
                     }
+
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         if(curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))){
