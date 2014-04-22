@@ -44,10 +44,12 @@ public class Planning extends State {
     }
     public void keyPressedTab() {
         // TODO: Tab through developers
+        commandCreator.tabDeveloper();
     }
 
     public void keyPressedR() {
         // TODO: Select rice tile
+        commandCreator.placeRiceTile();
     }
 
     @Override
@@ -73,10 +75,14 @@ public class Planning extends State {
 
     public void keyPressedX() {
         // TODO: End planning mode
+        commandCreator.setPlanning(false);
+        State s = new Turn();
+        KeyPressed.setState(s);
+        commandCreator.tossPlan();
     }
 
     public void keyPressedA() {
-        incorrectKeyPressed();
+        commandCreator.placeDoubleLandTile();
     }
 
     public void keyPressedESC() {
@@ -88,10 +94,7 @@ public class Planning extends State {
     }
 
     public void keyPressedW() {
-        commandCreator.setPlanning(false);
-        State s = new Turn();
-        KeyPressed.setState(s);
-        commandCreator.tossPlan();
+        commandCreator.placeTripleLandTile();
     }
 
     public void keyPressedE() {
@@ -100,16 +103,19 @@ public class Planning extends State {
     }
 
     public void keyPressed4() {
-
+        incorrectKeyPressed();
     }
 
     public void keyPressed6() {
-        incorrectKeyPressed();
+        commandCreator.setPlanning(false);
+        State s = new Turn();
+        KeyPressed.setState(s);
+        commandCreator.usePlan();
     }
 
     @Override
     public void keyPressedS() {
-
+        incorrectKeyPressed();
     }
 
     @Override
@@ -131,11 +137,7 @@ public class Planning extends State {
     }
 
     public void keyPressedM() {
-
-        commandCreator.setPlanning(false);
-        State s = new Turn();
-        KeyPressed.setState(s);
-        commandCreator.usePlan();
+        commandCreator.initiatePalaceFestival();
     }
 
     public void keyPressedJ() {

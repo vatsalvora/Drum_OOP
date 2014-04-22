@@ -1,8 +1,17 @@
 package view;
 
+import model.GameFacade;
+import model.state.State;
+import model.state.Turn;
+import view.keypressed.*;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -17,9 +26,9 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 public class SpringBox extends JFrame {
-	int numberOfPlayers;
-	String names[];
-
+	static int numberOfPlayers;
+	static String[] names;
+    private static JTextField[] fields;
 	SpringBox() {
 		this.getContentPane().setLayout(new GridLayout(8, 8));
 
@@ -30,21 +39,20 @@ public class SpringBox extends JFrame {
 
 		showLogin(this);
 
-		JTextField field2 = new JTextField(10);
-
-		// create JTextField with specified number of columns
-		JTextField field3 = new JTextField(10);
-
-		// create JTextField with default text and columns
-		JTextField field4 = new JTextField("Java Code Geeks", 10);
+        if(numberOfPlayers>4) numberOfPlayers =4;
+        fields = new JTextField[numberOfPlayers];
+        names = new String[numberOfPlayers];
 		for (int i = 1; i <= numberOfPlayers; i++) {
 			add(new JLabel("Player " + i));
-
-			add(new JTextField(10));
+            fields[i-1] = new JTextField(10);
+			getContentPane().add(fields[i - 1]);
+            fields[i-1].addKeyListener(new EnterListener(numberOfPlayers, names, fields));
 		}
+
+
 	}
 
-	private static void createAndShowGUI() {
+	public static void createAndShowGUI() {
 
 		JFrame frame = new SpringBox();
 
@@ -52,7 +60,7 @@ public class SpringBox extends JFrame {
 
 		frame.setVisible(true);
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 
@@ -81,6 +89,7 @@ public class SpringBox extends JFrame {
 					JOptionPane.QUESTION_MESSAGE);
 			numberOfPlayers = Integer.parseInt(username.getText());
 		}
+
 	}
 
 	/**
@@ -88,11 +97,74 @@ public class SpringBox extends JFrame {
 	 *            none
 	 */
 	public static void main(String[] args) {
-		createAndShowGUI();
+
 	}
 
 }
+class EnterListener extends KeyAdapter {
+    private int numberOfPlayers;
+    private String[] names;
+    private JTextField[] fields;
+    public EnterListener(int numberOfPlayers, String[] names, JTextField[] fields) {
+            this.numberOfPlayers = numberOfPlayers;
+            this.names = names;
+            this.fields = fields;
+    }
 
+    public void keyTyped(KeyEvent ke) {
+
+        if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
+            System.out.println(ke.toString());
+            boolean ready = true;
+            for (int i = 1; i <= numberOfPlayers; i++) {
+
+                names[i-1] = names[i-1] = fields[i-1].getText();
+                if(names[i-1] == "") ready = false;
+                System.out.println(names[i-1]);
+            }
+            if(ready){
+                GameFacade b = new GameFacade(names);
+                List<KeyPressed> keySet = createListeners(b);
+                b.addKeyListeners(keySet);
+            }
+        }
+    }
+    public static List<KeyPressed> createListeners(GameFacade b) {
+        State state = new Turn(b);
+        List<KeyPressed> keySet = new ArrayList<KeyPressed>();
+
+        keySet.add(new KeyPressed1(state));
+        keySet.add(new KeyPressed2(state));
+        keySet.add(new KeyPressed3(state));
+        keySet.add(new KeyPressed7(state));
+        keySet.add(new KeyPressed8(state));
+        keySet.add(new KeyPressed9(state));
+        keySet.add(new KeyPressedTab(state));
+        keySet.add(new KeyPressedR(state));
+        keySet.add(new KeyPressedP(state));
+        keySet.add(new KeyPressedV(state));
+        keySet.add(new KeyPressedI(state));
+        keySet.add(new KeyPressedX(state));
+        keySet.add(new KeyPressedA(state));
+        keySet.add(new KeyPressedESC(state));
+        keySet.add(new KeyPressedF(state));
+        keySet.add(new KeyPressedU(state));
+        keySet.add(new KeyPressedW(state));
+        keySet.add(new KeyPressedE(state));
+        keySet.add(new KeyPressed4(state));
+        keySet.add(new KeyPressed6(state));
+        keySet.add(new KeyPressedS(state));
+        keySet.add(new KeyPressedEnter(state));
+        keySet.add(new KeyPressedSpace(state));
+        keySet.add(new KeyPressedT(state));
+        keySet.add(new KeyPressedC(state));
+        keySet.add(new KeyPressedM(state));
+        keySet.add(new KeyPressedJ(state));
+        keySet.add(new KeyPressedK(state));
+        keySet.add(new KeyPressedD(state));
+        return keySet;
+    }
+}
 class RequestFocusListener implements AncestorListener {
 	private boolean removeListener;
 

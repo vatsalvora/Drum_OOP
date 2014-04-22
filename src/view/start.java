@@ -1,8 +1,12 @@
 package view;
 
+import model.GameFacade;
+import view.keypressed.KeyPressed;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import java.util.ArrayList;
@@ -11,11 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 public class start {
-
+     private JFrame frame;
 	// TODO why is there the main in here?!
-	public static void main(String[] args) {
-		new start();
-	}
+	//public static void main(String[] args) {
+		//new start();
+	//}
 
 	public start() {
 		EventQueue.invokeLater(new Runnable() {
@@ -28,7 +32,7 @@ public class start {
 					ex.printStackTrace();
 				}
 
-				JFrame frame = new JFrame("Testing");
+				frame = new JFrame("Testing");
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.add(new TestPane());
 				frame.pack();
@@ -37,7 +41,18 @@ public class start {
 			}
 		});
 	}
+    class EnterListener extends KeyAdapter {
+        public EnterListener() {
 
+        }
+
+        public void keyTyped(KeyEvent ke) {
+
+            if (ke.getKeyChar() == KeyEvent.VK_ENTER) {
+                SpringBox.createAndShowGUI();
+            }
+        }
+    }
 	public class TestPane extends JPanel {
 
 		private static final long serialVersionUID = 1L;
@@ -62,9 +77,11 @@ public class start {
 
 			im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "arrowDown");
 			im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "arrowUp");
+            im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
 
 			am.put("arrowDown", new MenuAction(1));
 			am.put("arrowUp", new MenuAction(-1));
+            am.put("enter",new EnterAction(frame));
 
 		}
 
@@ -113,6 +130,17 @@ public class start {
 			g2d.dispose();
 		}
 
+        public class EnterAction extends AbstractAction{
+            private JFrame frame;
+            public EnterAction(JFrame frame){
+                this.frame = frame;
+            }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                SpringBox.createAndShowGUI();
+            }
+        }
 		public class MenuAction extends AbstractAction {
 
 			private final int delta;
