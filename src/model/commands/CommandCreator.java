@@ -45,7 +45,6 @@ public class CommandCreator {
 	}
 
 	public void tossPlan() {
-		System.out.println("Came Here!");
 		for (Command c : planningCommands) {
 			c.undo();
 		}

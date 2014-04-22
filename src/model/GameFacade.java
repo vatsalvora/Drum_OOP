@@ -132,7 +132,10 @@ public class GameFacade {
 		removeIrrigationTile(i);
 		boardController.undoTilePlacement();
 	}
-
+    public void tabDeveloper() throws NoDevsOnBoardException {
+        boardController.getNextDeveloper(turnController.getPlayerViewColor());
+    }
+    public void resetCurrent(){boardController.resetCurrent();}
 	public int placeVillageTile() {
 
 		try {
@@ -440,6 +443,7 @@ public class GameFacade {
 		// place a developer at location and get AP spent on action
 		Developer d = new Developer(color, viewColor);
 		int APUsed = boardController.placeDeveloper(d);
+        boardController.addDeveloperLoc(boardController.getCurrentSpace());
 		areaViewportController.setMovementColor(cornflower_blue);
 		areaViewportController.setDevColor(cornflower_blue);
 		render();

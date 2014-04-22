@@ -24,6 +24,9 @@ public class BoardController {
 	}
 
     public void addDeveloperLoc(Space s){board.addDeveloperLoc(s);}
+    public void resetCurrent(){
+        board.resetCurrent();
+    }
     public void removeDeveloperLoc(Space s){board.removeDeveloperLoc(s);}
     public void getNextDeveloper(Color color) throws NoDevsOnBoardException {board.getNextDeveloper(color);}
 	public void moveDeveloper() throws Exception {

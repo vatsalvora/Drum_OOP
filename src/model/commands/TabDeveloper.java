@@ -16,11 +16,19 @@ public class TabDeveloper implements Command {
 	}
 
 	public void execute() {
-
+        try {
+            b.tabDeveloper();
+            b.setDevColor(b.getCurrentPlayerColor());
+            b.render();
+        }
+        catch(Exception e){
+            b.sendErrorMessage(e.toString());
+        }
 	}
 
 	public void undo() {
-
+        b.resetCurrent();
+        b.resetView();
 	}
 
 	public boolean save() {

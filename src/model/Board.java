@@ -33,6 +33,7 @@ public class Board {
     public void addDeveloperLoc(Space s){developerLocs.add(s);}
     public void removeDeveloperLoc(Space s){developerLocs.remove(s);}
     public void getNextDeveloper(Color color) throws NoDevsOnBoardException {
+        System.out.println(developerLocs.size());
         int i = 0;
         boolean found = false;
         if(current.getColor()[1].equals(color)) {
@@ -44,7 +45,7 @@ public class Board {
             }
             boolean foundNext = false;
             if(found){
-                for(int q = i; q<developerLocs.size(); q++){
+                for(int q = i+1; q<developerLocs.size(); q++){
                     if(((HexSpace)developerLocs.get(q)).getDeveloper().getViewColor().equals(color)){
                         foundNext = true;
                         current = (HexSpace)developerLocs.get(q);
@@ -57,6 +58,7 @@ public class Board {
                             current = (HexSpace)developerLocs.get(z);
                         }
                     }
+                    System.out.println(foundNext);
                     if(!foundNext){
                         throw new NoDevsOnBoardException();
                     }
@@ -75,6 +77,9 @@ public class Board {
                 throw new NoDevsOnBoardException();
             }
         }
+    }
+    public void resetCurrent(){
+        current = (HexSpace)getSpace(new Location(0, 0));
     }
     public void undoTilePlacement() {
         Tile t = current.removeTopTile();

@@ -162,6 +162,7 @@ public class AreaViewport {
         Container content = frame.getContentPane();
         frame.setFocusable(false);
         panel.setFocusable(true);
+        panel.setFocusTraversalKeysEnabled(false);
         content.add(panel);
 
         frame.setSize((int) (SCREEN_Width / 1.23), (int) (SCREEN_LEN * 1.05));
