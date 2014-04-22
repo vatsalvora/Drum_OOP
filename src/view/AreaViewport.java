@@ -14,6 +14,7 @@ public class AreaViewport {
 
     public  Color COLOR_CELL = new Color(239, 221, 111);
     public Color GREEN = new Color(34,139,34);
+    public Color PURPLE = new Color(203, 0, 245);
     private Color cornflower_blue = new Color(100, 149, 237);
     public  Color COLOR_GRID = Color.BLACK;
 
@@ -261,7 +262,7 @@ public class AreaViewport {
                     }
                     int[] dir = {0,1,2,5,4,3};
 
-                    Color color = (curr.onBorder() && j>5) ? GREEN : curr.getColor();
+                    Color color = (curr.onBorder() && j>5) ? PURPLE : curr.getColor();
                     int[] rotations = board.getRotations();
                     for(int q=0; q<rotations.length; q++){
                         color = (curr.equals(board.getCurrentSpace().getNeighbor(dir[rotations[q]]))) ? movement : color;

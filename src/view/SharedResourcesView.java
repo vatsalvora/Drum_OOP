@@ -236,7 +236,7 @@ public class SharedResourcesView extends JFrame
 
                 public void updateErrorMessage()
                 {
-                    errorInfo.setText(errorMessage);
+                    errorInfo.setText("                              " + errorMessage);
                 }
 
 				public void updateNumPalaceCards(int num)
