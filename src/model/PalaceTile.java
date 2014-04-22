@@ -34,7 +34,7 @@ public class PalaceTile extends Tile{
 
     @Override
     public boolean compareTo(Tile t) {
-        return false;
+        return t instanceof PalaceTile;
     }
 
     public int getLvl(){
