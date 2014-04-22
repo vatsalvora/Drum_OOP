@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * Created by Vatsal on 4/22/2014.
  */
-public class CheckIrrigationArea {
+class CheckIrrigationArea {
     private Tile check;
     private List<Space> area;
     private Space start;
