@@ -449,58 +449,11 @@ public class GameFacade {
         }
         turnController.startFestival(colors);
         palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
+        palaceFestival.render();
 
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
 
-        ArrayList<Player> victors = turnController.getVictors();
-        if(victors.size() == 1)
-        {
-            PalaceTile p;
-            HexSpace s = (HexSpace) boardController.getCurrentSpace();
-            try{
-                p = (PalaceTile) s.getTopTile();
-                victors.get(0).incrementFamePoints(p.getLvl()/2);
-            }
-            catch(Exception e)
-            {
-                //should never happen
-            }
-        }
-        else
-        {
-            PalaceTile p;
-            HexSpace s = (HexSpace) boardController.getCurrentSpace();
-            try{
-                p = (PalaceTile) s.getTopTile();
-                for(Player player : victors)
-                {
-                    switch(p.getLvl())
-                    {
-                        case 2:
-                            break;
-                        case 4:
-                            player.incrementFamePoints(1);
-                            break;
-                        case 6:
-                            player.incrementFamePoints(2);
-                            break;
-                        case 8:
-                            player.incrementFamePoints(2);
-                            break;
-                        case 10:
-                            player.incrementFamePoints(3);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                //should never happen
-            }
-        }
         //</editor-fold>
 	}
 

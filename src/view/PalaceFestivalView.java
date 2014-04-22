@@ -4,6 +4,7 @@ import model.PalaceCard;
 import model.PalaceFestival;
 import model.Player;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -155,6 +156,12 @@ public class PalaceFestivalView extends javax.swing.JPanel {
         mainPalaceFestival.setText(palaceFestival.getFestivalCard().toString());
         addNamesAndItemsToChoiceAndLabel();
         setMainPalaceFestivalCard();
+        JFrame frame = new JFrame("Testing");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(jLayeredPane1);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public void setMainPalaceFestivalCard() {
