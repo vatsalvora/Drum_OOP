@@ -23,16 +23,10 @@ public class CheckPalaceArea {
     public List<Space> getArea(){
         return area;
     }
-    public void calcArea(){
+    public boolean calcArea(){
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
-        bfs.offer(start);
-        visited.add(start);
-        Space [] n = start.getNeighbors();
-        for (Space s : n) {
-            HexSpace h = (HexSpace)s;
-            bfs.offer(s);
-        }
+        bfs.add(start);
         System.out.println("BFS Size:" + bfs.size());
         while(!bfs.isEmpty()){
             Space curr = bfs.poll();
@@ -42,6 +36,10 @@ public class CheckPalaceArea {
                 if(((HexSpace)curr).getHeight()>0)
                 {
                     Tile t = curr.getTopTile();
+                    if(t.compareTo(new PalaceTile(0))){
+                        area = new ArrayList<Space>();
+                        return false;
+                    }
                     if (t.compareTo(check)) {
                         Space[] neighbors = curr.getNeighbors();
                         for (Space s : neighbors) {
@@ -54,6 +52,7 @@ public class CheckPalaceArea {
             }
 
         }
+        return true;
     }
     public ArrayList<String> getColors()
     {

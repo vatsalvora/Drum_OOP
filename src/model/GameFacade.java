@@ -91,10 +91,10 @@ public class GameFacade {
 
     public int checkPalaceArea(Space s){
         cpa = new CheckPalaceArea(s);
-        cpa.calcArea();
-        List<Space> city = cpa.getArea();
-        System.out.println("Size:" + city.size());
-        if(checkHighestRankingDeveloper(city))return city.size();
+        if(cpa.calcArea()) {
+            List<Space> city = cpa.getArea();
+            if (checkHighestRankingDeveloper(city)) return (1+city.size());
+        }
         return 0;
     }
 
@@ -505,29 +505,12 @@ public class GameFacade {
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
         int maxLevel = checkPalaceArea(current);
-        System.out.println(maxLevel);
+        System.out.println("MaxLevel:"+maxLevel);
 		System.out.println("YO!");
 		if (maxLevel < level)
 			throw new IncorrectPalaceHeight();
 		boardController.placeTile(t);
-        Space[] neighbors = current.getNeighbors();
-        Tile check  = new IrrigationTile(0);
-        for(Space s: neighbors){
-            HexSpace h = (HexSpace) s;
-            if(h.getHeight()>0) {
-                if (h.getTopTile().compareTo(check)){
-                    points = checkIrrigationArea(h);
-                    ArrayList<String> colors = boardController.getIrrigationColors();
-                    if(points > 0)
-                    {
-                        for(String c : colors)
-                        {
-                            scoreSurrounding(c);
-                        }
-                    }
-                }
-            }
-        }
+
 		setMovementColor(cornflower_blue);
 		setDevColor(cornflower_blue);
 		setPalaceLvl(0);

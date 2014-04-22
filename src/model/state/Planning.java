@@ -9,8 +9,11 @@ import view.keypressed.KeyPressed;
 public class Planning extends State {
 
 
-    public Planning(){
-         commandCreator.setPlanning(true);
+    public Planning(GameFacade gamefacade){
+        super(gamefacade);
+        commandCreator.setPlanning(true);
+        gameFacade.sendErrorMessage("Planning Mode");
+        gameFacade.render();
     }
 
     @Override
@@ -76,7 +79,7 @@ public class Planning extends State {
     public void keyPressedX() {
         // TODO: End planning mode
         commandCreator.setPlanning(false);
-        State s = new Turn();
+        State s = new Turn(gameFacade);
         KeyPressed.setState(s);
         commandCreator.tossPlan();
     }
@@ -108,7 +111,7 @@ public class Planning extends State {
 
     public void keyPressed6() {
         commandCreator.setPlanning(false);
-        State s = new Turn();
+        State s = new Turn(gameFacade);
         KeyPressed.setState(s);
         commandCreator.usePlan();
     }

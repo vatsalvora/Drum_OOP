@@ -146,37 +146,7 @@ public class HexSpace implements Space {
 
 
 
-    private void checkIrrigationSurrounding(Space space){
 
-        int count = 0;
-
-        for(Space s : space.getNeighbors())
-            if(((HexSpace)s).getHeight() != 0)
-                count++;
-
-        if(count == 6)
-            findHighestDev(space);
-
-    }
-
-    private void findHighestDev(Space space){
-
-        int highestDev = 0;
-        int highestHeight = 0;
-
-        for(Space s : space.getNeighbors())
-            if(((HexSpace)s).hasDeveloper()) {
-               int height = ((HexSpace) s).getHeight();
-               if(highestHeight < height)
-                   highestHeight = height;
-
-            }
-
-
-
-        System.out.println("kkmsdfkmkmfkmmkfdmaskfmsakmfaasdmfkamkfmasdkmfksamfkdsaklf" + highestHeight);
-
-    }
 
 	private void checkingOutSideJava(Tile tile) throws SpaceNotOnEdgeException {
 
