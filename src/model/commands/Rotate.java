@@ -24,11 +24,5 @@ public class Rotate implements Command {
     }
 
 	@Override
-	public String toString() {
-		String ret = this.getClass().getName();
-        for(int i : gameFacade.getRotation()){
-                ret += " " + i;
-        }
-        return ret;
-	}
+	public String toString(){return this.getClass().getName();}
 }

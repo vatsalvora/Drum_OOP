@@ -1,10 +1,8 @@
 package model;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * Created by Vatsal on 4/22/2014.
@@ -13,12 +11,12 @@ public class CheckPalaceArea {
     private Tile check;
     private List<Space> area;
     private Space start;
-    private ArrayList<String> develsInCity;
+    private HashSet<String> develsInCity;
     public CheckPalaceArea(Space start){
         check = new VillageTile(0, Color.BLACK);
         area = new ArrayList<Space>();
         this.start = start;
-        develsInCity = new ArrayList<String>();
+        develsInCity = new HashSet<String>();
     }
 
     public List<Space> getArea(){
@@ -27,7 +25,16 @@ public class CheckPalaceArea {
     public boolean calcArea(){
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
-        bfs.add(start);
+        if(((HexSpace)start).getHeight()>0)
+        {
+            Tile t = start.getTopTile();
+            Space[] neighbors = start.getNeighbors();
+            for (Space s : neighbors) {
+                if (!s.equals(start) && !visited.contains(s) && ((HexSpace)s).getHeight()>0){
+                    if(s.getTopTile().compareTo(check))bfs.add(s);
+                }
+            }
+        }
         System.out.println("BFS Size:" + bfs.size());
         while(!bfs.isEmpty()){
             Space curr = bfs.poll();
@@ -38,6 +45,7 @@ public class CheckPalaceArea {
                 {
                     Tile t = curr.getTopTile();
                     if(t.compareTo(new PalaceTile(0))){
+                        System.out.println("Came Here!");
                         area = new ArrayList<Space>();
                         return false;
                     }
@@ -57,28 +65,20 @@ public class CheckPalaceArea {
     }
     public ArrayList<String> getColors()
     {
-        develsInCity = new ArrayList<String>();
+        develsInCity = new HashSet<String>();
         for(Space space : area)
         {
             HexSpace s = (HexSpace) space;
             if(s.hasDeveloper())
             {
                 String color = s.getDeveloper().getColor();
-                boolean check = true;
-                for(String c : develsInCity)
-                {
-                    if(c.compareTo(color) == 0)
-                    {
-                        check = false;
-                        break;
-                    }
-                }
-                if(check)
-                {
-                    develsInCity.add(color);
-                }
+                develsInCity.add(color);
             }
         }
-        return develsInCity;
+        Object [] colors = (Object[]) develsInCity.toArray();
+        ArrayList<String> color = new ArrayList<String>();
+        for(Object s: colors) color.add(s+"");
+        System.out.println(area.size());
+        return color;
     }
 }

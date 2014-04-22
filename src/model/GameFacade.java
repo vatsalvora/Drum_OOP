@@ -437,8 +437,9 @@ public class GameFacade {
 
 	public void initiatePalaceFestival() {
         CheckPalaceArea cpa = new CheckPalaceArea(getCurrentSpace());
-        cpa.getArea();
+        cpa.calcArea();
         ArrayList<String> colors = cpa.getColors();
+        System.out.println(colors);
         turnController.startFestival(colors);
         palaceFestival = new PalaceFestivalController(turnController.getFestival(),turnController.getPlayers());
         palaceFestival.render();
@@ -448,8 +449,6 @@ public class GameFacade {
 		// Get valid colors from the board to turn in to festivals
 		// turnController.startFestival(colors);
 
-		FestivalTest festival = new FestivalTest(colors);
-		festival.PerformFestival(turnController, sharedResourcesController.getDeck());
         ArrayList<Player> victors = turnController.getVictors();
         if(victors.size() == 1)
         {

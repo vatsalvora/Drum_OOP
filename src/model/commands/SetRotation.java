@@ -29,6 +29,10 @@ public class SetRotation implements Command {
     }
 
     public String toString() {
-        return this.getClass().getName();
+        String ret = this.getClass().getName();
+        for(int i : b.getRotation()){
+            ret += " " + i;
+        }
+        return ret;
     }
 }
