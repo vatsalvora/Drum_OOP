@@ -13,13 +13,16 @@ import java.util.logging.Logger;
 public abstract class State {
 
     public static CommandCreator commandCreator;
-    protected GameFacade gameFacade;
+    protected static GameFacade gameFacade;
     private final static Logger LOGGER = Logger.getLogger(State.class.getName());
 
     public State(GameFacade gameFacade) {
         commandCreator = new CommandCreator(gameFacade);
         this.gameFacade = gameFacade;
         System.out.println("gameFacade created");
+    }
+    public State(){
+
     }
 
 
