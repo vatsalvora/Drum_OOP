@@ -246,10 +246,12 @@ public class AreaViewport {
                     String status = "";
                     ArrayList<Color> colors = new ArrayList<Color>();
                     if(curr.getHeight()>0){
-                        if(curr.getCurrentSpace().getTopTile().getColor().equals(Color.YELLOW)){
+                        try{
                             status = ((PalaceTile)curr.getTopTile()).getLvl()+"";
                         }
-                        else status = curr.getHeight()+"";
+                        catch(Exception e){
+                            status = curr.getHeight()+"";
+                        }
                     }
                     int[] dir = {0,1,2,5,4,3};
 
