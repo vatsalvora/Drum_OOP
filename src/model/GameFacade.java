@@ -131,17 +131,27 @@ public class GameFacade {
 	}
 
 	public int placeIrrigationTile() throws Exception {
-
+            int points = 0;
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
 			Tile t = new IrrigationTile(0);
 			boardController.placeTile(t);
+            points = checkIrrigationArea(boardController.getCurrentSpace());
+            ArrayList<String> colors = boardController.getIrrigationColors();
+            if(points > 0)
+            {
+                for(String s : colors)
+                {
+                    scoreSurrounding(s);
+                }
+            }
 			setMovementColor(cornflower_blue);
 			setDevColor(cornflower_blue);
 			render();
 
-		return 0;
+
+		return points;
 	}
 
 	public void removeIrrigationTile(int i) {
@@ -177,6 +187,14 @@ public class GameFacade {
                 if(h.getHeight()>0) {
                     if (h.getTopTile().compareTo(check)){
                         points = checkIrrigationArea(h);
+                        ArrayList<String> colors = boardController.getIrrigationColors();
+                        if(points > 0)
+                        {
+                            for(String c : colors)
+                            {
+                                scoreSurrounding(c);
+                            }
+                        }
                     }
                 }
             }
@@ -232,6 +250,14 @@ public class GameFacade {
                 if(h.getHeight()>0) {
                     if (h.getTopTile().compareTo(check)){
                         points = checkIrrigationArea(h);
+                        ArrayList<String> colors = boardController.getIrrigationColors();
+                        if(points > 0)
+                        {
+                            for(String c : colors)
+                            {
+                                scoreSurrounding(c);
+                            }
+                        }
                     }
                 }
             }
@@ -292,6 +318,14 @@ public class GameFacade {
             if(h.getHeight()>0) {
                 if (h.getTopTile().compareTo(check)){
                     points = checkIrrigationArea(h);
+                    ArrayList<String> colors = boardController.getIrrigationColors();
+                    if(points > 0)
+                    {
+                        for(String c : colors)
+                        {
+                            scoreSurrounding(c);
+                        }
+                    }
                 }
             }
         }
@@ -368,6 +402,14 @@ public class GameFacade {
             if(h.getHeight()>0) {
                 if (h.getTopTile().compareTo(check)){
                     points = checkIrrigationArea(h);
+                    ArrayList<String> colors = boardController.getIrrigationColors();
+                    if(points > 0)
+                    {
+                        for(String c : colors)
+                        {
+                            scoreSurrounding(c);
+                        }
+                    }
                 }
             }
         }
@@ -407,7 +449,8 @@ public class GameFacade {
 	}
 
 	public int placePalaceTile(int level) throws Exception {
-
+        int points = 0;
+        
 		Tile t = new PalaceTile(level);
 		HexSpace current = boardController.getCurrentSpace();
         int maxLevel = checkPalaceArea(current);
@@ -416,6 +459,24 @@ public class GameFacade {
 		if (maxLevel < level)
 			throw new IncorrectPalaceHeight();
 		boardController.placeTile(t);
+        Space[] neighbors = current.getNeighbors();
+        Tile check  = new IrrigationTile(0);
+        for(Space s: neighbors){
+            HexSpace h = (HexSpace) s;
+            if(h.getHeight()>0) {
+                if (h.getTopTile().compareTo(check)){
+                    points = checkIrrigationArea(h);
+                    ArrayList<String> colors = boardController.getIrrigationColors();
+                    if(points > 0)
+                    {
+                        for(String c : colors)
+                        {
+                            scoreSurrounding(c);
+                        }
+                    }
+                }
+            }
+        }
 		setMovementColor(cornflower_blue);
 		setDevColor(cornflower_blue);
 		setPalaceLvl(0);
@@ -704,13 +765,8 @@ public class GameFacade {
 		sharedResourcesController.removeErrorMessage();
 	}
 
-	public void scoreSurrounding() {
-		String[] colors = {};
-		// get the colors of the highest positioned developers around a newly
-		// placed irrigation tile
-		for (String s : colors) {
-			turnController.scorePlayer(s, 3);
-		}
+	public void scoreSurrounding(String color) {
+			turnController.scorePlayer(color, 3);
 	}
 
 	public void scorePlayer(String color, int i) {

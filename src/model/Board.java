@@ -217,4 +217,35 @@ public class Board {
     public void undoDeveloperPlacement() {
         current.removeDeveloper();
     }
+
+    public ArrayList<String> getIrrigationColors() {
+        ArrayList<String> colors = new ArrayList<String>();
+        int maxHeight = 0;
+        for (Space space : getCurrentSpace().getNeighbors())
+        {
+            HexSpace s = (HexSpace) space;
+            if(s.hasDeveloper())
+            {
+                if(s.getHeight() > maxHeight)
+                {
+                    maxHeight = s.getHeight();
+                }
+            }
+        }
+        for(Space space : getCurrentSpace().getNeighbors())
+        {
+            HexSpace s = (HexSpace) space;
+            if(s.hasDeveloper())
+            {
+                if(s.getHeight() == maxHeight)
+                {
+                    if(!colors.contains(s.getDeveloper().getColor()))
+                    {
+                        colors.add(s.getDeveloper().getColor());
+                    }
+                }
+            }
+        }
+        return colors;
+    }
 }

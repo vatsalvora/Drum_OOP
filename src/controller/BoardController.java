@@ -185,4 +185,8 @@ public class BoardController {
     public void undoDeveloperPlacement() {
         board.undoDeveloperPlacement();
     }
+
+    public ArrayList<String> getIrrigationColors() {
+        return board.getIrrigationColors();
+    }
 }
