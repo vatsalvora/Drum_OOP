@@ -1,10 +1,9 @@
 import view.Start;
 
 public class RunGame {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         Start s = new Start();
-
-	}
+    }
 
 
 }

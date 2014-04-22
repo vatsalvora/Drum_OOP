@@ -9,10 +9,12 @@ import model.GameFacade;
 public class SetRotation implements Command {
     private GameFacade b;
     private int[] rotation;
-    public SetRotation(GameFacade b, int[] rotation){
+
+    public SetRotation(GameFacade b, int[] rotation) {
         this.b = b;
         this.rotation = rotation;
     }
+
     @Override
     public void execute() {
         b.setRotation(rotation);
@@ -30,7 +32,7 @@ public class SetRotation implements Command {
 
     public String toString() {
         String ret = this.getClass().getName();
-        for(int i : b.getRotation()){
+        for (int i : rotation) {
             ret += " " + i;
         }
         return ret;

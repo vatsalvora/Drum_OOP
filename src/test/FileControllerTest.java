@@ -20,15 +20,12 @@ import static org.junit.Assert.assertEquals;
 public class FileControllerTest {
     String fileName = "test1.txt";
     GameFacade gameFacade;
+    Stack<Command> commandStack;
 
     @Before
     public void setUp() throws Exception {
         gameFacade = new GameFacade(new String[]{"blue", "white", "black"});
-    }
-
-    @Test
-    public void testSave() throws Exception {
-        Stack<Command> commandStack = new Stack<>();
+        commandStack = new Stack<>();
         commandStack.push(new ChangeTurn(gameFacade));
         commandStack.push(new DrawCard(gameFacade));
         commandStack.push(new DrawPalaceCard(gameFacade));
@@ -46,6 +43,12 @@ public class FileControllerTest {
         commandStack.push(new RemoveDeveloper(gameFacade, 10));
         commandStack.push(new Rotate(gameFacade));
         commandStack.push(new TabDeveloper(gameFacade));
+        commandStack.push(new SetRotation(gameFacade, new int[]{1, 2}));
+    }
+
+    @Test
+    public void testSave() throws Exception {
+
         new FileController().save(fileName, commandStack, gameFacade);
     }
 
@@ -54,13 +57,13 @@ public class FileControllerTest {
 
     }
 
-//    @Test
-//    public void testLoadCommands() throws Exception {
-//        FileController fileController = new FileController();
-//        BufferedReader br = new BufferedReader(new FileReader(fileName));
-//        gameFacade = new GameFacade(fileController.loadColors(br));
-//        fileController.loadCommands(br, gameFacade);
-//    }
+    @Test
+    public void testLoadCommands() throws Exception {
+        FileController fileController = new FileController();
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        gameFacade = new GameFacade(fileController.loadColors(br));
+        fileController.loadCommands(br, gameFacade);
+    }
 
     @Test
     public void testDetermineCommand() throws Exception {
@@ -97,6 +100,10 @@ public class FileControllerTest {
         lineIn = new String[]{"model.commands.TabDeveloper"};
         command = fileController.determineCommand(lineIn, gameFacade);
         assertEquals(TabDeveloper.class, command.getClass());
+
+        lineIn = new String[]{"model.commands.SetRotation", "1", "2"};
+        command = fileController.determineCommand(lineIn, gameFacade);
+        assertEquals(SetRotation.class, command.getClass());
 
     }
 
