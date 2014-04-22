@@ -19,6 +19,7 @@ public abstract class Tile {
     public abstract Tile getNeighborAt(int index);
     public abstract void removeReff(int index);
     public abstract void assignColor(Color c);
+    public abstract int getNumberOfRefs();
     public abstract Tile getReferences(int i);
     public abstract void compareNeighbors(Tile tile) throws SameBlockException;
 

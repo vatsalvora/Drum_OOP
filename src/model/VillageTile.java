@@ -28,6 +28,8 @@ public class VillageTile extends Tile {
         return color;
     }
 
+    public int getNumberOfRefs(){return numberOfNeighbors;}
+
     public void assignNumberOfNeighbors(int numberOfNeighbors){
         this.numberOfNeighbors = numberOfNeighbors;
     }

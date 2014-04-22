@@ -27,27 +27,43 @@ public class CheckIrrigationArea {
         return points;
     }
     public boolean calcArea(){
+        if(!start.getTopTile().compareTo(check)) return false;
+        if(((IrrigationTile)start.getTopTile()).getScored()) return false;
+        List<Tile> irrigationPool = new LinkedList<Tile>();
+        irrigationPool.add(start.getTopTile());
         List<Space> visited = new LinkedList<Space>();
         Queue<Space> bfs = new LinkedList<Space>();
-        bfs.add(start);
+        Space[] neighbors = start.getNeighbors();
+        for (Space s : neighbors) {
+            System.out.println(s.getTopTile() instanceof VillageTile);
+            bfs.add(s);
+        }
+
         while(!bfs.isEmpty()){
             Space curr = bfs.poll();
-            visited.add(curr);
-            area.add(curr);
+
             if(!visited.contains(curr)){
+                visited.add(curr);
+                area.add(curr);
+                System.out.println("Height: " + ((HexSpace)curr).getHeight());
                 if(((HexSpace)curr).getHeight()<=0) return false;
                 else {
                     Tile t = curr.getTopTile();
                     if (t.compareTo(check)) {
+                        irrigationPool.add(t);
                         points +=3;
-                        Space[] neighbors = curr.getNeighbors();
-                        for (Space s : neighbors) {
+                        Space[] adjacent = curr.getNeighbors();
+                        for (Space s : adjacent) {
                             if (!s.equals(curr) && !visited.contains(s)) bfs.add(s);
                         }
                     }
                 }
             }
 
+        }
+        for(Tile t: irrigationPool){
+            IrrigationTile i = (IrrigationTile)t;
+            i.setScored(true);
         }
         return true;
     }

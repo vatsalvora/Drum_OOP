@@ -156,13 +156,13 @@ public class SharedResourcesView extends JFrame {
         player1Pane = new JScrollPane(player1);
         player1Pane.setMaximumSize(new Dimension(100, 150));
         player1Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        //playerPanel.add(player1Pane);
+        playerPanel.add(player1Pane);
 
         player2 = new JTextArea(50, 50);
         player2Pane = new JScrollPane(player2);
         player2Pane.setMaximumSize(new Dimension(100,150));
         player2Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        //playerPanel.add(player2Pane);
+        playerPanel.add(player2Pane);
 
             player3 = new JTextArea(50, 50);
             player3Pane = new JScrollPane(player3);

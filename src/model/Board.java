@@ -169,7 +169,7 @@ public class Board {
 
 
     public void place(Tile tile) throws Exception {
-            current.checkHeights(tile);
+        if(tile.getNumberOfRefs()>0)current.checkHeights(tile);
 
         current.place(tile);
 

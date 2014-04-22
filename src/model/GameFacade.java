@@ -74,6 +74,7 @@ public class GameFacade {
         CheckIrrigationArea check = new CheckIrrigationArea(s);
         int points = 0;
         if(check.calcArea()){
+            System.out.println("Area was enclosed!");
             if(checkHighestRankingDeveloper(check.getArea())){
                 points += check.famePoints();
             }
@@ -167,6 +168,16 @@ public class GameFacade {
 			// place the village at the proper spot
 			// give player the proper points (if applicable)
 			HexSpace current = boardController.getCurrentSpace();
+            Space[] neighbors = current.getNeighbors();
+            Tile check  = new IrrigationTile(0);
+            for(Space s: neighbors){
+                HexSpace h = (HexSpace) s;
+                if(h.getHeight()>0) {
+                    if (h.getTopTile().compareTo(check)){
+                        System.out.println("Irrigation Fame points: " + checkIrrigationArea(h));
+                    }
+                }
+            }
 			Tile t = new VillageTile(0, Color.BLACK);
 			boardController.placeTile(t);
 

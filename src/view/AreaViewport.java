@@ -309,6 +309,9 @@ public class AreaViewport {
                 }
             }
             path = new ArrayList<Space>(0);
+
+
+
         }
 
         public void setPath(List<Space> path) {
