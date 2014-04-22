@@ -129,7 +129,6 @@ public class HexSpace implements Space {
 
 
             onEdge();
-            //checkingOutSideJava(tile);
             tilesOnSpace.add(tile);
             System.out.println(this);
     }
