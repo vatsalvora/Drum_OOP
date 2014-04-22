@@ -15,14 +15,19 @@ public class PalaceCard {
 
     public PalaceCard(String t1) {
         secondType = Type.NONE;
-        if (t1.equals("MASK")) {
-            firstType = Type.MASK;
-        } else if (t1.equals("DRUM")) {
-            firstType = Type.DRUM;
-        } else if (t1.equals("PUPPET")) {
-            firstType = Type.PUPPET;
-        } else {
-            firstType = Type.NONE;
+        switch (t1) {
+            case "MASK":
+                firstType = Type.MASK;
+                break;
+            case "DRUM":
+                firstType = Type.DRUM;
+                break;
+            case "PUPPET":
+                firstType = Type.PUPPET;
+                break;
+            default:
+                firstType = Type.NONE;
+                break;
         }
     }
 
